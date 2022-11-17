@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: oracle-source-connector
 :page-tag: oracle,debezium,cdc,source-connector
+:page-alias: docs@astra-streaming::connectors/sources/debezium-oracle.adoc
 
 = Debezium Oracle Source Connector
 

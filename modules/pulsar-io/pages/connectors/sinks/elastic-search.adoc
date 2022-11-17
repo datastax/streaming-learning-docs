@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: elasticsearch-sink-connector
 :page-tag: elasticsearch,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/elastic-search.adoc
 
 = Elasticsearch Sink Connector for {product_name}
 

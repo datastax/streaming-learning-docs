@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: clickhouse-sink-connector
 :page-tag: jdbc,clickhouse,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/jdbc-clickhouse.adoc
 
 = JDBC Clickhouse Sink Connector for {product_name}
 

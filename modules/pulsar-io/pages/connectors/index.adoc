@@ -1,6 +1,7 @@
 :attribute-missing: skip
 :slug: astra-streaming-connectors
 :page-tag: connectors,sinks,sources
+:page-alias: docs@astra-streaming::connectors/index.adoc
 
 = {product_name} IO connectors
 

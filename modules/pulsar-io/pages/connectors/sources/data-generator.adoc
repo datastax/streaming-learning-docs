@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: data-generator-source-connector
 :page-tag: data-generator,source-connector
+:page-alias: docs@astra-streaming::connectors/sources/data-generator.adoc
 
 = Data Generator Source Connector for {product_name}
 
