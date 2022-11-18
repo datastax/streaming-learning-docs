@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: mariadb-sink-connector
 :page-tag: jdbc,mariadb,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/jdbc-mariadb.adoc
 
 = JDBC MariaDB Sink Connector for {product_name}
 

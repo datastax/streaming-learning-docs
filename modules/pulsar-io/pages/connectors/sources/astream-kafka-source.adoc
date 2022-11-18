@@ -1,6 +1,7 @@
 = Kafka source connector
 
 :page-tag: astra-streaming,admin,connect,pulsar
+:page-alias: docs@astra-streaming::connectors/sources/astream-kafka-source.adoc
 
 The Kafka source connector reads messages from Kafka topics and produces the messages to Pulsar topics.
 

@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: sqlite-sink-connector
 :page-tag: jdbc,sqlite,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/jdbc-sqllite.adoc
 
 = JDBC SQLite Sink Connector for {product_name}
 

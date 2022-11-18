@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: kinesis-sink-connector
 :page-tag: kinesis,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/kinesis.adoc
 
 = Kinesis Sink Connector for {product_name}
 

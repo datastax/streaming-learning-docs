@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: kafka-sink-connector
 :page-tag: kafka,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/kafka.adoc
 
 = Kafka Sink Connector for {product_name}
 

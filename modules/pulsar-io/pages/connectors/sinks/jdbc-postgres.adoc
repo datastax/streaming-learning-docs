@@ -2,6 +2,7 @@
 :connectorType: jdbc-postgres
 :slug: postgres-sink-connector
 :page-tag: jdbc,postgres,sink-connector
+:page-alias: docs@astra-streaming::connectors/sinks/jdbc-postgres.adoc
 
 = JDBC PostgreSQL Sink Connector for {product_name}
 

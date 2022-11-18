@@ -3,6 +3,7 @@
 :attribute-missing: skip
 :slug: kinesis-source-connector
 :page-tag: kinesis,source-connector
+:page-alias: docs@astra-streaming::connectors/sources/kinesis.adoc
 
 = Kinesis Source Connector
 
