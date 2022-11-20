@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: snowflake-sink-connector
 :page-tag: snowflake,sink-connector
-:page-alias: docs@astra-streaming::connectors/sinks/snowflake.adoc
+:page-aliases: docs@astra-streaming::connectors/sinks/snowflake.adoc
 
 = Snowflake Sink Connector for {product_name}
 

@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: mysql-source-connector
 :page-tag: mysql,debezium,cdc,source-connector
-:page-alias: docs@astra-streaming::connectors/sources/debezium-mysql.adoc
+:page-aliases: docs@astra-streaming::connectors/sources/debezium-mysql.adoc
 
 = Debezium MySQL Source Connector
 

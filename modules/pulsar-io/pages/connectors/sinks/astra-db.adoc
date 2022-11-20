@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: astra-db-sink-connector
 :page-tag: astra-db,cdc,sink-connector
-:page-alias: docs@astra-streaming::connectors/sinks/astream-astradb-sink.adoc
+:page-aliases: docs@astra-streaming::connectors/sinks/astream-astradb-sink.adoc
 
 = Astra DB Sink Connector for {product_name}
 

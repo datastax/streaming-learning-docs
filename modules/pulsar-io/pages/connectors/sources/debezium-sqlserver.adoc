@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: sql-server-source-connector
 :page-tag: sql-server,cdc,debezium,source-connector
-:page-alias: docs@astra-streaming::connectors/sources/debezium-sqlserver.adoc
+:page-aliases: docs@astra-streaming::connectors/sources/debezium-sqlserver.adoc
 
 = Debezium SQL Server Source Connector
 

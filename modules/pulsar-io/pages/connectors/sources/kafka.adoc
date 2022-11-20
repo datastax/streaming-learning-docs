@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: kafka-source-connector
 :page-tag: kafka,source-connector
-:page-alias: docs@astra-streaming::connectors/sources/kafka.adoc
+:page-aliases: docs@astra-streaming::connectors/sources/kafka.adoc
 
 = Kafka Source Connector
 

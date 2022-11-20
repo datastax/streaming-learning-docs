@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: postgres-source-connector
 :page-tag: postgres,debezium,cdc,source-connector
-:page-alias: docs@astra-streaming::connectors/sources/debezium-postgres.adoc
+:page-aliases: docs@astra-streaming::connectors/sources/debezium-postgres.adoc
 
 = Debezium PostgreSQL Source Connector
 

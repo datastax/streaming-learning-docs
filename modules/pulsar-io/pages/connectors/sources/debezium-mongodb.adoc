@@ -3,7 +3,7 @@
 :attribute-missing: skip
 :slug: mongodb-source-connector
 :page-tag: debezium,cdc,mongodb,source-connector
-:page-alias: docs@astra-streaming::connectors/sources/debezium-mongodb.adoc
+:page-aliases: docs@astra-streaming::connectors/sources/debezium-mongodb.adoc
 
 = Debezium MongoDB Source Connector for {product_name}
 
