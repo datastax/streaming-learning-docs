@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sources create \
   --source-type debezium-mssql \
-  --name "${SOURCE_NAME}" \
-  --destination-topic-name "persistent://${TENANT}/${NAMESPACE}/${DESTINATION_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SOURCE_NAME" \
+  --destination-topic-name "persistent://$TENANT/$NAMESPACE/$DESTINATION_TOPIC" \
+  --tenant "$TENANT" \
   --source-config '{
     "database.hostname": "localhost",
     "database.port": "1433",
@@ -11,7 +11,7 @@
     "database.dbname": "MyTestDB",
     "database.server.name": "mssql",
     "snapshot.mode": "schema_only",
-    "topic.namespace": "'${TENANT}'/'${NAMESPACE}'",
+    "topic.namespace": "'$TENANT'/'$NAMESPACE'",
     "task.class": "io.debezium.connector.sqlserver.SqlServerConnectorTask",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "key.converter": "org.apache.kafka.connect.json.JsonConverter",

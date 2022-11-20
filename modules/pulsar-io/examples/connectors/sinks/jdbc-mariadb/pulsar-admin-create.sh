@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sinks create \
   --sink-type jdbc-mariadb \
-  --name "${SINK_NAME}" \
-  --inputs "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC" \
+  --tenant "$TENANT" \
   --sink-config '{
     "userName": "mariadb",
     "password": "password",

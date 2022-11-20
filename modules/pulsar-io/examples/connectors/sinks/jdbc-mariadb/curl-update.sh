@@ -1,10 +1,10 @@
-curl -sS --fail --request PUT ''${WEB_SERVICE_URL}'/admin/v3/sinks/'${TENANT}'/'${NAMESPACE}'/'${SINK_NAME}'?opt=poweruser' \
-  --header "Authorization: Bearer ${ASTRA_STREAMING_TOKEN}" \
+curl -sS --fail --request PUT ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'?opt=poweruser' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN" \
   --form 'sinkConfig="{
     \"archive\":\"builtin:\/\/jdbc-mariadb\",
-    \"tenant\":\"'${TENANT}'\",
-    \"namespace\":\"'${NAMESPACE}'\",
-    \"name\":\"'${SINK_NAME}'\",
+    \"tenant\":\"'$TENANT'\",
+    \"namespace\":\"'$NAMESPACE'\",
+    \"name\":\"'$SINK_NAME'\",
     \"parallelism\": 2,
-    \"inputs\":[\"'${TENANT}'\/'${NAMESPACE}'\/'${INPUT_TOPIC}'\"]
+    \"inputs\":[\"'$TENANT'\/'$NAMESPACE'\/'$INPUT_TOPIC'\"]
   }"'

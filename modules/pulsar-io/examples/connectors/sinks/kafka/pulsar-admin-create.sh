@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sinks create \
   --sink-type kafka \
-  --name "${SINK_NAME}" \
-  --inputs "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC" \
+  --tenant "$TENANT" \
   --sink-config '{
       "bootstrapServers": "localhost:6667",
       "topic": "test",
@@ -18,4 +18,4 @@
          "sasl.password": "cccccc",
          "acks": "all"
       }
-    }
+    }'

@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sources create \
   --source-type debezium-mysql \
-  --name "${SOURCE_NAME}" \
-  --destination-topic-name "persistent://${TENANT}/${NAMESPACE}/${DESTINATION_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SOURCE_NAME" \
+  --destination-topic-name "persistent://$TENANT/$NAMESPACE/$DESTINATION_TOPIC" \
+  --tenant "$TENANT" \
   --source-config '{
     "database.dbname": "somedb",
     "database.hostname": "localhost",

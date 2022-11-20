@@ -3,8 +3,8 @@
 ./bin/pulsar-admin sinks update \
   --sink-type cassandra-enhanced \
   --name "pulsar-sink-ks1-table1" \
-  --inputs "persistent://${TENANT}/${NAMESPACE}/pulsar-topic-ks1-table1" \
-  --tenant "${TENANT}" \
+  --inputs "persistent://$TENANT/$NAMESPACE/pulsar-topic-ks1-table1" \
+  --tenant "$TENANT" \
   --sink-config '{
     "contactPoints": "cassandra",
     "loadBalancing.localDc": "datacenter1",

@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sinks create \
   --sink-type jdbc-postgres \
-  --name "${SINK_NAME}" \
-  --inputs "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC" \
+  --tenant "$TENANT" \
   --sink-config '{
     "userName": "postgres",
     "password": "password",

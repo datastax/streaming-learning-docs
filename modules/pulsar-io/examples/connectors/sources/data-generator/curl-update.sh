@@ -1,10 +1,10 @@
 # Update all instances of a connector currently running
-curl -sS --fail -X PUT "${WEB_SERVICE_URL}/admin/v3/sources/${TENANT}/${NAMESPACE}/${SOURCE_NAME}" \
+curl -sS --fail -X PUT "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
   -H "accept: application/json" \
   -H "Content-Type: application/json" \
-  -H "Authorization: ${ASTRA_STREAMING_TOKEN}" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN" \
   -d '{
-        "topicName": "persistent://'${TENANT}'/'${NAMESPACE}'/'${DESTINATION_TOPIC}'",
+        "topicName": "persistent://'$TENANT'/'$NAMESPACE'/'$DESTINATION_TOPIC'",
         "configs": {
           "sleepBetweenMessages": "100"
         }

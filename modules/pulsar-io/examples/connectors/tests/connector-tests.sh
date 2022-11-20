@@ -41,10 +41,10 @@ done
 #######################################
 #       Validate required
 #######################################
-[[ -z ${TENANT} ]] && (echo "TENANT is a required value" && exit 1)
-[[ -z ${NAMESPACE} ]] && (echo "NAMESPACE is a required value" && exit 1)
+[[ -z $TENANT ]] && (echo "TENANT is a required value" && exit 1)
+[[ -z $NAMESPACE ]] && (echo "NAMESPACE is a required value" && exit 1)
 [[ -z ${TOPIC} ]] && (echo "TOPIC is a required value" && exit 1)
-[[ -z ${WEB_SERVICE_URL} ]] && (echo "WEB_SERVICE_URL is a required value" && exit 1)
+[[ -z $WEB_SERVICE_URL ]] && (echo "WEB_SERVICE_URL is a required value" && exit 1)
 [[ -z ${PULSAR_TOKEN} ]] && (echo "PULSAR_TOKEN is a required value" && exit 1)
 
 #######################################
@@ -77,8 +77,8 @@ for sink in "${sinks[@]}"; do
     echo "    Running test ${sink}:${file}"
 
     pushd "${PULSAR_ROOT}"
-      if ! ret=$(runScript "${TENANT}" \
-                      "${NAMESPACE}" \
+      if ! ret=$(runScript "$TENANT" \
+                      "$NAMESPACE" \
                       "${TOPIC}" \
                       "${sinkName}" \
                       "" \
@@ -93,8 +93,8 @@ for sink in "${sinks[@]}"; do
     echo "    Running test ${sink}:${file}"
 
     pushd "${PULSAR_ROOT}"
-      if ! ret=$(runScript "${TENANT}" \
-                      "${NAMESPACE}" \
+      if ! ret=$(runScript "$TENANT" \
+                      "$NAMESPACE" \
                       "${TOPIC}" \
                       "${sinkName}" \
                       "" \
@@ -107,11 +107,11 @@ for sink in "${sinks[@]}"; do
 
   for file in "${connectorCurlFiles[@]}"; do
     echo "    Running test ${sink}:${file}"
-    if ! ret=$(runScript "${TENANT}" \
-                    "${NAMESPACE}" \
+    if ! ret=$(runScript "$TENANT" \
+                    "$NAMESPACE" \
                     "${TOPIC}" \
                     "${sinkName}" \
-                    "${WEB_SERVICE_URL}" \
+                    "$WEB_SERVICE_URL" \
                     "${PULSAR_TOKEN}" \
                    "${sinkFolder}/${file}"  2>&1); then (echo "    ERROR: $ret" && exit 1) fi
     echo "    SUCCESS"
@@ -120,11 +120,11 @@ for sink in "${sinks[@]}"; do
 
   for file in "${generalCurlFiles[@]}"; do
     echo "    Running test ${sink}:${file}"
-    if ! ret=$(runScript "${TENANT}" \
-                    "${NAMESPACE}" \
+    if ! ret=$(runScript "$TENANT" \
+                    "$NAMESPACE" \
                     "${TOPIC}" \
                     "${sinkName}" \
-                    "${WEB_SERVICE_URL}" \
+                    "$WEB_SERVICE_URL" \
                     "${PULSAR_TOKEN}" \
                    "${SINKS_FOLDER}/${file}"  2>&1); then (echo "    ERROR: $ret" && exit 1) fi
     echo "    SUCCESS"
@@ -146,8 +146,8 @@ for src in "${sources[@]}"; do
     echo "    Running test ${src}:${file}"
 
     pushd "${PULSAR_ROOT}"
-      if ! ret=$(runScript "${TENANT}" \
-                      "${NAMESPACE}" \
+      if ! ret=$(runScript "$TENANT" \
+                      "$NAMESPACE" \
                       "${TOPIC}" \
                       "${sourceName}" \
                       "" \
@@ -162,8 +162,8 @@ for src in "${sources[@]}"; do
     echo "    Running test ${src}:${file}"
 
     pushd "${PULSAR_ROOT}"
-      if ! ret=$(runScript "${TENANT}" \
-                      "${NAMESPACE}" \
+      if ! ret=$(runScript "$TENANT" \
+                      "$NAMESPACE" \
                       "${TOPIC}" \
                       "${sourceName}" \
                       "" \
@@ -176,11 +176,11 @@ for src in "${sources[@]}"; do
 
   for file in "${connectorCurlFiles[@]}"; do
     echo "    Running test ${src}:${file}"
-    if ! ret=$(runScript "${TENANT}" \
-                    "${NAMESPACE}" \
+    if ! ret=$(runScript "$TENANT" \
+                    "$NAMESPACE" \
                     "${TOPIC}" \
                     "${sourceName}" \
-                    "${WEB_SERVICE_URL}" \
+                    "$WEB_SERVICE_URL" \
                     "${PULSAR_TOKEN}" \
                    "${sourceFolder}/${file}"  2>&1); then (echo "    ERROR: $ret" && exit 1) fi
     echo "    SUCCESS"
@@ -189,11 +189,11 @@ for src in "${sources[@]}"; do
 
   for file in "${generalCurlFiles[@]}"; do
     echo "    Running test ${src}:${file}"
-    if ! ret=$(runScript "${TENANT}" \
-                    "${NAMESPACE}" \
+    if ! ret=$(runScript "$TENANT" \
+                    "$NAMESPACE" \
                     "${TOPIC}" \
                     "${sourceName}" \
-                    "${WEB_SERVICE_URL}" \
+                    "$WEB_SERVICE_URL" \
                     "${PULSAR_TOKEN}" \
                    "${SOURCES_FOLDER}/${file}"  2>&1); then (echo "    ERROR: $ret" && exit 1) fi
     echo "    SUCCESS"

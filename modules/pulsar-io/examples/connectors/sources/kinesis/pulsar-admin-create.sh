@@ -1,8 +1,8 @@
 ./bin/pulsar-admin sources create \
   --source-type kinesis \
-  --name "${SOURCE_NAME}" \
-  --destination-topic-name "persistent://${TENANT}/${NAMESPACE}/${DESTINATION_TOPIC}" \
-  --tenant "${TENANT}" \
+  --name "$SOURCE_NAME" \
+  --destination-topic-name "persistent://$TENANT/$NAMESPACE/$DESTINATION_TOPIC" \
+  --tenant "$TENANT" \
   --source-config '{
     "awsEndpoint": "https://some.endpoint.aws",
     "awsRegion": "us-east-1",
