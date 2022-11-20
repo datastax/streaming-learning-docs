@@ -53,7 +53,7 @@ include::example$connectors/sinks/{connectorType}/auth.csv[]
 === Topic Properties
 [source,json,subs="attributes+"]
 ----
-"<TABLE_NAME>>": {
+"<TABLE_NAME>": {
     "<KEYSPACE>": {
         "<TABLE_NAME>": {
             "consistencyLevel": "LOCAL_QUORUM",
