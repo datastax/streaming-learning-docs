@@ -1,5 +1,0 @@
-* xref:streaming:ROOT:index.adoc[DataStax Streaming Home]
-
---
-include::pulsar-io:page$nav.adoc[]
---

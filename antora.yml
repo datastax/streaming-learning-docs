@@ -11,4 +11,4 @@ asciidoc:
     request_feature_access_email: 'astrastreaming@datastax.com'
 
 nav:
-- modules/ROOT/nav.adoc
+- modules/pulsar-io/nav.adoc
