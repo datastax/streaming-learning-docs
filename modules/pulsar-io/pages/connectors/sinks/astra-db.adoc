@@ -5,7 +5,7 @@
 :page-tag: astra-db,cdc,sink-connector
 :page-aliases: docs@astra-streaming::connectors/sinks/astream-astradb-sink.adoc
 
-= Astra DB Sink Connector for {product_name}
+= Astra DB
 
 DataStax Astra DB Sink Connector is an enhanced version of the open-source Cassandra sink connector for Apache Pulsar.
 

@@ -5,7 +5,7 @@
 :page-tag: oracle,debezium,cdc,source-connector
 :page-aliases: docs@astra-streaming::connectors/sources/debezium-oracle.adoc
 
-= Debezium Oracle Source Connector
+= Debezium Oracle
 
 Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running. 
 

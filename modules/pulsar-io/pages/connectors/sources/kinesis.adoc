@@ -5,7 +5,7 @@
 :page-tag: kinesis,source-connector
 :page-aliases: docs@astra-streaming::connectors/sources/kinesis.adoc
 
-= Kinesis Source Connector
+= Kinesis
 
 The Kinesis source connector pulls data from Amazon Kinesis and persists data into an Apache Pulsar topic. 
 

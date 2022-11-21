@@ -5,7 +5,7 @@
 :page-tag: snowflake,sink-connector
 :page-aliases: docs@astra-streaming::connectors/sinks/snowflake.adoc
 
-= Snowflake Sink Connector for {product_name}
+= Snowflake
 
 A Snowflake database is where an organization's uploaded structured and semi-structured data sets are held for processing and analysis. 
 

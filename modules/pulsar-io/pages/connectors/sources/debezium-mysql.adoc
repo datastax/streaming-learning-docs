@@ -5,7 +5,7 @@
 :page-tag: mysql,debezium,cdc,source-connector
 :page-aliases: docs@astra-streaming::connectors/sources/debezium-mysql.adoc
 
-= Debezium MySQL Source Connector
+= Debezium MySQL
 
 The Debezium MySQL connector reads the binlog, produces change events for row-level INSERT, UPDATE, and DELETE operations, and emits these change events as messages in an Apache Pulsar topic.
 

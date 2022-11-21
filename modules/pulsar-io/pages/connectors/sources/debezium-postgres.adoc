@@ -5,7 +5,7 @@
 :page-tag: postgres,debezium,cdc,source-connector
 :page-aliases: docs@astra-streaming::connectors/sources/debezium-postgres.adoc
 
-= Debezium PostgreSQL Source Connector
+= Debezium PostgreSQL
 
 The PostgreSQL connector produces a change event for every row-level insert, update, and delete operation that it captures, and sends change event records for each table in a separate Apache Pulsar topic.
 

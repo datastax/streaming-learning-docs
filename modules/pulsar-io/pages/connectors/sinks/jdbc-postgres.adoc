@@ -4,7 +4,7 @@
 :page-tag: jdbc,postgres,sink-connector
 :page-aliases: docs@astra-streaming::connectors/sinks/jdbc-postgres.adoc
 
-= JDBC PostgreSQL Sink Connector for {product_name}
+= JDBC PostgreSQL
 
 PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development. 
 

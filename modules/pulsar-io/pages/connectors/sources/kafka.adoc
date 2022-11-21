@@ -5,7 +5,7 @@
 :page-tag: kafka,source-connector
 :page-aliases: docs@astra-streaming::connectors/sources/kafka.adoc
 
-= Kafka Source Connector
+= Kafka
 
 The Kafka source connector pulls data from a Kafka topic and persists the data into an Apache Pulsar topic. 
 
