@@ -3,7 +3,7 @@
 :page-tag: connectors,sinks,sources
 :page-aliases: docs@astra-streaming::connectors/index.adoc
 
-= {product_name} IO connectors
+= IO connectors
 
 :page-tag: astra-streaming,dev,develop,pulsar,go
 
