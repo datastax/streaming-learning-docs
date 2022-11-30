@@ -12,3 +12,4 @@ asciidoc:
 
 nav:
 - modules/pulsar-io/nav.adoc
+- modules/functions/nav.adoc
