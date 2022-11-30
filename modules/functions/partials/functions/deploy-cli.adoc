@@ -31,6 +31,8 @@ To deploy the built-in transform function locally in Pulsar standalone:
 === Pulsar cluster
 
 To deploy a built-in transform function to a Pulsar cluster: 
+
+. Create a built-in transform function:
 +
 [tabs]
 ====
@@ -59,7 +61,7 @@ Created successfully
 --
 ====
 
-Confirm your function has been created with the Pulsar CLI:
+. Confirm your function has been created with the Pulsar CLI:
 +
 [tabs]
 ====

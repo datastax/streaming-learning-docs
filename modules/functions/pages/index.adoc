@@ -22,7 +22,7 @@ include::partial$/functions/configuration.adoc[]
 include::partial$/functions/deploy-cli.adoc[]
 
 [#deploy-as]
-== Deploy with {product-name} 
+== Deploy with {product_name} 
 
 include::partial$/functions/deploy-as.adoc[]
 
