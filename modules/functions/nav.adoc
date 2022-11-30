@@ -1,0 +1,10 @@
+.Transform functions
+*** xref:functions/index.adoc[]
+**** xref:functions/cast.adoc[]
+**** xref:functions/compute.adoc[]
+**** xref:functions/deploy-in-sink.adoc[]
+**** xref:functions/drop-fields.adoc[]
+**** xref:functions/drop.adoc[]
+**** xref:functions/flatten.adoc[]
+**** xref:functions/merge-key-value.adoc[]
+**** xref:functions/unwrap-key-value.adoc[]
