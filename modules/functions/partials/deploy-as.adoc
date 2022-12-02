@@ -1,6 +1,6 @@
 Deploy transform functions in the *Functions* tab of the {astra_ui}.
 
-The process is similar to xref:astream-functions.adoc[creating a function in the {astra_ui}], but with a few additional steps. 
+The process is similar to xref:astra-streaming:developing:astream-functions.adoc[creating a function in the {astra_ui}], but with a few additional steps.
 
 . After naming your new function, select the *Use DataStax transform function* option. 
 . Select a transform function from the list of available functions:
@@ -22,7 +22,7 @@ Pulsar Admin::
 --
 [source,shell,subs="attributes+"]
 ----
-./bin/pulsar-admin functions list --tenant ${TENANT}
+./bin/pulsar-admin functions list --tenant $TENANT
 ----
 --
 

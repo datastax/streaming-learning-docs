@@ -157,7 +157,7 @@ The expression language supports the following functions: +
 
 === Conditional Steps
 Each `step` accepts an optional `when` configuration that is evaluated at step execution time against current records (the current step in the transform pipeline). +
-The `when` condition supports the <<expression language syntax>>, which provides access to the record attributes as follows:
+The `when` condition supports the <expression language syntax>, which provides access to the record attributes as follows:
 
 [cols=2*,options=header]
 |===
@@ -260,7 +260,7 @@ These statements would evaluate in a `when` statement:
 AVRO::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key}, value={valueField: value}} (KeyValue<AVRO, AVRO>)
 ----
@@ -269,7 +269,7 @@ AVRO::
 Result::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key, newKeyField: 15}, value={valueField: value_suffix}} (KeyValue<AVRO, AVRO>)
 ----
@@ -299,14 +299,14 @@ Result::
              ]}`
 ----
 
-. Produce an AVRO message with the followihg payload:
+. Produce an AVRO message with the following payload:
 +
 [tabs]
 ====
 AVRO::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 key={keyField: key}, value={valueField: value}} (KeyValue<AVRO, AVRO>), headers=destinationTopic: out1, properties: {k1:v1}
 ----
@@ -315,7 +315,7 @@ key={keyField: key}, value={valueField: value}} (KeyValue<AVRO, AVRO>), headers=
 Result::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key}, value={valueField: value}} (KeyValue<AVRO, AVRO>), headers=destinationTopic:routed, properties: {k1:overwritten, k2:new}
 ----
@@ -326,4 +326,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

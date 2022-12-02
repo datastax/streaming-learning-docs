@@ -28,7 +28,7 @@ The step name is `unwrap-key-value`, and the `UserConfig` is controlled here: `{
 AVRO::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key}, value={valueField: value}}
 ----
@@ -39,7 +39,7 @@ Result::
 --
 [source,json,subs="attributes+"]
 ----
-{valueField: value}
+{"valueField": "value"}
 ----
 --
 ====
@@ -47,4 +47,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

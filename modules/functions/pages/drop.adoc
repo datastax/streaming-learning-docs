@@ -27,4 +27,4 @@ There is no output.
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

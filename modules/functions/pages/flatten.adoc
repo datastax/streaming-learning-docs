@@ -32,7 +32,7 @@ AVRO::
 --
 [source,json,subs="attributes+"]
 ----
-{field1: {field11: value11, field12: value12}}
+{"field1": {"field11": "value11", "field12": "value12"}}
 ----
 --
 
@@ -41,7 +41,7 @@ Result::
 --
 [source,json,subs="attributes+"]
 ----
-{field1_field11: value11, field1_field12: value12}
+{"field1_field11": "value11", "field1_field12": "value12"}
 ----
 --
 ====
@@ -49,4 +49,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

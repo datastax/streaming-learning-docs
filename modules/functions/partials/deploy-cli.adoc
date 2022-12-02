@@ -41,11 +41,11 @@ Pulsar Admin::
 --
 ----
 ./bin/pulsar-admin functions create \
---tenant ${TENANT} \
---namespace ${NAMESPACE} \
+--tenant $TENANT \
+--namespace $NAMESPACE \
 --name transform-function \
---inputs persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC} 
---output persistent://${TENANT}/${NAMESPACE}/${OUTPUT_TOPIC}  \
+--inputs persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC
+--output persistent://$TENANT/$NAMESPACE/$OUTPUT_TOPIC  \
 --classname com.datastax.oss.pulsar.functions.transforms.TransformFunction \
 --jar functions/pulsar-transformations-2.0.1.nar
 ----
@@ -70,7 +70,7 @@ Pulsar Admin::
 --
 [source,shell,subs="attributes+"]
 ----
-./bin/pulsar-admin functions list --tenant ${TENANT}
+./bin/pulsar-admin functions list --tenant $TENANT
 ----
 --
 

@@ -33,7 +33,8 @@ AVRO::
 --
 [source,json,subs="attributes+"]
 ----
-{name: value1, password: value2}
+{"name": "value1", "password": "value2"}
+
 ----
 --
 
@@ -42,7 +43,7 @@ Result::
 --
 [source,json,subs="attributes+"]
 ----
-{"{name: value1}"}
+{"name": "value1"}
 ----
 --
 ====
@@ -50,4 +51,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

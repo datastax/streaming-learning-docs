@@ -9,6 +9,7 @@ asciidoc:
     pulsar_version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
     debezium_version: '1.7'
     request_feature_access_email: 'astrastreaming@datastax.com'
+    astra_ui: 'Astra Portal'
 
 nav:
 - modules/pulsar-io/nav.adoc

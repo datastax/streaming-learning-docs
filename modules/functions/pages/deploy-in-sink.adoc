@@ -11,9 +11,9 @@ Now, functions can be deployed at sink creation and apply preprocessing to sink 
 
 == Create sink function in {product_name}
 
-Creating a sink function is similar to xref::connectors/index.adoc[creating a sink in the {astra_ui}], but with a few additional steps. 
+Creating a sink function is similar to creating a sink in the {astra_ui}, but with a few additional steps.
 
-. xref::connectors/index.adoc[Create a sink] as described in the {product_name} documentation. 
+. xref:pulsar-io:connectors/index.adoc[Create a sink] as described in the {product_name} documentation.
 . During sink creation, select the transform function you want to run inside the sink.
 +
 image::astream-transform-functions.png[Connect Topics]
@@ -54,7 +54,7 @@ pulsar-admin sinks create \
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
 
 
 

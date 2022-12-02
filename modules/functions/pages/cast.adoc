@@ -10,16 +10,17 @@ The cast transform function transforms the data to a target compatible schema.
 The `step` name is `cast`, and the `UserConfig` is controlled here: `{"steps": [{"type": "cast", "schema-type": "STRING"}]}`.
 
 == Parameters:
+
 [cols=2*,options=header]
 |===
 |*Parameter*
 |*Description*
 
 |schema-type
-|The target schema type. Only `STRING` is available. 
+|The target schema type. Only `STRING` is available.
 
 |part
-|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value. 
+|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value.
 |===
 
 == Example:
@@ -33,7 +34,7 @@ AVRO::
 --
 [source,json,subs="attributes+"]
 ----
-{field1: value1, field2: value2}
+{"field1": "value1", "field2": "value2"}
 ----
 --
 
@@ -51,4 +52,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].

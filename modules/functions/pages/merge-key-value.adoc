@@ -17,7 +17,7 @@ The step name is `merge-key-value` and the `UserConfig` is controlled here: `{"s
 AVRO::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key}, value={valueField: value}}
 ----
@@ -26,7 +26,7 @@ AVRO::
 Result::
 +
 --
-[source,json,subs="attributes+"]
+[source,,subs="attributes+"]
 ----
 {key={keyField: key}, value={keyField: key, valueField: value}}
 ----
@@ -36,4 +36,4 @@ Result::
 
 == What's next?
 
-For more, see xref::functions/index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
