@@ -56,7 +56,7 @@ The AWS Kinesis source connector reads data from Kinesis systems and produces da
 xref:connectors/sources/kinesis.adoc[Kinesis source connector documentation]
 
 // end::production[]
-// tag::experimental[]
+// tag::source-experimental[]
 Cassandra Source +
 Kinetica +
 Azure DocumentDB +
@@ -93,4 +93,4 @@ Splunk +
 Twitter +
 XTDB +
 Zeebe +
-// end::experimental[]
+// end::source-experimental[]

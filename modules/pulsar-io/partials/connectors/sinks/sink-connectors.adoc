@@ -63,7 +63,7 @@ The Snowflake sink connector reads messages from Apache Pulsar topics and writes
 xref:connectors/sinks/snowflake.adoc[Snowflake sink documentation].
 // end::production[]
 
-// tag::experimental[]
+// tag::sink-experimental[]
 Cloud Storage +
 Kinetica +
 Aerospike +
@@ -101,4 +101,4 @@ Apache Solr +
 Splunk +
 XTDB +
 Zeebe +
-// end::experimental[]
+// end::sink-experimental[]

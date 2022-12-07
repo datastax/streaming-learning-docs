@@ -36,13 +36,13 @@ If you would like to be given access to these connectors, please send a request 
 
 === Sink Connectors (experimental)
 
-[#sink-connectors-experimental]
-include::partial$connectors/sinks/sink-connectors.adoc[tag=experimental]
+[#sink-experimental]
+include::partial$connectors/sinks/sink-connectors.adoc[tag=sink-experimental]
 
 === Source Connectors (experimental)
 
-[#source-connectors-experimental]
-include::partial$connectors/sources/source-connectors.adoc[tag=experimental]
+[#source-experimental]
+include::partial$connectors/sources/source-connectors.adoc[tag=source-experimental]
 
 == Listing Sink Connectors
 
