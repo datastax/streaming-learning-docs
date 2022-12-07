@@ -1,0 +1,72 @@
+= Use this new feature
+:navtitle: Create a feature
+:description: This guide will take you step-by-step through implementing this new feature
+:title: A guide to creating a new feature
+
+Have you ever wanted to use this new feature? Well look no further than this guide to get started. We will be implementing it from scratch and you will find a set of links at the bottom to continue use of the feature.
+
+== Pre-req's
+
+You will need the following things in place to complete this guide:
+
+* about 5 minutes
+* a working Pulsar topic (xref:README.adoc[get started here] if you don't have one)
+
+== First group of tasks
+
+This is the first group of tasks[<<resource-1>>] that need to be complete before moving on to the next group. Each group provides simple starting/stopping points for the consumer as well as a good summary of whats needed to create the new feature.
+
+. Do this
+. Then this
+.. You'll need to do this during this step
+.. And also this
+. Then this after that
+
+== Second group of tasks
+
+This is the next group of tasks[<<resource-2>>]. You get the point of task groupings.
+
+. This step can be done in different runtimes and uses tabs
+
+[tabs]
+====
+C#::
++
+--
+[source,csharp]
+----
+var a = new Something();
+Console.Write(a.thing);
+----
+--
+Java::
++
+--
+[source,java]
+----
+class aa{
+  public aa(){}
+  public String doSomething(){
+    return "a string";
+  }
+}
+----
+--
+====
+
+== Summary
+
+In this guide we created a new feature and did the basics of interacting. Now it's time to extend the feature and become a ninja!
+
+== Resources
+
+[[resource-1,1]] xref:README.adoc[Some resource talked about in the guide]
+
+[[resource-2,2]] xref:README.adoc[Another resource talked about in the guide]
+
+== Next steps
+
+Here are links to other guides you might be interested in:
+
+* Something
+* Something else
