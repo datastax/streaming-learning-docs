@@ -1,0 +1,16 @@
+name: streaming-learning
+title: Streaming Learning
+version: ~
+start_page: index.adoc
+
+asciidoc:
+  attributes:
+    product_name: 'Astra Streaming'
+    pulsar_version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
+    debezium_version: '1.7'
+    request_feature_access_email: 'astrastreaming@datastax.com'
+    astra_ui: 'Astra Portal'
+
+nav:
+- modules/pulsar-io/nav.adoc
+- modules/functions/nav.adoc
