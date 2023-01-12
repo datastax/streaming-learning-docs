@@ -6,14 +6,6 @@
 
 The Starlight suite of APIs are a collection of Apache Pulsar protocol handlers that extend an existing Pulsar cluster. Some establish wire level protocol XXXX while others follow an interface specification. The goal of all the APIs is to create seamless interact with a Pulsar cluster. There are three APIs within the Starlight suite.
 
-== Starlight for JMS
-About the API +
-xref:use-cases-architectures:starlight/jms/index.adoc[Get started now]
-
 == Starlight for Kafka
 About the API +
 xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now]
-
-== Starlight for RabbitMQ
-About the API +
-xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now]
