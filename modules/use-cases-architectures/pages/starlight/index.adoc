@@ -1,6 +1,6 @@
 = DataStax Starlight Suite of Pulsar Extensions
 :description:
-:title: Get started with DataStax starlight quite of APIs
+:title: Get started with DataStax starlight suite of APIs
 :page-aliases: starlight::index.adoc,starlight-suite::index.adoc
 :navtitle: Starlight Extensions
 :page-aliases: docs@luna-streaming::starlight.adoc,luna-streaming:components:starlight.adoc
@@ -11,14 +11,14 @@ The Starlight suite of extensions is a collection of Apache Pulsar protocol hand
 
 Starlight for Kafka brings native Apache Kafka® protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
 
-xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
+xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code^]{external-link-icon}
 
-// == Starlight for RabbitMQ
-//
-// Starlight for RabbitMQ™ combines the industry-standard AMQP 0.9.1 (RabbitMQ) API with the cloud-native and horizontally scalable Pulsar streaming platform, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
-//
-// xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code^]
-//
+== Starlight for RabbitMQ
+
+Starlight for RabbitMQ combines the industry-standard AMQP 0.9.1 (RabbitMQ) API with the cloud-native and horizontally scalable Pulsar streaming platform, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+
+xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code^]{external-link-icon}
+
 // == Starlight for JMS
 //
 // Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications. Because Pulsar is open-source and cloud-native, Starlight for JMS enables enterprises to move their JMS applications to run on-premises and in any cloud environment.

@@ -2,13 +2,15 @@
 
 :description: Learn how to get started using the Starlight for Kafka extension with Pulsar and get hands on with Kafka producer and consumer interacting with a topic.
 :title: Getting started with the Starlight for Kafka extension
-:navtitle: Kafka
+:navtitle: Starlight for Kafka
 
 Starlight for Kafka brings the native Apache Kafka protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers. By adding the Starlight for Kafka protocol handler to your existing Pulsar cluster, you can migrate your existing Kafka applications and services to Pulsar without modifying the code.
 
 If source code is your thing, visit the https://github.com/datastax/starlight-for-kafka[project's repo on GitHub^]{external-link-icon}.
 
 == Architecture reference
+
+If you would like to get deep into how Starlight for Kafka works, xref:starlight-for-kafka:ROOT:index.adoc[read the docs].
 
 image:s4k-architecture.png[Starlight for Kafka Architecture]
 
@@ -170,7 +172,7 @@ include::{astra-streaming-examples-repo}/java/starlight-for-kafka/kafka-client/S
 include::{astra-streaming-examples-repo}/java/starlight-for-kafka/kafka-client/StarlightForKafkaClient/src/main/java/org/example/App.java[tag=build-producer]
 ----
 
-. Past the consumer code into the file. This creates a basic subscription and retrieves the latest messages on the topic.
+. Paste the consumer code into the file. This creates a basic subscription and retrieves the latest messages on the topic.
 +
 [source,java]
 ----
