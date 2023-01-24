@@ -1,3 +1,4 @@
 * xref:starlight/index.adoc[Pulsar extensions]
 ** xref:starlight/kafka/index.adoc[Starlight for Kafka]
 ** xref:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
+** xref:starlight/jms/index.adoc[Starlight for JMS]
