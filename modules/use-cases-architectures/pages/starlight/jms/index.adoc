@@ -10,7 +10,9 @@ Starlight for JMS is a highly compliant JMS implementation designed to run on a 
 
 == Getting started
 
-To get started you will need a working Apache Pulsar cluster. There's really no bells or whistles that need to be added. You'll need access to the Cluster's admin port 8080 and the binary port 6650. For this guide, we will use Astra Streaming to get going quickly.
+To get started you will need a working Apache Pulsar cluster.
+No bells or whistles need to be added!
+You'll need access to the cluster's admin port 8080 and the binary port 6650. For this guide, we will use Astra Streaming to get going quickly.
 
 [tabs]
 ====
@@ -85,7 +87,7 @@ NOTE: Don't worry if your editor shows errors, this isn't a complete program... 
 include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=build-config]
 ----
 
-. Now paste the following into the file. This is a very simple 'PulsarConnectionFactory' that first creates a jms queue using the full Pulsar topic address. Then it creates a message listener callback function that watches the queue, and finally it produces a single message on the queue.
+. Now paste the following into the file. This is a very simple 'PulsarConnectionFactory' that first creates a jms queue using the full Pulsar topic address, then creates a message listener callback function that watches the queue. Finally, it produces a single message on the queue.
 +
 [source,java]
 ----
@@ -108,7 +110,7 @@ Sending: Hello there!
 Received: Hello there!
 ----
 
-See how easy that was! You're an app modernization ninja all ready. Let's continue building those skills with a few other guides.
+See how easy that was! You're already an app modernization ninja. Let's continue building those skills with a few other guides.
 
 * xref:starlight-for-jms:examples:pulsar-jms-implementation.adoc[]
 * xref:starlight-for-jms:reference:pulsar-jms-mappings.adoc[]
