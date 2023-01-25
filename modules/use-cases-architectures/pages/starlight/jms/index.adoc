@@ -49,11 +49,11 @@ image:pulsar-client-settings.png[]
 
 === Produce and consume a message
 
-This example uses maven as the project structure. If you prefer gradle or another, this code should still be a good fit.
+This example uses Maven as the project structure. If you prefer gradle or another, this code should still be a good fit.
 
 TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^]{external-link-icon} to see the complete source of this example.
 
-. Create a new maven project.
+. Create a new Maven project.
 +
 [source,shell]
 ----
