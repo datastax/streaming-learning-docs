@@ -3,7 +3,6 @@
 :title: Get started with DataStax starlight suite of APIs
 :page-aliases: starlight::index.adoc,starlight-suite::index.adoc
 :navtitle: Starlight Extensions
-:page-aliases: docs@luna-streaming::starlight.adoc,luna-streaming:components:starlight.adoc
 
 The Starlight suite of extensions are a collection of Apache Pulsar protocol handlers that extend an existing Pulsar cluster. The goal of all the extensions are to create a native, seamless interaction with a Pulsar cluster using existing tooling and clients.
 
