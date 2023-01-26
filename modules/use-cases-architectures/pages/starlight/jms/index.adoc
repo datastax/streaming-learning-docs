@@ -6,13 +6,14 @@
 :page-aliases: docs@starlight-jms::pulsar-jms-quickstart-astra.adoc,starlight-jms:streaming-learning:use-cases-architectures:starlight/jms/index.adoc
 :page-tag: starlight-jms,dev,quickstart,pulsar,jms
 
-Starlight for JMS is a highly compliant JMS implementation designed to run on a modern streaming platform. This guide will get you up and running with a simple Java JMS client that can talk to an Apache Pulsar™ streaming instance.
+Starlight for JMS is a highly compliant JMS implementation designed to run on a modern streaming platform.
+This guide will get you up and running with a simple Java JMS client that can talk to an Apache Pulsar™ streaming instance.
 
-== Getting started
+== Prerequisites
 
-To get started you will need a working Apache Pulsar cluster.
-No bells or whistles need to be added!
-You'll need access to the cluster's admin port 8080 and the binary port 6650. For this guide, we will use Astra Streaming to get going quickly.
+To get started you'll just need a working Apache Pulsar cluster, with no bells or whistles requiured!
+You'll need access to the cluster's admin port 8080 and the binary port 6650.
+For this guide, we will use Astra Streaming to get started quickly. If you want to dive deeper, xref:starlight-for-jms:ROOT:index.adoc[read the documentation].
 
 [tabs]
 ====
@@ -39,17 +40,18 @@ Using a standalone cluster? The Starlight for JMS docs provide the "xref:starlig
 
 === Retrieve connection properties in Astra Streaming
 
-. While on the "Connect" tab in the Astra Streaming portal, the "pulsar" area will provide important connection information.
+. In the Astra Streaming portal "Connect" tab, the "Pulsar" area provides important connection information.
 +
 image:astra-streaming-connect-pulsar.png[Astra Streaming kafka settings]
 
-. Scroll down and find the "Tenant Details" area to find your Pulsar connection information.
+. Scroll down to the "Tenant Details" area to find your Pulsar connection information.
 +
 image:pulsar-client-settings.png[]
 
 === Produce and consume a message
 
-This example uses Maven as the project structure. If you prefer gradle or another, this code should still be a good fit.
+This example uses Maven for the project structure.
+If you prefer Gradle or another tool, this code should still be a good fit.
 
 TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^]{external-link-icon} to see the complete source of this example.
 
@@ -80,21 +82,23 @@ include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSC
 +
 NOTE: Don't worry if your editor shows errors, this isn't a complete program... yet.
 
-. Bring in the following code to build the configuration that will be used by both the producer and consumer.
+. Add the following code to build the configuration that will be used by both the producer and consumer.
 +
 [source,java]
 ----
 include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=build-config]
 ----
 
-. Now paste the following into the file. This is a very simple 'PulsarConnectionFactory' that first creates a jms queue using the full Pulsar topic address, then creates a message listener callback function that watches the queue. Finally, it produces a single message on the queue.
+. Add the following code into the file.
+This is a very simple 'PulsarConnectionFactory' that first creates a JMS queue using the full Pulsar topic address, then creates a message listener callback function that watches the queue.
+Finally, it produces a single message on the queue.
 +
 [source,java]
 ----
 include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=build-factory]
 ----
 
-. Now you should have a complete program. Let's see it in action! Build and run the jar with the following terminal commands.
+. You now have a complete program, so let's see it in action! Build and run the jar with the following terminal commands.
 +
 [source,shell]
 ----
@@ -102,7 +106,7 @@ mvn clean package assembly:single
 java -jar target/StarlightForJMSClient-1.0-SNAPSHOT-jar-with-dependencies.jar
 ----
 
-. If all goes as it should your output will be similar to this:
+. If all goes as it should, your output will be similar to this:
 +
 [source,shell]
 ----
@@ -110,7 +114,10 @@ Sending: Hello there!
 Received: Hello there!
 ----
 
-See how easy that was! You're already an app modernization ninja. Let's continue building those skills with a few other guides.
+See how easy that was? You're already an app modernization ninja! +
+Keep building those skills with the guides in the next section.
+
+== What's next?
 
 * xref:starlight-for-jms:examples:pulsar-jms-implementation.adoc[]
 * xref:starlight-for-jms:reference:pulsar-jms-mappings.adoc[]
