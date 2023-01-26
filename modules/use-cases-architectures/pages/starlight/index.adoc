@@ -23,4 +23,4 @@ xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xr
 
 Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications. Because Pulsar is open-source and cloud-native, Starlight for JMS enables enterprises to move their JMS applications to run on-premises and in any cloud environment.
 
-xref:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-jms[Source Code^]{external-link-icon}
+xref:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code^]{external-link-icon}
