@@ -4,7 +4,8 @@
 :page-aliases: starlight::index.adoc,starlight-suite::index.adoc
 :navtitle: Starlight Extensions
 
-The Starlight suite of extensions are a collection of Apache Pulsar protocol handlers that extend an existing Pulsar cluster. The goal of all the extensions are to create a native, seamless interaction with a Pulsar cluster using existing tooling and clients.
+The Starlight suite of extensions is a collection of Apache Pulsar protocol handlers that extend an existing Pulsar cluster.
+The goal of all the extensions is to create a native, seamless interaction with a Pulsar cluster using existing tooling and clients.
 
 == Starlight for Kafka
 
