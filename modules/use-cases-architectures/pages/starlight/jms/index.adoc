@@ -11,7 +11,7 @@ This guide will get you up and running with a simple Java JMS client that can ta
 
 == Prerequisites
 
-To get started you'll just need a working Apache Pulsar cluster, with no bells or whistles requiured!
+To get started you'll just need a working Apache Pulsar cluster, with no bells or whistles required!
 You'll need access to the cluster's admin port 8080 and the binary port 6650.
 For this guide, we will use Astra Streaming to get started quickly. If you want to dive deeper, xref:starlight-for-jms:ROOT:index.adoc[read the documentation].
 
