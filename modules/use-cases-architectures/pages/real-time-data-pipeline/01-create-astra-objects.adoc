@@ -188,3 +188,7 @@ image:decodable-data-pipeline/01/image9.png[]
 ====
 To debug you can click the sink name, scroll to the bottom terminal output area to view deployment logs. This is a semi-verbose log of the sink starting, validating, and running.
 ====
+
+== Next step
+
+Now it's time see the magic! xref:real-time-data-pipeline/03-put-it-all-together.adoc[Run the pipelines >>]

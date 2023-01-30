@@ -128,4 +128,4 @@ image::icons/button-get-started.png["Download web clicks website",130,xref=attac
 
 == Next step
 
-Now it's time see the magic! xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[Run the pipelines >>]
+Continue on with cleaning up your environments and debugging tips! xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[Next >>]
