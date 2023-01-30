@@ -1,6 +1,6 @@
 = DataStax Starlight Suite of Pulsar Extensions
 :description:
-:title: Get started with DataStax starlight suite of APIs
+:title: Get started with DataStax Starlight suite of APIs
 :page-aliases: starlight::index.adoc,starlight-suite::index.adoc
 :navtitle: Starlight Extensions
 
