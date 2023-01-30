@@ -1,0 +1,45 @@
+= Debugging and cleaning up the real-time data pipeline
+David Dieruf <david.dieruf@datastax.com>
+1.0, February 1, 2022: Debugging and cleaning up the real-time data pipeline
+
+:description:
+:title:
+:navtitle:
+
+== Debugging the pipeline
+
+Maybe things didn’t go so smoothly for you. Or maybe you're just having a bad day :(. Whatever the case use the flow above to find where in the pipeline things are broken. Then get a bit deeper into that object. You’ll want to test input data at the point of failure. The first question to answer is if the input data is malformed or if the object itself is erring. Decodable’s UI gives you the ability in each pipeline to “Preview” the processing. This is a very powerful debugging tool. Your Astra Tenant has the “Try Me” area where you can set up producing and consuming messages in specific topics. These tools can help you recreate each step of the pipeline and debug issues.
+
+== Clean up
+
+=== Removing Decodable objects
+
+
+. For each "Connection" click the 3 dots and choose "Stop".
++
+image:decodable-data-pipeline/04/image1.png["Stop decodable connection"]
+
+
+. Once "Stopped", click the 3 dots again and choose "Delete". This will remove the object from your account.
++
+image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
+
+. Repeat this for each "Connection" and "Pipeline". You can also remove the "Streams" if you prefer.
+
+=== Removing Astra objects
+
+. In Astra navigate to the "Streaming" area to see a list of your tenants.
+
+. Click the 3 dots associated with "webstore-clicks" tenant and choose the "Delete". This will remove all sinks, topics, messages, and namespaces.
++
+image:decodable-data-pipeline/04/image3.png["Delete Astra tenant"]
+
+. Navigate to the "Databases" area and click the 3 dots associated with "webstore-clicks". Choose "Terminate" to remove all traces of the database (it might take a few seconds).
++
+image:decodable-data-pipeline/04/image4.png["Terminate Astra database"]
+
+You have removed all objects and are ready to start fresh! Your next processing pipeline can solve a business challenge like fraud detection or removing personally identifiable information, or maybe how to get to the moon! Have fun!
+
+== Next step
+
+Head back to the xref:real-time-data-pipeline/index.adoc[guide home]

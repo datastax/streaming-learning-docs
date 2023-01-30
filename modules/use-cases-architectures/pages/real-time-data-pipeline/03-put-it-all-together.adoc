@@ -1,0 +1,131 @@
+= Putting the real-time data pipeline together
+David Dieruf <david.dieruf@datastax.com>
+1.0, February 1, 2022: Putting the real-time data pipeline together
+
+:description:
+:title:
+:navtitle:
+
+This guide is part of a series of guides that creates a real-time data pipeline. Read more about the series xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+
+Now we have all the pieces of our data processing pipeline in place. It’s time to start the connection and pipelines up and input some test data.
+
+== Starting the processing
+
+. Navigate to the “Connections” area and click the 3 dots at the right for each connection. Click the “Start” option on all 3 connections.
++
+image:decodable-data-pipeline/03/image9.png[]
+
+. It might take a minute or so but each connection should refresh with a state of “Running”.
++
+image:decodable-data-pipeline/03/image1.png[]
++
+TIP: If one of the connections has an issue startup up (like a wrong setting or expired token) you can click on that connection to get more information.
+
+. Navigate to the “Pipelines” area and use the same menu on each pipeline to start. Same as the connections, they might take a minute or so to get going. Grab a coffee while you wait - you’ve earned it.
++
+image:decodable-data-pipeline/03/image3.png[]
+
+Let’s make sure we have all the pieces in order…
+
+* REST connection running: CHECK
+* Astra Streaming connections running : CHECK
+* Normalization pipeline running: CHECK
+* Product clicks filter pipeline running: CHECK
+
+== Your first ingested data
+
+The moment of truth! Navigate to the “Connections” area and click the “REST” connector.
+
+. Choose the “Upload” tab and copy/paste the following web click data into the window.
++
+[source,json]
+----
+[
+  {
+    "click_epoch": 1655303592179,
+    "request_url": "https://somedomain.com/catalog/area1/yetanother-cool-product?a=b&c=d",
+    "visitor_id": "b56afbf3-321f-49c1-919c-b2ea3e550b07",
+    "UTC_offset": -4,
+    "browser_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
+  }
+]
+----
+
+. Click “Upload” to simulate data being posted to the endpoint. You should receive a confirmation that data has been received.
+
+TIP: This was not a big moment with cheers and balloons. The celebration is at the end of the next area.
+
+== Following the flow
+
+For this first record of data, let’s look at each step along the way and confirm processing is working.
+
+. After the data was ingested, the “Webstore-Raw-Clicks-Normalize-Pipeline” should have received it. You can confirm this by navigating the “Pipelines” area and clicking that pipeline to see its metrics. Notice in the “Input Metrics” area 1 record has been received.
++
+image:decodable-data-pipeline/03/image2.png[]
+
+. Also notice in the “Output Metrics” 1 record has been written. This confirms that the data passed successfully through this pipeline.
+
+. Next we can go to the “Connectors” area and click the “Astra-Streaming-All-Webclicks-Connector”. In the “Input Metrics” we see that 1 record has been received.
++
+image:decodable-data-pipeline/03/image4.png[]
+
+. Now we can go to our Astra Tenant “webstore-clicks”, and navigate to the “Namespace and Topics” area, then expand the “Production” namespace, and click the “all-clicks” topic. Notice in the “Data In” area 1 message was produced and in the “Data Out” area 1 message was consumed.
++
+image:decodable-data-pipeline/03/image6.png[]
+
+. Now on to the “Sinks” tab in Astra and click the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This confirms our AstraDB sink received a message from the topic and wrote the data to our Cassandra table.
++
+image:decodable-data-pipeline/03/image5.png[]
+
+. Let’s look at the final data in AstraDB. Navigate to the Astra home and click the “webstore-clicks” Serverless Database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
++
+[source,sql]
+----
+select * from click_data.all_clicks;
+----
++
+Your should see a single record output.
++
+image:decodable-data-pipeline/03/image8.png[]
+
+{emoji-tada}{emoji-tada} Queue the loud cheers and high-fives! Our pipeline ingested raw web click data, normalized it, and persisted the parsed data to the database!
+
+== Follow the flow of the product clicks data
+
+. Navigate to your Decodable pipeline named “Webstore-Product-Clicks-Pipeline”.
+.. The “Input Metrics” should be 1 record and the “Output Metrics” should be 1 record.
+
+. Navigate to your Decodable connection named “Astra-Streaming-Product-Webclicks-Connection”.
+.. The “Input Metrics” should be 1 record.
+
+. Head over to your Astra tenant to the production/product-clicks topic.
+.. There should be 1 message in “Data In” and 1 message in “Data Out”.
+
+. Finally, to your Astra database CQL Console.
+.. Query the product clicks table
++
+[source,sql]
+----
+select * from click_data.product_clicks;
+----
++
+image:decodable-data-pipeline/03/image7.png[]
+
+{emoji-rocket}{emoji-rocket} Yesssss! The first web click data we entered happened to be a product click. So the data was filtered in the pipeline and processed into the correct table!
+
+== Example real-time site data
+
+Let’s see what this can do! To put a load on the pipeline we’ll need a way to continuously post data to our endpoint. Below are a few examples. Use the download button below to download a zip of a static(html) site ecommerce catalog, that silently posts click data to an endpoint. The site is a copy of https://www.blazemeter.com/[BlazeMeter^]’s{external-link-icon} https://www.demoblaze.com/[Demoblaze site^]{external-link-icon}.
+
+You’ll need 2 pieces of information to attempt any of the examples, the Endpoint URL and an authorization token. Learn more about retrieving both of those in https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation^]{external-link-icon}.
+
+Once you extract the zip, open the folder in your text editor of IDE of choice and look in the script.js file. There are 2 placeholders for the data retrieved above.
+
+Open the phones.html file in your browser (yes, as a local file) and begin clicking on products. Each click should be a new post to your Decodable endpoint.
+
+image::icons/button-get-started.png["Download web clicks website",130,xref=attachment$web-clicks-website.zip]
+
+== Next step
+
+Now it's time see the magic! xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[Run the pipelines >>]

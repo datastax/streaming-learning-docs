@@ -1,0 +1,190 @@
+= Creating the real-time data pipeline Astra objects
+David Dieruf <david.dieruf@datastax.com>
+1.0, February 1, 2022: Creating the real-time data pipeline Astra objects
+
+:description:
+:title:
+:navtitle:
+
+This guide is part of a series of guides that creates a real-time data pipeline. Read more about the series xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+
+== Creating message topics to stream click data
+
+. Navigate to your Astra portal home and choose "Create a stream"
++
+image:decodable-data-pipeline/01/image4.png[]
+
+. Name the new tenant “webstore-clicks”. You can choose any cloud provider and region. Click “Create Tenant”.
++
+image:decodable-data-pipeline/01/image6.png[]
+
+. You will be redirected to your new tenant’s quickstart. Navigate to the “Namespace and Topics” tab at the top.
++
+image:decodable-data-pipeline/01/image16.png[]
+
+. Create a new namespace with the name “production”. We are treating namespaces as logical development environments to illustrate how you could create a continuous delivery flow. You could also have namespaces for “development” and “staging”.
++
+image:decodable-data-pipeline/01/image11.png[]
+
+. Your namespaces view should refresh with the new namespace. Click the “Add Topic” button associated with that namespace. Name it “all-clicks” and leave it as “Persistent”. Click the “Add Topic” button to create the topic.
++
+image:decodable-data-pipeline/01/image15.png[]
+
+. Click the “Add Topic” button (again) associated with that namespace. Name it “product-clicks” and leave as “Persistent”. Click the “Add Topic” button to create the topic.
++
+image:decodable-data-pipeline/01/image8.png[]
+
+. You should have 2 namespaces. The “Production” namespace should have 2 topics.
++
+image:decodable-data-pipeline/01/image13.png[]
+
+== Creating a store to persist click data
+
+. From the Astra portal home click “Create a Database”.
++
+image:decodable-data-pipeline/01/image18.png[]
+
+. Name the database “webstore-clicks” and the keyspace “click_data”. Choose any cloud provider and region. Click “Create Database”.
++
+image:decodable-data-pipeline/01/image5.png[]
+
+. The page will refresh with your new token details. Don’t worry about saving them, we will come back to retrieve this later. You can “Esc” or just head back to home. In the “Recent Resources” area of your Astra portal home you should see 2 new items.
++
+image:decodable-data-pipeline/01/image1.png[]
+
+. Copy/paste the following CQL statement into the terminal and hit “Enter”. This will create a table in the database that will hold our all web click data (ie: the raw data).
++
+[source, sql]
+----
+CREATE TABLE IF NOT EXISTS click_data.all_clicks (
+  click_timestamp bigint,
+  url_host text,
+  url_protocol text,
+  url_path text,
+  url_query text,
+  browser_type text,
+  operating_system text,
+  visitor_id uuid,
+  PRIMARY KEY ((operating_system, browser_type, url_host, url_path), click_timestamp)
+);
+----
+
+. Then copy/paste the following CQL statement (again) into the terminal and hit “Enter”. This will create a second table in the database that will hold our filtered product web clicks.
++
+[source, sql]
+----
+CREATE TABLE click_data.product_clicks (
+    catalog_area_name text,
+    product_name text,
+    click_timestamp timestamp,
+    PRIMARY KEY ((catalog_area_name), product_name, click_timestamp)
+) WITH CLUSTERING ORDER BY (product_name ASC, click_timestamp DESC);
+
+----
+
+. You can confirm everything was created correctly by describing the keyspace in the CQL terminal.
++
+[source, sql]
+----
+describe click_data;
+----
++
+The output will be 3 “create” CQL statements for the keyspace, the click_data.all_clicks table, and the click_data.product_clicks table
+
+== Create a sink between your topics and the store
+
+. From the Astra portal home, click on the “webstore-clicks” streaming tenant.
++
+image:decodable-data-pipeline/01/image3.png[]
+
+. Navigate to the “Sinks” tab and click “Create Sink”.
++
+image:decodable-data-pipeline/01/image10.png[]
+
+. Fill in the details about the new sink as follows:
++
+[cols="1,4a",frame=none]
+|===
+|Namespace
+|production
+
+|Sink Type
+|Astra DB
+
+|Name
+|all-clicks
+
+|Input topic
+|all-clicks
+
+|Database
+|webstore-clicks
+
+|Token:
+|
+. Click “here” to create a new Astra token ( you won’t lose your work, it will open in a new tab).
+. Choose the “Organization Administrator” role and click “Generate Token”.
++
+image:decodable-data-pipeline/01/image2.png[]
+. The page will refresh with the new token details. Click the clipboard icon (to the right) for the “Token” value.
+. Navigate back to the Astra portal page in your browser and paste the value in the “Token” input.
++
+image:decodable-data-pipeline/01/image17.png[]
+
+|Keyspace
+|click_data
+
+|Table Name
+|all_clicks
+
+|Mapping
+|(leave alone)
+|===
+
++
+WARNING: You are going to need the token again while creating a second sink. Either paste it in notepad (or some temp safe place) or keep the browser tab open.
+
+. Click “Create” to create the sink. You will be directed back to the Sinks listing where your new sink should be initializing. Once it’s ready the status will automatically change to “Running”.
++
+image:decodable-data-pipeline/01/image14.png[]
+
+. Follow the same flow to create a second sink with the following values:
++
+[cols="1,4",frame=none]
+|===
+|Namespace
+|production
+
+|Sink Type
+|Astra DB
+
+|Name
+|prd-click-astradb
+
+|Input topic
+|product-clicks
+
+|Database
+|webstore-clicks
+
+|Token:
+|(paste the same value from the previous sink)
+
+|Keyspace
+|click_data
+
+|Table Name
+|product_clicks
+
+|Mapping
+|(leave alone)
+|===
+
+. If everything goes smooth you should have 2 sinks “Running”.
++
+image:decodable-data-pipeline/01/image9.png[]
++
+[NOTE]
+====
+To debug you can click the sink name, scroll to the bottom terminal output area to view deployment logs. This is a semi-verbose log of the sink starting, validating, and running.
+====
