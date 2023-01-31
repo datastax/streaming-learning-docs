@@ -1,4 +1,4 @@
-= Creating the real-time data pipeline Decodable objects
+= Real-time data pipeline Decodable objects
 David Dieruf <david.dieruf@datastax.com>
 1.0, February 1, 2022: Creating the real-time data pipeline Decodable objects
 
@@ -10,7 +10,7 @@ This guide is part of a series of guides that creates a real-time data pipeline.
 
 == The Astra Streaming connection info
 
-To create the connection you are going to need a few things from your Astra Streaming tenant. First from the Astra portal home navigate to the webstore-clicks streaming tenant.
+To connect Astra to Decodable you are going to need a few things from your Astra Streaming tenant. First from the Astra portal home navigate to the webstore-clicks streaming tenant.
 
 image:decodable-data-pipeline/02/image4.png[]
 
@@ -22,21 +22,21 @@ You will also need a Pulsar token. Click the “Token Manager” link and “Cre
 
 image:decodable-data-pipeline/02/image31.png[]
 
-Navigate back to the “Connect” tab. We’ll come back here in a bit.
+Close the popup and navigate back to the “Connect” tab. We’ll come back here in a bit.
 
 == Creating a Decodable connection to Astra Streaming for all web clicks
 
-In a different browser tab, sign in to your Decodable account and navigate to the “Connections” tab.
+In a different browser tab, sign in to your Decodable account and navigate to the “Connections” tab. We are going to create a new connection and stream, that will direct all web clicks to the correct topic in Astra.
 
-. We are going to create a new connection and stream, that will direct all web clicks to the correct topic in Astra. Click the “New Connection” button
+. Click the “New Connection” button
 +
 image:decodable-data-pipeline/02/image25.png[]
 
-. In the “Choose a Connector” view, locate the “DataStax Astra Streaming” connector and click “Connect”.
+. In the “Choose a Connector” view, locate the DataStax Astra Streaming connector and click “Connect”.
 +
 image:decodable-data-pipeline/02/image14.png[]
 
-. Use the Tenant Details from Astra to fill in the details about the connection as follows:
+. Use the Tenant Details from Astra (in your other browser tab) to fill in the details about the connection as follows:
 +
 [cols="1,4a",frame=none]
 |===
@@ -61,9 +61,7 @@ image:decodable-data-pipeline/02/image14.png[]
 +
 image:decodable-data-pipeline/02/image35.png[]
 
-. Click “Next” to set up a new stream.
-
-. Choose “New Stream”. Name the new stream “Webstore-Normalized-Clicks-Stream”.
+. Click “Next” and choose “New Stream”. Name the new stream “Webstore-Normalized-Clicks-Stream”.
 +
 image:decodable-data-pipeline/02/image12.png[]
 
@@ -108,7 +106,9 @@ image:decodable-data-pipeline/02/image13.png[]
 
 == Creating Decodable connections to Astra Streaming for product web clicks
 
-Now let’s create another connection for the specific product clicks. Navigate back to the “Connections” area and click “New Connection”.
+Create another connection to stream product clicks.
+
+. Navigate back to the “Connections” area and click “New Connection”.
 
 . Just as previously done, locate the Astra Streaming connection and use the Tenant Details from Astra to fill in the details about the connection as follows. Note the change in topic name.
 +
@@ -213,22 +213,24 @@ image:decodable-data-pipeline/02/image24.png[]
 +
 image:decodable-data-pipeline/02/image7.png[]
 
-If it goes as planned you should have 3 connections ready to go.
+You now have 3 connections ready to go.
 
 image:decodable-data-pipeline/02/image5.png[]
 
 == Creating a data normalization pipeline
 
-Now we are going to create the core functions for our stream processing. Navigate to the “Pipelines” area and click “Create Pipeline”.
+Now we are going to create the core functions for our stream processing.
+
+. Navigate to the “Pipelines” area and click “Create Pipeline”.
 +
 image:decodable-data-pipeline/02/image9.png[]
 
-Choose an input of “Webstore-Raw-Clicks-Stream” and click “Next”.
+. Choose an input of “Webstore-Raw-Clicks-Stream” and click “Next”.
 +
 image:decodable-data-pipeline/02/image28.png[]
 
 . Clear the existing SQL and copy/paste the following into the “SQL” area.
-
++
 [source,sql]
 ----
 insert into `Webstore-Normalized-Clicks-Stream`
@@ -267,14 +269,16 @@ image:decodable-data-pipeline/02/image20.png[]
 
 == Creating a data filtering pipeline
 
-Now let’s create one more pipeline to filter out product click data. Navigate to the “Pipelines” area and click “New Pipeline”.
+Create one more pipeline to filter out product click data.
+
+. Navigate to the “Pipelines” area and click “New Pipeline”.
 
 . Choose the “Webstore-Normalized-Clicks-Stream” as the input.
 +
 image:decodable-data-pipeline/02/image22.png[]
 
-Clear the SQL from the window and copy/paste the following into the “SQL” window.
-
+. Clear the SQL from the window and copy/paste the following into the “SQL” window.
++
 [source,sql]
 ----
 insert into `Webstore-Product-Clicks-Stream`
@@ -296,10 +300,10 @@ image:decodable-data-pipeline/02/image32.png[]
 +
 image:decodable-data-pipeline/02/image18.png[]
 
-Now we have a pipeline ready to filter by product.
-
+. Now we have a pipeline ready to filter by product.
++
 image:decodable-data-pipeline/02/image30.png[]
 
 == Next step
 
-With the Astra objects in place, now it's time to get the Decodable processing set up. xref:real-time-data-pipeline/03-put-it-all-together.adoc[Setup Decodable >>]
+Now it's time see the magic! xref:real-time-data-pipeline/03-put-it-all-together.adoc[Run the pipelines >>]

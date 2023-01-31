@@ -1,4 +1,4 @@
-= Creating the real-time data pipeline Astra objects
+= Real-time data pipeline Astra objects
 David Dieruf <david.dieruf@datastax.com>
 1.0, February 1, 2022: Creating the real-time data pipeline Astra objects
 
@@ -8,7 +8,7 @@ David Dieruf <david.dieruf@datastax.com>
 
 This guide is part of a series of guides that creates a real-time data pipeline. Read more about the series xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 
-== Creating message topics to stream click data
+== Creating message topics to capture the stream of click data
 
 . Navigate to your Astra portal home and choose "Create a stream"
 +
@@ -38,7 +38,7 @@ image:decodable-data-pipeline/01/image8.png[]
 +
 image:decodable-data-pipeline/01/image13.png[]
 
-== Creating a store to persist click data
+== Storing the stream of click data
 
 . From the Astra portal home click “Create a Database”.
 +
@@ -91,7 +91,7 @@ describe click_data;
 +
 The output will be 3 “create” CQL statements for the keyspace, the click_data.all_clicks table, and the click_data.product_clicks table
 
-== Create a sink between your topics and the store
+== Connecting the topics to the store
 
 . From the Astra portal home, click on the “webstore-clicks” streaming tenant.
 +
@@ -191,4 +191,4 @@ To debug you can click the sink name, scroll to the bottom terminal output area 
 
 == Next step
 
-Now it's time see the magic! xref:real-time-data-pipeline/03-put-it-all-together.adoc[Run the pipelines >>]
+With the Astra objects in place, now it's time to get the Decodable processing set up. xref:real-time-data-pipeline/03-put-it-all-together.adoc[Setup Decodable >>]

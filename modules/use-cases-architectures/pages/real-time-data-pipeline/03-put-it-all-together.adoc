@@ -1,4 +1,4 @@
-= Putting the real-time data pipeline together
+= Putting the real-time data pipeline to work
 David Dieruf <david.dieruf@datastax.com>
 1.0, February 1, 2022: Putting the real-time data pipeline together
 
@@ -35,7 +35,7 @@ Let’s make sure we have all the pieces in order…
 
 == Your first ingested data
 
-The moment of truth! Navigate to the “Connections” area and click the “REST” connector.
+. Navigate to the “Connections” area and click the “REST” connector.
 
 . Choose the “Upload” tab and copy/paste the following web click data into the window.
 +
@@ -54,7 +54,7 @@ The moment of truth! Navigate to the “Connections” area and click the “RES
 
 . Click “Upload” to simulate data being posted to the endpoint. You should receive a confirmation that data has been received.
 
-TIP: This was not a big moment with cheers and balloons. The celebration is at the end of the next area.
+NOTE: NO, this was not a big moment with cheers and balloons. The celebration is at the end of the next area.
 
 == Following the flow
 
@@ -70,15 +70,15 @@ image:decodable-data-pipeline/03/image2.png[]
 +
 image:decodable-data-pipeline/03/image4.png[]
 
-. Now we can go to our Astra Tenant “webstore-clicks”, and navigate to the “Namespace and Topics” area, then expand the “Production” namespace, and click the “all-clicks” topic. Notice in the “Data In” area 1 message was produced and in the “Data Out” area 1 message was consumed.
+. Now we can go to our Astra Streaming tenant “webstore-clicks” and navigate to the “Namespace and Topics” area. Expand the “Production” namespace and click the “all-clicks” topic. Notice that “Data In” has 1 message and “Data Out” has 1 message. That means the topic took the data in and a consumer acknowledged receipt of the message.
 +
 image:decodable-data-pipeline/03/image6.png[]
 
-. Now on to the “Sinks” tab in Astra and click the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This confirms our AstraDB sink received a message from the topic and wrote the data to our Cassandra table.
+. On to the “Sinks” tab in Astra and click the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This confirms the Sink consumed a message from the topic and wrote the data to the store.
 +
 image:decodable-data-pipeline/03/image5.png[]
 
-. Let’s look at the final data in AstraDB. Navigate to the Astra home and click the “webstore-clicks” Serverless Database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
+. Let’s look at the final data in Astra DB. Navigate to the Astra home and click the “webstore-clicks” Serverless Database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
 +
 [source,sql]
 ----
@@ -89,9 +89,11 @@ Your should see a single record output.
 +
 image:decodable-data-pipeline/03/image8.png[]
 
-{emoji-tada}{emoji-tada} Queue the loud cheers and high-fives! Our pipeline ingested raw web click data, normalized it, and persisted the parsed data to the database!
+{emoji-tada}{emoji-tada} Queue the loud cheers and high-fives! Our pipeline ingested raw web click data, normalized it, and persisted the parsed data to the database! Woot woot!!
 
 == Follow the flow of the product clicks data
+
+Similar to how you followed the above flow follow this flow to confirm the filtered messages were stored.
 
 . Navigate to your Decodable pipeline named “Webstore-Product-Clicks-Pipeline”.
 .. The “Input Metrics” should be 1 record and the “Output Metrics” should be 1 record.
@@ -118,13 +120,13 @@ image:decodable-data-pipeline/03/image7.png[]
 
 Let’s see what this can do! To put a load on the pipeline we’ll need a way to continuously post data to our endpoint. Below are a few examples. Use the download button below to download a zip of a static(html) site ecommerce catalog, that silently posts click data to an endpoint. The site is a copy of https://www.blazemeter.com/[BlazeMeter^]’s{external-link-icon} https://www.demoblaze.com/[Demoblaze site^]{external-link-icon}.
 
-You’ll need 2 pieces of information to attempt any of the examples, the Endpoint URL and an authorization token. Learn more about retrieving both of those in https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation^]{external-link-icon}.
+You’ll need 2 pieces of information the Endpoint URL and an authorization token. Learn more about retrieving both of those in https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation^]{external-link-icon}.
 
 Once you extract the zip, open the folder in your text editor of IDE of choice and look in the script.js file. There are 2 placeholders for the data retrieved above.
 
 Open the phones.html file in your browser (yes, as a local file) and begin clicking on products. Each click should be a new post to your Decodable endpoint.
 
-image::icons/button-get-started.png["Download web clicks website",130,xref=attachment$web-clicks-website.zip]
+[.button]#xref:attachment$web-clicks-website.zip[*Download Now*]#
 
 == Next step
 

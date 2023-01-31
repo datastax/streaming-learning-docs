@@ -28,7 +28,7 @@ image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
 
 === Removing Astra objects
 
-. In Astra navigate to the "Streaming" area to see a list of your tenants.
+. From the Astra portal home navigate to the "Streaming" area to see a list of your tenants.
 
 . Click the 3 dots associated with "webstore-clicks" tenant and choose the "Delete". This will remove all sinks, topics, messages, and namespaces.
 +

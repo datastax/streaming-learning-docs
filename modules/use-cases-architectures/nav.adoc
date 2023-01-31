@@ -1,4 +1,4 @@
-* xref:real-time-data-pipeline/index.adoc[Stream Processing]
+* xref:real-time-data-pipeline/index.adoc[Real-time Processing]
 ** xref:real-time-data-pipeline/index.adoc[]
 
 * xref:starlight/index.adoc[Pulsar extensions]
