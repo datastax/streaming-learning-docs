@@ -10,15 +10,19 @@ This guide is part of a series that creates a real-time data pipeline with Astra
 
 == The Astra Streaming connection info
 
-To connect Astra to Decodable you are going to need a few things from your Astra Streaming tenant. First from the Astra portal home navigate to the webstore-clicks streaming tenant.
+To connect Astra to Decodable, you need some information from your Astra Streaming tenant. From the Astra portal home, navigate to the webstore-clicks streaming tenant.
 
 image:decodable-data-pipeline/02/image4.png[]
 
-You should be on the “Connect” tab. Scroll down and locate the “Tenant Details” area. You will need these values.
+In the “Connect” tab, scroll down to the “Tenant Details” area.
+You will need these values to connect to Decodable.
 
 image:decodable-data-pipeline/02/image16.png[]
 
-You will also need a Pulsar token. Click the “Token Manager” link and “Create Token”. Just make it for 7 days, no need to create a long-lasting cred. That will popup a window with the token value. Click the clipboard icon to copy the token. Paste it to a temp safe location like notepad.
+You will also need to create a Pulsar token.
+Click the “Token Manager” link and “Create Token”.
+A popup window will appear with the token value.
+Click the clipboard icon to copy the token, and paste it to a temporary safe location like Notepad.
 
 image:decodable-data-pipeline/02/image31.png[]
 
@@ -95,7 +99,12 @@ image:decodable-data-pipeline/02/image12.png[]
 |===
 +
 image:decodable-data-pipeline/02/image10.png[]
-
++
+[NOTE]
+====
+You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
+====
++
 . Click “Next” and name the overall connection “Astra-Streaming-All-Webclicks-Connection”.
 +
 image:decodable-data-pipeline/02/image26.png[]
@@ -104,7 +113,7 @@ image:decodable-data-pipeline/02/image26.png[]
 +
 image:decodable-data-pipeline/02/image13.png[]
 
-== Creating Decodable connections to Astra Streaming for product web clicks
+== Creating a Decodable connection to Astra Streaming for product web clicks
 
 Create another connection to stream product clicks.
 
@@ -152,7 +161,12 @@ image:decodable-data-pipeline/02/image21.png[]
 |===
 +
 image:decodable-data-pipeline/02/image3.png[]
-
++
+[NOTE]
+====
+You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
+====
++
 . Click “Next” and name the overall connection “Astra-Streaming-Product-Webclicks-Connection”.
 +
 image:decodable-data-pipeline/02/image15.png[]
@@ -163,7 +177,8 @@ image:decodable-data-pipeline/02/image34.png[]
 
 == Creating an HTTP data ingestion source
 
-We will need one more connection created. This one is how raw data will be posted (or ingested) into the pipeline. We’ll use Decodable’s “REST” connector.
+We need to create one more connection.
+We’ll use Decodable’s REST connector to POST (or ingest) raw data into the pipeline.
 
 . Navigate to the “Connections” area and click “New Connection”.
 
@@ -200,7 +215,12 @@ image:decodable-data-pipeline/02/image1.png[]
 |===
 +
 image:decodable-data-pipeline/02/image6.png[]
-
++
+[NOTE]
+====
+You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
+====
++
 . Click “Next” and name the overall connection “Webstore-Raw-Clicks-Connection”.
 +
 image:decodable-data-pipeline/02/image29.png[]
@@ -209,7 +229,7 @@ image:decodable-data-pipeline/02/image29.png[]
 +
 image:decodable-data-pipeline/02/image24.png[]
 
-. anchor:endpoint-details[]Did you notice in the connector settings how the “Endpoint” value had a “<connection-id>”? That is a dynamic value that is generated when the connection is created. Navigate to the “Details” tab of the connection and you will see the final endpoint value. We’ll prefix that value with our account info (ddieruf.api.decodable.co) to create a usable URL. Learn more about the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[REST connector in Decodable documentation^]{external-link-icon}.
+. anchor:endpoint-details[]Notice in the connector settings how the “Endpoint” value has a “<connection-id>” value. This is a dynamic value that is generated when the connection is created. Navigate to the “Details” tab of the connection and you will see the final endpoint value. We’ll prefix that value with our account info (ddieruf.api.decodable.co) to create a usable URL. Learn more about the REST connector in the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[Decodable documentation^]{external-link-icon}.
 +
 image:decodable-data-pipeline/02/image7.png[]
 
@@ -255,7 +275,7 @@ from `Webstore-Raw-Clicks-Stream`
 +
 image:decodable-data-pipeline/02/image17.png[]
 
-. Click “Next” to view the auto generated output stream. Thank you Decodable!
+. Click “Next” and review the auto-generated output stream. Thank you Decodable!
 +
 image:decodable-data-pipeline/02/image23.png[]
 
@@ -263,7 +283,7 @@ image:decodable-data-pipeline/02/image23.png[]
 +
 image:decodable-data-pipeline/02/image11.png[]
 
-. Click “Create Pipeline” to create. Be patient, it might take a few seconds.
+. Click “Create Pipeline” and be patient, it might take a few seconds.
 +
 image:decodable-data-pipeline/02/image20.png[]
 
@@ -292,7 +312,7 @@ where TRIM(LOWER(SPLIT_INDEX(url_path, '/', 1))) = 'catalog'
 +
 image:decodable-data-pipeline/02/image33.png[]
 
-. Click “Next” and review the auto-generated output streaming. Thank you again Decodable!
+. Click “Next” and review the auto-generated output stream. Thank you again Decodable!
 +
 image:decodable-data-pipeline/02/image32.png[]
 
