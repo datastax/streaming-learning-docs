@@ -6,7 +6,7 @@ David Dieruf <david.dieruf@datastax.com>
 :title:
 :navtitle:
 
-This guide is part of a series that creates a real-time data pipeline with Astra and Decodeable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 
 == Creating message topics to capture the stream of click data
 
@@ -278,4 +278,4 @@ This is a semi-verbose log of the sink starting, validating, and running.
 
 == Next step
 
-Great work! With the Astra objects in place, let's move on to setting up the Decodable processing. xref:real-time-data-pipeline/03-put-it-all-together.adoc[Setup Decodable >>]
+Great work! With the Astra objects in place, let's move on to setting up the Decodable processing. xref:real-time-data-pipeline/02-create-decodable-objects.adoc[Setup Decodable >>]
