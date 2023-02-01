@@ -6,7 +6,7 @@ David Dieruf <david.dieruf@datastax.com>
 :title:
 :navtitle:
 
-This guide is part of a series of guides that creates a real-time data pipeline. Read more about the series xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+This guide is part of a series that creates a real-time data pipeline with Astra and Decodeable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 
 Now we have all the pieces of our data processing pipeline in place. It’s time to start the connection and pipelines up and input some test data.
 

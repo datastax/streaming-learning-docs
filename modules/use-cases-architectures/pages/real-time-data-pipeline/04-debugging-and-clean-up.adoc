@@ -6,6 +6,8 @@ David Dieruf <david.dieruf@datastax.com>
 :title:
 :navtitle:
 
+This guide is part of a series that creates a real-time data pipeline with Astra and Decodeable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+
 == Debugging the pipeline
 
 Maybe things didn’t go so smoothly for you. Or maybe you're just having a bad day :(. Whatever the case use the flow above to find where in the pipeline things are broken. Then get a bit deeper into that object. You’ll want to test input data at the point of failure. The first question to answer is if the input data is malformed or if the object itself is erring. Decodable’s UI gives you the ability in each pipeline to “Preview” the processing. This is a very powerful debugging tool. Your Astra Tenant has the “Try Me” area where you can set up producing and consuming messages in specific topics. These tools can help you recreate each step of the pipeline and debug issues.
