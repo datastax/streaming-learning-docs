@@ -6,7 +6,10 @@ David Dieruf <david.dieruf@datastax.com>
 :title:
 :navtitle:
 
+[NOTE]
+====
 This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+====
 
 == Debugging the pipeline
 
