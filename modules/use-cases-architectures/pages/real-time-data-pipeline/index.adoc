@@ -6,7 +6,7 @@ David Dieruf <david.dieruf@datastax.com>
 :title: Real-time data pipelines with DataStax Astra and Decodable
 :navtitle: Data pipeline with Astra and Decodable
 
-This guide presents a hands-on approach to defining the objects that make up a real-time data processing pipeline.
+This guide presents a hands-on approach for defining the objects that make up a real-time data processing pipeline.
 You'll create and configure an Astra streaming tenant and an Astra database, connect them with data processing pipelines in Decodable, and send a single data record through to validate your real-time data pipeline. +
 For extra credit, we'll demonstrate processing under load with a bulk of data.
 
