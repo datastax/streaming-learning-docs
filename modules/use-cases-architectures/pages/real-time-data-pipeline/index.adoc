@@ -1,0 +1,88 @@
+= Real-time data pipelines with DataStax Astra and Decodable
+David Dieruf <david.dieruf@datastax.com>
+1.0, February 1, 2022: Real-time data pipelines with DataStax Astra and Decodable
+
+:description: xxxxx
+:title: Real-time data pipelines with DataStax Astra and Decodable
+:navtitle: Data pipeline with Astra and Decodable
+
+This guide presents a hands-on approach to defining the objects that make up a real-time data processing pipeline.
+You'll create and configure an Astra streaming tenant and an Astra database, connect them with data processing pipelines in Decodable, and send a single data record through to validate your real-time data pipeline. +
+For extra credit, we'll demonstrate processing under load with a bulk of data.
+
+This guide uses the Astra and Decodable UIs in your web browser, so no terminal or scripting is required!
+You just need a safe place to temporarily store access tokens.
+
+== Architecture
+
+Before we get started on our journey, let’s discuss the objects we’re creating and why we need to create them. +
+We want to build a pipeline that takes in raw web click data, breaks it into queryable values, saves the data, and filters for certain values. Both the parsed click data and the filtered data will be saved. We will use Decodable’s real-time stream processing (powered by Apache Flink) as well as DataStax’s Astra platform (powered by Apache Pulsar and Apache Cassandra).
+This pipeline is intended to be production ready, because we’re using cloud-based services that are automatically setting values for scaling, latency, and security. +
+
+The pipeline components are outlined below.
+
+image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelines with DataStax Astra and Decodable]
+
+*E-Commerce Site Clicks*
+
+- Where the data comes from
+
+*DataStax Astra*
+
+- All Clicks Topic: a collection of messages with normalized click data
+- Product Clicks Topic: a collection of messages with normalized and filtered click data
+- All Clicks Sink: a function that writes message data to a certain DB table
+- Product Clicks Sink: a function that writes message data to a certain DB table
+- Cassandra: data store
+
+*Decodable*
+
+- HTTP Connection: a managed endpoint for posting click data
+- Raw Click Stream: the flow of click data that other objects can “listen” to
+- Click Normalization Pipeline: a SQL based pipeline that takes in raw click data, parses certain pieces, gives context to other data, and transforms some data
+- All Clicks Stream: the flow of normalized click data that other objects can “listen” to
+- Astra Streaming Connector: a sink objects can publish data to, which will be transformed into a Pulsar message and produced to a given topic
+- Product Clicks Pipeline: a SQL based pipeline that takes normalized data and filters for only clicks associated with a product
+- Product Clicks Stream: the flow of filtered product click data that other objects can “listen” to
+
+== Prerequisites
+
+You will need the following prerequisites in place to complete this guide:
+
+- Astra (free) account - https://astra.datastax.com/signupstreaming[Sign up now^]{external-link-icon}
+- Decodable (free) account - https://app.decodable.co/-/accounts/create[Sign up now^]{external-link-icon}
+
+[NOTE]
+====
+This guide stays within the free tiers of both Astra and Decodable.
+You won’t need a credit card for any of this guide.
+====
+
+== Getting Started
+
+The guide is broken into a few milestones. You'll want to follow these milestones in order for everything to work.
+
+. xref:use-cases-architectures:real-time-data-pipeline/01-create-astra-objects.adoc[]
++
+In this guide, you will create a new streaming tenant in Astra Streaming with a namespace and topics.
+Then, you’ll create a database in Astra DB, and hook the streaming topics and database together with a sink connector.
+
+. xref:use-cases-architectures:real-time-data-pipeline/02-create-decodable-objects.adoc[]
++
+In this guide, you will create pipelines for processing incoming data and connectors that bond a Decodable stream of data with the Astra Streaming topics created in step 1.
+
+. xref:use-cases-architectures:real-time-data-pipeline/03-put-it-all-together.adoc[]
++
+This is where the magic happens!
+In this guide, you will start the processing pipelines, send a single record of data through them, and then validate everything happened as expected.
+For extra credit, you are also given the opportunity to put the processing under load with a bulk of data.
+
+. xref:use-cases-architectures:real-time-data-pipeline/04-debugging-and-clean-up.adoc[]
++
+This final milestone helps with debugging the pipelines in case something doesn't go quite right.
+You are also given instructions on how to tear down and clean up all the objects previously created, because we're all about being good citizens of the cloud.
+
+[cols=^,frame=none,grid=none]
+|===
+| *Click the first guide above to get started!*
+|===

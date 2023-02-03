@@ -1,0 +1,55 @@
+= Debugging and cleaning up the real-time data pipeline
+David Dieruf <david.dieruf@datastax.com>
+1.0, February 1, 2022: Debugging and cleaning up the real-time data pipeline
+
+:description:
+:title:
+:navtitle:
+
+[NOTE]
+====
+This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+====
+
+== Debugging the pipeline
+
+Maybe things didn’t go so smoothly for you. Or maybe you're just having a bad day :(. Whatever the case, we can fix this!
+
+Follow the data flows described in xref:real-time-data-pipeline/03-put-it-all-together.adoc#following-the-flow[Step 3] to find where in the pipeline things are broken. Decodable is a great visualization tool for this, because you can click through the connections, streams, and pipelines and actually *see* where connections are failing. For example, if you accidentally named a stream "click-stream" instead of "clicks-stream", you can follow the click event to the outbound "clicks-stream" and then to the pipeline, and see that the pipeline is not receiving the message because its inbound stream is misnamed "click-stream". Stop the pipeline, choose the correct stream, and restart the pipeline to get data flowing again.
+
+Test input data at the point of failure. The first question to ask is if the input data is malformed, or if the object itself is failing. Decodable’s UI gives you the ability to “Preview” the processing in each pipeline. This is a very powerful debugging tool. Additionally, your Astra Tenant has the “Try Me” area where you can produce and consume messages in specific topics, which is great for testing purposes.
+These tools can help you recreate each step of the pipeline and debug issues.
+
+== Clean up
+
+=== Removing Decodable objects
+
+. For each "Connection" click the 3 dots and choose "Stop".
++
+image:decodable-data-pipeline/04/image1.png["Stop decodable connection"]
+
+
+. Once "Stopped", click the 3 dots again and choose "Delete". This will remove the object from your account.
++
+image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
+
+. Repeat this for each "Connection" and "Pipeline". You can also remove the "Streams" if you prefer.
+
+=== Removing Astra objects
+
+. From the Astra portal home navigate to the "Streaming" area to see a list of your tenants.
+
+. Click the 3 dots associated with "webstore-clicks" tenant and choose the "Delete". This will remove all sinks, topics, messages, and namespaces.
++
+image:decodable-data-pipeline/04/image3.png["Delete Astra tenant"]
+
+. Navigate to the "Databases" area and click the 3 dots associated with "webstore-clicks". Choose "Terminate" to remove all traces of the database (it might take a few seconds).
++
+image:decodable-data-pipeline/04/image4.png["Terminate Astra database"]
+
+You have now removed all objects and are ready to start fresh!
+Your next processing pipeline can solve a business challenge like fraud detection, or removing personally identifiable information (PII), or maybe how to get to the moon! Have fun!
+
+== Next step
+
+Return to the xref:real-time-data-pipeline/index.adoc[guide home].

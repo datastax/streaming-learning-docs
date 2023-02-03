@@ -1,3 +1,6 @@
+* xref:real-time-data-pipeline/index.adoc[Real-time Processing]
+** xref:real-time-data-pipeline/index.adoc[]
+
 * xref:starlight/index.adoc[Pulsar extensions]
 ** xref:starlight/kafka/index.adoc[Starlight for Kafka]
 ** xref:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
