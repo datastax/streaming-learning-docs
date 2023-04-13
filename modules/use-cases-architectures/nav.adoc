@@ -5,3 +5,8 @@
 ** xref:starlight/kafka/index.adoc[Starlight for Kafka]
 ** xref:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
 ** xref:starlight/jms/index.adoc[Starlight for JMS]
+
+* xref:change-data-capture/index.adoc[Change data capture]
+** xref:change-data-capture/table-schema-evolution.adoc[Table schema evolution]
+** xref:change-data-capture/consuming-change-data.adoc[Consuming change data]
+** xref:change-data-capture/questions-and-patterns.adoc[Questions and patterns]
