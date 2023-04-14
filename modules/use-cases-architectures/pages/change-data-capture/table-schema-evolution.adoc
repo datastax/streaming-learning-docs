@@ -50,6 +50,8 @@ Altering a table column includes renaming a column or changing a column’s type
 
 While technically updating columns is possible when CDC is enabled, it is not recommended. Instead, changes to a Cassandra table should be additive only. If you are familiar with data migrations, this concept is the same. If you need to change the name or type of table column, add a new column. The resulting event messages will have a reference to both columns, and you can handle this migration downstream.
 
+Note that this recommendation assumes a schema-compatibility-strategy of BACKWARD_TRANSITIVE. If you are using a different strategy, table updates will be handled differently.
+
 == Removing a table column
 
 Removing a table column is a simple command in CQL. The resulting CDC data messages will simply not include that data anymore.
