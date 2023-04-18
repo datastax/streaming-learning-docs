@@ -3,7 +3,7 @@
 "autoAck","true","false","Boolean denotes whether or not the framework will automatically acknowledge messages"
 "className","true","","The connector type's class reference, like 'org.apache.pulsar.io.debezium.mysql.DebeziumMysqlSource'"
 "cleanupSubscription","false","false","Boolean denotes whether the subscriptions the functions created/used should be deleted when the functions is deleted"
-"configs","false","{}","JSON key/value config of sink type specific settings. Example: {""property1"":""1234"",""property2"":{""subProperty"":""asdf""}}"
+"configs","false","{}","A key/value map of config properties specific to the type of connector. See the reference table below for values."
 "customRuntimeOptions","false","","A string that encodes options to customize the runtime, see Apache Pulsar docs for configured runtime for details"
 "deadLetterTopic","false","","Name of the dead topic where the failing messages will be sent"
 "inputSpecs","false","","The map of input topics to its consumer configuration, each configuration has schema of {""schemaType"": ""type-x"", ""serdeClassName"": ""name-x"", ""isRegexPattern""": true, ""receiverQueueSize"": 5}"
