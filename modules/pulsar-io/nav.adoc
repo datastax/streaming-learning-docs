@@ -2,6 +2,7 @@
 ** Sinks
 *** xref:connectors/sinks/astra-db.adoc[]
 *** xref:connectors/sinks/elastic-search.adoc[]
+*** xref:connectors/sinks/google-bigquery.adoc[]
 *** xref:connectors/sinks/jdbc-postgres.adoc[]
 *** xref:connectors/sinks/jdbc-mariadb.adoc[]
 *** xref:connectors/sinks/jdbc-clickhouse.adoc[]
