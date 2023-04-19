@@ -1,0 +1,159 @@
+:connectorName: cloud-storage-sink
+:connectorType: cloud-storage
+:attribute-missing: skip
+:slug: cloud-storage-sink-connector
+:page-tag: cloud storage,sink-connector, aws, azure, gcp
+
+= Cloud Storage
+
+Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a Pulsar topic to the given system following a desired format.
+
+The cloud storage system supported are:
+
+- Google Cloud Storage (GCP)
+- S3 (AWS)
+- Azure Blob (Azure)
+
+(see below for supported data formats)
+
+== Get Started
+
+include::partial$connectors/sinks/get-started.adoc[]
+
+== Data format types
+
+Cloud Storage Sink Connector provides multiple output format options, including JSON, Avro, Bytes, or Parquet. The default format is JSON. With current implementation, there are some limitations for different formats:
+
+The Pulsar Schema types supported by the writers.
+
+[%header,format=csv,cols="1,^1,^1,^1,^1"]
+|===
+include::example$connectors/sinks/cloud-storage/data-format.csv[]
+|===
+
+____
+*The JSON writer will try to convert the data with a String or Bytes schema to JSON-format data if convertable.
+
+**The Protobuf schema is based on the Avro schema. It uses Avro as an intermediate format, so it may not provide the best effort conversion.
+
+\*** The ProtobufNative record holds the Protobuf descriptor and the message. When writing to Avro format, the connector uses avro-protobuf to do the conversion.
+____
+
+The support of `withMetadata` configurations for different writer formats:
+
+[%header,format=csv,cols="1,^1",width="50%"]
+|===
+include::example$connectors/sinks/cloud-storage/with-meta-data.csv[]
+|===
+
+____
+*When using Parquet with PROTOBUF_NATIVE format, the connector will write the messages with DynamicMessage format. When withMetadata is set to true, the connector will add __message_metadata__ to the messages with PulsarIOCSCProtobufMessageMetadata format.
+
+For example, if a message User has the following schema:
+
+[source,protobuf]
+----
+syntax = "proto3";
+message User {
+ string name = 1;
+ int32 age = 2;
+}
+----
+
+When withMetadata is set to true, the connector will write the message DynamicMessage with the following schema:
+
+[source,protobuf]
+----
+syntax = "proto3";
+message PulsarIOCSCProtobufMessageMetadata {
+ map<string, string> properties = 1;
+ string schema_version = 2;
+ string message_id = 3;
+}
+message User {
+ string name = 1;
+ int32 age = 2;
+ PulsarIOCSCProtobufMessageMetadata __message_metadata__ = 3;
+}
+----
+____
+
+[NOTE]
+====
+By default, when the connector receives a message with a non-supported schema type, the connector will fail the message. If you want to skip the non-supported messages, you can set skipFailedMessages to true.
+====
+
+== Dead-letter topics
+
+To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config. Then using either pulsar-admin or curl, set `--max-redeliver-count` and `--dead-letter-topic` . For more info about dead-letter topics, see the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[Pulsar documentation^]{external-link-icon}. If a message fails to be sent to the Cloud Storage and there is a dead-letter topic, the connector will send the message to the assigned topic.
+
+== Managing the Connector
+
+include::partial$connectors/sinks/manage.adoc[]
+
+== Monitoring the Connector
+
+include::partial$connectors/sinks/monitoring.adoc[]
+
+== Connector Reference
+
+With the Cloud Storage Sink there a two sets of parameters. First the Astra Streaming parameters, then the params specific to your chosen cloud store.
+
+=== Astra Streaming
+
+[%header,format=csv,cols="2,1,1,3"]
+|===
+include::example$connectors/sinks/astra.csv[]
+|===
+
+=== Cloud specific parameters (configs)
+
+Choose the storage provider and set the parameter values in the "configs" area.
+
+[tabs]
+====
+Google Cloud Storage::
++
+--
+[%header,format=csv,cols="2,1,1,3"]
+|===
+include::example$connectors/sinks/cloud-storage/gcp-gcs.csv[]
+|===
+--
+
+AWS S3 Storage::
++
+--
+
+The suggested permission policies for AWS S3 are:
+
+- s3:AbortMultipartUpload
+- s3:GetObject*
+- s3:PutObject*
+- s3:List*
+
+If you do not want to provide region in the configuration, you should enable s3:GetBucketLocation permission policy as well.
+
+[%header,format=csv,cols="2,1,1,3"]
+|===
+include::example$connectors/sinks/cloud-storage/aws-S3.csv[]
+|===
+--
+
+Azure Blob Storage::
++
+--
+[%header,format=csv,cols="2,1,1,3"]
+|===
+include::example$connectors/sinks/cloud-storage/azure-blob.csv[]
+|===
+--
+====
+
+== What's next?
+
+Learn more about https://cloud.google.com/storage[Google’s Cloud Storage^]{external-link-icon}.
+
+Learn more about https://azure.microsoft.com/en-us/products/storage/blobs[Azure Blob Store^]{external-link-icon}.
+
+Learn more about https://aws.amazon.com/s3/[AWS S3^]{external-link-icon}.
