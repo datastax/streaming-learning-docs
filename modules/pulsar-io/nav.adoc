@@ -1,6 +1,7 @@
 * xref:connectors/index.adoc[Pulsar IO]
 ** Sinks
 *** xref:connectors/sinks/astra-db.adoc[]
+*** xref:connectors/sinks/cloud-storage.adoc[]
 *** xref:connectors/sinks/elastic-search.adoc[]
 *** xref:connectors/sinks/google-bigquery.adoc[]
 *** xref:connectors/sinks/jdbc-postgres.adoc[]
