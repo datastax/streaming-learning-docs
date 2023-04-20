@@ -13,19 +13,19 @@ The Cloud Storage sink connector reads messages from Apache Pulsar topics and wr
 
 xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink documentation].
 
-[#bigquery-sink]
-=== Google BigQuery sink
-
-The Google BigQuery sink connector reads messages from Apache Pulsar topics and writes them to BigQuery systems.
-
-xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink documentation].
-
 [#elasticsearch-sink]
 === ElasticSearch sink
 
 The Elasticsearch sink connector reads messages from Apache Pulsar topics and writes them to Elasticsearch systems.
 
 xref:connectors/sinks/elastic-search.adoc[Elasticsearch sink documentation].
+
+[#bigquery-sink]
+=== Google BigQuery sink
+
+The Google BigQuery sink connector reads messages from Apache Pulsar topics and writes them to BigQuery systems.
+
+xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink documentation].
 
 [#jdbc-clickhouse-sink]
 === JDBC-Clickhouse sink
