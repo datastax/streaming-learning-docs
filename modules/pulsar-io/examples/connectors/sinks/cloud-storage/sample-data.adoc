@@ -1,0 +1,69 @@
+[source,json]
+----
+{
+  "archive": "builtin://cloud-storage",
+  "autoAck": true,
+  "className": "org.apache.pulsar.io.jcloud.sink.CloudStorageGenericRecordSink",
+  "cleanupSubscription": false,
+  "configs": {
+    "batchSize": "10",
+    "batchTimeMs": "1000",
+    "bucket": "S3",
+    "formatType": "json",
+    "maxBatchBytes": "10000000",
+    "partitionerType": "partition",
+    "partitionerUseIndexAsOffset": false,
+    "pendingQueueSize": "10",
+    "provider": "AWS",
+    "skipFailedMessages": false,
+    "sliceTopicPartitionPath": false,
+    "useHumanReadableMessageId": false,
+    "useHumanReadableSchemaVersion": false,
+    "withMetadata": false,
+    "withTopicPartitionNumber": true
+  },
+  "customRuntimeOptions": "internal_data",
+  "deadLetterTopic": null,
+  "inputSpecs": {
+    "persistent://homelab/default/clue-sensors": {
+      "consumerProperties": {},
+      "cryptoConfig": null,
+      "poolMessages": false,
+      "receiverQueueSize": null,
+      "regexPattern": false,
+      "schemaProperties": {},
+      "schemaType": null,
+      "serdeClassName": null
+    }
+  },
+  "inputs": [
+    "persistent://homelab/default/clue-sensors"
+  ],
+  "maxMessageRetries": null,
+  "name": "cloud-storage-sink",
+  "namespace": "default",
+  "negativeAckRedeliveryDelayMs": null,
+  "parallelism": 1,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "retainKeyOrdering": false,
+  "retainOrdering": false,
+  "runtimeFlags": null,
+  "secrets": null,
+  "sourceSubscriptionName": null,
+  "sourceSubscriptionPosition": "Latest",
+  "tenant": "homelab",
+  "timeoutMs": 5000,
+  "topicToSchemaProperties": null,
+  "topicToSchemaType": null,
+  "topicToSerdeClassName": null,
+  "topicsPattern": null,
+  "transformFunction": null,
+  "transformFunctionClassName": null,
+  "transformFunctionConfig": null
+}
+----

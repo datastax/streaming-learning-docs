@@ -1,0 +1,63 @@
+= Consuming change data with Apache Pulsar
+David Dieruf <david.dieruf@datastax.com>
+1.0, March 13, 2023: Consuming change data with Apache Pulsar
+:description: This article describes how to consume change data with Apache Pulsar.
+:title: Consuming change data with Apache Pulsar
+:navtitle: Consuming change data with Apache Pulsar
+
+[NOTE]
+====
+This article is a continuation of the xref:change-data-capture/index.adoc[] article. Please read that article first to understand the fundamentals of what resources are being used.
+====
+
+== Pulsar clients
+
+Each client handles message consumption a little differently but there is one overall pattern to follow.  As we learned in the previous sections, a CDC message will arrive as an Avro GenericRecord of type KeyValue. Typically, the first step will be to separate the key and value portions of the message. You will find the Cassandra table's key fields in the key of the record and the change data in the value portion of the record. Both of which are Avro records themselves. From there you'll want to deserialize the Avro record and extract the interesting info.
+
+Below are example implementations for each runtime consuming messages from the CDC data topic.
+
+[NOTE]
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
+
+[cols="^1,^1,^1,^1,^1", grid=none,frame=none]
+|===
+| https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[image:csharp-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[C#^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[image:java-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[Java^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[image:node-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[Node.js^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[image:python-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[Python^]{external-link-icon}
+|===
+
+== Pulsar functions
+
+It is very common to have a function consuming the CDC data. Functions usually perform additional processing on the data and pass it to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
+
+[NOTE]
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
+
+[cols="^1,^1,^1", grid=none,frame=none]
+|===
+| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[image:java-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[Java^]{external-link-icon}
+| https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[image:python-icon.png[]^]
+
+https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[Python^]{external-link-icon}
+|===
+
+== Next
+
+You're ready to tackle CDC like a pro! Use our xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[] as reference as you near production.

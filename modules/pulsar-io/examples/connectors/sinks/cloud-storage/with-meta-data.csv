@@ -1,0 +1,5 @@
+Writer Format,withMetadata
+Avro,✅
+JSON,✅
+Parquet,✅ *
+Bytes,❌

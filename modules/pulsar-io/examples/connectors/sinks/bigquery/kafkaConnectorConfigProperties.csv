@@ -1,0 +1,61 @@
+Name,Required,Default,Description
+allBQFieldsNullable,false,false,"If `true`, no fields in any produced BigQuery schema are REQUIRED. All non-nullable Avro fields are translated as NULLABLE (or REPEATED, if arrays)."
+allowBigQueryRequiredFieldRelaxation,false,false,"If true, fields in BigQuery Schema can be changed from REQUIRED to NULLABLE."
+allowNewBigQueryFields,false,false,"If true, new fields can be added to BigQuery tables during subsequent schema updates."
+allowSchemaUnionization,false,false,"If true, the existing table schema (if one is present) will be unionized with new record schemas during schema updates. If false, the record of the last schema in a batch will be used for any necessary table creation and schema update attempts.
+
+Setting allowSchemaUnionization to false and allowNewBigQueryFields and allowBigQueryRequiredFieldRelaxation to true is equivalent to setting autoUpdateSchemas to true in older (pre-2.0.0) versions of this connector.
+
+In this case, if BigQuery raises a schema validation exception or a table doesn’t exist when a writing a batch, the connector will try to remediate by required field relaxation and/or adding new fields.
+
+If allowSchemaUnionization, allowNewBigQueryFields, and allowBigQueryRequiredFieldRelaxation are true, the connector will create or update tables with a schema whose fields are a union of the existing table schema’s fields and the ones present in all of the records of the current batch.
+
+The key difference is that with unionization disabled, new record schemas have to be a superset of the table schema in BigQuery.
+
+allowSchemaUnionization is a useful tool to make things work. For example, if you’d like to remove fields from data upstream, the updated schemas still work in the connector. It is similarly useful when different tasks see records whose schemas contain different fields that are not in the table. However, note with caution that if allowSchemaUnionization is set and some bad records are in the topic, the BigQuery schema may be permanently changed. This presents two issues: first, since BigQuery doesn’t allow columns to be dropped from tables, they’ll add unnecessary noise to the schema. Second, since BigQuery doesn’t allow column types to be modified, they could completely break pipelines down the road where well-behaved records have schemas whose field names overlap with the accidentally-added columns in the table, but use a different type."
+autoCreateBucket,false,true,"Whether to automatically create the given bucket, if it does not exist."
+autoCreateTables,false,false,Automatically create BigQuery tables if they don’t already exist
+avroDataCacheSize,false,100,The size of the cache to use when converting schemas from Avro to Kafka Connect.
+batchLoadIntervalSec,false,120,"The interval, in seconds, in which to attempt to run GCS to BigQuery load jobs. Only relevant if `enableBatchLoad` is configured."
+bigQueryMessageTimePartitioning,false,false,Whether or not to use the message time when inserting records. Default uses the connector processing time.
+bigQueryPartitionDecorator,false,true,Whether or not to append partition decorator to BigQuery table name when inserting records. Default is true. Setting this to true appends partition decorator to table name (e.g. table$yyyyMMdd depending on the configuration set for bigQueryPartitionDecorator). Setting this to false bypasses the logic to append the partition decorator and uses raw table name for inserts.
+bigQueryRetry,false,0,The number of retry attempts made for a BigQuery request that fails with a backend error or a quota exceeded error.
+bigQueryRetryWait,false,1000,"The minimum amount of time, in milliseconds, to wait between retry attempts for a BigQuery backend or quota exceeded error."
+clusteringPartitionFieldNames,false,,Comma-separated list of fields where data is clustered in BigQuery.
+convertDoubleSpecialValues,false,false,Designates whether +Infinity is converted to Double.MAX_VALUE and whether -Infinity and NaN are converted to Double.MIN_VALUE to ensure successfull delivery to BigQuery.
+defaultDataset,true,,The default dataset to be used
+deleteEnabled,false,false,"Enable delete functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. A delete will be performed when a record with a null value (that is–a tombstone record) is read. This feature will not work with SMTs that change the name of the topic."
+enableBatchLoad,false,“”,Beta Feature Use with caution. The sublist of topics to be batch loaded through GCS.
+gcsBucketName,false,"""”",The name of the bucket where Google Cloud Storage (GCS) blobs are located. These blobs are used to batch-load to BigQuery. This is applicable only if `enableBatchLoad` is configured.
+includeKafkaData,false,false,"Whether to include an extra block containing the Kafka source topic, offset, and partition information in the resulting BigQuery rows."
+intermediateTableSuffix,false,“.tmp”,"A suffix that will be appended to the names of destination tables to create the names for the corresponding intermediate tables. Multiple intermediate tables may be created for a single destination table, but their names will always start with the name of the destination table, followed by this suffix, and possibly followed by an additional suffix."
+kafkaDataFieldName,false,,"The Kafka data field name. The default value is null, which means the Kafka Data field will not be included."
+kafkaKeyFieldName,false,,"The Kafka key field name. The default value is null, which means the Kafka Key field will not be included."
+keyfile,true,,"Can be either a string representation of the Google credentials file or the path to the Google credentials file itself.
+
+When using the Astra Streaming UI, the string representation must be used. If using pulsar-admin with Astra Streaming, either the representation or file can be used."
+keySource,true,FILE,"Determines whether the keyfile configuration is the path to the credentials JSON file or to the JSON itself. Available values are `FILE` and `JSON`.
+
+When using the Astra Streaming UI, JSON will be the only option. If using pulsar-admin with Astra Streaming, either the representation or file can be used."
+name,true,,The name of the connector. Use the same value as Pulsar sink name.
+mergeIntervalMs,false,60_000L,"How often (in milliseconds) to perform a merge flush, if upsert/delete is enabled. Can be set to -1 to disable periodic flushing."
+mergeRecordsThreshold,false,-1,"How many records to write to an intermediate table before performing a merge flush, if upsert/delete is enabled. Can be set to -1 to disable record count-based flushing."
+project,true,,The BigQuery project to write to
+queueSize,false,-1,The maximum size (or -1 for no maximum size) of the worker queue for BigQuery write requests before all topics are paused. This is a soft limit; the size of the queue can go over this before topics are paused. All topics resume once a flush is triggered or the size of the queue drops under half of the maximum size.
+sanitizeTopics,true,false,"Designates whether to automatically sanitize topic names before using them as table names. If not enabled, topic names are used as table names.
+
+The only accepted value is `false`. Providing any other value will result in an error."
+schemaRetriever,false,com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever,A class that can be used for automatically creating tables and/or updating schemas.
+threadPoolSize,false,10,The size of the BigQuery write thread pool. This establishes the maximum number of concurrent writes to BigQuery.
+timePartitioningType,false,DAY,"The time partitioning type to use when creating tables. Existing tables will not be altered to use this partitioning type. Valid Values: (case insensitive) [MONTH, YEAR, HOUR, DAY]"
+timestampPartitionFieldName,false,,"The name of the field in the value that contains the timestamp to partition by in BigQuery and enable timestamp partitioning for each table. Leave this configuration blank, to enable ingestion time partitioning for each table."
+topic2TableMap,false,,"Map of topics to tables (optional).
+
+Format: comma-separated tuples, e.g. <topic-1>:<table-1>,<topic-2>:<table-2>,..
+
+Note, because `sanitizeTopicName` must be `true`, that in-turn means any alphanumeric character in the topic name will be replaced as underscore “_”. So when creating a mapping you need to take the underscores into account.
+
+For example, if the topic name is provided as “persistent://a/b/c-d” then the mapping topic name would be “persistent___a_b_c_d”.
+
+topics,true,,"A list of Kafka topics to read from. Use the same name as the Pulsar topic (not the whole address, just the topic name)."
+upsertEnabled,false,false,"Enable upsert functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. Row-matching will be performed based on the contents of record keys. This feature won’t work with SMTs that change the name of the topic."
