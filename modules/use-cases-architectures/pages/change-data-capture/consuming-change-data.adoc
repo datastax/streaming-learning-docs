@@ -5,7 +5,10 @@ David Dieruf <david.dieruf@datastax.com>
 :title: Consuming change data with Apache Pulsar
 :navtitle: Consuming change data with Apache Pulsar
 
-NOTE: This article is a continuation of the "xref:change-data-capture/index.adoc[]" article. Please read that ahead of this article to understand the fundamentals of what resources are being used.
+[NOTE]
+====
+This article is a continuation of the xref:change-data-capture/index.adoc[] article. Please read that article first to understand the fundamentals of what resources are being used.
+====
 
 == Pulsar clients
 
@@ -14,7 +17,7 @@ Each client handles message consumption a little differently but there is one ov
 Below are example implementations for each runtime consuming messages from the CDC data topic.
 
 [NOTE]
-While these examples are in an “astra-streaming-examples” repository, they are not Astra specific. You can use these to consume CDC data topics in your own Cassandra/Pulsar clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
 
 [cols="^1,^1,^1,^1,^1", grid=none,frame=none]
 |===
@@ -37,10 +40,10 @@ https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cd
 
 == Pulsar functions
 
-It is very common to have a function consuming the CDC data.Functions usually do added processing on the data and continue to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
+It is very common to have a function consuming the CDC data. Functions usually perform additional processing on the data and pass it to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
 
 [NOTE]
-While these examples are in an “astra-streaming-examples” repository, they are not Astra specific. You can use these to consume CDC data topics in your own Cassandra/Pulsar clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
 
 [cols="^1,^1,^1", grid=none,frame=none]
 |===
@@ -57,4 +60,4 @@ https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-p
 
 == Next
 
-You're ready to tackle CDC like a pro! Use our "xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[]" as reference as  you near production.
+You're ready to tackle CDC like a pro! Use our xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[] as reference as you near production.
