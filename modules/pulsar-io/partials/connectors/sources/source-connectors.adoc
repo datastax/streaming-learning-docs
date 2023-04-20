@@ -79,7 +79,6 @@ MarkLogic +
 MongoDB +
 MQTT +
 Neo4J +
-Netty +
 New Relic +
 NSQ +
 OrientDB +
