@@ -1,1 +1,68 @@
-xxxx
+[source,json]
+----
+{
+  "archive": "builtin://bigquery",
+  "autoAck": true,
+  "className": "org.apache.pulsar.io.kafka.connect.KafkaConnectSink",
+  "cleanupSubscription": false,
+  "configs": {
+    "batchSize": "1000",
+    "kafkaConnectorConfigProperties": {
+      "autoCreateBucket": true,
+      "autoCreateTables": false,
+      "keySource": "JSON",
+      "queueSize": "-1",
+      "sanitizeTopics": false,
+      "topics": "homelab/default/clue-sensors"
+    },
+    "kafkaConnectorSinkClass": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
+    "lingerTimeMs": "1000",
+    "offsetStorageTopic": "homelab/default/clue-sensors",
+    "sanitizeTopicName": true,
+    "topic": "homelab/default/clue-sensors"
+  },
+  "customRuntimeOptions": "internal_data",
+  "deadLetterTopic": null,
+  "inputSpecs": {
+    "homelab/default/clue-sensors": {
+      "consumerProperties": {},
+      "cryptoConfig": null,
+      "poolMessages": false,
+      "receiverQueueSize": null,
+      "regexPattern": false,
+      "schemaProperties": {},
+      "schemaType": null,
+      "serdeClassName": null
+    }
+  },
+  "inputs": [
+    "homelab/default/clue-sensors"
+  ],
+  "maxMessageRetries": null,
+  "name": "bq-sink",
+  "namespace": "default",
+  "negativeAckRedeliveryDelayMs": null,
+  "parallelism": 1,
+  "processingGuarantees": "EFFECTIVELY_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "retainKeyOrdering": false,
+  "retainOrdering": true,
+  "runtimeFlags": null,
+  "secrets": null,
+  "sourceSubscriptionName": null,
+  "sourceSubscriptionPosition": "Latest",
+  "tenant": "homelab",
+  "timeoutMs": 2000,
+  "topicToSchemaProperties": null,
+  "topicToSchemaType": null,
+  "topicToSerdeClassName": null,
+  "topicsPattern": null,
+  "transformFunction": null,
+  "transformFunctionClassName": null,
+  "transformFunctionConfig": null
+}
+----

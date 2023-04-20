@@ -22,9 +22,9 @@ include::partial$connectors/sinks/get-started.adoc[]
 
 == Data format types
 
-Cloud Storage Sink Connector provides multiple output format options, including JSON, Avro, Bytes, or Parquet. The default format is JSON. With current implementation, there are some limitations for different formats:
+The Cloud Storage sink connector provides multiple output format options, including JSON, Avro, Bytes, or Parquet. The default format is JSON. With current implementation, there are some limitations for different formats:
 
-The Pulsar Schema types supported by the writers.
+Pulsar Schema types supported by the writers:
 
 [%header,format=csv,cols="1,^1,^1,^1,^1"]
 |===
@@ -32,14 +32,14 @@ include::example$connectors/sinks/cloud-storage/data-format.csv[]
 |===
 
 ____
-*The JSON writer will try to convert the data with a String or Bytes schema to JSON-format data if convertable.
+*The JSON writer will try to convert data with a String or Bytes schema to JSON-format data if convertable.
 
 **The Protobuf schema is based on the Avro schema. It uses Avro as an intermediate format, so it may not provide the best effort conversion.
 
 \*** The ProtobufNative record holds the Protobuf descriptor and the message. When writing to Avro format, the connector uses avro-protobuf to do the conversion.
 ____
 
-The support of `withMetadata` configurations for different writer formats:
+Supported `withMetadata` configurations for different writer formats:
 
 [%header,format=csv,cols="1,^1",width="50%"]
 |===
@@ -47,7 +47,7 @@ include::example$connectors/sinks/cloud-storage/with-meta-data.csv[]
 |===
 
 ____
-*When using Parquet with PROTOBUF_NATIVE format, the connector will write the messages with DynamicMessage format. When withMetadata is set to true, the connector will add __message_metadata__ to the messages with PulsarIOCSCProtobufMessageMetadata format.
+*When using Parquet with PROTOBUF_NATIVE format, the connector will write the messages with the DynamicMessage format. When withMetadata is set to true, the connector will add __message_metadata__ to the messages with PulsarIOCSCProtobufMessageMetadata format.
 
 For example, if a message User has the following schema:
 
@@ -85,7 +85,7 @@ By default, when the connector receives a message with a non-supported schema ty
 
 == Dead-letter topics
 
-To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config. Then using either pulsar-admin or curl, set `--max-redeliver-count` and `--dead-letter-topic` . For more info about dead-letter topics, see the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[Pulsar documentation^]{external-link-icon}. If a message fails to be sent to the Cloud Storage and there is a dead-letter topic, the connector will send the message to the assigned topic.
+To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config. Then using either pulsar-admin or curl, set `--max-redeliver-count` and `--dead-letter-topic`. For more info about dead-letter topics, see the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[Pulsar documentation^]{external-link-icon}. If a message fails to be sent to the Cloud Storage sink and there is a dead-letter topic, the connector will send the message to the assigned topic.
 
 == Managing the Connector
 
@@ -97,7 +97,7 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-With the Cloud Storage Sink there a two sets of parameters. First the Astra Streaming parameters, then the params specific to your chosen cloud store.
+With the Cloud Storage Sink there are two sets of parameters. First, the Astra Streaming parameters, then the parameters specific to your chosen cloud store.
 
 === Astra Streaming
 
@@ -132,7 +132,7 @@ The suggested permission policies for AWS S3 are:
 - s3:PutObject*
 - s3:List*
 
-If you do not want to provide region in the configuration, you should enable s3:GetBucketLocation permission policy as well.
+If you do not want to provide a region in the configuration, you should enable s3:GetBucketLocation permission policy as well.
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
