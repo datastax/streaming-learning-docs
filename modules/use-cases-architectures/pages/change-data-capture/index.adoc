@@ -26,7 +26,7 @@ As you’ll learn in the next section, among the processes needed to capture cha
 
 Monitoring a source connector includes two areas: health and performance. Every connector in Pulsar emits basic metrics about its health, including stats like the number of records received from the source, and the number of messages written to the destination topic. Connectors also emit debugging metrics like the number of exceptions thrown by the source. Refer to the https://pulsar.apache.org/docs/reference-metrics/#connectors[connectors area of Pulsar metrics^]{external-link-icon} for a complete list and explanation of metrics.
 
-Performance metrics include health metrics as well as specific knowledge about the source. The Cassandra Source Connector includes quite a few performance metrics. Refer to the https://docs.datastax.com/en/cdc-for-cassandra/docs/2.2.2/monitor.html[Monitoring CDC for Cassandra] reference.
+Performance metrics include health metrics as well as specific knowledge about the source. The Cassandra Source Connector includes quite a few performance metrics. Refer to the https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/monitor.html[Monitoring CDC for Cassandra] reference.
 
 [discrete]
 === Source connector logs
@@ -43,7 +43,7 @@ Schemas follow a primitive or complex type. Primitive schemas are simple data ty
 
 Complex schemas introduce a more structured way of messaging. The two types of complex messages are KeyValue and Struct. KeyValue is JSON formatted text that offers a separation of custom labels and their values. Struct is a custom class definition set as Avro, Json, or Protobuf.
 
-KeyValue offers an interesting way to encode a message called “Separated”. This option separates a message key and the message payload. This in turn has the option to store message key information as a different data type than the message payload. It also offers special compression capabilities. CDC takes advantage of separating KeyValue messages when it produces both the event and data topic. Learn more in the "https://docs.datastax.com/en/cdc-for-cassandra/docs/2.2.2/cdc-cassandra-events.html[CDC for Cassandra Events]" reference.
+KeyValue offers an interesting way to encode a message called “Separated”. This option separates a message key and the message payload. This in turn has the option to store message key information as a different data type than the message payload. It also offers special compression capabilities. CDC takes advantage of separating KeyValue messages when it produces both the event and data topic. Learn more in the "https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/cdc-cassandra-events.html[CDC for Cassandra Events]" reference.
 
 [discrete]
 === Namespace schema configurations
@@ -60,11 +60,11 @@ In the context of CDC there are a few schema configurations of note. All of thes
 
 == Cassandra change data capture (CDC) agent
 
-The Cassandra CDC agent is a process running on each node in a Cassandra cluster that watches for data changes on tables that have enabled the CDC feature. Using Cassandra’s https://cassandra.apache.org/doc/4.0/cassandra/configuration/cass_yaml_file.html#commitlog_sync[commitlog_sync option^]{external-link-icon}, the agent periodically syncs a separate log in a special “cdc_raw” directory. Each log entry is a CDC event. The CDC agent creates a new event message containing the row coordinates of the changed data and produces the message to a downstream Pulsar cluster. For more information about the agent, how to include its configuration in cassandra.yaml, and event data specifics read the "https://docs.datastax.com/en/cdc-for-cassandra/docs/2.2.2/index.html[DataStax CDC for Apache Cassandra® Documentation]".
+The Cassandra CDC agent is a process running on each node in a Cassandra cluster that watches for data changes on tables that have enabled the CDC feature. Using Cassandra’s https://cassandra.apache.org/doc/4.0/cassandra/configuration/cass_yaml_file.html#commitlog_sync[commitlog_sync option^]{external-link-icon}, the agent periodically syncs a separate log in a special “cdc_raw” directory. Each log entry is a CDC event. The CDC agent creates a new event message containing the row coordinates of the changed data and produces the message to a downstream Pulsar cluster. For more information about the agent, how to include its configuration in cassandra.yaml, and event data specifics read the "https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/index.html[DataStax CDC for Apache Cassandra® Documentation]".
 
 == Cassandra Source Connector for Apache Pulsar
 
-Each table that has CDC enabled also has a corresponding Source Connector in Pulsar. This is unlike the CDC agent where the process runs on each Cassandra node, keeping a log of all table changes. Each table-specific Source Connector subscribes to the events topic the agent is producing messages to. When the connector “sees” a message for its table, it uses the row coordinates within the message to retrieve the mutated data from Cassandra and create a new message with the specifics. That new message is written to a data topic where others can subscribe and receive CDC messages. For more information about the Cassandra Source Connector, its configuration, and how to create it read the "https://docs.datastax.com/en/cdc-for-cassandra/docs/2.2.2/index.html[DataStax CDC for Apache Cassandra® Documentation]".
+Each table that has CDC enabled also has a corresponding Source Connector in Pulsar. This is unlike the CDC agent where the process runs on each Cassandra node, keeping a log of all table changes. Each table-specific Source Connector subscribes to the events topic the agent is producing messages to. When the connector “sees” a message for its table, it uses the row coordinates within the message to retrieve the mutated data from Cassandra and create a new message with the specifics. That new message is written to a data topic where others can subscribe and receive CDC messages. For more information about the Cassandra Source Connector, its configuration, and how to create it read the "https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/index.html[DataStax CDC for Apache Cassandra® Documentation]".
 
 [discrete]
 === Event deduplication
