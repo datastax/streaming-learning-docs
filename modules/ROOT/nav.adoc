@@ -1,0 +1,63 @@
+* Processing Data
+** Change Data Capture
+*** xref:streaming-learning:use-cases-architectures:change-data-capture/index.adoc[Overview]
+*** xref:streaming-learning:use-cases-architectures:change-data-capture/table-schema-evolution.adoc[Table schema evolution]
+*** xref:streaming-learning:use-cases-architectures:change-data-capture/consuming-change-data.adoc[Consuming change data]
+*** xref:streaming-learning:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[Questions and patterns]
+
+** xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[Data Pipelines]
+
+* Migrating to Apache Pulsar
+
+** xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Starlight for Kafka]
+** xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
+** xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Starlight for JMS]
+
+* APIs & References
+
+** Connectors
+
+*** Sources
+**** xref:streaming-learning:pulsar-io:connectors/sources/data-generator.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/debezium-mongodb.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/debezium-mysql.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/debezium-oracle.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/debezium-postgres.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/debezium-sqlserver.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/kafka.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sources/kinesis.adoc[]
+
+*** Sinks
+**** xref:streaming-learning:pulsar-io:connectors/sinks/astra-db.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/cloud-storage.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/elastic-search.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/google-bigquery.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/jdbc-postgres.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/jdbc-mariadb.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/jdbc-clickhouse.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/jdbc-sqllite.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/kafka.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/kinesis.adoc[]
+**** xref:streaming-learning:pulsar-io:connectors/sinks/snowflake.adoc[]
+
+** xref:streaming-learning:functions:astream-functions.adoc[Pulsar Functions]
+
+** Transformation Functions
+
+*** xref:streaming-learning:functions:index.adoc[Overview]
+*** xref:streaming-learning:functions:cast.adoc[]
+*** xref:streaming-learning:functions:compute.adoc[]
+*** xref:streaming-learning:functions:drop.adoc[]
+*** xref:streaming-learning:functions:flatten.adoc[]
+*** xref:streaming-learning:functions:merge-key-value.adoc[]
+*** xref:streaming-learning:functions:unwrap-key-value.adoc[]
+*** xref:streaming-learning:functions:deploy-in-sink.adoc[]
+*** xref:streaming-learning:functions:drop-fields.adoc[]
+
+** Topic Subscriptions
+
+*** xref:streaming-learning:subscriptions:index.adoc[Overview]
+*** xref:streaming-learning:subscriptions:astream-subscriptions-exclusive.adoc[Exclusive]
+*** xref:streaming-learning:subscriptions:astream-subscriptions-failover.adoc[Failover]
+*** xref:streaming-learning:subscriptions:astream-subscriptions-shared.adoc[Shared]
+*** xref:streaming-learning:subscriptions:astream-subscriptions-keyshared.adoc[Key Shared]
