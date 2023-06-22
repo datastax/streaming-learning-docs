@@ -1,3 +1,93 @@
 = DataStax Streaming Learning
+:page-layout: gcx-landing
+:blank: {empty}
 
 The learning site is a collection of guides and articles about DataStax streaming products. Each product has its own area dedicated to providing specifics to get started, its features, and other details. The learning site helps you get the most out of each product and get to production using best practices.
+
+== Processing Data
+
+++++
+<div class="landing-row">
+++++
+
+[sidebar.landing-card]
+.xref:streaming-learning:use-cases-architectures:change-data-capture/index.adoc[Change Data Capture (CDC)]
+****
+--
+Change Data Capture (CDC) is a design pattern used in software development to capture and propagate changes made to data in a system. The CDC pattern is commonly used in real-time data streaming applications to enable near-real-time processing of data changes.
+--
+****
+
+[sidebar.landing-card]
+.xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[Real-time data pipeline]
+****
+--
+A real-time data pipeline is a series of steps that takes data from its original source and moves it to a destination such as a data warehouse or data lake. The pipeline is a set of steps that are executed in a specific order to transform the data and make it available for analysis.
+--
+****
+
+++++
+</div>
+++++
+
+== Migrating to Apache Pulsar
+
+++++
+<div class="landing-row">
+++++
+
+[sidebar.landing-card]
+.xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Starlight for JMS]
+****
+--
+Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications.
+
+xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code^]{external-link-icon}
+--
+****
+
+[sidebar.landing-card]
+.xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Starlight for Kafka]
+****
+--
+Starlight for Kafka brings native Apache Kafka® protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
+
+xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code^]{external-link-icon}
+--
+****
+
+[sidebar.landing-card]
+.xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
+****
+--
+Starlight for RabbitMQ combines the AMQP 0.9.1 API with Pulsar, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+
+xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code^]{external-link-icon}
+--
+****
+
+++++
+</div>
+++++
+
+== APIs & References
+
+=== Connectors
+
+A connector is a function that moves data between Apache Pulsar and external systems. Source are used to push data to Pulsar from external systems such as databases, message queues, and storage systems. Sinks are used to pull data from a Pulsar topic to an external system like a database, data warehouse, or storage system. +
+xref:streaming-learning:pulsar-io:connectors/index.adoc#_source_connectors[Sources] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_sink_connectors[Sinks] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_experimental_connectors[Experimental]
+
+=== Pulsar Functions
+
+Functions are lightweight compute processes that enable you to process each message received on a topic. You can apply custom logic to that message, transforming or enriching it, and then output it to a different topic. +
+xref:streaming-learning:functions:astream-functions.adoc[Learn more]
+
+=== Transformation Functions
+
+Transform functions are a low-code implementation of common Pulsar functions. They are used to transform messages from one format to another. Use them to transform a message, enrich messages with additional data, or filter messages based on their content. +
+xref:streaming-learning:functions:cast.adoc[Cast] | xref:streaming-learning:functions:compute.adoc[Compute] | xref:streaming-learning:functions:drop.adoc[Drop] | xref:streaming-learning:functions:flatten.adoc[Flatten] | xref:streaming-learning:functions:merge-key-value.adoc[Merge] | xref:streaming-learning:functions:unwrap-key-value.adoc[Unwrap]
+
+=== Topic Subscriptions
+
+Subscriptions in Pulsar describe which consumers are consuming data from a topic and how they want to consume that data. +
+xref:streaming-learning:subscriptions:astream-subscriptions-exclusive.adoc[Exclusive] | xref:streaming-learning:subscriptions:astream-subscriptions-shared.adoc[Shared] | xref:streaming-learning:subscriptions:astream-subscriptions-failover.adoc[Failover] | xref:streaming-learning:subscriptions:astream-subscriptions-keyshared.adoc[Key Shared]
