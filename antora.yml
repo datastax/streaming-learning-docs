@@ -9,6 +9,7 @@ asciidoc:
     pulsar_version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
     debezium_version: '1.7'
     request_feature_access_email: 'astrastreaming@datastax.com'
+    product_name: 'Astra Streaming'
 
 nav:
-- modules/ROOT/nav.adoc
+- modules/ROOT/nav.adoc- modules/ROOT/nav.adoc
