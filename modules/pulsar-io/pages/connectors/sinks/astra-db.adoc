@@ -15,7 +15,7 @@ This reference assumes you are manually connecting to a Cassandra table.
 
 [TIP]
 ====
-If you would like to see the code, refer to the https://github.com/datastax/pulsar-sink[open source here^]{external-link-icon}.
+If you would like to see the code, refer to the https://github.com/datastax/pulsar-sink[open source here^].
 ====
 
 == Get Started

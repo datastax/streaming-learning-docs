@@ -49,8 +49,8 @@ image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelin
 
 You will need the following prerequisites in place to complete this guide:
 
-- Astra (free) account - https://astra.datastax.com/signupstreaming[Sign up now^]{external-link-icon}
-- Decodable (free) account - https://app.decodable.co/-/accounts/create[Sign up now^]{external-link-icon}
+- Astra (free) account - https://astra.datastax.com/signupstreaming[Sign up now^]
+- Decodable (free) account - https://app.decodable.co/-/accounts/create[Sign up now^]
 
 [NOTE]
 ====
