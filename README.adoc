@@ -1,14 +1,159 @@
-= streaming-learning-docs
+= {company} {product} Docs
+// Variables:
+:company: DataStax
+:product: Streaming Learning
+:repo-name: streaming-learning-docs
+:github-org: datastax
+// Settings:
+:toc: macro
+:!example-caption:
+:experimental:
+:hide-uri-scheme:
+ifdef::env-github[]
+:icons: font
+:toclevels: 1
+:toc-title: Contents
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:badges:
+endif::[]
+// Project URLs:
+:url-github-org: https://github.com/{github-org}
+:url-project-repo: {url-github-org}/{repo-name}
+:url-ui-repo: https://github.com/riptano/docs-ui
+:url-playbook-repo: https://github.com/riptano/datastax-docs-site
+:url-contribute:
+:url-datastax: https://datastax.com
+:url-datastax-docs: https://docs.datastax.com
+:url-docs-preview: http://docs-preview.datastax.com
+// External URLs:
+:asciidoc-language: https://docs.asciidoctor.org/asciidoc/latest/
 
-== Writing a guide
+This repository contains the source files for the {company} {product} documentation.
 
-A guide is a document offering step by step instruction to reach some goal. Guides are technical in nature and tend to make assumptions about the consumer's environment. To help create guides that will work in most environments, please follow these ideas.
+toc::[]
 
-* *Keep links to a minimum* - when someone is learning a new concept for the first time and xref:README.adoc[every] other xref:README.adoc[word] is linked it xref:README.adoc[makes] things xref:README.adoc[confusing] and hard to get a good flow going. Instead, annotate a word or phrase and provide a "Resources" area at the bottom of the guide.
-* *Separate products and runtimes in tabs* - it is common to reach the same result through multiple ways. An example is creating a tenant/namespace/topic in Astra Streaming and Luna Streaming. Both have the same result but get there in very different ways. Offer each as a tab and let the consumer choose their path. The step after the tabbed step can assume the consumer has complete the previious step and is in a known state. Runtimes follow the same pattern. Weather one is using Java or C#, they are still creating a Pulsar client to interact with the cluster. Create a single step in the guide with multiple tabs for each runtime.
-* *Be thoughtful about the names you use* - if you are leaning a new concept or feature with no background on the product, words matter. Labeling a tab as "Luna Helm" and then referring to it as "Pulsar Helm Chart" are two distinct things to that reader. The author of the document has such deep understanding that they consider those things the same - and technically they are at DataStax. But the read isn't from DataStax, so be mindful of their context.
-* *Talk in first person* - humans create the guides and humans consume the guides. Write as if you are paired with your consumer in doing what ever the guide does. Use "we", "us", "you".
+== Get started
 
-=== Starter example
+The documentation is written in {asciidoc-language}[AsciiDoc]-formatted source files located in the `modules` directory.
 
-Create a new .adoc file in the appropriate module and use the `example-guide.adoc` file as a starting point to creating a new guide.
+=== Make a simple update
+
+For simple updates like fixing typos or modifying existing prose, it's easiest to edit the source files directly on GitHub.
+
+NOTE: You'll need Write privileges on the repository to edit files directly on GitHub.
+
+. Find the file you want to edit in the `modules` directory.
+
+. Click the *Edit* icon in the upper-right corner of the file view.
+
+. Make your changes in the editor.
+
+. Click *Commit changes...*
+
+. Enter a description for your commit and click *Propose changes*.
+
+. On the *Open a pull request* screen, enter a title and description for your change, assign reviewers, then click *Create pull request*.
+
+. Once the pull request is open, an automatic draft preview build is triggered.
+Once complete, the build system posts a comment on the pull request with a link to the draft site for you to preview your changes.
+
+=== Edit docs locally
+
+If you need to make substantial updates to the documentation, you'll want to clone the repository so you can work with the source files locally.
+
+. Clone this repository
++
+[source,bash,subs="attributes"]
+----
+git clone {url-project-repo}.git
+----
+
+. https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic[Create a _classic_ personal access token] for your GitHub account.
+When configuring the token, set the *Expiration* to at least 90 days and select everything under the *Repo* https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes[scope].
++
+[IMPORTANT]
+====
+Copy your personal access token to a temporary location -- you'll need it later.
+====
+
+. https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on[Authorize your personal access token] so that it can access repositories in the Riptano and DataStax organizations in GitHub.
+
+. https://docs.antora.org/antora/latest/playbook/private-repository-auth/#populate-credentials-directly[Populate the credential store] with your personal access token.
+For most people this means doing the following:
++
+..  Create the file `$HOME/.git-credentials` and open it in your editor.
+.. Add the following line:
++
+[source,subs="verbatim,quotes"]
+----
+https://**TOKEN**:@github.com
+----
++
+Replace *`TOKEN`* with the personal access token you copied from GitHub.
+.. Save and close the file.
+
+. If you don't already have Node.js installed, do the following:
+
+.. Install https://github.com/nvm-sh/nvm[nvm].
++
+If you're on macOS, you can install nvm using https://brew.sh/[Homebrew]:
++
+[source,bash]
+----
+brew install nvm
+----
+
+.. Use nvm to install Node.js.
++
+[source,bash]
+----
+nvm install --lts
+----
++
+[source,bash]
+----
+nvm use --lts
+----
++
+[source,bash]
+----
+nvm alias default node
+----
+
+. Install the project dependencies.
++
+[source,bash,subs="attributes"]
+----
+cd {repo-name}
+----
++
+[source,bash]
+----
+npm install
+----
+
+. Build the site.
++
+[source,bash]
+----
+npm run build:local
+----
++
+If the build was successful, you'll see the following output in your terminal:
++
+[source,console,subs="attributes"]
+----
+Site generation complete!
+Open file:///Users/USERNAME/repos/{repo-name}/build/site/index.html in a browser to view your site.
+----
++
+To view the site, paste the entire `\file:///` path into your browser's address bar and press kbd:[Return].
+
+[#publish-docs]
+== Publish docs
+
+To learn how to publish documentation to {url-datastax-docs}, see the {url-playbook-repo}#deploy-production[datastax-docs-site README].
