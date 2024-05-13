@@ -53,7 +53,7 @@ image:pulsar-client-settings.png[]
 This example uses Maven for the project structure.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^]{external-link-icon} to see the complete source of this example.
+TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^] to see the complete source of this example.
 
 . Create a new Maven project.
 +

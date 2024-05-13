@@ -6,7 +6,7 @@
 
 Starlight for Kafka brings the native Apache Kafka protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers. By adding the Starlight for Kafka protocol handler to your existing Pulsar cluster, you can migrate your existing Kafka applications and services to Pulsar without modifying the code.
 
-If source code is your thing, visit the https://github.com/datastax/starlight-for-kafka[project's repo on GitHub^]{external-link-icon}.
+If source code is your thing, visit the https://github.com/datastax/starlight-for-kafka[project's repo on GitHub^].
 
 == Architecture reference
 
@@ -82,7 +82,7 @@ TIP: Click the clipboard icon to copy the Kafka connection values, as well as a 
 Kafka CLI::
 +
 --
-Download the latest Kafka distribution https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[here^]{external-link-icon}.
+Download the latest Kafka distribution https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[here^].
 With the tarball extracted, the producer and consumer CLIs are in the 'bin' folder.
 
 . To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with Astra Streaming]" guide, the below values will be a perfect fit for your existing tenant.
@@ -135,7 +135,7 @@ Kafka Client (Java)::
 This example uses Maven for the project structure.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^]{external-link-icon} to see the complete source for this example.
+TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo^] to see the complete source for this example.
 
 . Create a new Maven project.
 +

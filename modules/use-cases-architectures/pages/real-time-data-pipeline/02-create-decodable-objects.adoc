@@ -232,7 +232,7 @@ image:decodable-data-pipeline/02/image29.png[]
 +
 image:decodable-data-pipeline/02/image24.png[]
 
-. anchor:endpoint-details[]Notice in the connector settings how the “Endpoint” value has a “<connection-id>” value. This is a dynamic value that is generated when the connection is created. Navigate to the “Details” tab of the connection and you will see the final endpoint value. We’ll prefix that value with our account info (ddieruf.api.decodable.co) to create a usable URL. Learn more about the REST connector in the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[Decodable documentation^]{external-link-icon}.
+. anchor:endpoint-details[]Notice in the connector settings how the “Endpoint” value has a “<connection-id>” value. This is a dynamic value that is generated when the connection is created. Navigate to the “Details” tab of the connection and you will see the final endpoint value. We’ll prefix that value with our account info (ddieruf.api.decodable.co) to create a usable URL. Learn more about the REST connector in the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[Decodable documentation^].
 +
 image:decodable-data-pipeline/02/image7.png[]
 

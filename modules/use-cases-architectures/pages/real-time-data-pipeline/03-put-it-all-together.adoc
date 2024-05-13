@@ -177,7 +177,7 @@ Result::
 Let’s see what this can do! To put a load on the pipeline, we’ll need a way to continuously post data to our endpoint. Below are a few examples.
 
 . Use the download button below to download a zip of a static HTML e-commerce catalog that silently posts click data to an endpoint.
-The site is a copy of https://www.blazemeter.com/[BlazeMeter^]’s{external-link-icon} https://www.demoblaze.com/[Demoblaze site^]{external-link-icon}.
+The site is a copy of https://www.blazemeter.com/[BlazeMeter^]’s https://www.demoblaze.com/[Demoblaze site^].
 +
 [.button]#xref:attachment$web-clicks-website.zip[*Download Now*]#
 
@@ -191,7 +191,7 @@ function post_click(url){
   let endpoint_url = "https://ddieruf.api.decodable.co/v1alpha2/connections/4f003544/events";
 ----
 +
-Learn more about retrieving the Endpoint URL and auth token in the https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation^]{external-link-icon}.
+Learn more about retrieving the Endpoint URL and auth token in the https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation^].
 
 . Replace the placeholders with your retrieved values and save "script.js".
 . Open the "phones.html" file in your browser (yes, as a local file) and begin clicking on products.
