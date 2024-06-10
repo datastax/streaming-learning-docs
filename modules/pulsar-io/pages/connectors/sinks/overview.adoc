@@ -2,7 +2,6 @@
 :attribute-missing: skip
 :slug: astra-streaming-connectors
 :page-tag: connectors,sinks
-:page-aliases: docs@astra-streaming::connectors/index.adoc
 :navtitle: Pulsar IO Connectors
 
 :page-tag: astra-streaming,dev,develop,pulsar,go
