@@ -18,6 +18,7 @@
 ** Connectors
 
 *** Sources
+**** xref:streaming-learning:pulsar-io:connectors/sources/overview.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sources/data-generator.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sources/debezium-mongodb.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sources/debezium-mysql.adoc[]
@@ -27,7 +28,8 @@
 **** xref:streaming-learning:pulsar-io:connectors/sources/kafka.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sources/kinesis.adoc[]
 
-*** Sinks
+*** 
+**** xref:streaming-learning:pulsar-io:connectors/sinks/overview.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sinks/astra-db.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sinks/cloud-storage.adoc[]
 **** xref:streaming-learning:pulsar-io:connectors/sinks/elastic-search.adoc[]
