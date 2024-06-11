@@ -8,9 +8,9 @@
 
 {product_name} offers fully-managed Apache Pulsar™ connectors. 
 
-Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API. Connect popular data sources to Apache Pulsar topics or sink data from Pulsar topics to popular systems.
+Create, monitor, and manage sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API. Connect popular data sources to Apache Pulsar topics or sink data from Pulsar topics to popular systems.
 
-Below is a list of Apache Pulsar source and sink connectors supported by {product_name}. 
+{product_name} supports this list of Apache Pulsar sink connectors. 
 
 [NOTE]
 ====
@@ -26,7 +26,7 @@ include::partial$connectors/sinks/sink-connectors.adoc[tag=production]
 
 DataStax is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product_name}*. 
 
-If you would like to be given access to these connectors, please send a request to {request_feature_access_email} (include your Astra account UUID).
+To receive access to these connectors, send a request to {request_feature_access_email} and include your Astra account UUID.
 
 === Sink Connectors (experimental)
 
@@ -35,7 +35,7 @@ include::partial$connectors/sinks/sink-connectors.adoc[tag=sink-experimental]
 
 == Listing Sink Connectors
 
-To list available sink connectors in your {product_name} tenant, use any of the following.
+To list available sink connectors in your {product_name} tenant, use any of the following:
 
 [tabs]
 ====
@@ -56,9 +56,9 @@ cURL::
 
 You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens. 
 
-Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
+Navigate to the *Settings* area in the Astra Streaming UI and choose *Create Token*.
 
-Retrieve the web service URL from the "Connect" tab in the Astra Streaming UI.
+Retrieve the web service URL from the *Connect* tab in the Astra Streaming UI.
 
 [source,shell,subs="attributes+"]
 ----
