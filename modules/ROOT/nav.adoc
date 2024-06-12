@@ -17,7 +17,7 @@
 
 ** Connectors
 
-*** xref:streaming-learning:pulsar-io:connectors/index.adoc[]
+*** xref:streaming-learning:pulsar-io:connectors/index.adoc[Connector Overview]
 
 *** Sources
 **** xref:streaming-learning:pulsar-io:connectors/sources/data-generator.adoc[]
