@@ -39,10 +39,10 @@ include::example$connectors/sinks/astra.csv[]
 These values are provided in the "configs" area.
 
 The Astra Streaming Snowflake sink connector supports all configuration properties provided by DataStax. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
-properties^] for a complete list.
+properties] for a complete list.
 
 == What's next?
 
-Learn more about Snowflake’s features and capabilities on https://www.snowflake.com/en/[their site^].
+Learn more about Snowflake’s features and capabilities on https://www.snowflake.com/en/[their site].
 
-Learn more about DataStax Apache Pulsar Snowflake sink connector https://github.com/datastax/snowflake-connector[here^].
+Learn more about DataStax Apache Pulsar Snowflake sink connector https://github.com/datastax/snowflake-connector[here].

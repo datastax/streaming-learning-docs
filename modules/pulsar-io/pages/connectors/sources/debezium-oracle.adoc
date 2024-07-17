@@ -38,14 +38,14 @@ include::example$connectors/sources/astra.csv[]
 
 === Debezium Oracle
 
-The Astra Streaming Oracle source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html#oracle-connector-properties[Debezium Oracle connector properties^] for a complete list.
+The Astra Streaming Oracle source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html#oracle-connector-properties[Debezium Oracle connector properties] for a complete list.
 
 == What's next?
 
-For a list of supported Oracle versions, see the https://debezium.io/releases/{debezium_version}/[Debezium documentation^].
+For a list of supported Oracle versions, see the https://debezium.io/releases/{debezium_version}/[Debezium documentation].
 
-For more on Debezium's Oracle connector, see the https://debezium.io/documentation/reference/{debezium_version}/connectors/oracle.html[Debezium documentation^].
+For more on Debezium's Oracle connector, see the https://debezium.io/documentation/reference/{debezium_version}/connectors/oracle.html[Debezium documentation].
 
-For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-oracle[Apache Pulsar Oracle documentation^].
+For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-oracle[Apache Pulsar Oracle documentation].
 
 

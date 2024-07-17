@@ -38,13 +38,13 @@ include::example$connectors/sources/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties^] for a complete list.
+The Astra Streaming MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
 
 == What's next?
 
-For a list of supported MySQL versions, see the https://debezium.io/releases/{debezium_version}/[Debezium documentation^].
+For a list of supported MySQL versions, see the https://debezium.io/releases/{debezium_version}/[Debezium documentation].
 
-For a detailed explanation of Debezium's MySQL connector, see the https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html[Debezium documentation^].
+For a detailed explanation of Debezium's MySQL connector, see the https://debezium.io/documentation/reference/{debezium_version}/connectors/mysql.html[Debezium documentation].
 
-For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-mysql[Apache Pulsar MySQL documentation^].
+For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-mysql[Apache Pulsar MySQL documentation].
 

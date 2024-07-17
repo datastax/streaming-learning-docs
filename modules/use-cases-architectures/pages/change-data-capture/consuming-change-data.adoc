@@ -21,21 +21,21 @@ While these examples are in the “astra-streaming-examples” repository, they 
 
 [cols="^1,^1,^1,^1,^1", grid=none,frame=none]
 |===
-| https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[image:csharp-icon.png[]^]
+| https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[image:csharp-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[C#^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[C#]
+| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[image:java-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang]
+| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[image:java-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[Java^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[image:node-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/consumers/CDCConsumer.java[Java]
+| https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[image:node-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[Node.js^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[image:python-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cdc/consumer.js[Node.js]
+| https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[image:python-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[Python^]
+https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[Python]
 |===
 
 == Pulsar functions
@@ -47,15 +47,15 @@ While these examples are in the “astra-streaming-examples” repository, they 
 
 [cols="^1,^1,^1", grid=none,frame=none]
 |===
-| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]^]
+| https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[image:golang-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[image:java-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang]
+| https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[image:java-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[Java^]
-| https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[image:python-icon.png[]^]
+https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[Java]
+| https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[image:python-icon.png[]]
 
-https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[Python^]
+https://github.com/datastax/astra-streaming-examples/blob/master/python/cdc-in-pulsar-function/deschemaer.py[Python]
 |===
 
 == Next

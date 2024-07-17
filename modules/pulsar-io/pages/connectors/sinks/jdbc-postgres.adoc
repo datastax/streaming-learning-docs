@@ -45,10 +45,10 @@ include::example$connectors/sinks/astra.csv[]
 These values are provided in the "configs" area.
 
 The {product_name} JDBC PostgreSQL sink connector supports all configuration properties provided by Apache Pulsar. Refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
-properties^] for a complete list.
+properties] for a complete list.
 
 == What's next?
 
-Learn more about PostgreSQL on https://www.postgresql.org/[their site^].
+Learn more about PostgreSQL on https://www.postgresql.org/[their site].
 
-Read more about Apache Pulsar's PostgreSQL sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here^].
+Read more about Apache Pulsar's PostgreSQL sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].

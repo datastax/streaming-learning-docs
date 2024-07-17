@@ -41,7 +41,7 @@ A real-time data pipeline is a series of steps that takes data from its original
 --
 Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications.
 
-xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code^]
+xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code]
 --
 ****
 
@@ -51,7 +51,7 @@ xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get sta
 --
 Starlight for Kafka brings native Apache Kafka® protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
 
-xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code^]
+xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 --
 ****
 
@@ -61,7 +61,7 @@ xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get s
 --
 Starlight for RabbitMQ combines the AMQP 0.9.1 API with Pulsar, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
 
-xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code^]
+xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
 --
 ****
 
