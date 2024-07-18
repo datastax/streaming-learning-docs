@@ -42,10 +42,10 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Kafka sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-kafka-sink#property[connector properties^] for a complete list.
+The Astra Streaming Kafka sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-kafka-sink#property[connector properties] for a complete list.
 
 == What's next?
 
-Learn more about Kafka’s features and capabilities on https://kafka.apache.org/[their site^].
+Learn more about Kafka’s features and capabilities on https://kafka.apache.org/[their site].
 
-Learn more about Apache Pulsar's Kafka sink connector https://pulsar.apache.org/docs/io-kafka-sink[here^].
+Learn more about Apache Pulsar's Kafka sink connector https://pulsar.apache.org/docs/io-kafka-sink[here].

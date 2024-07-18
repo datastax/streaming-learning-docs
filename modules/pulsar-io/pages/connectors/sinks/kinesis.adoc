@@ -15,7 +15,7 @@ The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers 
 
 [NOTE]
 ====
-Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library^] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library^] to interact with Kinesis.
+Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
 ====
 
 == Get Started
@@ -45,10 +45,10 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Kinesis sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-kinesis-sink#property[connector properties^] for a complete list.
+The Astra Streaming Kinesis sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-kinesis-sink#property[connector properties] for a complete list.
 
 == What's next?
 
-Learn more about Kinesis’s features and capabilities on https://aws.amazon.com/kinesis/[their site^].
+Learn more about Kinesis’s features and capabilities on https://aws.amazon.com/kinesis/[their site].
 
-Learn more about Apache Pulsar's Kinesis sink connector https://pulsar.apache.org/docs/io-kinesis-sink[here^].
+Learn more about Apache Pulsar's Kinesis sink connector https://pulsar.apache.org/docs/io-kinesis-sink[here].

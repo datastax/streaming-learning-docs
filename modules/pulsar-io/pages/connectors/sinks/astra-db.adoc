@@ -7,7 +7,7 @@
 
 = Astra DB (Cassandra Enhanced)
 
-DataStax Astra DB Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[Cassandra sink connector for Apache Pulsar^]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in Astra DB or a table in a Cassandra cluster outside of DB.
+DataStax Astra DB Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[Cassandra sink connector for Apache Pulsar]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in Astra DB or a table in a Cassandra cluster outside of DB.
 
 The Astra Streaming portal provides simple way to connect this sink and a table in Astra DB with simply a token. Using pulsar-admin or the REST API, you can configure the sink to connect with a Cassandra connection manually.
 
@@ -15,7 +15,7 @@ This reference assumes you are manually connecting to a Cassandra table.
 
 [TIP]
 ====
-If you would like to see the code, refer to the https://github.com/datastax/pulsar-sink[open source here^].
+If you would like to see the code, refer to the https://github.com/datastax/pulsar-sink[open source here].
 ====
 
 == Get Started
@@ -66,18 +66,18 @@ include::example$connectors/sinks/{connectorType}/auth.csv[]
 
 These values are provided in the *topic* area in the above cassandra connection parameters.
 
-Refer to the official documentation for a https://docs.datastax.com/en/pulsar-connector/docs/cfgRefPulsarDseConnection.html[connection properties reference^].
+Refer to the official documentation for a https://docs.datastax.com/en/pulsar-connector/docs/cfgRefPulsarDseConnection.html[connection properties reference].
 
 === Mapping topic data to table columns
 
 [TIP]
 ====
-There are quite a few examples in the "https://docs.datastax.com/en/pulsar-connector/docs/cfgPulsarMapTopicTable.html[Mapping pulsar topics to database tables^]" area of the official documentation
+There are quite a few examples in the "https://docs.datastax.com/en/pulsar-connector/docs/cfgPulsarMapTopicTable.html[Mapping pulsar topics to database tables]" area of the official documentation
 ====
 
 An essential part of using this sink connector is mapping message values to table columns.  There are many factors that influence how this done and what is possible. The 'mapping' string is a simple comma-separated list of column names and message value fields.
 
-While the getting started examples above show how to configure the connector in one large command, it is easier to manage this as a separate file. The following example show how to configure the connector using a configuration in json format. The "https://docs.datastax.com/en/pulsar-connector/docs/pulsarQuickStart.html[Pulsar Connector single instance quick start^]" guide provides a good example of this. Below are the minimum requirements.
+While the getting started examples above show how to configure the connector in one large command, it is easier to manage this as a separate file. The following example show how to configure the connector using a configuration in json format. The "https://docs.datastax.com/en/pulsar-connector/docs/pulsarQuickStart.html[Pulsar Connector single instance quick start]" guide provides a good example of this. Below are the minimum requirements.
 
 Create a file named configs.json using the following structure:
 

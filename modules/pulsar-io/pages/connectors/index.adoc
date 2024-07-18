@@ -126,4 +126,5 @@ curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTR
 
 == What's next?
 
-For more on Pulsar IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[Pulsar documentation^].
+For more on Pulsar IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[Pulsar documentation
+].

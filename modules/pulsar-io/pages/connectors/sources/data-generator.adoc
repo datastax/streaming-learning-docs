@@ -15,7 +15,8 @@ The connector will produce data indefinitely while it is running.
 
 Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses version 0.5.9 of the jfairy library.
 
-For a reference of the full "Person" class, https://github.com/apache/pulsar/blob/branch-{pulsar_version}/pulsar-io/data-generator/src/main/java/org/apache/pulsar/io/datagenerator/Person.java[view the source^].
+For a reference of the full "Person" class, https://github.com/apache/pulsar/blob/branch-{pulsar_version}/pulsar-io/data-generator/src/main/java/org/apache/pulsar/io/datagenerator/Person.java[view the source
+].
 
 == Get Started
 

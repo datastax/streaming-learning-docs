@@ -13,13 +13,13 @@ Use Elasticsearch to store, search, and manage data for logs, metrics, search ba
 
 [NOTE]
 ====
-Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library^] to interact with
+Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library] to interact with
 Elasticsearch.
 ====
 
 [NOTE]
 ====
-To understand compatibility between OpenSearch and Elasticsearch, refer to https://opensearch.org/faq/#q1.8[question 1.8^] in the FAQs.
+To understand compatibility between OpenSearch and Elasticsearch, refer to https://opensearch.org/faq/#q1.8[question 1.8] in the FAQs.
 ====
 
 == Get Started
@@ -49,10 +49,10 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Elasticsearch sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-elasticsearch-sink/#property[connector properties^] for a complete list.
+The Astra Streaming Elasticsearch sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-elasticsearch-sink/#property[connector properties] for a complete list.
 
 == What's next?
 
-Learn more about Elasticsearch’s features and capabilities on https://www.elastic.co/elasticsearch/[Elasticsearch^].
+Learn more about Elasticsearch’s features and capabilities on https://www.elastic.co/elasticsearch/[Elasticsearch].
 
-Learn more about Apache Pulsar's Elasticsearch sink in the https://pulsar.apache.org/docs/io-elasticsearch-sink/[Pulsar documentation^].
+Learn more about Apache Pulsar's Elasticsearch sink in the https://pulsar.apache.org/docs/io-elasticsearch-sink/[Pulsar documentation].

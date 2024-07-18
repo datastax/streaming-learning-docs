@@ -11,16 +11,16 @@ The goal of all the extensions is to create a native, seamless interaction with 
 
 Starlight for Kafka brings native Apache Kafka® protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
 
-xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code^]
+xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 
 == Starlight for RabbitMQ
 
 Starlight for RabbitMQ combines the industry-standard AMQP 0.9.1 (RabbitMQ) API with the cloud-native and horizontally scalable Pulsar streaming platform, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
 
-xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code^]
+xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
 
 == Starlight for JMS
 
 Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications. Because Pulsar is open-source and cloud-native, Starlight for JMS enables enterprises to move their JMS applications to run on-premises and in any cloud environment.
 
-xref:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code^]
+xref:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code]

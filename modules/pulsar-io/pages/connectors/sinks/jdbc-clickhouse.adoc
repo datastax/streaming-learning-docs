@@ -43,11 +43,11 @@ include::example$connectors/sinks/astra.csv[]
 These values are provided in the "configs" area.
 
 The Astra Streaming JDBC Clickhouse sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
-properties^]
+properties]
 for a complete list.
 
 == What's next?
 
-Learn more about Clickhouse's features and capabilities on https://clickhouse.com/[their site^].
+Learn more about Clickhouse's features and capabilities on https://clickhouse.com/[their site].
 
-Learn more about Apache Pulsar's JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here^].
+Learn more about Apache Pulsar's JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].

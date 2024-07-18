@@ -9,7 +9,7 @@
 
 The Kafka source connector pulls data from a Kafka topic and persists the data into an Apache Pulsar topic. 
 
-For more, see https://pulsar.apache.org/docs/io-kafka-source[Apache Pulsar's Kafka source documentation^].
+For more, see https://pulsar.apache.org/docs/io-kafka-source[Apache Pulsar's Kafka source documentation].
 
 == Get Started
 
@@ -40,4 +40,4 @@ These values are provided in the "configs" area.
 
 The Astra Streaming Kafka source connector supports all configuration properties provided by Apache Pulsar. 
 
-Please refer to the https://pulsar.apache.org/docs/io-kafka-source#property[connector properties^] for a complete list.
+Please refer to the https://pulsar.apache.org/docs/io-kafka-source#property[connector properties] for a complete list.

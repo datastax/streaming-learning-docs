@@ -5,7 +5,7 @@ Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Tok
 
 Retrieve the web service URL from the "Connect" tab in the Astra Streaming UI.
 
-Refer to the complete https://pulsar.apache.org/sink-rest-api/#tag/sink[Pulsar sinks REST API spec^] for all available options.
+Refer to the complete https://pulsar.apache.org/sink-rest-api/#tag/sink[Pulsar sinks REST API spec] for all available options.
 
 [source,shell,subs="attributes+"]
 ----
