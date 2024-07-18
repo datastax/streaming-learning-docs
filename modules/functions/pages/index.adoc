@@ -1,4 +1,5 @@
 = Transform Functions
+:navtitle: Overview
 
 A Pulsar *transform function* is a low-code implementation of xref:astra-streaming:developing:astream-functions.adoc[Pulsar functions]. +
 Functions receive data from one or more input topics, apply user-supplied processing, and publish the results to another topic. +

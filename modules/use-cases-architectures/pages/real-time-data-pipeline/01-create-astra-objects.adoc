@@ -1,4 +1,5 @@
 = Real-time data pipeline Astra objects
+:navtitle: 1. Astra objects
 
 [NOTE]
 ====

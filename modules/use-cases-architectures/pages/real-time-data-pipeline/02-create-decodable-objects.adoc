@@ -1,4 +1,5 @@
 = Real-time data pipeline Decodable objects
+:navtitle: 2. Decodable objects
 
 [NOTE]
 ====

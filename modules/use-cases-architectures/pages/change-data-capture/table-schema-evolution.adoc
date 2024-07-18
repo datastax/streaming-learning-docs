@@ -1,5 +1,5 @@
 = Cassandra table schema evolution with CDC
-:navtitle: Cassandra table schema evolution with CDC
+:navtitle: Table schema evolution
 :description: This article describes how table schema changes are handled in the Cassandra Connector for Pulsar.
 
 [NOTE]

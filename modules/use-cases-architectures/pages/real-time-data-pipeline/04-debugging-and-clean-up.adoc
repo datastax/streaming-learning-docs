@@ -1,4 +1,5 @@
 = Debugging and cleaning up the real-time data pipeline
+:navtitle: 4. Debugging and cleanup
 
 [NOTE]
 ====

@@ -1,5 +1,5 @@
 = Consuming change data with Apache Pulsar
-:navtitle: Consuming change data with Apache Pulsar
+:navtitle: Consuming change data
 :description: This article describes how to consume change data with Apache Pulsar.
 
 [NOTE]

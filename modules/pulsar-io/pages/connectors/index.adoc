@@ -1,5 +1,5 @@
 = Connectors
-:navtitle: Pulsar IO Connectors
+:navtitle: Connector Overview
 :page-tag: connectors,sinks,sources,astra-streaming,dev,develop,pulsar,go
 
 {product_name} offers fully-managed Apache Pulsar™ connectors.

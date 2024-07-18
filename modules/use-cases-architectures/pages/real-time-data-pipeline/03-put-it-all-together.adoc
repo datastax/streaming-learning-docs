@@ -1,4 +1,5 @@
 = Putting the real-time data pipeline to work
+:navtitle: 3. Put it all together
 
 [NOTE]
 ====
