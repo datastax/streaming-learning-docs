@@ -1,17 +1,13 @@
+= Debezium Oracle
 :connectorName: debezium-orcl-src
 :connectorType: debezium-oracle
-:attribute-missing: skip
-:slug: oracle-source-connector
 :page-tag: oracle,debezium,cdc,source-connector
-:page-aliases: docs@astra-streaming::connectors/sources/debezium-oracle.adoc
 
-= Debezium Oracle
-
-Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running. 
+Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running.
 
 The connector can be configured to emit change events for specific subsets of schemas and tables, or to ignore, mask, or truncate values in specific columns.
 
-{product_name} currently supports Apache Pulsar {pulsar_version}, which uses Debezium {debezium_version} libraries. 
+{product_name} currently supports Apache Pulsar {pulsar_version}, which uses Debezium {debezium_version} libraries.
 
 == Get Started
 

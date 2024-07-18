@@ -1,13 +1,9 @@
+= Debezium MongoDB
 :connectorName: debezium-mongo-src
 :connectorType: debezium-mongodb
-:attribute-missing: skip
-:slug: mongodb-source-connector
 :page-tag: debezium,cdc,mongodb,source-connector
-:page-aliases: docs@astra-streaming::connectors/sources/debezium-mongodb.adoc
 
-= Debezium MongoDB
-
-Debezium’s MongoDB connector tracks a MongoDB replica set or a MongoDB sharded cluster for document changes in databases and collections and records those changes as messages in an Apache Pulsar topic. 
+Debezium’s MongoDB connector tracks a MongoDB replica set or a MongoDB sharded cluster for document changes in databases and collections and records those changes as messages in an Apache Pulsar topic.
 
 The connector automatically handles the addition or removal of shards in a sharded cluster, changes in membership of each replica set, elections within each replica set, and the resolution of communications problems.
 

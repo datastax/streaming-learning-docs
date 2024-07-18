@@ -1,8 +1,6 @@
-:functionName: flatten
-:attribute-missing: skip
-:slug: flatten-transform-function
-:page-tag: flatten, transform-function
 = Flatten
+:functionName: flatten
+:page-tag: flatten, transform-function
 
 The {functionName} transform function converts structured, nested data into a new single-hierarchy-level structured data. +
 The names of the new fields are built by concatenating the intermediate level field names. +
@@ -18,7 +16,7 @@ The step name is `flatten`, and the `UserConfig` is controlled here: `UserConfig
 |The delimiter to use when concatenating the field names (default: _)
 
 |part
-|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value. 
+|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value.
 |===
 
 == Example

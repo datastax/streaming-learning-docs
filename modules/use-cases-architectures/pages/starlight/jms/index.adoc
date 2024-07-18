@@ -1,9 +1,6 @@
 = Getting started with Starlight for JMS
-
-:description: Learn how to get started using the Starlight for JMS API and get hands on with a producer and consumer interacting with a topic.
-:title: Getting started with the Starlight for JMS
 :navtitle: Starlight for JMS
-:page-aliases: docs@starlight-jms::pulsar-jms-quickstart-astra.adoc,starlight-jms:streaming-learning:use-cases-architectures:starlight/jms/index.adoc
+:description: Learn how to get started using the Starlight for JMS API and get hands on with a producer and consumer interacting with a topic.
 :page-tag: starlight-jms,dev,quickstart,pulsar,jms
 
 Starlight for JMS is a highly compliant JMS implementation designed to run on a modern streaming platform.

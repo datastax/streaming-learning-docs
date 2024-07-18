@@ -1,10 +1,4 @@
 = Putting the real-time data pipeline to work
-David Dieruf <david.dieruf@datastax.com>
-1.0, February 1, 2022: Putting the real-time data pipeline together
-
-:description:
-:title:
-:navtitle:
 
 [NOTE]
 ====

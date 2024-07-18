@@ -1,8 +1,6 @@
 = Getting started with the Starlight for Kafka extension
-
-:description: Learn how to get started using the Starlight for Kafka extension with Pulsar and get hands on with Kafka producer and consumer interacting with a topic.
-:title: Getting started with the Starlight for Kafka extension
 :navtitle: Starlight for Kafka
+:description: Learn how to get started using the Starlight for Kafka extension with Pulsar and get hands on with Kafka producer and consumer interacting with a topic.
 
 Starlight for Kafka brings the native Apache Kafka protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers. By adding the Starlight for Kafka protocol handler to your existing Pulsar cluster, you can migrate your existing Kafka applications and services to Pulsar without modifying the code.
 

@@ -1,10 +1,4 @@
 = Debugging and cleaning up the real-time data pipeline
-David Dieruf <david.dieruf@datastax.com>
-1.0, February 1, 2022: Debugging and cleaning up the real-time data pipeline
-
-:description:
-:title:
-:navtitle:
 
 [NOTE]
 ====

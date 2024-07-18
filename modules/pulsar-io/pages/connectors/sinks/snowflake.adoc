@@ -1,15 +1,11 @@
+= Snowflake
 :connectorName: snowflake-sink
 :connectorType: snowflake
-:attribute-missing: skip
-:slug: snowflake-sink-connector
 :page-tag: snowflake,sink-connector
-:page-aliases: docs@astra-streaming::connectors/sinks/snowflake.adoc
 
-= Snowflake
+A Snowflake database is where an organization's uploaded structured and semi-structured data sets are held for processing and analysis.
 
-A Snowflake database is where an organization's uploaded structured and semi-structured data sets are held for processing and analysis. 
-
-Snowflake automatically manages all parts of the data storage process, including organization, structure, metadata, file size, compression, and statistics. 
+Snowflake automatically manages all parts of the data storage process, including organization, structure, metadata, file size, compression, and statistics.
 
 == Get Started
 

@@ -1,9 +1,6 @@
-:functionName: cast
-:attribute-missing: skip
-:slug: cast-transform-function
-:page-tag: cast, transform-function
-
 = Cast
+:functionName: cast
+:page-tag: cast, transform-function
 
 The cast transform function transforms the data to a target compatible schema.
 

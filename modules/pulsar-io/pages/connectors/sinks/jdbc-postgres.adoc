@@ -1,16 +1,13 @@
+= JDBC PostgreSQL
 :connectorName: jdbc-postgres
 :connectorType: jdbc-postgres
-:slug: postgres-sink-connector
 :page-tag: jdbc,postgres,sink-connector
-:page-aliases: docs@astra-streaming::connectors/sinks/jdbc-postgres.adoc
 
-= JDBC PostgreSQL
+PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development.
 
-PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development. 
+It has earned a strong reputation for reliability, feature robustness, and performance.
 
-It has earned a strong reputation for reliability, feature robustness, and performance. 
-
-The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol. This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.  
+The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol. This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.
 
 [NOTE]
 ====

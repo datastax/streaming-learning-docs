@@ -1,17 +1,12 @@
 = Connectors
-:attribute-missing: skip
-:slug: astra-streaming-connectors
-:page-tag: connectors,sinks,sources
-:page-aliases: docs@astra-streaming::connectors/index.adoc
 :navtitle: Pulsar IO Connectors
+:page-tag: connectors,sinks,sources,astra-streaming,dev,develop,pulsar,go
 
-:page-tag: astra-streaming,dev,develop,pulsar,go
-
-{product_name} offers fully-managed Apache Pulsar™ connectors. 
+{product_name} offers fully-managed Apache Pulsar™ connectors.
 
 Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API. Connect popular data sources to Apache Pulsar topics or sink data from Pulsar topics to popular systems.
 
-Below is a list of Apache Pulsar source and sink connectors supported by {product_name}. 
+Below is a list of Apache Pulsar source and sink connectors supported by {product_name}.
 
 [NOTE]
 ====
@@ -30,7 +25,7 @@ include::partial$connectors/sources/source-connectors.adoc[tag=production]
 
 == Experimental Connectors
 
-DataStax is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product_name}*. 
+DataStax is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product_name}*.
 
 If you would like to be given access to these connectors, please send a request to {request_feature_access_email} (include your Astra account UUID).
 
@@ -65,7 +60,7 @@ cURL::
 +
 --
 
-You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens. 
+You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens.
 
 Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
 
@@ -105,7 +100,7 @@ cURL::
 +
 --
 
-You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens. 
+You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens.
 
 Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
 

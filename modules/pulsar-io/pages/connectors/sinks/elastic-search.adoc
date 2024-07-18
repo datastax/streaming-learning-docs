@@ -1,15 +1,11 @@
+= Elasticsearch
 :connectorName: es-sink
 :connectorType: elastic-search
-:attribute-missing: skip
-:slug: elasticsearch-sink-connector
 :page-tag: elasticsearch,sink-connector
-:page-aliases: docs@astra-streaming::connectors/sinks/elastic-search.adoc
 
-= Elasticsearch
+Elasticsearch is the distributed, RESTful search and analytics engine at the heart of the Elastic Stack.
 
-Elasticsearch is the distributed, RESTful search and analytics engine at the heart of the Elastic Stack. 
-
-Use Elasticsearch to store, search, and manage data for logs, metrics, search backend, application monitoring, and endpoint security. 
+Use Elasticsearch to store, search, and manage data for logs, metrics, search backend, application monitoring, and endpoint security.
 
 [NOTE]
 ====

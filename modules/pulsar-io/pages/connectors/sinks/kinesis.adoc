@@ -1,17 +1,13 @@
+= Kinesis
 :connectorName: kinesis-sink
 :connectorType: kinesis
-:attribute-missing: skip
-:slug: kinesis-sink-connector
 :page-tag: kinesis,sink-connector
-:page-aliases: docs@astra-streaming::connectors/sinks/kinesis.adoc
 
-= Kinesis
+Amazon Kinesis collects, processes, and analyzes real-time streaming data for timely insights and quick reactions to new information.
 
-Amazon Kinesis collects, processes, and analyzes real-time streaming data for timely insights and quick reactions to new information. 
+Amazon Kinesis cost-effectively processes streaming data at any scale, and offers the flexibility to choose the tools that best suit your application's requirements.
 
-Amazon Kinesis cost-effectively processes streaming data at any scale, and offers the flexibility to choose the tools that best suit your application's requirements. 
-
-The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers to easily consume and process data from Amazon Kinesis. 
+The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers to easily consume and process data from Amazon Kinesis.
 
 [NOTE]
 ====

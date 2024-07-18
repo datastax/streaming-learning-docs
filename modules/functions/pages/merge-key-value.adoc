@@ -1,9 +1,6 @@
-:functionName: merge-key-value
-:attribute-missing: skip
-:slug: merge-key-value-transform-function
-:page-tag: merge-key-value, transform-function
-
 = Merge KeyValue
+:functionName: merge-key-value
+:page-tag: merge-key-value, transform-function
 
 The {functionName} transform function merges the fields of KeyValue records where both the key and value are structured types of the same schema type. (Currently only AVRO is supported). +
 The step name is `merge-key-value` and the `UserConfig` is controlled here: `{"steps": [{"type": "merge-key-value"}]}`.

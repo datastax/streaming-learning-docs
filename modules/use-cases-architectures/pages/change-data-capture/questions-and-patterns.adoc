@@ -1,9 +1,6 @@
 = CDC questions and patterns with Cassandra and Pulsar
-David Dieruf <david.dieruf@datastax.com>
-1.0, March 13, 2023: Cassandra table schema evolution with CDC
-:description: This article describes how table schema changes are handled in the Cassandra Connector for Pulsar.
-:title: CDC questions and patterns
 :navtitle: CDC questions and patterns
+:description: This article describes how table schema changes are handled in the Cassandra Connector for Pulsar.
 
 We have collected common questions and patterns from our customers that are using CDC. We hope this will help you in your journey of getting the most out of this feature. Please also refer to the https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/faqs.html[CDC for Cassandra FAQs] in the official documentation for more information.
 

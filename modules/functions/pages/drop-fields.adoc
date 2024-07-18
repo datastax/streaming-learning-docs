@@ -1,8 +1,7 @@
-:functionName: drop-fields
-:attribute-missing: skip
-:slug: drop-fields-transform-function
-:page-tag: drop-fields, transform-function
+
 = Drop fields
+:functionName: drop-fields
+:page-tag: drop-fields, transform-function
 
 The {functionName} transform function drops fields of structured data (Currently only AVRO is supported). +
 The cast transform function transforms the data to a target compatible schema.
@@ -19,10 +18,10 @@ The `step` name is `drop-field`, and the `UserConfig` is controlled here: `{"ste
 |A comma-separated list of fields to drop.
 
 |part
-|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value. 
+|when used with KeyValue data, defines if the transform function is done on the `key` or on the `value`. If `null` or absent the transform function applies to both the key and the value.
 |===
 
-== Example 
+== Example
 
 . Produce an AVRO message with the payload: `{name: value1, password: value2}`.
 +

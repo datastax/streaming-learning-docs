@@ -1,9 +1,4 @@
 = Real-time data pipelines with DataStax Astra and Decodable
-David Dieruf <david.dieruf@datastax.com>
-1.0, February 1, 2022: Real-time data pipelines with DataStax Astra and Decodable
-
-:description: xxxxx
-:title: Real-time data pipelines with DataStax Astra and Decodable
 :navtitle: Data pipeline with Astra and Decodable
 
 This guide presents a hands-on approach for defining the objects that make up a real-time data processing pipeline.

@@ -1,9 +1,6 @@
-:functionName: unwrap-key-value
-:attribute-missing: skip
-:slug: unwrap-key-value-transform-function
-:page-tag: unwrap-key-value, transform-function
-
 = Unwrap KeyValue
+:functionName: unwrap-key-value
+:page-tag: unwrap-key-value, transform-function
 
 If the record value is a KeyValue, the {functionName} transform function extracts the KeyValue's key or value and makes it the record value. +
 The step name is `unwrap-key-value`, and the `UserConfig` is controlled here: `{"steps": [{"type": "unwrap-key-value"}]}`.

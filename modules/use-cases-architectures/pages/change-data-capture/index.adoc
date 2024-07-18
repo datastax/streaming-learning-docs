@@ -1,9 +1,6 @@
 = Change Data Capture (CDC) pattern with Apache Cassandra and Apache Pulsar
-David Dieruf <david.dieruf@datastax.com>
-1.0, March 13, 2023: About change data capture
-:description: This article describes how to capture changes in an Apache Cassandra database and publish them to Apache Pulsar as events.
-:title: CDC with Cassandra and Pulsar
 :navtitle: CDC with Cassandra and Pulsar
+:description: This article describes how to capture changes in an Apache Cassandra database and publish them to Apache Pulsar as events.
 
 Change Data Capture (CDC) is a design pattern used in software development to capture and propagate changes made to data in a system. The CDC pattern is commonly used in real-time data streaming applications to enable near-real-time processing of data changes. In a typical CDC implementation, a change to a row of data (insert, update, delete) is detected and recorded. The change (or mutation) is made available to downstream systems as an event for further processing. This allows applications to react quickly to changes in the data while not adding unneeded load on the data store, enabling real-time data processing and analytics.
 

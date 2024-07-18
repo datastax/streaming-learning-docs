@@ -1,10 +1,4 @@
 = Real-time data pipeline Astra objects
-David Dieruf <david.dieruf@datastax.com>
-1.0, February 1, 2022: Creating the real-time data pipeline Astra objects
-
-:description:
-:title:
-:navtitle:
 
 [NOTE]
 ====

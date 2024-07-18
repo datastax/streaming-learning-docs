@@ -1,8 +1,5 @@
-:attribute-missing: skip
-:slug: cast-transform-function
-:page-tag: cast, transform-function
-
 = Deploy transform function in sink
+:page-tag: cast, transform-function
 
 As of https://www.datastax.com/products/luna-streaming[Luna Streaming] version 2.10.1.6, transform functions can be deployed inside of a sink process. +
 Before this update, functions transformed data either after it was written to a topic by a source connector, or before it was read from a topic by a sink connector. +
@@ -36,7 +33,7 @@ The function is loaded at sink creation:
 
 [NOTE]
 ====
-https://github.com/datastax/pulsar[Luna Streaming 2.10+] is required to deploy custom functions in Pulsar. 
+https://github.com/datastax/pulsar[Luna Streaming 2.10+] is required to deploy custom functions in Pulsar.
 ====
 
 Create a sink connector, and include the path to the transform function and configuration at creation:

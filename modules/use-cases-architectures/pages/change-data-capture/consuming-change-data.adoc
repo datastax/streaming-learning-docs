@@ -1,9 +1,6 @@
 = Consuming change data with Apache Pulsar
-David Dieruf <david.dieruf@datastax.com>
-1.0, March 13, 2023: Consuming change data with Apache Pulsar
-:description: This article describes how to consume change data with Apache Pulsar.
-:title: Consuming change data with Apache Pulsar
 :navtitle: Consuming change data with Apache Pulsar
+:description: This article describes how to consume change data with Apache Pulsar.
 
 [NOTE]
 ====

@@ -1,11 +1,7 @@
+= Astra DB (Cassandra Enhanced)
 :connectorName: astra-db-sink
 :connectorType: astra-db
-:attribute-missing: skip
-:slug: astra-db-sink-connector
 :page-tag: astra-db,cdc,sink-connector
-:page-aliases: docs@astra-streaming::connectors/sinks/astream-astradb-sink.adoc
-
-= Astra DB (Cassandra Enhanced)
 
 DataStax Astra DB Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[Cassandra sink connector for Apache Pulsar]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in Astra DB or a table in a Cassandra cluster outside of DB.
 

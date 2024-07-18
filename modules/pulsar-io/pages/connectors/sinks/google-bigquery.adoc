@@ -1,10 +1,7 @@
+= Google BigQuery
 :connectorName: bigquery-sink
 :connectorType: bigquery
-:attribute-missing: skip
-:slug: bigquery-sink-connector
 :page-tag: bigquery,sink-connector
-
-= Google BigQuery
 
 BigQuery is a fully managed enterprise data warehouse that helps you manage and analyze your data with built-in features like machine learning, geospatial analysis, and business intelligence. BigQuery's serverless architecture lets you use SQL queries to answer your organization's biggest questions with zero infrastructure management. BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
 

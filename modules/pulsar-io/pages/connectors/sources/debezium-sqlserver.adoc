@@ -1,13 +1,9 @@
+= Debezium SQL Server
 :connectorName: debezium-mssql-src
 :connectorType: debezium-sqlserver
-:attribute-missing: skip
-:slug: sql-server-source-connector
 :page-tag: sql-server,cdc,debezium,source-connector
-:page-aliases: docs@astra-streaming::connectors/sources/debezium-sqlserver.adoc
 
-= Debezium SQL Server
-
-The Debezium SQL Server connector is based on the change data capture feature available in SQL Server 2016 Service Pack 1 (SP1) and later editions. 
+The Debezium SQL Server connector is based on the change data capture feature available in SQL Server 2016 Service Pack 1 (SP1) and later editions.
 
 The SQL Server capture process monitors designated databases and tables and stores changes into specifically created change tables with stored procedure facades.
 

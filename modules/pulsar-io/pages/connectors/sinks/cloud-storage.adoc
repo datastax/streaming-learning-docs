@@ -1,10 +1,7 @@
+= Cloud Storage
 :connectorName: cloud-storage-sink
 :connectorType: cloud-storage
-:attribute-missing: skip
-:slug: cloud-storage-sink-connector
 :page-tag: cloud storage,sink-connector, aws, azure, gcp
-
-= Cloud Storage
 
 Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a Pulsar topic to the given system following a desired format.
 

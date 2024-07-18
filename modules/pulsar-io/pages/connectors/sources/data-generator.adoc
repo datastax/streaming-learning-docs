@@ -1,13 +1,9 @@
+= Data Generator
 :connectorName: data-gen-src
 :connectorType: data-generator
-:attribute-missing: skip
-:slug: data-generator-source-connector
 :page-tag: data-generator,source-connector
-:page-aliases: docs@astra-streaming::connectors/sources/data-generator.adoc
 
-= Data Generator
-
-The Data Generator source connector creates fake data on an Apache Pulsar topic using the https://github.com/Codearte/jfairy[JFAIRY library] to generate a message containing "person" data. 
+The Data Generator source connector creates fake data on an Apache Pulsar topic using the https://github.com/Codearte/jfairy[JFAIRY library] to generate a message containing "person" data.
 
 "Person" data includes first and last name, home address, and email address, among other details.
 

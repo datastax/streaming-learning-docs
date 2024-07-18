@@ -1,9 +1,6 @@
 = Cassandra table schema evolution with CDC
-David Dieruf <david.dieruf@datastax.com>
-1.0, March 13, 2023: Cassandra table schema evolution with CDC
-:description: This article describes how table schema changes are handled in the Cassandra Connector for Pulsar.
-:title: Cassandra table schema evolution with CDC
 :navtitle: Cassandra table schema evolution with CDC
+:description: This article describes how table schema changes are handled in the Cassandra Connector for Pulsar.
 
 [NOTE]
 ====
