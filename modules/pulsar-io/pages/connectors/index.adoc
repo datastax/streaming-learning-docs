@@ -2,7 +2,7 @@
 :navtitle: Connector Overview
 :page-tag: connectors,sinks,sources,astra-streaming,dev,develop,pulsar,go
 
-{product_name} offers fully-managed Apache Pulsar™ connectors.
+{product_name} offers fully-managed Apache Pulsar(TM) connectors.
 
 Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API. Connect popular data sources to Apache Pulsar topics or sink data from Pulsar topics to popular systems.
 

@@ -4,7 +4,7 @@
 :page-tag: starlight-jms,dev,quickstart,pulsar,jms
 
 Starlight for JMS is a highly compliant JMS implementation designed to run on a modern streaming platform.
-This guide will get you up and running with a simple Java JMS client that can talk to an Apache Pulsar™ streaming instance.
+This guide will get you up and running with a simple Java JMS client that can talk to an Apache Pulsar(TM) streaming instance.
 
 == Prerequisites
 

@@ -2,7 +2,7 @@
 :navtitle: Starlight for RabbitMQ
 :description: Learn how to get started using the Starlight for RabbitMQ extension with Pulsar and get hands on by publishing and consuming messages from a topic.
 
-Starlight for RabbitMQ acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[Apache Pulsar™] cluster.
+Starlight for RabbitMQ acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[Apache Pulsar(TM)] cluster.
 It implements the AMQP 0.9.1 protocol used by RabbitMQ clients and translates AMQP frames and concepts to Pulsar concepts.
 
 If source code is your thing, visit the https://github.com/datastax/starlight-for-rabbitmq[project's repo on GitHub].

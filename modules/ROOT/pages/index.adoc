@@ -48,7 +48,7 @@ xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get sta
 .xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Starlight for Kafka]
 ****
 --
-Starlight for Kafka brings native Apache Kafka® protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
+Starlight for Kafka brings native Apache Kafka(R) protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
 
 xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 --
