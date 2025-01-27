@@ -1,20 +1,20 @@
-= Failover subscriptions in Pulsar
+= Failover subscriptions in {pulsar-reg}
 :navtitle: Failover
 :page-tag: pulsar-subscriptions,quickstart,admin,dev,pulsar
 
-*Subscriptions* in Pulsar describe which consumers are consuming data from a topic and how they want to consume that data. +
+*Subscriptions* in {pulsar-reg} describe which consumers are consuming data from a topic and how they want to consume that data. +
 
-If an xref:astream-subscriptions-exclusive.adoc[exclusive] consumer fails, the topic backlog balloons with stale, unacknowledged messages. Pulsar solves this problem with *failover* subscriptions. +
-In *failover* subscriptions, Pulsar designates one *primary* consumer and multiple *standby* consumers. If the primary consumer disconnects, the standby consumers begin consuming the subsequent unacknowledged messages. +
+If an xref:astream-subscriptions-exclusive.adoc[exclusive] consumer fails, the topic backlog balloons with stale, unacknowledged messages. {pulsar-short} solves this problem with *failover* subscriptions. +
+In *failover* subscriptions, {pulsar-short} designates one *primary* consumer and multiple *standby* consumers. If the primary consumer disconnects, the standby consumers begin consuming the subsequent unacknowledged messages. +
 
-This document explains how to use Pulsar's failover subscription model to manage your topic consumption.
+This document explains how to use {pulsar-short}'s failover subscription model to manage your topic consumption.
 
 include::partial$subscription-prereq.adoc[]
 
 [#example]
 == Failover subscription example
 
-To try out a Pulsar failover subscription, add `.subscriptionType(SubscriptionType.Failover)` to the `pulsarConsumer` in `SimplePulsarConsumer.java`.
+To try out a {pulsar-short} failover subscription, add `.subscriptionType(SubscriptionType.Failover)` to the `pulsarConsumer` in `SimplePulsarConsumer.java`.
 
 [source,java]
 ----
@@ -76,7 +76,7 @@ The confirmation message and a cursor appear to indicate the consumer is ready.
 
 === Failover subscription video
 
-Follow along with this video from our *Five Minutes About Pulsar* series to see failover subscriptions in action.
+Follow along with this video from our *Five Minutes About {pulsar-short}* series to see failover subscriptions in action.
 
 video::ckB87OLs5eM[youtube, list=PL2g2h-wyI4SqeKH16czlcQ5x4Q_z-X7_m, height=445px,width=100%]
 
@@ -84,7 +84,7 @@ video::ckB87OLs5eM[youtube, list=PL2g2h-wyI4SqeKH16czlcQ5x4Q_z-X7_m, height=445p
 
 For more on subscriptions, see:
 
-* xref:index.adoc[Subscriptions in Pulsar]
+* xref:index.adoc[Subscriptions in {pulsar-short}]
 * xref:astream-subscriptions-exclusive.adoc[Exclusive subscriptions]
 * xref:astream-subscriptions-shared.adoc[Shared subscriptions]
 * xref:astream-subscriptions-keyshared.adoc[Key_shared subscriptions]

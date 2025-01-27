@@ -4,21 +4,25 @@
 :page-tag: starlight-jms,dev,quickstart,pulsar,jms
 
 Starlight for JMS is a highly compliant JMS implementation designed to run on a modern streaming platform.
-This guide will get you up and running with a simple Java JMS client that can talk to an Apache Pulsar(TM) streaming instance.
+This guide will get you up and running with a simple Java JMS client that can talk to an {pulsar-reg} streaming instance.
 
 == Prerequisites
 
-To get started you'll just need a working Apache Pulsar cluster, with no bells or whistles required!
-You'll need access to the cluster's admin port 8080 and the binary port 6650.
-For this guide, we will use Astra Streaming to get started quickly. If you want to dive deeper, xref:starlight-for-jms:ROOT:index.adoc[read the documentation].
+To get started, you need the following:
+
+* A working {pulsar-short} cluster.
+* Access to the cluster's admin port 8080 and the binary port 6650.
+
+This guide uses {product} to get started with Starlight for JMS.
+For more information, see the xref:starlight-for-jms:ROOT:index.adoc[Starlight for JMS documentation].
 
 [tabs]
 ====
-Astra Streaming::
+{product}::
 +
 --
 
-If you don't have a tenant in Astra Streaming, follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
+If you don't have a tenant in {product}, follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
 --
 Luna Streaming::
@@ -35,13 +39,13 @@ Using a standalone cluster? The Starlight for JMS docs provide the "xref:starlig
 
 == Messaging with Starlight for JMS
 
-=== Retrieve connection properties in Astra Streaming
+=== Retrieve connection properties in {product}
 
-. In the Astra Streaming portal "Connect" tab, the "Pulsar" area provides important connection information.
+. In the {product} portal "Connect" tab, the "{pulsar-short}" area provides important connection information.
 +
-image:astra-streaming-connect-pulsar.png[Astra Streaming kafka settings]
+image:astra-streaming-connect-pulsar.png[{product} kafka settings]
 
-. Scroll down to the "Tenant Details" area to find your Pulsar connection information.
+. Scroll down to the "Tenant Details" area to find your {pulsar-short} connection information.
 +
 image:pulsar-client-settings.png[]
 
@@ -70,7 +74,7 @@ include::{astra-streaming-examples-repo}/java/starlight-for-jms/create-project.s
 </dependency>
 ----
 
-. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code. Notice there are class variables that need replacing. Apply the values previously retrieved in Astra Streaming.
+. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code. Notice there are class variables that need replacing. Apply the values previously retrieved in {product}.
 +
 [source,java]
 ----
@@ -87,7 +91,7 @@ include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSC
 ----
 
 . Add the following code into the file.
-This is a very simple 'PulsarConnectionFactory' that first creates a JMS queue using the full Pulsar topic address, then creates a message listener callback function that watches the queue.
+This is a very simple 'PulsarConnectionFactory' that first creates a JMS queue using the full {pulsar-short} topic address, then creates a message listener callback function that watches the queue.
 Finally, it produces a single message on the queue.
 +
 [source,java]

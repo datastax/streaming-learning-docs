@@ -11,7 +11,7 @@
 * `LATEST`: start after the most recent data record. +
 * `TRIM_HORIZON`: start from the oldest available data record.
 |`startAtTime`|Date|false|" " (empty string)|If set to `AT_TIMESTAMP`, it specifies the point in time to start consumption.
-|`applicationName`|String|false|Pulsar IO connector|The name of the Amazon Kinesis application. +
+|`applicationName`|String|false|{pulsar-short} IO connector|The name of the Amazon Kinesis application. +
 By default, the application name is included in the user agent string used to make AWS requests. This can assist with troubleshooting, for example, distinguish requests made by separate connector instances.
 |`checkpointInterval`|long|false|60000|The frequency of the Kinesis stream checkpoint in milliseconds.
 |`backoffTime`|long|false|3000|The amount of time to delay between requests when the connector encounters a throttling exception from AWS Kinesis in milliseconds.

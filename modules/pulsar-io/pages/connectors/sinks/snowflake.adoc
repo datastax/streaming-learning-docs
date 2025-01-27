@@ -23,7 +23,7 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 There are two sets of parameters that support sink connectors.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -34,11 +34,11 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Snowflake sink connector supports all configuration properties provided by DataStax. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
+The {product} Snowflake sink connector supports all configuration properties provided by {company}. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
 properties] for a complete list.
 
 == What's next?
 
 Learn more about Snowflake’s features and capabilities on https://www.snowflake.com/en/[their site].
 
-Learn more about DataStax Apache Pulsar Snowflake sink connector https://github.com/datastax/snowflake-connector[here].
+Learn more about {company} {pulsar} Snowflake sink connector https://github.com/datastax/snowflake-connector[here].

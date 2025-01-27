@@ -5,13 +5,13 @@
 
 BigQuery is a fully managed enterprise data warehouse that helps you manage and analyze your data with built-in features like machine learning, geospatial analysis, and business intelligence. BigQuery's serverless architecture lets you use SQL queries to answer your organization's biggest questions with zero infrastructure management. BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
 
-BigQuery Pulsar Sink is not integrated with BigQuery directly. It uses Pulsar’s built-in https://pulsar.apache.org/docs/adaptors-kafka/[Kafka Connect adapter] library to transform message data into a Kafka compatible format. Then the https://docs.confluent.io/kafka-connectors/bigquery/current/kafka_connect_bigquery_config.html[Kafka Connect BigQuery Sink] is used as the actual BigQuery integration. The adaptor provides a flexible and extensible framework for data transformation and processing. It supports various data formats, including JSON, Avro, and Protobuf, and enables users to apply transformations on the data as it is being streamed from Pulsar.
+BigQuery {pulsar-short} Sink is not integrated with BigQuery directly. It uses {pulsar-short}’s built-in https://pulsar.apache.org/docs/adaptors-kafka/[Kafka Connect adapter] library to transform message data into a Kafka compatible format. Then the https://docs.confluent.io/kafka-connectors/bigquery/current/kafka_connect_bigquery_config.html[Kafka Connect BigQuery Sink] is used as the actual BigQuery integration. The adaptor provides a flexible and extensible framework for data transformation and processing. It supports various data formats, including JSON, Avro, and Protobuf, and enables users to apply transformations on the data as it is being streamed from {pulsar-short}.
 
 You will notice references to Kafka throughout the configuration. *You don’t need a running instance of Kafka to use this connector.* The Kafka references are used as "translation points” by this connector.
 
 [NOTE]
 ====
-If you would like some background on the Kafka Connect adapter and its use cases, read "https://www.datastax.com/blog/simplify-migrating-kafka-to-pulsar-kafka-connect-support[Simplify migrating from Kafka to Pulsar with Kafka Connect Support]" and also "https://medium.com/building-the-open-data-stack/datastax-presents-snowflake-sink-connector-for-apache-pulsar-53629b196064[DataStax’s Snowflake Sink Connector for Apache Pulsar]".
+For more information on the Kafka Connect adapter, see https://www.datastax.com/blog/simplify-migrating-kafka-to-pulsar-kafka-connect-support[Simplify migrating from Kafka to {pulsar-short} with Kafka Connect Support] and the "https://medium.com/building-the-open-data-stack/datastax-presents-snowflake-sink-connector-for-apache-pulsar-53629b196064[{company} Snowflake Sink Connector for {pulsar-reg}].
 ====
 
 == Get Started
@@ -28,9 +28,9 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-The BigQuery sink has multiple sets of parameters: the Astra Streaming parameters, the Kafka Connect Adapter parameters, and the Google BigQuery parameters. Each set of parameters provides a way to coordinate how data will be streamed from Pulsar to BigQuery.
+The BigQuery sink has multiple sets of parameters: the {product} parameters, the Kafka Connect Adapter parameters, and the Google BigQuery parameters. Each set of parameters provides a way to coordinate how data will be streamed from {pulsar-short} to BigQuery.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===

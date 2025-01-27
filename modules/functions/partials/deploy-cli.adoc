@@ -1,15 +1,15 @@
 [NOTE]
 ====
-https://github.com/datastax/pulsar[Luna Streaming 2.10+] is required to deploy custom functions in Pulsar. 
+https://github.com/datastax/pulsar[Luna Streaming 2.10+] is required to deploy custom functions in {pulsar-short}. 
 ====
 
-The transform function `.nar` lives in the `/functions` directory of your Pulsar deployment. 
+The transform function `.nar` lives in the `/functions` directory of your {pulsar-short} deployment. 
 
-=== Pulsar standalone
+=== {pulsar-short} standalone
 
-To deploy the built-in transform function locally in Pulsar standalone:
+To deploy the built-in transform function locally in {pulsar-short} standalone:
 
-. Start Pulsar standalone:
+. Start {pulsar-short} standalone:
 +
 [source,shell]
 ----
@@ -28,15 +28,15 @@ To deploy the built-in transform function locally in Pulsar standalone:
 --user-config '{"steps": [{"type": "drop-fields", "fields": "password"}, {"type": "merge-key-value"}, {"type": "unwrap-key-value"}, {"type": "cast", "schema-type": "STRING"}]}'
 ----
 
-=== Pulsar cluster
+=== {pulsar-short} cluster
 
-To deploy a built-in transform function to a Pulsar cluster: 
+To deploy a built-in transform function to a {pulsar-short} cluster: 
 
 . Create a built-in transform function:
 +
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 ----
@@ -61,11 +61,11 @@ Created successfully
 --
 ====
 
-. Confirm your function has been created with the Pulsar CLI:
+. Confirm your function has been created with the {pulsar-short} CLI:
 +
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 [source,shell,subs="attributes+"]

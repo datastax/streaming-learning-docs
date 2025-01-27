@@ -6,9 +6,9 @@
 This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 ====
 
-== The Astra Streaming connection info
+== The {product} connection info
 
-To connect Astra to Decodable, you need some information from your Astra Streaming tenant. From the Astra portal home, navigate to the webstore-clicks streaming tenant.
+To connect Astra to Decodable, you need some information from your {product} tenant. From the Astra portal home, navigate to the webstore-clicks streaming tenant.
 
 image:decodable-data-pipeline/02/image4.png[]
 
@@ -17,7 +17,7 @@ You will need these values to connect to Decodable.
 
 image:decodable-data-pipeline/02/image16.png[]
 
-You will also need to create a Pulsar token.
+You will also need to create a {pulsar-short} token.
 Click the “Token Manager” link and “Create Token”.
 A popup window will appear with the token value.
 Click the clipboard icon to copy the token, and paste it to a temporary safe location like Notepad.
@@ -26,7 +26,7 @@ image:decodable-data-pipeline/02/image31.png[]
 
 Close the popup and navigate back to the “Connect” tab. We’ll come back here in a bit.
 
-== Creating a Decodable connection to Astra Streaming for all web clicks
+== Creating a Decodable connection to {product} for all web clicks
 
 In a different browser tab, sign in to your Decodable account and navigate to the “Connections” tab. We are going to create a new connection and stream, that will direct all web clicks to the correct topic in Astra.
 
@@ -34,7 +34,7 @@ In a different browser tab, sign in to your Decodable account and navigate to th
 +
 image:decodable-data-pipeline/02/image25.png[]
 
-. In the “Choose a Connector” view, locate the DataStax Astra Streaming connector and click “Connect”.
+. In the “Choose a Connector” view, locate the {company} {product} connector and click “Connect”.
 +
 image:decodable-data-pipeline/02/image14.png[]
 
@@ -107,17 +107,17 @@ You have to actually select "string" for the data type in the dropdown menu, or 
 +
 image:decodable-data-pipeline/02/image26.png[]
 
-. You now have a ready-to-go Astra Streaming connection! Oh, the things we can do!!!
+. You now have a ready-to-go {product} connection! Oh, the things we can do!!!
 +
 image:decodable-data-pipeline/02/image13.png[]
 
-== Creating a Decodable connection to Astra Streaming for product web clicks
+== Creating a Decodable connection to {product} for product web clicks
 
 Create another connection to stream product clicks.
 
 . Navigate back to the “Connections” area and click “New Connection”.
 
-. Just as previously done, locate the Astra Streaming connection and use the Tenant Details from Astra to fill in the details about the connection as follows. Note the change in topic name.
+. Just as previously done, locate the {product} connection and use the Tenant Details from Astra to fill in the details about the connection as follows. Note the change in topic name.
 +
 [cols="1,4a",frame=none]
 |===

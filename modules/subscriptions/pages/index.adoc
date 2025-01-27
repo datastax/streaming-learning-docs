@@ -1,8 +1,8 @@
-= Subscriptions in Pulsar
+= Subscriptions in {pulsar-reg}
 :navtitle: Overview
 :page-tag: pulsar-subscriptions,quickstart,admin,dev,pulsar
 
-*Subscriptions* in Pulsar describe which consumers are consuming data from a topic and how they want to consume that data. +
+*Subscriptions* in {pulsar-reg} describe which consumers are consuming data from a topic and how they want to consume that data. +
 
 Subscriptions are managed in the broker as a collection of metadata about a topic and its subscribed consumers. This metadata includes:
 
@@ -11,7 +11,7 @@ Subscriptions are managed in the broker as a collection of metadata about a topi
 * Subscription type - which type of subscription is being used
 * Subscription cursor - a representation of the consumer's current place in the subscribed topic log
 
-For example, the Pulsar consumer below has a *shared* subscription starting at the *earliest* cursor position in `my-subscription` to `my-topic`:
+For example, the {pulsar-short} consumer below has a *shared* subscription starting at the *earliest* cursor position in `my-subscription` to `my-topic`:
 
 [source,java]
 ----
@@ -23,7 +23,7 @@ pulsarConsumer = pulsarClient.newConsumer(Schema.BYTES)
     .subscribe();
 ----
 
-Read on to use Pulsar's four types of subscriptions to manage your topic consumption.
+Read on to use {pulsar-short}'s four types of subscriptions to manage your topic consumption.
 
 * xref:astream-subscriptions-exclusive.adoc[Exclusive subscriptions]
 * xref:astream-subscriptions-shared.adoc[Shared subscriptions]

@@ -11,13 +11,13 @@
 ** xref:use-cases-architectures:real-time-data-pipeline/03-put-it-all-together.adoc[]
 ** xref:use-cases-architectures:real-time-data-pipeline/04-debugging-and-clean-up.adoc[]
 
-.Migrating to Apache Pulsar
+.Migrating to {pulsar}
 * xref:use-cases-architectures:starlight/index.adoc[]
 * xref:use-cases-architectures:starlight/kafka/index.adoc[]
 * xref:use-cases-architectures:starlight/rabbitmq/index.adoc[]
 * xref:use-cases-architectures:starlight/jms/index.adoc[]
 
-.APIs & References
+.APIs and References
 * Connectors
 ** xref:pulsar-io:connectors/index.adoc[]
 ** Sources

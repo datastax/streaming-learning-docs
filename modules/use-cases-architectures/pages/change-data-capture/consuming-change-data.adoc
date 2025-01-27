@@ -1,20 +1,20 @@
-= Consuming change data with Apache Pulsar
+= Consuming change data with {pulsar-reg}
 :navtitle: Consuming change data
-:description: This article describes how to consume change data with Apache Pulsar.
+:description: This article describes how to consume change data with {pulsar-reg}.
 
 [NOTE]
 ====
 This article is a continuation of the xref:change-data-capture/index.adoc[] article. Please read that article first to understand the fundamentals of what resources are being used.
 ====
 
-== Pulsar clients
+== {pulsar-short} clients
 
-Each client handles message consumption a little differently but there is one overall pattern to follow.  As we learned in the previous sections, a CDC message will arrive as an Avro GenericRecord of type KeyValue. Typically, the first step will be to separate the key and value portions of the message. You will find the Cassandra table's key fields in the key of the record and the change data in the value portion of the record. Both of which are Avro records themselves. From there you'll want to deserialize the Avro record and extract the interesting info.
+Each client handles message consumption a little differently but there is one overall pattern to follow.  As we learned in the previous sections, a CDC message will arrive as an Avro GenericRecord of type KeyValue. Typically, the first step will be to separate the key and value portions of the message. You will find the {cass-short} table's key fields in the key of the record and the change data in the value portion of the record. Both of which are Avro records themselves. From there you'll want to deserialize the Avro record and extract the interesting info.
 
 Below are example implementations for each runtime consuming messages from the CDC data topic.
 
 [NOTE]
-While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 [cols="^1,^1,^1,^1,^1", grid=none,frame=none]
 |===
@@ -35,12 +35,12 @@ https://github.com/datastax/astra-streaming-examples/blob/master/nodejs/astra-cd
 https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cdc/cdc_consumer.py[Python]
 |===
 
-== Pulsar functions
+== {pulsar-short} functions
 
 It is very common to have a function consuming the CDC data. Functions usually perform additional processing on the data and pass it to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
 
 [NOTE]
-While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own Cassandra/Pulsar clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 [cols="^1,^1,^1", grid=none,frame=none]
 |===

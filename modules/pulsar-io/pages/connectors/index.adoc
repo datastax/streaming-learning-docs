@@ -2,15 +2,16 @@
 :navtitle: Connector Overview
 :page-tag: connectors,sinks,sources,astra-streaming,dev,develop,pulsar,go
 
-{product_name} offers fully-managed Apache Pulsar(TM) connectors.
+{product} offers fully-managed {pulsar-reg} connectors.
 
-Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API. Connect popular data sources to Apache Pulsar topics or sink data from Pulsar topics to popular systems.
+Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API.
+Connect popular data sources to {pulsar} topics or sink data from {pulsar-short} topics to popular systems.
 
-Below is a list of Apache Pulsar source and sink connectors supported by {product_name}.
+Below is a list of {pulsar} source and sink connectors supported by {product}.
 
 [NOTE]
 ====
-{product_name} does not support custom sink or source connectors.
+{product} does not support custom sink or source connectors.
 ====
 
 == Sink Connectors
@@ -25,9 +26,9 @@ include::partial$connectors/sources/source-connectors.adoc[tag=production]
 
 == Experimental Connectors
 
-DataStax is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product_name}*.
+{company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product}*.
 
-If you would like to be given access to these connectors, please send a request to {request_feature_access_email} (include your Astra account UUID).
+To get access to these connectors, contact {support_url}[{company} Support].
 
 === Sink Connectors (experimental)
 
@@ -41,14 +42,14 @@ include::partial$connectors/sources/source-connectors.adoc[tag=source-experiment
 
 == Listing Sink Connectors
 
-To list available sink connectors in your {product_name} tenant, use any of the following.
+To list available sink connectors in your {product} tenant, use any of the following.
 
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the Pulsar folder:
+Assuming you have downloaded client.conf to the {pulsar-short} folder:
 
 [source,shell,subs="attributes+"]
 ----
@@ -60,11 +61,11 @@ cURL::
 +
 --
 
-You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens.
+You'll need to create an {product} API token to be used with the Rest API. This is different from your Astra tokens.
 
-Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
+Navigate to the "Settings" area in the {product} UI and choose "Create Token".
 
-Retrieve the web service URL from the "Connect" tab in the Astra Streaming UI.
+Retrieve the web service URL from the "Connect" tab in the {product} UI.
 
 [source,shell,subs="attributes+"]
 ----
@@ -81,14 +82,14 @@ curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_ST
 
 == Listing Source Connectors
 
-To list available source connectors in your {product_name} tenant, use any of the following.
+To list available source connectors in your {product} tenant, use any of the following.
 
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the Pulsar folder:
+Assuming you have downloaded client.conf to the {pulsar-short} folder:
 
 [source,shell,subs="attributes+"]
 ----
@@ -100,11 +101,11 @@ cURL::
 +
 --
 
-You'll need to create an Astra Streaming API token to be used with the Rest API. This is different from your Astra tokens.
+You'll need to create an {product} API token to be used with the Rest API. This is different from your Astra tokens.
 
-Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
+Navigate to the "Settings" area in the {product} UI and choose "Create Token".
 
-Retrieve the web service URL from the "Connect" tab in the Astra Streaming UI.
+Retrieve the web service URL from the "Connect" tab in the {product} UI.
 
 [source,shell,subs="attributes+"]
 ----
@@ -121,5 +122,4 @@ curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTR
 
 == What's next?
 
-For more on Pulsar IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[Pulsar documentation
-].
+For more on {pulsar-short} IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[{pulsar-short} documentation].

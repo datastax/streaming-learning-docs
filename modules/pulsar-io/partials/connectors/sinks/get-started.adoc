@@ -11,7 +11,7 @@ export SINK_NAME={connectorName}
 
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]

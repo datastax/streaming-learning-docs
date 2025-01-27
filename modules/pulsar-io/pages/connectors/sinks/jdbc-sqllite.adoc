@@ -13,7 +13,7 @@ SQLite JDBC is a library for accessing and creating SQLite database files in Jav
 
 [NOTE]
 ====
-Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
 ====
 
 == Get Started
@@ -32,7 +32,7 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 There are two sets of parameters that support sink connectors.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -43,7 +43,7 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming JDBC MariaDB sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
+The {product} JDBC MariaDB sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
 properties]
 for a complete list.
 
@@ -51,4 +51,4 @@ for a complete list.
 
 Learn more about SQLite on https://www.sqlite.org/index.html[their site].
 
-Learn more about Apache Pulsar's JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
+Learn more about {pulsar-short}'s JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
