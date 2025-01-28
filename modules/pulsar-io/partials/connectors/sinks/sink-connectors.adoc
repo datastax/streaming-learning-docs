@@ -2,77 +2,77 @@
 [#astradb-sink]
 === AstraDB sink
 
-The AstraDB sink connector reads messages from Apache Pulsar topics and writes them to AstraDB systems.
+The AstraDB sink connector reads messages from {pulsar} topics and writes them to AstraDB systems.
 
 xref:connectors/sinks/astra-db.adoc[AstraDB sink documentation].
 
 [#cloudstorage-sink]
 === Cloud Storage sink
 
-The Cloud Storage sink connector reads messages from Apache Pulsar topics and writes them to Cloud Storage systems.
+The Cloud Storage sink connector reads messages from {pulsar} topics and writes them to Cloud Storage systems.
 
 xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink documentation].
 
 [#elasticsearch-sink]
 === ElasticSearch sink
 
-The Elasticsearch sink connector reads messages from Apache Pulsar topics and writes them to Elasticsearch systems.
+The Elasticsearch sink connector reads messages from {pulsar} topics and writes them to Elasticsearch systems.
 
 xref:connectors/sinks/elastic-search.adoc[Elasticsearch sink documentation].
 
 [#bigquery-sink]
 === Google BigQuery sink
 
-The Google BigQuery sink connector reads messages from Apache Pulsar topics and writes them to BigQuery systems.
+The Google BigQuery sink connector reads messages from {pulsar} topics and writes them to BigQuery systems.
 
 xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink documentation].
 
 [#jdbc-clickhouse-sink]
 === JDBC-Clickhouse sink
 
-The JDBC-ClickHouse sink connector reads messages from Apache Pulsar topics and writes them to JDBC-ClickHouse systems.
+The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.
 
 xref:connectors/sinks/jdbc-clickhouse.adoc[JDBC ClickHouse sink documentation].
 
 [#jdbc-mariadb-sink]
 === JDBC-MariaDB sink
 
-The JDBC-MariaDB sink connector reads messages from Apache Pulsar topics and writes them to JDBC-MariaDB systems.
+The JDBC-MariaDB sink connector reads messages from {pulsar} topics and writes them to JDBC-MariaDB systems.
 
 xref:connectors/sinks/jdbc-mariadb.adoc[JDBC MariaDB sink documentation].
 
 [#jdbc-postgres-sink]
 === JDBC-PostgreSQL sink
 
-The JDBC-PostgreSQL sink connector reads messages from Apache Pulsar topics and writes them to JDBC-PostgreSQL systems.
+The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
 
 xref:connectors/sinks/jdbc-postgres.adoc[JDBC PostgreSQL sink documentation].
 
 [#jdbc-sqlite-sink]
 === *JDBC-SQLite*
 
-The JDBC-SQLite sink connector reads messages from Apache Pulsar topics and writes them to JDBC-SQLite systems.
+The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.
 
 xref:connectors/sinks/jdbc-sqllite.adoc[JDBC SQLite sink documentation].
 
 [#kafka-sink]
 === *Kafka*
 
-The Kafka sink connector reads messages from Apache Pulsar topics and writes them to Kafka systems.
+The Kafka sink connector reads messages from {pulsar} topics and writes them to Kafka systems.
 
 xref:connectors/sinks/kafka.adoc[Kafka sink documentation].
 
 [#kinesis-sink]
 === Kinesis
 
-The Kinesis sink connector reads messages from Apache Pulsar topics and writes them to Kinesis systems.
+The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.
 
 xref:connectors/sinks/kinesis.adoc[Kinesis sink documentation].
 
 [#snowflake-sink]
 === Snowflake
 
-The Snowflake sink connector reads messages from Apache Pulsar topics and writes them to Snowflake systems.
+The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake systems.
 
 xref:connectors/sinks/snowflake.adoc[Snowflake sink documentation].
 // end::production[]

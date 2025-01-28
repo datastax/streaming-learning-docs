@@ -1,25 +1,25 @@
-= Key_Shared subscriptions in Pulsar
+= Key_Shared subscriptions in {pulsar-reg}
 :navtitle: Key Shared
 :page-tag: pulsar-subscriptions,quickstart,admin,dev,pulsar
 
-*Subscriptions* in Pulsar describe which consumers are consuming data from a topic and how they want to consume that data. +
+*Subscriptions* in {pulsar-reg} describe which consumers are consuming data from a topic and how they want to consume that data. +
 
-Pulsar's xref:astream-subscriptions-shared.adoc[shared subscription] model trades an increased message processing rate for ordering guarantees. In a round-robin delivery, there's no way for the broker to know which messages are going to which consumer. +
+{pulsar-short}'s xref:astream-subscriptions-shared.adoc[shared subscription] model trades an increased message processing rate for ordering guarantees. In a round-robin delivery, there's no way for the broker to know which messages are going to which consumer. +
 *Key_Shared* subscriptions allow multiple consumers to subscribe to a topic, but with additional metadata in the form of *keys* which link messages to specific consumers. +
 *Keys* are generated with *hashing*, which converts arbitrary values like "topic-name" or JSON blobs into fixed integer values. These hashed values are then assigned to subscribed consumers in one of two ways:
 
 * *Auto hash* - uses *consistent hashing* to balance range values across available consumers, without requiring manual setup of hash ranges.
 * *Sticky hash* - the client manually assigns consumer range values. All hashes within a configured range go to one consumer.
 
-This document explains how to use Pulsar's Key_Shared subscription model to manage your topic consumption.
+This document explains how to use {pulsar-short}'s Key_Shared subscription model to manage your topic consumption.
 
 include::partial$subscription-prereq.adoc[]
 
 [#example]
 == Key_Shared subscription example
 
-To try out a Pulsar Key_Shared subscription, add `.subscriptionType(SubscriptionType.Key_Shared)` to the `pulsarConsumer` in `SimplePulsarConsumer.java`. +
-You must also tell Pulsar what `keySharedPolicy` this subscription will use. The example below uses the auto-hashing `keySharedPolicy`.
+To try out a {pulsar-short} Key_Shared subscription, add `.subscriptionType(SubscriptionType.Key_Shared)` to the `pulsarConsumer` in `SimplePulsarConsumer.java`. +
+You must also tell {pulsar-short} what `keySharedPolicy` this subscription will use. The example below uses the auto-hashing `keySharedPolicy`.
 
 [source,java]
 ----
@@ -130,7 +130,7 @@ The new consumer can't subscribe to the topic because you reserved the entire ha
 
 == Key_Shared subscription video
 
-Follow along with this video from our *Five Minutes About Pulsar* series to see Key_Shared subscriptions in action.
+Follow along with this video from our *Five Minutes About {pulsar-short}* series to see Key_Shared subscriptions in action.
 
 video::_49wlA53L_8[youtube, list=PL2g2h-wyI4SqeKH16czlcQ5x4Q_z-X7_m, height=445px,width=100%]
 
@@ -138,7 +138,7 @@ video::_49wlA53L_8[youtube, list=PL2g2h-wyI4SqeKH16czlcQ5x4Q_z-X7_m, height=445p
 
 For more on subscriptions, see:
 
-* xref:index.adoc[Subscriptions in Pulsar]
+* xref:index.adoc[Subscriptions in {pulsar-short}]
 * xref:astream-subscriptions-exclusive.adoc[Exclusive subscriptions]
 * xref:astream-subscriptions-shared.adoc[Shared subscriptions]
 * xref:astream-subscriptions-failover.adoc[Failover subscriptions]

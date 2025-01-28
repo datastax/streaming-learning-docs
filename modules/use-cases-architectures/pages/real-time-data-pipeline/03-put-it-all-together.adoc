@@ -31,7 +31,7 @@ image:decodable-data-pipeline/03/image3.png[]
 Before ingesting data, let’s make sure we have all the pieces in order...
 
 * REST connection running? **CHECK!**
-* Astra Streaming connections running? **CHECK!**
+* {product} connections running? **CHECK!**
 * Normalization pipeline running? **CHECK!**
 * Product clicks filter pipeline running? **CHECK!**
 
@@ -74,7 +74,7 @@ In “Input Metrics”, we see that 1 record has been received.
 +
 image:decodable-data-pipeline/03/image4.png[]
 
-. Return to your Astra Streaming tenant “webstore-clicks” and navigate to the “Namespace and Topics” area.
+. Return to your {product} tenant “webstore-clicks” and navigate to the “Namespace and Topics” area.
 Expand the “production” namespace and select the “all-clicks” topic.
 Confirm that “Data In” has 1 message and “Data Out” has 1 message. This means the topic took the data in and a consumer acknowledged receipt of the message.
 +
@@ -122,8 +122,7 @@ token@cqlsh> select * from click_data.all_clicks;
 ====
 
 This confirms that the data was successfully written to the database.
-
-{emoji-tada}{emoji-tada} Cue the cheers and high-fives! Our pipeline ingested raw web click data, normalized it, and persisted the parsed data to the database! Woot woot!!
+Your pipeline ingested raw web click data, normalized it, and then persisted the parsed data to the database.
 
 == Follow the flow of the product clicks data
 
@@ -165,7 +164,8 @@ Result::
 ----
 --
 ====
-{emoji-rocket}{emoji-rocket} Yesssss! The first web click data we entered happened to be a product click, so the data was filtered in the pipeline and processed into the correct table!
+
+The first web click data you entered was a product click, so the data was filtered in the pipeline and processed into the relevant table.
 
 == Example real-time site data
 

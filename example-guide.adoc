@@ -9,8 +9,8 @@
 A guide is a document offering step by step instruction to reach some goal. Guides are technical in nature and tend to make assumptions about the consumer's environment. To help create guides that will work in most environments, please follow these ideas.
 
 * *Keep links to a minimum* - when someone is learning a new concept for the first time and xref:README.adoc[every] other xref:README.adoc[word] is linked it xref:README.adoc[makes] things xref:README.adoc[confusing] and hard to get a good flow going. Instead, annotate a word or phrase and provide a "Resources" area at the bottom of the guide.
-* *Separate products and runtimes in tabs* - it is common to reach the same result through multiple ways. An example is creating a tenant/namespace/topic in Astra Streaming and Luna Streaming. Both have the same result but get there in very different ways. Offer each as a tab and let the consumer choose their path. The step after the tabbed step can assume the consumer has complete the previious step and is in a known state. Runtimes follow the same pattern. Weather one is using Java or C#, they are still creating a Pulsar client to interact with the cluster. Create a single step in the guide with multiple tabs for each runtime.
-* *Be thoughtful about the names you use* - if you are leaning a new concept or feature with no background on the product, words matter. Labeling a tab as "Luna Helm" and then referring to it as "Pulsar Helm Chart" are two distinct things to that reader. The author of the document has such deep understanding that they consider those things the same - and technically they are at DataStax. But the read isn't from DataStax, so be mindful of their context.
+* *Separate products and runtimes in tabs* - it is common to reach the same result through multiple ways. An example is creating a tenant/namespace/topic in {product} and Luna Streaming. Both have the same result but get there in very different ways. Offer each as a tab and let the consumer choose their path. The step after the tabbed step can assume the consumer has complete the previious step and is in a known state. Runtimes follow the same pattern. Weather one is using Java or C#, they are still creating a {pulsar-short} client to interact with the cluster. Create a single step in the guide with multiple tabs for each runtime.
+* *Be thoughtful about the names you use* - if you are leaning a new concept or feature with no background on the product, words matter. Labeling a tab as "Luna Helm" and then referring to it as "{pulsar-short} Helm Chart" are two distinct things to that reader. The author of the document has such deep understanding that they consider those things the same - and technically they are at {company}. But the read isn't from {company}, so be mindful of their context.
 * *Talk in first person* - humans create the guides and humans consume the guides. Write as if you are paired with your consumer in doing what ever the guide does. Use "we", "us", "you".
 ====
 
@@ -21,7 +21,7 @@ Have you ever wanted to use this new feature? Well look no further than this gui
 You will need the following things in place to complete this guide:
 
 * about 5 minutes
-* a working Pulsar topic (xref:README.adoc[get started here] if you don't have one)
+* a working {pulsar-short} topic (xref:README.adoc[get started here] if you don't have one)
 
 == First group of tasks
 

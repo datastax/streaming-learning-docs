@@ -3,11 +3,11 @@
 :connectorType: kafka
 :page-tag: kafka,sink-connector
 
-Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
+Apache Kafka(R) is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
 [NOTE]
 ====
-Astra Streaming currently supports Apache Pulsar {pulsar_version}, which uses the https://github.com/apache/kafka/tree/2.7[Kafka 2.7.2 library] to interact with
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/apache/kafka/tree/2.7[Kafka 2.7.2 library] to interact with
 Kafka.
 ====
 
@@ -27,7 +27,7 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 There are two sets of parameters that support sink connectors.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -38,10 +38,10 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Kafka sink connector supports all configuration properties provided by Apache Pulsar. Please refer to the https://pulsar.apache.org/docs/io-kafka-sink#property[connector properties] for a complete list.
+The {product} Kafka sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-kafka-sink#property[connector properties] for a complete list.
 
 == What's next?
 
 Learn more about Kafka’s features and capabilities on https://kafka.apache.org/[their site].
 
-Learn more about Apache Pulsar's Kafka sink connector https://pulsar.apache.org/docs/io-kafka-sink[here].
+Learn more about {pulsar-short}'s Kafka sink connector https://pulsar.apache.org/docs/io-kafka-sink[here].

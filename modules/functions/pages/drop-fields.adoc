@@ -50,4 +50,4 @@ Result::
 
 == What's next?
 
-For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[{pulsar-short} documentation].

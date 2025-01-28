@@ -1,6 +1,6 @@
-= DataStax Streaming Learning
+= {company} Streaming Learning
 
-The learning site is a collection of guides and articles about DataStax streaming products. Each product has its own area dedicated to providing specifics to get started, its features, and other details. The learning site helps you get the most out of each product and get to production using best practices.
+The learning site is a collection of guides and articles about {company} streaming products. Each product has its own area dedicated to providing specifics to get started, its features, and other details. The learning site helps you get the most out of each product and get to production using best practices.
 
 == Processing Data
 
@@ -28,7 +28,7 @@ A real-time data pipeline is a series of steps that takes data from its original
 </div>
 ++++
 
-== Migrating to Apache Pulsar
+== Migrating to {pulsar-reg}
 
 ++++
 <div class="landing-row">
@@ -48,7 +48,7 @@ xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get sta
 .xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Starlight for Kafka]
 ****
 --
-Starlight for Kafka brings native Apache Kafka(R) protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers.
+Starlight for Kafka brings native {pulsar} protocol support by introducing a Kafka protocol handler on {pulsar-short} brokers.
 
 xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 --
@@ -58,7 +58,7 @@ xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get s
 .xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
 ****
 --
-Starlight for RabbitMQ combines the AMQP 0.9.1 API with Pulsar, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+Starlight for RabbitMQ combines the AMQP 0.9.1 API with {pulsar-short}, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
 
 xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
 --
@@ -72,20 +72,20 @@ xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Ge
 
 === Connectors
 
-A connector is a function that moves data between Apache Pulsar and external systems. Source are used to push data to Pulsar from external systems such as databases, message queues, and storage systems. Sinks are used to pull data from a Pulsar topic to an external system like a database, data warehouse, or storage system. +
+A connector is a function that moves data between {pulsar} and external systems. Source are used to push data to {pulsar-short} from external systems such as databases, message queues, and storage systems. Sinks are used to pull data from a {pulsar-short} topic to an external system like a database, data warehouse, or storage system. +
 xref:streaming-learning:pulsar-io:connectors/index.adoc#_source_connectors[Sources] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_sink_connectors[Sinks] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_experimental_connectors[Experimental]
 
-=== Pulsar Functions
+=== {pulsar-short} Functions
 
 Functions are lightweight compute processes that enable you to process each message received on a topic. You can apply custom logic to that message, transforming or enriching it, and then output it to a different topic. +
 xref:streaming-learning:functions:astream-functions.adoc[Learn more]
 
 === Transformation Functions
 
-Transform functions are a low-code implementation of common Pulsar functions. They are used to transform messages from one format to another. Use them to transform a message, enrich messages with additional data, or filter messages based on their content. +
+Transform functions are a low-code implementation of common {pulsar-short} functions. They are used to transform messages from one format to another. Use them to transform a message, enrich messages with additional data, or filter messages based on their content. +
 xref:streaming-learning:functions:cast.adoc[Cast] | xref:streaming-learning:functions:compute.adoc[Compute] | xref:streaming-learning:functions:drop.adoc[Drop] | xref:streaming-learning:functions:flatten.adoc[Flatten] | xref:streaming-learning:functions:merge-key-value.adoc[Merge] | xref:streaming-learning:functions:unwrap-key-value.adoc[Unwrap]
 
 === Topic Subscriptions
 
-Subscriptions in Pulsar describe which consumers are consuming data from a topic and how they want to consume that data. +
+Subscriptions in {pulsar-short} describe which consumers are consuming data from a topic and how they want to consume that data. +
 xref:streaming-learning:subscriptions:astream-subscriptions-exclusive.adoc[Exclusive] | xref:streaming-learning:subscriptions:astream-subscriptions-shared.adoc[Shared] | xref:streaming-learning:subscriptions:astream-subscriptions-failover.adoc[Failover] | xref:streaming-learning:subscriptions:astream-subscriptions-keyshared.adoc[Key Shared]

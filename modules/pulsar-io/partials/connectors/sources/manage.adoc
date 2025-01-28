@@ -1,7 +1,7 @@
 === Start
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-start]
@@ -16,7 +16,7 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-start]
 === Stop
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-stop]
@@ -31,7 +31,7 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-stop]
 === Restart
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-restart]
@@ -47,7 +47,7 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-restart]
 
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq]
@@ -77,7 +77,7 @@ include::partial$connectors/sources/curl-monitor-response.adoc[]
 === Delete
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-delete]

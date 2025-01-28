@@ -44,7 +44,7 @@ image:decodable-data-pipeline/01/image8.png[]
 
 . You should have 2 namespaces.
 The “production” namespace should contain the "all-clicks" and "product-clicks" topics you created.
-The "default" namespace is automatically created by Pulsar within each new streaming tenant.
+The "default" namespace is automatically created by {pulsar-short} within each new streaming tenant.
 +
 image:decodable-data-pipeline/01/image13.png[]
 

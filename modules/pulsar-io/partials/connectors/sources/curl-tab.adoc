@@ -1,11 +1,11 @@
 // tag::curl-prereq[]
-You'll need to create an Astra Streaming API token to be used with the REST API. This is different from your Astra tokens. 
+You'll need to create an {product} API token to be used with the REST API. This is different from your Astra tokens. 
 
-Navigate to the "Settings" area in the Astra Streaming UI and choose "Create Token".
+Navigate to the "Settings" area in the {product} UI and choose "Create Token".
 
-Retrieve the web service URL from the "Connect" tab in the Astra Streaming UI.
+Retrieve the web service URL from the "Connect" tab in the {product} UI.
 
-Refer to the complete https://pulsar.apache.org/source-rest-api/#tag/sources[Pulsar sources REST API spec],
+Refer to the complete https://pulsar.apache.org/source-rest-api/#tag/sources[{pulsar-short} sources REST API spec],
 for all available options.
 
 [source,shell,subs="attributes+"]

@@ -95,7 +95,7 @@ Please note that properties is a map of key/value pairs that are referenced by t
 [#expression-language]
 == Expression language
 
-Pulsar transforms use a simple expression language to evaluate conditional steps and compute steps. +
+{pulsar-short} transforms use a simple expression language to evaluate conditional steps and compute steps. +
 The expression language uses dot notation to access field properties or map keys, and supports the following operations and functions: +
 
 === Operators
@@ -190,7 +190,7 @@ For example, `key.keyField1` or `value.valueFiled1.nestedValueField`. +
 
 For this KeyValue record:
 
-[source,shell]
+[source,json]
 ----
 {
   "key": {
@@ -206,7 +206,8 @@ For this KeyValue record:
         "zipcode" : "abc-def"
       }
     }
-  }}
+  }
+}
 ----
 
 These statements would evaluate in a `when` statement:
@@ -232,7 +233,7 @@ These statements would evaluate in a `when` statement:
 
 == Multiply and concatenate example
 
-. Create a `compute` transform function with the Pulsar admin CLI:
+. Create a `compute` transform function with the {pulsar-short} admin CLI:
 +
 [source,shell]
 ----
@@ -277,7 +278,7 @@ Result::
 
 == Message routing example
 
-. Create a `compute` transform function with the Pulsar admin CLI:
+. Create a `compute` transform function with the {pulsar-short} admin CLI:
 +
 [source,shell]
 ----
@@ -323,4 +324,4 @@ Result::
 
 == What's next?
 
-For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[Pulsar documentation].
+For more, see xref:index.adoc[] or the https://pulsar.apache.org/docs/functions-overview[{pulsar-short} documentation].

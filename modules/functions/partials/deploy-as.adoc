@@ -2,7 +2,7 @@ Deploy transform functions in the *Functions* tab of the {astra_ui}.
 
 The process is similar to xref:astra-streaming:developing:astream-functions.adoc[creating a function in the {astra_ui}], but with a few additional steps.
 
-. After naming your new function, select the *Use DataStax transform function* option. 
+. After naming your new function, select the *Use {company} transform function* option. 
 . Select a transform function from the list of available functions:
 +
 image::astream-transform-functions.png[Connect Topics]
@@ -13,11 +13,11 @@ The *log topic* is a separate output topic for messages containing additional `l
 . Pass JSON configuration values with your function, if applicable. 
 For more, see the transform function <<Configuration>> table.
 . Select *Create*. The transform function will initialize and begin processing data changes. 
-. Confirm your function has been created with the Pulsar CLI:
+. Confirm your function has been created with the {pulsar-short} CLI:
 +
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 [source,shell,subs="attributes+"]

@@ -1,9 +1,9 @@
 // TODO: include an explanation or link to retrieving the client.conf from AS UI
 
 // tag::admin-prereq[]
-Refer to the complete https://pulsar.apache.org/tools/pulsar-admin/{pulsar_version}.0-SNAPSHOT/#sources[pulsar-admin sources spec] for all available options.
+Refer to the complete https://pulsar.apache.org/tools/pulsar-admin/{pulsar-version}.0-SNAPSHOT/#sources[pulsar-admin sources spec] for all available options.
 
-Assuming you have downloaded client.conf to the Pulsar folder: 
+Assuming you have downloaded client.conf to the {pulsar-short} folder: 
 // end::admin-prereq[]
 // tag::admin-start[]
 [source,shell,subs="attributes+"]

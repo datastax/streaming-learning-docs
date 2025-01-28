@@ -10,7 +10,7 @@ export SOURCE_NAME={connectorName}
 
 [tabs]
 ====
-Pulsar Admin::
+{pulsar-short} Admin::
 +
 --
 include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq]

@@ -3,9 +3,9 @@
 :connectorType: kafka
 :page-tag: kafka,source-connector
 
-The Kafka source connector pulls data from a Kafka topic and persists the data into an Apache Pulsar topic.
+The Kafka source connector pulls data from a Kafka topic and persists the data into an {pulsar-reg} topic.
 
-For more, see https://pulsar.apache.org/docs/io-kafka-source[Apache Pulsar's Kafka source documentation].
+For more, see https://pulsar.apache.org/docs/io-kafka-source[{pulsar}'s Kafka source documentation].
 
 == Get Started
 
@@ -23,7 +23,7 @@ include::partial$connectors/sources/monitoring.adoc[]
 
 There are two sets of parameters that support source connectors.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -34,6 +34,6 @@ include::example$connectors/sources/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Kafka source connector supports all configuration properties provided by Apache Pulsar.
+The {product} Kafka source connector supports all configuration properties provided by {pulsar}.
 
 Please refer to the https://pulsar.apache.org/docs/io-kafka-source#property[connector properties] for a complete list.

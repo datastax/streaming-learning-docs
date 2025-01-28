@@ -1,8 +1,8 @@
 = Getting started with the Starlight for Kafka extension
 :navtitle: Starlight for Kafka
-:description: Learn how to get started using the Starlight for Kafka extension with Pulsar and get hands on with Kafka producer and consumer interacting with a topic.
+:description: Learn how to get started using the Starlight for Kafka extension with {pulsar-reg} and get hands on with Kafka producer and consumer interacting with a topic.
 
-Starlight for Kafka brings the native Apache Kafka protocol support to Apache Pulsar by introducing a Kafka protocol handler on Pulsar brokers. By adding the Starlight for Kafka protocol handler to your existing Pulsar cluster, you can migrate your existing Kafka applications and services to Pulsar without modifying the code.
+Starlight for Kafka brings the native Apache Kafka(R) protocol support to {pulsar-reg} by introducing a Kafka protocol handler on {pulsar-short} brokers. By adding the Starlight for Kafka protocol handler to your existing {pulsar-short} cluster, you can migrate your existing Kafka applications and services to {pulsar-short} without modifying the code.
 
 If source code is your thing, visit the https://github.com/datastax/starlight-for-kafka[project's repo on GitHub].
 
@@ -14,13 +14,13 @@ image:s4k-architecture.png[Starlight for Kafka Architecture]
 
 == Establishing the Kafka protocol handler
 
-Before a Kafka client can interact with your Pulsar cluster, you need the Starlight for Kafka protocol handler installed in the cluster.
-Installation looks a bit different depending on where your Pulsar cluster is running.
+Before a Kafka client can interact with your {pulsar-short} cluster, you need the Starlight for Kafka protocol handler installed in the cluster.
+Installation looks a bit different depending on where your {pulsar-short} cluster is running.
 Choose the option that best fits your needs.
 
 [tabs]
 ====
-Astra Streaming::
+{product}::
 +
 --
 
@@ -33,43 +33,43 @@ TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-sta
 
 . Go to the "Connect" tab and choose the "Kafka" option.
 +
-image:astra-streaming-connect-kafka.png[Astra Streaming connect kafka]
+image:astra-streaming-connect-kafka.png[{product} connect kafka]
 
 . You will see an "Enable Kafka" button. Click to continue.
 +
-image:enable-kafka-button.png[Astra Streaming enable kafka]
+image:enable-kafka-button.png[{product} enable kafka]
 
 . A message will let you know of the additions (and restrictions) that come with using Starlight for Kafka.
-image:enable-kafka-message.png[Astra Streaming enable kafka message]
+image:enable-kafka-message.png[{product} enable kafka message]
 
 . Select the "Enable Kafka" button to confirm your understanding.
 
-Your Astra Streaming tenant is ready for prime time! Continue to the next section of the guide to see it in action.
+Your {product} tenant is ready for prime time! Continue to the next section of the guide to see it in action.
 --
 Luna Streaming::
 +
 --
-The Starlight for Kafka extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-kafka.adoc[]" guide to create a simple Pulsar cluster with the Starlight for Kafka extension ready for use.
+The Starlight for Kafka extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-kafka.adoc[]" guide to create a simple {pulsar-short} cluster with the Starlight for Kafka extension ready for use.
 --
 Self Managed::
 +
 --
-Already have your own Pulsar cluster? Or maybe you're using a standalone cluster? Starlight for Kafka can easily be a part of that cluster! Follow the "xref:starlight-for-kafka:installation:starlight-kafka-quickstart.adoc[]" guide.
+Already have your own {pulsar-short} cluster? Or maybe you're using a standalone cluster? Starlight for Kafka can easily be a part of that cluster! Follow the "xref:starlight-for-kafka:installation:starlight-kafka-quickstart.adoc[]" guide.
 --
 ====
 
 == Messaging with Starlight for Kafka
 
-Starlight for Kafka supports quite a few different use cases. With a Pulsar cluster between producers and consumers you can interchange the type of producer and consumer to fit your needs.
+Starlight for Kafka supports quite a few different use cases. With a {pulsar-short} cluster between producers and consumers you can interchange the type of producer and consumer to fit your needs.
 
-*The below examples are using an Astra Streaming tenant as the Kafka bootstrap server.* If you are using Luna Streaming or a self-managed tenant, switch the bootstrap server URL for your own.
+*The below examples are using an {product} tenant as the Kafka bootstrap server.* If you are using Luna Streaming or a self-managed tenant, switch the bootstrap server URL for your own.
 
-=== Retrieve Kafka connection properties in Astra Streaming
+=== Retrieve Kafka connection properties in {product}
 
-In the Astra Streaming portal "Connect" tab, the "kafka" area provides important connection information.
+In the {product} portal "Connect" tab, the "kafka" area provides important connection information.
 You will need this connection information to create a working Kafka client or use the CLI.
 
-image:kafka-client-settings.png[Astra Streaming kafka settings]
+image:kafka-client-settings.png[{product} kafka settings]
 
 TIP: Click the clipboard icon to copy the Kafka connection values, as well as a working token to paste in code.
 
@@ -83,7 +83,7 @@ Kafka CLI::
 Download the latest Kafka distribution https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[here].
 With the tarball extracted, the producer and consumer CLIs are in the 'bin' folder.
 
-. To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with Astra Streaming]" guide, the below values will be a perfect fit for your existing tenant.
+. To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with {product}]" guide, the below values will be a perfect fit for your existing tenant.
 +
 [source,shell]
 ----
@@ -125,7 +125,7 @@ This is my first S4K message.
 
 . Press 'Ctrl-C' to exit the consumer shell.
 
-Wow, you did it! A Kafka producer and consumer with an Apache Pulsar cluster. How about trying the Java client now?
+Wow, you did it! A Kafka producer and consumer with a {pulsar-short} cluster. How about trying the Java client now?
 --
 Kafka Client (Java)::
 +
@@ -153,7 +153,7 @@ include::{astra-streaming-examples-repo}/java/starlight-for-kafka/kafka-client/c
 </dependency>
 ----
 
-. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code. Notice there are class variables that need replacing. Apply the values previously retrieved in Astra Streaming.
+. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code. Notice there are class variables that need replacing. Apply the values previously retrieved in {product}.
 +
 [source,java]
 ----
@@ -201,7 +201,7 @@ Found 1 total record(s)
 ConsumerRecord(topic = persistent://my-tenant-007/my-namespace/my-topic, partition = 0, leaderEpoch = null, offset = 22, CreateTime = 1673545962124, serialized key size = 8, serialized value size = 11, headers = RecordHeaders(headers = [], isReadOnly = false), key =   xxxxx, value = Hello World)
 ----
 
-Congrats! You have just used the Kafka client to send and receive messages in Pulsar. Next stop is the moon!
+Congrats! You have just used the Kafka client to send and receive messages in {pulsar-short}. Next stop is the moon!
 --
 ====
 

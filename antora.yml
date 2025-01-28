@@ -8,7 +8,13 @@ nav:
 
 asciidoc:
   attributes:
-    product_name: 'Astra Streaming'
-    pulsar_version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
-    debezium_version: '1.7'
-    request_feature_access_email: 'astrastreaming@datastax.com'
+    product: 'Astra Streaming'
+    pulsar: 'Apache Pulsar'
+    pulsar-short: 'Pulsar'
+    pulsar-reg: 'Apache Pulsar(TM)'
+    pulsar-version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
+    debezium-version: '1.7'
+    astra-streaming-examples-repo: 'https://raw.githubusercontent.com/datastax/astra-streaming-examples/master'
+    cass: Apache Cassandra
+    cass-short: Cassandra
+    cass-reg: Apache Cassandra(R)

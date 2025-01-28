@@ -3,7 +3,7 @@
 :connectorType: cloud-storage
 :page-tag: cloud storage,sink-connector, aws, azure, gcp
 
-Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a Pulsar topic to the given system following a desired format.
+Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a {pulsar-short} topic to the given system following a desired format.
 
 The cloud storage system supported are:
 
@@ -21,7 +21,7 @@ include::partial$connectors/sinks/get-started.adoc[]
 
 The Cloud Storage sink connector provides multiple output format options, including JSON, Avro, Bytes, or Parquet. The default format is JSON. With current implementation, there are some limitations for different formats:
 
-Pulsar Schema types supported by the writers:
+{pulsar-short} Schema types supported by the writers:
 
 [%header,format=csv,cols="1,^1,^1,^1,^1"]
 |===
@@ -82,7 +82,7 @@ By default, when the connector receives a message with a non-supported schema ty
 
 == Dead-letter topics
 
-To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config. Then using either pulsar-admin or curl, set `--max-redeliver-count` and `--dead-letter-topic`. For more info about dead-letter topics, see the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[Pulsar documentation]. If a message fails to be sent to the Cloud Storage sink and there is a dead-letter topic, the connector will send the message to the assigned topic.
+To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config. Then using either pulsar-admin or curl, set `--max-redeliver-count` and `--dead-letter-topic`. For more info about dead-letter topics, see the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[{pulsar-short} documentation]. If a message fails to be sent to the Cloud Storage sink and there is a dead-letter topic, the connector will send the message to the assigned topic.
 
 == Managing the Connector
 
@@ -94,9 +94,9 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-With the Cloud Storage Sink there are two sets of parameters. First, the Astra Streaming parameters, then the parameters specific to your chosen cloud store.
+With the Cloud Storage Sink there are two sets of parameters. First, the {product} parameters, then the parameters specific to your chosen cloud store.
 
-=== Astra Streaming
+=== {product}
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
