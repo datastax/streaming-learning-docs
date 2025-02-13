@@ -8,6 +8,7 @@ nav:
 
 asciidoc:
   attributes:
+    company: 'DataStax'
     product: 'Astra Streaming'
     pulsar: 'Apache Pulsar'
     pulsar-short: 'Pulsar'

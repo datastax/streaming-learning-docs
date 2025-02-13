@@ -280,7 +280,7 @@ image::astream-name-function.png[Function and Namespace]
 
 . Select the file you want to pull the function from and which function you want to use within that file.
 
-Astra generates a list of acceptable classes. Python and Java functions are added a little differently from each other.
+{product} generates a list of acceptable classes. Python and Java functions are added a little differently from each other.
 
 Python functions are added by loading a Python file (.py) or a zipped Python file (.zip). When adding Python files, the Class Name is specified as the name of the Python file without the extension plus the class you want to execute.
 

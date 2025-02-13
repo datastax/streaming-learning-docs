@@ -11,7 +11,7 @@ You just need a safe place to temporarily store access tokens.
 == Architecture
 
 Before we get started on our journey, let’s discuss the objects we’re creating and why we need to create them. +
-We want to build a pipeline that takes in raw web click data, breaks it into queryable values, saves the data, and filters for certain values. Both the parsed click data and the filtered data will be saved. We will use Decodable’s real-time stream processing (powered by Apache Flink) as well as DataStax’s Astra platform (powered by {pulsar-reg} and {cass-reg}).
+We want to build a pipeline that takes in raw web click data, breaks it into queryable values, saves the data, and filters for certain values. Both the parsed click data and the filtered data will be saved. We will use Decodable’s real-time stream processing (powered by Apache Flink) as well as {astra-db} and {product} (powered by {pulsar-reg} and {cass-reg}).
 This pipeline is intended to be production ready, because we’re using cloud-based services that are automatically setting values for scaling, latency, and security. +
 
 The pipeline components are outlined below.
