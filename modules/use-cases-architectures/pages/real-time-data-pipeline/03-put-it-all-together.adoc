@@ -3,7 +3,7 @@
 
 [NOTE]
 ====
-This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+This guide is part of a series that creates a real-time data pipeline with {product} and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 ====
 
 Now that we have all the pieces of our data processing pipeline in place, it’s time to start the connection and pipelines up and input some test data.
@@ -80,11 +80,12 @@ Confirm that “Data In” has 1 message and “Data Out” has 1 message. This 
 +
 image:decodable-data-pipeline/03/image6.png[]
 
-. In the “Sinks” tab in Astra, select the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This means the sink consumed a message from the topic and wrote the data to the store.
+. In the “Sinks” tab in {product}, select the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This means the sink consumed a message from the topic and wrote the data to the store.
 +
 image:decodable-data-pipeline/03/image5.png[]
 
-. Finally, let’s look at the final data in your Astra database. Navigate to the Astra home and click the “webstore-clicks” Serverless Database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
+. Finally, let’s look at the final data in your {astra-db} database.
+In the {link-astra-portal}, click the “webstore-clicks” database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
 +
 [tabs]
 ====
@@ -134,10 +135,10 @@ Similar to how you followed the above flow of raw click data, follow this flow t
 . Navigate to your Decodable connection named “Astra-Streaming-Product-Webclicks-Connection”.
 .. The “Input Metrics” should be 1 record.
 
-. Navigate to your Astra tenant and check the production/product-clicks topic.
+. Navigate to your {product} tenant and check the production/product-clicks topic.
 .. There should be 1 message in “Data In” and 1 message in “Data Out”.
 
-. Finally, navigate to your Astra database CQL Console.
+. Finally, navigate to your {astra-db} database's CQL Console.
 .. Query the product_clicks table:
 +
 [tabs]
@@ -179,11 +180,13 @@ The site is a copy of https://www.blazemeter.com/[BlazeMeter]’s https://www.de
 . Extract the zip, open the folder in your text editor or IDE of choice, and open the "script.js" file.
 There are 2 placeholders for data you'll need to retrieve from Decodable: the Endpoint URL and an authorization token.
 +
-[source,bash]
+[source,javascript]
 ----
 function post_click(url){
   let decodable_token = "access token: <value retrieved from access_token in .decodable/auth>";
   let endpoint_url = "https://ddieruf.api.decodable.co/v1alpha2/connections/4f003544/events";
+  ...
+}
 ----
 +
 Learn more about retrieving the Endpoint URL and auth token in the https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation].

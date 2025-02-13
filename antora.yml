@@ -10,6 +10,7 @@ asciidoc:
   attributes:
     company: 'DataStax'
     product: 'Astra Streaming'
+    product-short: 'Astra'
     pulsar: 'Apache Pulsar'
     pulsar-short: 'Pulsar'
     pulsar-reg: 'Apache Pulsar(TM)'

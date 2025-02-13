@@ -26,7 +26,7 @@ Choose the option that best fits your needs.
 --
 If you want a working RabbitMQ extension as quickly as possible, this is your best bet. This is also a good option for those that already have a streaming tenant and are looking to extend it.
 
-. Sign in to your Astra account and navigate to your streaming tenant.
+. Sign in to your {product-short} account and navigate to your streaming tenant.
 +
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
@@ -39,6 +39,7 @@ image:astra-streaming-connect-rabbitmq.png[{product} connect RabbitMQ]
 image:enable-rabbitmq-button.png[{product} enable RabbitMQ]
 
 . A message will let you know of the additions (and restrictions) that come with using Starlight for RabbitMQ.
++
 image:enable-rabbitmq-message.png[{product} enable RabbitMQ message]
 
 . Click the "Enable RabbitMQ" button to confirm your understanding.

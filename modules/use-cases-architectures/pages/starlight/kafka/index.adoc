@@ -27,7 +27,7 @@ Choose the option that best fits your needs.
 If you want a working Kafka extension as quickly as possible, this is your best bet.
 This is also a good option for those that already have a streaming tenant and are looking to extend it.
 
-. Sign in to your Astra account and navigate to your streaming tenant.
+. Sign in to your {product-short} account and navigate to your streaming tenant.
 +
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 

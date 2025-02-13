@@ -60,8 +60,9 @@ Assuming you have downloaded client.conf to the {pulsar-short} folder:
 curl::
 +
 --
-// tag::stream-rest-env-vars[]
-You need an {product} application token for REST API authentication. This is different from your other {astra-db} application tokens:
+// tag::rest-env-vars[]
+You need a {pulsar-short} token for REST API authentication.
+This is different from your {astra-db} application tokens.
 
 . In the {link-astra-portal}, go to *Streaming*, click your tenant's name, and then click the *Settings* tab.
 
@@ -71,14 +72,14 @@ You need an {product} application token for REST API authentication. This is dif
 
 . Click the *Connect* tab, and then copy the *Web Service URL*.
 
-. Create environment variables for your application token and web service URL:
+. Create environment variables for your tenant's token and web service URL:
 +
 [source,shell,subs="attributes+"]
 ----
 export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
-// end::stream-rest-env-vars[]
+// end::rest-env-vars[]
 
 . Use these values to form curl commands to the REST API:
 +
@@ -109,7 +110,7 @@ Assuming you have downloaded client.conf to the {pulsar-short} folder:
 cURL::
 +
 --
-include::pulsar:connectors/index.adoc[tag=stream-rest-env-vars]
+include::pulsar-io:connectors/index.adoc[tag=rest-env-vars]
 
 [source,shell,subs="attributes+"]
 ----

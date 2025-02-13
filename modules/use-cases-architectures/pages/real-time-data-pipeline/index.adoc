@@ -2,10 +2,10 @@
 :navtitle: Build a real-time data pipeline
 
 This guide presents a hands-on approach for defining the objects that make up a real-time data processing pipeline.
-You'll create and configure an {product} tenant and an Astra database, connect them with data processing pipelines in Decodable, and send a single data record through to validate your real-time data pipeline. +
+You'll create and configure an {product} tenant and an {astra-db} database, connect them with data processing pipelines in Decodable, and send a single data record through to validate your real-time data pipeline. +
 For extra credit, we'll demonstrate processing under load with a bulk of data.
 
-This guide uses the Astra and Decodable UIs in your web browser, so no terminal or scripting is required!
+This guide uses the {astra-ui} and Decodable UI in your web browser, so no terminal or scripting is required!
 You just need a safe place to temporarily store access tokens.
 
 == Architecture
@@ -59,7 +59,7 @@ The guide is broken into a few milestones. You'll want to follow these milestone
 . xref:use-cases-architectures:real-time-data-pipeline/01-create-astra-objects.adoc[]
 +
 In this guide, you will create a new streaming tenant in {product} with a namespace and topics.
-Then, you’ll create a database in Astra DB, and hook the streaming topics and database together with a sink connector.
+Then, you’ll create an {astra-db} database, and hook the streaming topics and database together with a sink connector.
 
 . xref:use-cases-architectures:real-time-data-pipeline/02-create-decodable-objects.adoc[]
 +

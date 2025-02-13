@@ -5,7 +5,7 @@
 
 {company} {astra_db} Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[{cass-reg} sink connector for {pulsar-reg}]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra_db} or a table in a {cass-short} cluster outside of DB.
 
-The {product} portal provides simple way to connect this sink and a table in Astra DB with simply a token. Using pulsar-admin or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
+The {product} portal provides simple way to connect this sink and a table in {astra-db} with simply a token. Using pulsar-admin or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
 
 This reference assumes you are manually connecting to a {cass-short} table.
 
