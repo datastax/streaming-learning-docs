@@ -1,21 +1,21 @@
-= Getting started with the Starlight for RabbitMQ extension
-:navtitle: Starlight for RabbitMQ
-:description: Learn how to get started using the Starlight for RabbitMQ extension with {pulsar-short} and get hands on by publishing and consuming messages from a topic.
+= Getting started with the {starlight-rabbitmq} extension
+:navtitle: {starlight-rabbitmq}
+:description: Learn how to get started using the {starlight-rabbitmq} extension with {pulsar-short} and get hands on by publishing and consuming messages from a topic.
 
-Starlight for RabbitMQ acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[{pulsar-reg}] cluster.
+{starlight-rabbitmq} acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[{pulsar-reg}] cluster.
 It implements the AMQP 0.9.1 protocol used by RabbitMQ clients and translates AMQP frames and concepts to {pulsar-short} concepts.
 
 If source code is your thing, visit the https://github.com/datastax/starlight-for-rabbitmq[project's repo on GitHub].
 
 == Architecture reference
 
-If you want to dive deep into how Starlight for RabbitMQ works, xref:starlight-for-rabbitmq:ROOT:index.adoc[read the documentation].
+If you want to dive deep into how {starlight-rabbitmq} works, xref:starlight-for-rabbitmq:ROOT:index.adoc[read the documentation].
 
-image:s4r-architecture.png[Starlight for RabbitMQ Architecture]
+image:s4r-architecture.png[{starlight-rabbitmq} Architecture]
 
 == Establishing the RabbitMQ protocol handler
 
-Before you can use a RabbitMQ client to interact with your {pulsar-short} cluster, you need the Starlight for RabbitMQ protocol handler installed in the cluster.
+Before you can use a RabbitMQ client to interact with your {pulsar-short} cluster, you need the {starlight-rabbitmq} protocol handler installed in the cluster.
 Installation looks a bit different depending on where your {pulsar-short} cluster is running.
 Choose the option that best fits your needs.
 
@@ -26,7 +26,7 @@ Choose the option that best fits your needs.
 --
 If you want a working RabbitMQ extension as quickly as possible, this is your best bet. This is also a good option for those that already have a streaming tenant and are looking to extend it.
 
-. Sign in to your Astra account and navigate to your streaming tenant.
+. Sign in to your {product-short} account and navigate to your streaming tenant.
 +
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
@@ -38,7 +38,8 @@ image:astra-streaming-connect-rabbitmq.png[{product} connect RabbitMQ]
 +
 image:enable-rabbitmq-button.png[{product} enable RabbitMQ]
 
-. A message will let you know of the additions (and restrictions) that come with using Starlight for RabbitMQ.
+. A message will let you know of the additions (and restrictions) that come with using {starlight-rabbitmq}.
++
 image:enable-rabbitmq-message.png[{product} enable RabbitMQ message]
 
 . Click the "Enable RabbitMQ" button to confirm your understanding.
@@ -48,18 +49,18 @@ Your {product} tenant is ready for prime time! Continue to the next section of t
 Luna Streaming::
 +
 --
-The Starlight for RabbitMQ extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]" guide to create a simple {pulsar-short} cluster with the Starlight for RabbitMQ extension ready for use.
+The {starlight-rabbitmq} extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]" guide to create a simple {pulsar-short} cluster with the {starlight-rabbitmq} extension ready for use.
 --
 Self Managed::
 +
 --
-Already have your own {pulsar-short} Cluster? Or maybe you're using a standalone cluster? Starlight for RabbitMQ can easily be a part of that cluster! Follow the "xref:starlight-for-rabbitmq:installation:getting-started.adoc[]" guide.
+Already have your own {pulsar-short} Cluster? Or maybe you're using a standalone cluster? {starlight-rabbitmq} can easily be a part of that cluster! Follow the "xref:starlight-for-rabbitmq:installation:getting-started.adoc[]" guide.
 --
 ====
 
-== Messaging with Starlight for RabbitMQ
+== Messaging with {starlight-rabbitmq}
 
-Starlight for RabbitMQ supports quite a few different use cases.
+{starlight-rabbitmq} supports quite a few different use cases.
 With a {pulsar-short} cluster between publishers and consumers you can interchange the type of publisher and consumer to fit your needs.
 
 *The below examples are using an {product} tenant as the AMQP listener.* If you are using Luna Streaming or a self-managed tenant, switch the listener URL for your own.
@@ -161,5 +162,5 @@ Congrats! You used the RabbitMQ client to send and receive messages in {pulsar-s
 
 == What's next?
 
-* xref:starlight-for-rabbitmq:ROOT:index.adoc[Starlight for RabbitMQ documentation]
+* xref:starlight-for-rabbitmq:ROOT:index.adoc[{starlight-rabbitmq} documentation]
 * xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]

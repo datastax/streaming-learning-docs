@@ -1,17 +1,24 @@
 // tag::curl-prereq[]
-You'll need to create an {product} API token to be used with the REST API. This is different from your Astra tokens. 
+You need a {pulsar-short} token for REST API authentication.
+This is different from your {astra-db} application tokens.
 
-Navigate to the "Settings" area in the {product} UI and choose "Create Token".
+. In the {astra-ui-link}, go to *Streaming*, click your tenant's name, and then click the *Settings* tab.
 
-Retrieve the web service URL from the "Connect" tab in the {product} UI.
+. Click *Create Token*.
 
-Refer to the complete https://pulsar.apache.org/sink-rest-api/#tag/sink[{pulsar-short} sinks REST API spec] for all available options.
+. Copy the token, store it securely, and then click *Close*.
 
+. Click the *Connect* tab, and then copy the *Web Service URL*.
+
+. Create environment variables for your tenant's token and web service URL:
++
 [source,shell,subs="attributes+"]
 ----
 export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
++
+Refer to the complete https://pulsar.apache.org/sink-rest-api/#tag/sink[{pulsar-short} sinks REST API spec] for all available options.
 // end::curl-prereq[]
 // tag::curl-start[]
 [source,shell,subs="attributes+"]

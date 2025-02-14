@@ -13,8 +13,7 @@ Each client handles message consumption a little differently but there is one ov
 
 Below are example implementations for each runtime consuming messages from the CDC data topic.
 
-[NOTE]
-While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not {product}-specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 [cols="^1,^1,^1,^1,^1", grid=none,frame=none]
 |===
@@ -39,8 +38,7 @@ https://github.com/datastax/astra-streaming-examples/blob/master/python/astra-cd
 
 It is very common to have a function consuming the CDC data. Functions usually perform additional processing on the data and pass it to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
 
-[NOTE]
-While these examples are in the “astra-streaming-examples” repository, they are not Astra specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
+While these examples are in the “astra-streaming-examples” repository, they are not {product}-specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 [cols="^1,^1,^1", grid=none,frame=none]
 |===

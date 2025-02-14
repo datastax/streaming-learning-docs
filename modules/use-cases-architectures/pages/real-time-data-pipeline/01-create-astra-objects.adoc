@@ -1,14 +1,14 @@
-= Real-time data pipeline Astra objects
-:navtitle: 1. Astra objects
+= Real-time data pipeline {product-short} objects
+:navtitle: 1. {product-short} objects
 
 [NOTE]
 ====
-This guide is part of a series that creates a real-time data pipeline with Astra and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
+This guide is part of a series that creates a real-time data pipeline with {product} and Decodable. For context and prerequisites, start xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[here].
 ====
 
 == Creating message topics to capture the stream of click data
 
-. Navigate to your Astra portal home and click "Create a Stream".
+. In the {astra-ui-link}, go to "Streaming", and then click "Create Tenant".
 +
 image:decodable-data-pipeline/01/image4.png[]
 
@@ -50,7 +50,7 @@ image:decodable-data-pipeline/01/image13.png[]
 
 == Storing the stream of click data
 
-. From the Astra portal home, click “Create a Database”.
+. In the {astra-ui}, go to "Databases", and then click “Create database”.
 +
 image:decodable-data-pipeline/01/image18.png[]
 
@@ -62,7 +62,7 @@ image:decodable-data-pipeline/01/image5.png[]
 
 . The page will refresh with your new token details.
 Don’t worry about saving the tokens - we will retrieve these later.
-You can “Esc” or just return to your Astra portal home, where you will see your new streaming tenant and database.
+You can “Esc” or just return to the {astra-ui-link} home, where you will see your new streaming tenant and database.
 +
 image:decodable-data-pipeline/01/image1.png[]
 
@@ -174,7 +174,7 @@ The output displays three “create” CQL statements for the “click_data” k
 
 == Connecting the topics to the store
 
-. From the Astra portal home, click on the “webstore-clicks” streaming tenant.
+. In the {astra-ui}, go to your “webstore-clicks” streaming tenant.
 +
 image:decodable-data-pipeline/01/image3.png[]
 
@@ -190,7 +190,7 @@ image:decodable-data-pipeline/01/image10.png[]
 |production
 
 |Sink Type
-|Astra DB
+|{astra-db}
 
 |Name
 |all-clicks
@@ -203,12 +203,13 @@ image:decodable-data-pipeline/01/image10.png[]
 
 |Token:
 |
-. Click “here” to create a new Astra token ( you won’t lose your work, it will open in a new tab).
+. Click “here” to create an {astra-db} application token in a new browser tab.
 . Choose the “Organization Administrator” role and click “Generate Token”.
 +
 image:decodable-data-pipeline/01/image2.png[]
-. The page will refresh with the new token details. Click the clipboard icon (to the right) for the “Token” value.
-. Navigate back to the Astra portal page in your browser and paste the value in the “Token” input.
+. Copy the token, and then store it securely.
+You will need to use this token multiple times.
+. Navigate back to the {product} page in your browser and paste the value in the “Token” input.
 +
 image:decodable-data-pipeline/01/image17.png[]
 
@@ -221,10 +222,6 @@ image:decodable-data-pipeline/01/image17.png[]
 |Mapping
 |(leave alone)
 |===
-
-+
-WARNING: You will need the token again when creating a second sink.
-Either paste it in notepad (or some temp safe place) or keep the browser tab open.
 
 . Click “Create” to create the sink.
 You will be directed back to the Sinks listing where your new sink is initializing.
@@ -240,7 +237,7 @@ image:decodable-data-pipeline/01/image14.png[]
 |production
 
 |Sink Type
-|Astra DB
+|{astra-db}
 
 |Name
 |prd-click-astradb
@@ -276,4 +273,4 @@ This is a semi-verbose log of the sink starting, validating, and running.
 
 == Next step
 
-Great work! With the Astra objects in place, let's move on to setting up the Decodable processing. xref:real-time-data-pipeline/02-create-decodable-objects.adoc[Setup Decodable >>]
+Great work! With the {product-short} objects in place, let's move on to setting up the Decodable processing. xref:real-time-data-pipeline/02-create-decodable-objects.adoc[Setup Decodable >>]

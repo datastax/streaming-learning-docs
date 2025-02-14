@@ -115,7 +115,7 @@ The command below assumes you've properly configured the client.conf file for pu
 bin/pulsar-admin functions create --function-config-file </absolute/path/to/your/python/func-create-config.yml>
 ----
 
-. Check results: Go to the {astra_ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+. Check results: Go to the {astra-ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
 
 .. You can also use the pulsar-admin command to list your functions:
 +
@@ -249,7 +249,7 @@ userConfig:
 +
 [NOTE]
 ====
-{product} requires the “inputs” topic to have a message schema defined before deploying the function. Otherwise, deployment errors may occur. Use the {astra_ui} to define the message schema for a topic.
+{product} requires the “inputs” topic to have a message schema defined before deploying the function. Otherwise, deployment errors may occur. Use the {astra-ui} to define the message schema for a topic.
 ====
 +
 . Use pulsar-admin to deploy your new JAR to {product} or {pulsar-short}.
@@ -260,7 +260,7 @@ The command below assumes you've properly configured the client.conf file for pu
 bin/pulsar-admin functions create --function-config-file  </absolute/path/to/your/javajar/func-create-config.yml>
 ----
 
-. Check results: Go to the {astra_ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+. Check results: Go to the {astra-ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
 
 .. You can also use the pulsar-admin command to list your functions:
 +
@@ -280,7 +280,7 @@ image::astream-name-function.png[Function and Namespace]
 
 . Select the file you want to pull the function from and which function you want to use within that file.
 
-Astra generates a list of acceptable classes. Python and Java functions are added a little differently from each other.
+{product} generates a list of acceptable classes. Python and Java functions are added a little differently from each other.
 
 Python functions are added by loading a Python file (.py) or a zipped Python file (.zip). When adding Python files, the Class Name is specified as the name of the Python file without the extension plus the class you want to execute.
 

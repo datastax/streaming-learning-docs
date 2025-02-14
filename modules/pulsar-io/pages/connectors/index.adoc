@@ -28,7 +28,7 @@ include::partial$connectors/sources/source-connectors.adoc[tag=production]
 
 {company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product}*.
 
-To get access to these connectors, contact {support_url}[{company} Support].
+To get access to these connectors, contact {support-url}[{company} Support].
 
 === Sink Connectors (experimental)
 
@@ -57,22 +57,32 @@ Assuming you have downloaded client.conf to the {pulsar-short} folder:
 ----
 --
 
-cURL::
+curl::
 +
 --
+// tag::rest-env-vars[]
+You need a {pulsar-short} token for REST API authentication.
+This is different from your {astra-db} application tokens.
 
-You'll need to create an {product} API token to be used with the Rest API. This is different from your Astra tokens.
+. In the {astra-ui-link}, go to *Streaming*, click your tenant's name, and then click the *Settings* tab.
 
-Navigate to the "Settings" area in the {product} UI and choose "Create Token".
+. Click *Create Token*.
 
-Retrieve the web service URL from the "Connect" tab in the {product} UI.
+. Copy the token, store it securely, and then click *Close*.
 
+. Click the *Connect* tab, and then copy the *Web Service URL*.
+
+. Create environment variables for your tenant's token and web service URL:
++
 [source,shell,subs="attributes+"]
 ----
 export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
+// end::rest-env-vars[]
 
+. Use these values to form curl commands to the REST API:
++
 [source,shell,subs="attributes+"]
 ----
 curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_STREAMING_TOKEN"
@@ -100,18 +110,7 @@ Assuming you have downloaded client.conf to the {pulsar-short} folder:
 cURL::
 +
 --
-
-You'll need to create an {product} API token to be used with the Rest API. This is different from your Astra tokens.
-
-Navigate to the "Settings" area in the {product} UI and choose "Create Token".
-
-Retrieve the web service URL from the "Connect" tab in the {product} UI.
-
-[source,shell,subs="attributes+"]
-----
-export WEB_SERVICE_URL=<replace-me>
-export ASTRA_STREAMING_TOKEN=<replace-me>
-----
+include::pulsar-io:connectors/index.adoc[tag=rest-env-vars]
 
 [source,shell,subs="attributes+"]
 ----
