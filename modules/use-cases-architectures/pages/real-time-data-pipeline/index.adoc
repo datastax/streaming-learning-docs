@@ -22,7 +22,7 @@ image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelin
 
 - Where the data comes from
 
-*{astra_db}*
+*{astra-db}*
 
 - All Clicks Topic: a collection of messages with normalized click data
 - Product Clicks Topic: a collection of messages with normalized and filtered click data
@@ -48,7 +48,7 @@ image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelin
 
 [NOTE]
 ====
-This guide stays within the free tiers of both {astra_db} and Decodable.
+This guide stays within the free tiers of both {astra-db} and Decodable.
 You won’t need a credit card for this guide.
 ====
 
