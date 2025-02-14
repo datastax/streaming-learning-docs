@@ -28,7 +28,7 @@ include::partial$connectors/sources/source-connectors.adoc[tag=production]
 
 {company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product}*.
 
-To get access to these connectors, contact {support_url}[{company} Support].
+To get access to these connectors, contact {support-url}[{company} Support].
 
 === Sink Connectors (experimental)
 

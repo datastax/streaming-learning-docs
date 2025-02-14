@@ -25,3 +25,4 @@ asciidoc:
     cass: Apache Cassandra
     cass-short: Cassandra
     cass-reg: Apache Cassandra(R)
+    support-url: 'https://support.datastax.com'
