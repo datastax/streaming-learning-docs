@@ -1,6 +1,6 @@
-Deploy transform functions in the *Functions* tab of the {astra_ui}.
+Deploy transform functions in the *Functions* tab of the {astra-ui}.
 
-The process is similar to xref:astra-streaming:developing:astream-functions.adoc[creating a function in the {astra_ui}], but with a few additional steps.
+The process is similar to xref:astra-streaming:developing:astream-functions.adoc[creating a function in the {astra-ui}], but with a few additional steps.
 
 . After naming your new function, select the *Use {company} transform function* option. 
 . Select a transform function from the list of available functions:

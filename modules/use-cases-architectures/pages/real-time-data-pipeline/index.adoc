@@ -1,4 +1,4 @@
-= Real-time data pipelines with {astra_db} and Decodable
+= Real-time data pipelines with {product-short} and Decodable
 :navtitle: Build a real-time data pipeline
 
 This guide presents a hands-on approach for defining the objects that make up a real-time data processing pipeline.
@@ -16,7 +16,7 @@ This pipeline is intended to be production ready, because we’re using cloud-ba
 
 The pipeline components are outlined below.
 
-image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelines with {astra_db} and Decodable]
+image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelines with {product} and Decodable]
 
 *E-Commerce Site Clicks*
 
@@ -42,7 +42,7 @@ image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelin
 
 == Prerequisites
 
-* An https://astra.datastax.com/signupstreaming[{astra_db} account^]
+* An {astra-ui-link}/signupstreaming[{product-short} account^]
 
 * A https://app.decodable.co/-/accounts/create[Decodable account]
 

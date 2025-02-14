@@ -45,20 +45,20 @@ xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get sta
 ****
 
 [sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Starlight for Kafka]
+.xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[{kafka-for-astra}]
 ****
 --
-Starlight for Kafka brings native {pulsar} protocol support by introducing a Kafka protocol handler on {pulsar-short} brokers.
+{kafka-for-astra} brings native {pulsar} protocol support by introducing a Kafka protocol handler on {pulsar-short} brokers.
 
 xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 --
 ****
 
 [sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Starlight for RabbitMQ]
+.xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[{starlight-rabbitmq}]
 ****
 --
-Starlight for RabbitMQ combines the AMQP 0.9.1 API with {pulsar-short}, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+{starlight-rabbitmq} combines the AMQP 0.9.1 API with {pulsar-short}, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
 
 xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
 --

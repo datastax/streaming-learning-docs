@@ -8,7 +8,7 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == Creating message topics to capture the stream of click data
 
-. In the {link-astra-portal}, go to "Streaming", and then click "Create Tenant".
+. In the {astra-ui-link}, go to "Streaming", and then click "Create Tenant".
 +
 image:decodable-data-pipeline/01/image4.png[]
 
@@ -62,7 +62,7 @@ image:decodable-data-pipeline/01/image5.png[]
 
 . The page will refresh with your new token details.
 Don’t worry about saving the tokens - we will retrieve these later.
-You can “Esc” or just return to the {link-astra-portal} home, where you will see your new streaming tenant and database.
+You can “Esc” or just return to the {astra-ui-link} home, where you will see your new streaming tenant and database.
 +
 image:decodable-data-pipeline/01/image1.png[]
 

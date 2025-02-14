@@ -85,7 +85,7 @@ image:decodable-data-pipeline/03/image6.png[]
 image:decodable-data-pipeline/03/image5.png[]
 
 . Finally, let’s look at the final data in your {astra-db} database.
-In the {link-astra-portal}, click the “webstore-clicks” database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
+In the {astra-ui-link}, click the “webstore-clicks” database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
 +
 [tabs]
 ====

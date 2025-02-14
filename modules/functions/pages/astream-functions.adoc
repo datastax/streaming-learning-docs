@@ -115,7 +115,7 @@ The command below assumes you've properly configured the client.conf file for pu
 bin/pulsar-admin functions create --function-config-file </absolute/path/to/your/python/func-create-config.yml>
 ----
 
-. Check results: Go to the {astra_ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+. Check results: Go to the {astra-ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
 
 .. You can also use the pulsar-admin command to list your functions:
 +
@@ -249,7 +249,7 @@ userConfig:
 +
 [NOTE]
 ====
-{product} requires the “inputs” topic to have a message schema defined before deploying the function. Otherwise, deployment errors may occur. Use the {astra_ui} to define the message schema for a topic.
+{product} requires the “inputs” topic to have a message schema defined before deploying the function. Otherwise, deployment errors may occur. Use the {astra-ui} to define the message schema for a topic.
 ====
 +
 . Use pulsar-admin to deploy your new JAR to {product} or {pulsar-short}.
@@ -260,7 +260,7 @@ The command below assumes you've properly configured the client.conf file for pu
 bin/pulsar-admin functions create --function-config-file  </absolute/path/to/your/javajar/func-create-config.yml>
 ----
 
-. Check results: Go to the {astra_ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+. Check results: Go to the {astra-ui} to see your newly deployed function listed under the “Functions” tab for your Tenant. See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
 
 .. You can also use the pulsar-admin command to list your functions:
 +

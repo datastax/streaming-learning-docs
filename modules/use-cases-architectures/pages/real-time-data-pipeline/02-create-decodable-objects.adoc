@@ -8,7 +8,7 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == The {product} connection info
 
-To connect {product} to Decodable, you need some information from your {product} tenant. In the {link-astra-portal}, navigate to the webstore-clicks streaming tenant.
+To connect {product} to Decodable, you need some information from your {product} tenant. In the {astra-ui-link}, navigate to the webstore-clicks streaming tenant.
 
 image:decodable-data-pipeline/02/image4.png[]
 

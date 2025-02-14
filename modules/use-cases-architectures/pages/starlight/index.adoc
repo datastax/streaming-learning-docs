@@ -4,15 +4,15 @@
 The Starlight suite of extensions is a collection of {pulsar-reg} protocol handlers that extend an existing {pulsar-short} cluster.
 The goal of all the extensions is to create a native, seamless interaction with a {pulsar-short} cluster using existing tooling and clients.
 
-== Starlight for Kafka
+== {kafka-for-astra}
 
-Starlight for Kafka brings native Apache Kafka(R) protocol support to {pulsar} by introducing a Kafka protocol handler on {pulsar-short} brokers.
+{kafka-for-astra} brings native Apache Kafka(R) protocol support to {pulsar} by introducing a Kafka protocol handler on {pulsar-short} brokers.
 
 xref:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
 
-== Starlight for RabbitMQ
+== {starlight-rabbitmq}
 
-Starlight for RabbitMQ combines the industry-standard AMQP 0.9.1 (RabbitMQ) API with the cloud-native and horizontally scalable {pulsar-short} streaming platform, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+{starlight-rabbitmq} combines the industry-standard AMQP 0.9.1 (RabbitMQ) API with the cloud-native and horizontally scalable {pulsar-short} streaming platform, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
 
 xref:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
 
