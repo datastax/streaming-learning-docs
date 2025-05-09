@@ -126,7 +126,7 @@ Caused by: org.apache.pulsar.client.api.PulsarClientException$ConsumerAssignExce
 	at com.datastax.pulsar.SimplePulsarConsumer.main(SimplePulsarConsumer.java:47)
 ----
 
-The new consumer can't subscribe to the topic because you reserved the entire hash range for the first consumer.
+The new consumer cannot subscribe to the topic because you reserved the entire hash range for the first consumer.
 
 == Key_Shared subscription video
 
