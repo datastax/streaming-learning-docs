@@ -73,7 +73,7 @@ Exception in thread "main" java.lang.IllegalStateException: Cannot connect to pu
 Caused by: org.apache.pulsar.client.api.PulsarClientException$ConsumerBusyException: {"errorMsg":"Exclusive consumer is already connected","reqId":2964994443801550457, "remote":"<service_url>", "local":"/192.168.0.95:55777"}
 ----
 
-The second consumer can't subscribe to the topic because the subscription is *exclusive*. +
+The second consumer cannot subscribe to the topic because the subscription is *exclusive*. +
 
 In the example above, the consumer didn't declare a subscription type, so {pulsar-short} created an exclusive subscription by default. +
 To explicitly define an exclusive subscription, add `.subscriptionType(SubscriptionType.Exclusive)` to the consumer.

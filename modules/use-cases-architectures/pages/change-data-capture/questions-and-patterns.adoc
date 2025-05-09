@@ -63,7 +63,7 @@ For more, see the https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/ins
 .Does the {cass-short} Source Connector use a dead-letter topic?
 [%collapsible]
 ====
-A dead letter topic is used when a message can't be delivered to a consumer. Maybe the message acknowledgment time expired (no consumer acknowledged receipt of the message), or a consumer negatively acknowledged the message, or a retry letter topic is in use and retries were exhausted.
+A dead letter topic is used when a message cannot be delivered to a consumer. Maybe the message acknowledgment time expired (no consumer acknowledged receipt of the message), or a consumer negatively acknowledged the message, or a retry letter topic is in use and retries were exhausted.
 
 The {cass-short} Source Connector creates a consumer to receive new event messages from the CDC agent, but does not configure a dead letter topic. It is assumed that parallel instances, broker compute, and function worker compute will be sized to handle the workload.
 ====
