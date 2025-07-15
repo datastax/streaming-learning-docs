@@ -32,15 +32,10 @@ This is also a good option for those that already have a streaming tenant and ar
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
 . Go to the "Connect" tab and choose the "Kafka" option.
-+
-image:astra-streaming-connect-kafka.png[{product} connect kafka]
 
-. You will see an "Enable Kafka" button. Click to continue.
-+
-image:enable-kafka-button.png[{product} enable kafka]
+. Click "Enable Kafka".
 
 . A message will let you know of the additions (and restrictions) that come with using {kafka-for-astra}.
-image:enable-kafka-message.png[{product} enable kafka message]
 
 . Select the "Enable Kafka" button to confirm your understanding.
 
