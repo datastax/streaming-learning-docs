@@ -64,7 +64,9 @@ curl::
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
-. In the {astra-ui-link}, go to *Streaming*, click your tenant's name, and then click the *Settings* tab.
+. In the {astra-ui-link} header, click icon:material-icons:apps[] **Applications**, and then select *Streaming*.
+
+. Click your tenant's name, and then click the *Settings* tab.
 
 . Click *Create Token*.
 

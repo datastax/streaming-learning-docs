@@ -8,246 +8,198 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == The {product} connection info
 
-To connect {product} to Decodable, you need some information from your {product} tenant. In the {astra-ui-link}, navigate to the webstore-clicks streaming tenant.
+To connect {product} to Decodable, you need some information from your {product} tenant.
+
+. In the {astra-ui-link} header, click icon:material-icons:apps[] **Applications**, select **Streaming**, and then click your `webstore-clicks` streaming tenant.
 
 image:decodable-data-pipeline/02/image4.png[]
 
-In the “Connect” tab, scroll down to the “Tenant Details” area.
-You will need these values to connect to Decodable.
-
+. Click the **Connect** tab, and then scroll to the **Tenant Details** section.
++
+These values are required to connect to Decodable.
++
 image:decodable-data-pipeline/02/image16.png[]
 
-You will also need to create a {pulsar-short} token.
-Click the “Token Manager” link and “Create Token”.
-A popup window will appear with the token value.
-Copy the token, and then store it securely.
-
-image:decodable-data-pipeline/02/image31.png[]
-
-Close the popup and navigate back to the “Connect” tab. We’ll come back here in a bit.
+. Create a {pulsar-short} token:
++
+.. In **Tenant Details**, click **Token Manager**, and then click **Create Token**.
+.. In the **Copy Token** dialog, copy the **Token**, and then store it securely.
+.. Click **Close** when you are done.
 
 == Creating a Decodable connection to {product} for all web clicks
 
-In a different browser tab, sign in to your Decodable account and navigate to the “Connections” tab. We are going to create a new connection and stream, that will direct all web clicks to the correct topic in {product}.
+In Decodable, you must create a connection and stream that will direct all web clicks to the correct topics in {product}.
 
-. Click the “New Connection” button
+. In new browser tab, sign in to your Decodable account.
+
+. Click the **Connections** tab, and then click **New Connection**.
 +
 image:decodable-data-pipeline/02/image25.png[]
 
-. In the “Choose a Connector” view, locate the {company} {product} connector and click “Connect”.
+. In the **Choose a Connector** dialog, find the {company} {product} connector, and then click **Connect**.
 +
 image:decodable-data-pipeline/02/image14.png[]
 
-. Use the Tenant Details from {product} (in your other browser tab) to fill in the details about the connection as follows:
+. Use the {product} tenant details from your other browser tab to complete the Decodable connection fields:
 +
-[cols="1,4a",frame=none]
-|===
-|Connection Type
-|Sink
-
-|Broker Service Url
-|(from astra tenant)
-
-|Web Service Url
-|(from astra tenant)
-
-|Topic
-|persistent://webstore-clicks/production/all-clicks
-
-|Authentication Token
-|(from astra tenant)
-
-|Value Format
-|JSON
-|===
+* **Connection Type**: Select **Sink**.
+* **Broker Service URL**: Enter the Pulsar broker service URL from your {product} tenant.
+* **Web Service URL**: Enter the Pulsar web service URL from your {product} tenant.
+* **Topic**: Enter `persistent://webstore-clicks/production/all-clicks`.
+* **Authentication Token**: Enter the same token you used for your {product} sinks.
+* **Value Format**: Select **JSON**.
 +
 image:decodable-data-pipeline/02/image35.png[]
 
-. Click “Next” and choose “New Stream”. Name the new stream “Webstore-Normalized-Clicks-Stream”.
+. Click **Next**, click **New Stream**, name the stream `Webstore-Normalized-Clicks-Stream`, and then click **Next**.
 +
 image:decodable-data-pipeline/02/image12.png[]
 
-. Click “Next” to build the following schema.
+. In **Define this Connection's schema**, select **New Schema** for the **Schema Source**, and then add fields with the following names and types:
 +
-[cols="1,1"]
+[cols=2]
 |===
-|click_timestamp
-|TIMESTAMP(0)
+|Name |Type
 
-|url_host
-|STRING
+|`click_timestamp`
+|**TIMESTAMP(0)**
 
-|url_protocol
-|STRING
+|`url_host`
+|**STRING**
 
-|url_path
-|STRING
+|`url_protocol`
+|**STRING**
 
-|url_query
-|STRING
+|`url_path`
+|**STRING**
 
-|browser_type
-|STRING
+|`url_query`
+|**STRING**
 
-|operating_system
-|STRING
+|`browser_type`
+|**STRING**
 
-|visitor_id
-|STRING
+|`operating_system`
+|**STRING**
+
+|`visitor_id`
+|**STRING**
 |===
 +
 image:decodable-data-pipeline/02/image10.png[]
 +
-[NOTE]
-====
-You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
-====
-+
-. Click “Next” and name the overall connection “Astra-Streaming-All-Webclicks-Connection”.
+For **Type**, you must select options from the dropdown menu in order for Decodable to accept the schema.
+
+. Click **Next**, name the connection `Astra-Streaming-All-Webclicks-Connection`, and then click **Create Connection**.
 +
 image:decodable-data-pipeline/02/image26.png[]
 
-. You now have a ready-to-go {product} connection! Oh, the things we can do!!!
-+
-image:decodable-data-pipeline/02/image13.png[]
-
 == Creating a Decodable connection to {product} for product web clicks
 
-Create another connection to stream product clicks.
+Create another connection in Decodable to stream product clicks.
 
-. Navigate back to the “Connections” area and click “New Connection”.
+. In Decodable, on the **Connections** tab, click **New Connection**.
 
-. Just as previously done, locate the {product} connection and use the Tenant Details from {product} to fill in the details about the connection as follows. Note the change in topic name.
+. In the **Choose a Connector** dialog, find the {company} {product} connector, and then click **Connect**.
+
+. Use the {product} tenant details from your other browser tab to complete the Decodable connection fields.
+All values are the same as the other connection, except the **Topic**.
 +
-[cols="1,4a",frame=none]
-|===
-|Connection Type
-|Sink
+* **Connection Type**: Select **Sink**.
+* **Broker Service URL**: Enter the Pulsar broker service URL from your {product} tenant.
+* **Web Service URL**: Enter the Pulsar web service URL from your {product} tenant.
+* **Topic**: Enter `persistent://webstore-clicks/production/product-clicks`.
+* **Authentication Token**: Enter the same token you used for your {product} sinks.
+* **Value Format**: Select **JSON**.
 
-|Broker Service Url
-|(from astra tenant)
+. Click **Next**, click **New Stream**, name the stream `Webstore-Product-Clicks-Stream`, and then click **Next**.
 
-|Web Service Url
-|(from astra tenant)
-
-|Topic
-|persistent://webstore-clicks/production/product-clicks
-
-|Authentication Token
-|(from astra tenant)
-
-|Value Format
-|JSON
-|===
+. In **Define this Connection's schema**, select **New Schema** for the **Schema Source**, and then add fields with the following names and types:
 +
-image:decodable-data-pipeline/02/image21.png[]
-
-. Click “Next” and create a “New Stream”. Name it “Webstore-Product-Clicks-Stream”
-
-. Click “Next” and build the following schema.
-+
-[cols="1,1"]
+[cols=2]
 |===
-|click_timestamp
-|TIMESTAMP(0)
+|Name |Type
 
-|catalog_area_name
-|STRING
+|`click_timestamp`
+|**TIMESTAMP(0)**
 
-|product_name
-|STRING
+|`catalog_area_name`
+|**STRING**
+
+|`product_name`
+|**STRING**
 |===
 +
 image:decodable-data-pipeline/02/image3.png[]
-+
-[NOTE]
-====
-You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
-====
-+
-. Click “Next” and name the overall connection “Astra-Streaming-Product-Webclicks-Connection”.
-+
-image:decodable-data-pipeline/02/image15.png[]
 
-. Click “Create Connection” to finalize the connection.
-+
-image:decodable-data-pipeline/02/image34.png[]
+. Click **Next**, name the connection `Astra-Streaming-Product-Webclicks-Connection`, and then click **Create Connection**.
 
 == Creating an HTTP data ingestion source
 
-We need to create one more connection.
-We’ll use Decodable’s REST connector to POST (or ingest) raw data into the pipeline.
+Create a third connection to use Decodable's REST API to ingest (`POST`) raw data into the pipeline:
 
-. Navigate to the “Connections” area and click “New Connection”.
+. In Decodable, on the **Connections** tab, click **New Connection**.
 
-. Locate the “REST” connection and click “Connect”.
+. In the **Choose a Connector** dialog, find the **REST** connector, and then click **Connect**.
 +
 image:decodable-data-pipeline/02/image19.png[]
 
-. Leave all the settings as default.
+. On the **Create your REST connector** dialog, leave the default values for all fields, and then click **Next**.
 +
 image:decodable-data-pipeline/02/image27.png[]
 
-. Click “Next” and create a “New Stream”. Name it “Webstore-Raw-Clicks-Stream”.
+. Click **New Stream**, enter the name `Webstore-Raw-Clicks-Stream`, and then click **Next**.
 +
 image:decodable-data-pipeline/02/image1.png[]
 
-. Click “Next” and fill in the following schema.
+. In **Define this Connection's schema**, select **New Schema** for the **Schema Source**, and then add fields with the following names and types:
 +
-[cols="1,1"]
+[cols=2]
 |===
-|click_epoch
-|BIGINT
+|Name |Type
 
-|UTC_offset
-|INT
+|`click_epoch`
+|**BIGINT**
 
-|request_url
-|STRING
+|`UTC_offset`
+|**INT**
 
-|browser_agent
-|STRING
+|`request_url`
+|**STRING**
 
-|visitor_id
-|STRING
+|`browser_agent`
+|**STRING**
+
+|`visitor_id`
+|**STRING**
 |===
 +
 image:decodable-data-pipeline/02/image6.png[]
-+
-[NOTE]
-====
-You have to actually select "string" for the data type in the dropdown menu, or Decodable will not accept the schema.
-====
-+
-. Click “Next” and name the overall connection “Webstore-Raw-Clicks-Connection”.
+
+. Click **Next**, name the connection `Webstore-Raw-Clicks-Connection`, and then click **Create Connection**.
 +
 image:decodable-data-pipeline/02/image29.png[]
 
-. Click “Create Connection”.
-+
-image:decodable-data-pipeline/02/image24.png[]
-
-. anchor:endpoint-details[]Notice in the connector settings how the “Endpoint” value has a “<connection-id>” value. This is a dynamic value that is generated when the connection is created. Navigate to the “Details” tab of the connection and you will see the final endpoint value. We’ll prefix that value with our account info (ddieruf.api.decodable.co) to create a usable URL. Learn more about the REST connector in the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[Decodable documentation].
+In your REST connector's settings, note that the **Endpoint** value contains a `<connection_ID>`, which is a dynamic value that is generated when the connection is created.
+Click the connector's **Details** tab to see the resolved endpoint path, such as `/v1alpha2/connections/7ef9055f/events`.
+You will use this path with your account domain, such as `user.api.decodable.co` to create the full endpoint URL.
+For more information about the REST connector, see the https://docs.decodable.co/docs/connector-reference-rest#endpoint-url[Decodable documentation].
 +
 image:decodable-data-pipeline/02/image7.png[]
 
-You now have 3 connections ready to go.
+You now have three connectors ready to use in your streaming pipeline.
 
 image:decodable-data-pipeline/02/image5.png[]
 
 == Creating a data normalization pipeline
 
-Now we are going to create the core functions for our stream processing.
+In this part of the tutorial, you will create the core functions for your stream processing pipeline.
 
-. Navigate to the “Pipelines” area and click “Create Pipeline”.
-+
-image:decodable-data-pipeline/02/image9.png[]
+. In Decodable, go to **Pipelines**, and then click **Create Pipeline**.
 
-. Choose an input of “Webstore-Raw-Clicks-Stream” and click “Next”.
-+
-image:decodable-data-pipeline/02/image28.png[]
+. For the input stream, select **Webstore-Raw-Clicks-Stream**, and then click **Next**.
 
-. Clear the existing SQL and copy/paste the following into the “SQL” area.
+. In **Define your data processing with SQL**, delete the pre-populated SQL, and then enter the following SQL statement:
 +
 [source,sql]
 ----
@@ -273,29 +225,25 @@ from `Webstore-Raw-Clicks-Stream`
 +
 image:decodable-data-pipeline/02/image17.png[]
 
-. Click “Next” and review the auto-generated output stream. Thank you Decodable!
+. Click **Next**, review the automatically generated output stream, and then click **Next**.
++
+The output stream should be correct by default if you followed along with the tutorial so far.
 +
 image:decodable-data-pipeline/02/image23.png[]
 
-. Click “Next” and name the pipeline “Webstore-Raw-Clicks-Normalize-Pipeline”.
+. Click **Next**, name the pipeline `Webstore-Raw-Clicks-Normalize-Pipeline`, and then click **Create Pipeline**.
 +
-image:decodable-data-pipeline/02/image11.png[]
-
-. Click “Create Pipeline” and be patient, it might take a few seconds.
-+
-image:decodable-data-pipeline/02/image20.png[]
+It can take a few minutes for the pipeline to be created.
 
 == Creating a data filtering pipeline
 
-Create one more pipeline to filter out product click data.
+Create a pipeline to separate product click data from all web click data:
 
-. Navigate to the “Pipelines” area and click “New Pipeline”.
+. In Decodable, go to **Pipelines**, and then click **Create Pipeline**.
 
-. Choose the “Webstore-Normalized-Clicks-Stream” as the input.
-+
-image:decodable-data-pipeline/02/image22.png[]
+. For the input stream, select **Webstore-Normalized-Clicks-Stream**, and then click **Next**.
 
-. Clear the SQL from the window and copy/paste the following into the “SQL” window.
+. In **Define your data processing with SQL**, delete the pre-populated SQL, and then enter the following SQL statement:
 +
 [source,sql]
 ----
@@ -310,18 +258,16 @@ where TRIM(LOWER(SPLIT_INDEX(url_path, '/', 1))) = 'catalog'
 +
 image:decodable-data-pipeline/02/image33.png[]
 
-. Click “Next” and review the auto-generated output stream. Thank you again Decodable!
+. Click **Next**, review the automatically generated output stream, and then click **Next**.
++
+The output stream should be correct by default if you followed along with the tutorial so far.
 +
 image:decodable-data-pipeline/02/image32.png[]
 
-. Click “Next” and name the pipeline “Webstore-Product-Clicks-Pipeline”.
+. Click **Next**, name the pipeline `Webstore-Product-Clicks-Pipeline`, and then click **Create Pipeline**.
 +
-image:decodable-data-pipeline/02/image18.png[]
-
-. Now we have a pipeline ready to filter by product.
-+
-image:decodable-data-pipeline/02/image30.png[]
+It can take a few minutes for the pipeline to be created.
 
 == Next step
 
-Now it's time see the magic! xref:real-time-data-pipeline/03-put-it-all-together.adoc[Run the pipelines >>]
+Next, xref:real-time-data-pipeline/03-put-it-all-together.adoc[connect the {product-short} and Decodable pieces, and then run the pipeline].

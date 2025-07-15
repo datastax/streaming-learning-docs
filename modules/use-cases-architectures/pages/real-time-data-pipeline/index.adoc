@@ -52,7 +52,7 @@ This guide stays within the free tiers of both {astra-db} and Decodable.
 You won’t need a credit card for this guide.
 ====
 
-== Getting Started
+== Getting started
 
 The guide is broken into a few milestones. You'll want to follow these milestones in order for everything to work.
 
@@ -75,8 +75,3 @@ For extra credit, you are also given the opportunity to put the processing under
 +
 This final milestone helps with debugging the pipelines in case something doesn't go quite right.
 You are also given instructions on how to tear down and clean up all the objects previously created, because we're all about being good citizens of the cloud.
-
-[cols=^,frame=none,grid=none]
-|===
-| *Click the first guide above to get started!*
-|===

@@ -84,23 +84,19 @@ image:decodable-data-pipeline/03/image6.png[]
 +
 image:decodable-data-pipeline/03/image5.png[]
 
-. Finally, let’s look at the final data in your {astra-db} database.
-In the {astra-ui-link}, click the “webstore-clicks” database. Choose the “CQL Console” tab and copy/paste the following command in the terminal.
+. Inspect the data in your {astra-db} database.
 +
-[tabs]
-====
-CQL::
+In the {astra-ui}, go to your `webstore-clicks` database, click **CQL Console**, and then run the following CQL statement:
 +
 --
 [source,sql,subs="attributes+"]
 ----
 select * from click_data.all_clicks;
 ----
---
 
-Result::
-+
---
+.Result
+[%collapsible]
+====
 [source,sql]
 ----
 token@cqlsh> EXPAND ON; //this cleans up the output
@@ -119,7 +115,6 @@ token@cqlsh> select * from click_data.all_clicks;
 
 (1 rows)
 ----
---
 ====
 
 This confirms that the data was successfully written to the database.
@@ -138,23 +133,19 @@ Similar to how you followed the above flow of raw click data, follow this flow t
 . Navigate to your {product} tenant and check the production/product-clicks topic.
 .. There should be 1 message in “Data In” and 1 message in “Data Out”.
 
-. Finally, navigate to your {astra-db} database's CQL Console.
-.. Query the product_clicks table:
+. Inspect the data in your {astra-db} database.
 +
-[tabs]
-====
-CQL::
+In the {astra-ui}, go to your `webstore-clicks` database, click **CQL Console**, and then query the `product_clicks` table:
 +
 --
 [source,sql,subs="attributes+"]
 ----
 select * from click_data.product_clicks;
 ----
---
-
-Result::
 +
---
+.Result
+[%collapsible]
+====
 [source,sql]
 ----
 @ Row 1
@@ -163,22 +154,21 @@ Result::
  product_name      | yetanother cool product
  click_timestamp   | 2023-02-01 21:25:22.000000+0000
 ----
---
 ====
 
-The first web click data you entered was a product click, so the data was filtered in the pipeline and processed into the relevant table.
+The first web click data you entered was a product click, so the data was filtered in the pipeline, and then processed into the relevant table.
 
 == Example real-time site data
 
-Let’s see what this can do! To put a load on the pipeline, we’ll need a way to continuously post data to our endpoint. Below are a few examples.
+To simulate a production workload to test the pipeline, you need a way to continuously post data to the Decodable REST endpoint.
+For this tutorial, you can use the following sample website:
 
-. Use the download button below to download a zip of a static HTML e-commerce catalog that silently posts click data to an endpoint.
-The site is a copy of https://www.blazemeter.com/[BlazeMeter]’s https://www.demoblaze.com/[Demoblaze site].
-+
-[.button]#xref:attachment$web-clicks-website.zip[*Download Now*]#
+. Download the sample `xref:attachment$web-clicks-website.zi[web-click-website.zip]`, which is a static HTML e-commerce catalog that silently posts click data to an endpoint.
+The sample site is a copy of the https://www.demoblaze.com/[Demoblaze site] from https://www.blazemeter.com/[BlazeMeter].
 
-. Extract the zip, open the folder in your text editor or IDE of choice, and open the "script.js" file.
-There are 2 placeholders for data you'll need to retrieve from Decodable: the Endpoint URL and an authorization token.
+. Extract the zip, open the folder in an IDE or text editor, and then open `script.js`.
+
+. Replace the `decodable_token` and `endpoint_url` values with actual values from your Decodable account:
 +
 [source,javascript]
 ----
@@ -189,14 +179,23 @@ function post_click(url){
 }
 ----
 +
-Learn more about retrieving the Endpoint URL and auth token in the https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable documentation].
+Replace the following:
++
+* `<value retrieved from access_token in .decodable/auth>`: The value of `access_token` from your `.decodable/auth` file
+*  `https://ddieruf.api.decodable.co/v1alpha2/connections/4f003544/events`: Your REST connection's complete endpoint URL, including the generated endpoint path and your Decodable account's REST API base URL.
++
+For more information, see the  https://docs.decodable.co/docs/connector-reference-rest#authentication[Decodable authentication documentation].
 
-. Replace the placeholders with your retrieved values and save "script.js".
-. Open the "phones.html" file in your browser (yes, as a local file) and begin clicking on products.
-Each click should be a new post to your Decodable endpoint.
+. Save and close `script.js`.
+
+. Open `phones.html` file in your browser as a local file, and then click on some products.
++
+Each click should send a `POST` request to your Decodable endpoint, which you can monitor in Decodable.
 +
 image:decodable-data-pipeline/03/image10.png[]
 
 == Next step
 
-Continue on to the last step for debugging and cleanup! xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[Next >>]
+If the pipeline succeeded, you can clean up the resources created for this tutorial, as explained in xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[].
+
+If the pipeline isn't working as expected, see the troubleshooting advice in xref:real-time-data-pipeline/04-debugging-and-clean-up.adoc[].
