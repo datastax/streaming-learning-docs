@@ -42,15 +42,15 @@ image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
 
 === Removing {product-short} objects
 
-. In the {astra-ui-link} header, click icon:material-icons:apps[] **Applications**, and then select **Streaming**.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **Streaming**.
 
-. Find the `webstore-clicks` tenant, click icon:material-icons:more_vert[] **More**, and then select **Delete**.
+. Find the `webstore-clicks` tenant, click icon:material:more_vert[name="More"], and then select **Delete**.
 +
 This removes the tenant and all associated sinks, topics, messages, and namespaces.
 
-. In the {astra-ui-link} header, click icon:material-icons:apps[] **Applications**, and then select **{product-short}**.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **{product-short}**.
 
-. Find the `webstore-clicks` database, click icon:material-icons:more_vert[] **More**, and then select **Terminate**.
+. Find the `webstore-clicks` database, click icon:material:more_vert[name="More"], and then select **Terminate**.
 +
 This removes the database and all associated keyspaces and tables.
 This can take a few minutes.

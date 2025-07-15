@@ -124,18 +124,15 @@ Your pipeline ingested raw web click data, normalized it, and then persisted the
 
 Similar to how you followed the above flow of raw click data, follow this flow to confirm the filtered messages were stored.
 
-. Navigate to your Decodable pipeline named “Webstore-Product-Clicks-Pipeline”.
-.. The “Input Metrics” should be 1 record and the “Output Metrics” should be 1 record.
+. In Decodable, go to your `Webstore-Product-Clicks-Pipeline` pipeline, and then check that the **Input Metrics** and the **Output Metrics** have 1 record each.
 
-. Navigate to your Decodable connection named “Astra-Streaming-Product-Webclicks-Connection”.
-.. The “Input Metrics” should be 1 record.
+. Go to your `Astra-Streaming-Product-Webclicks-Connection` connection, and then check that the **Input Metrics** have 1 record.
 
-. Navigate to your {product} tenant and check the production/product-clicks topic.
-.. There should be 1 message in “Data In” and 1 message in “Data Out”.
+. In {product}, go to your tenant, and then go to the `product-clicks` topic in the `production` namespace.
 
-. Inspect the data in your {astra-db} database.
-+
-In the {astra-ui}, go to your `webstore-clicks` database, click **CQL Console**, and then query the `product_clicks` table:
+. Make sure **Data In** and **Data Out** have 1 message each.
+
+. In the {astra-ui}, go to your `webstore-clicks` database, click **CQL Console**, and then query the `product_clicks` table to inspect the data in the database:
 +
 --
 [source,sql,subs="attributes+"]
