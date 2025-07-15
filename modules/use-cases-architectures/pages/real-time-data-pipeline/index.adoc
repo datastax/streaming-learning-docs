@@ -42,7 +42,7 @@ image:decodable-data-pipeline/real-time-data-pipeline.png[Real-time data pipelin
 
 == Prerequisites
 
-* An {astra-ui-link}/signupstreaming[{product-short} account^]
+* An {astra-url}/signupstreaming[{product-short} account^]
 
 * A https://app.decodable.co/-/accounts/create[Decodable account]
 
