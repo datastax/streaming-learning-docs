@@ -31,16 +31,10 @@ If you want a working RabbitMQ extension as quickly as possible, this is your be
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
 . Go to the "Connect" tab and choose the "RabbitMQ" option.
-+
-image:astra-streaming-connect-rabbitmq.png[{product} connect RabbitMQ]
 
-. You will see an "Enable RabbitMQ" button. Click to continue.
-+
-image:enable-rabbitmq-button.png[{product} enable RabbitMQ]
+. Click "Enable RabbitMQ".
 
 . A message will let you know of the additions (and restrictions) that come with using {starlight-rabbitmq}.
-+
-image:enable-rabbitmq-message.png[{product} enable RabbitMQ message]
 
 . Click the "Enable RabbitMQ" button to confirm your understanding.
 

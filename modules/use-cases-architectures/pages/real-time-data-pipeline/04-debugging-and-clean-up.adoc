@@ -8,14 +8,25 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == Debugging the pipeline
 
-Maybe things didn’t go so smoothly for you. Or maybe you're just having a bad day :(. Whatever the case, we can fix this!
+If your pipeline didn't work as expected, there are a few things you can do to debug the issue.
 
-Follow the data flows described in xref:real-time-data-pipeline/03-put-it-all-together.adoc#following-the-flow[Step 3] to find where in the pipeline things are broken. Decodable is a great visualization tool for this, because you can click through the connections, streams, and pipelines and actually *see* where connections are failing. For example, if you accidentally named a stream "click-stream" instead of "clicks-stream", you can follow the click event to the outbound "clicks-stream" and then to the pipeline, and see that the pipeline is not receiving the message because its inbound stream is misnamed "click-stream". Stop the pipeline, choose the correct stream, and restart the pipeline to get data flowing again.
+First, find where the pipeline broke by following the data flows described in xref:real-time-data-pipeline/03-put-it-all-together.adoc#following-the-flow[Follow the flow of the product data clicks].
 
-Test input data at the point of failure. The first question to ask is if the input data is malformed, or if the object itself is failing. Decodable’s UI gives you the ability to “Preview” the processing in each pipeline. This is a very powerful debugging tool. Additionally, your {product} tenant has the “Try Me” area where you can produce and consume messages in specific topics, which is great for testing purposes.
-These tools can help you recreate each step of the pipeline and debug issues.
+With Decodable, you can click through the connections, streams, and pipelines and visualize where the connection failed.
+For example, if you accidentally named a stream `click-stream` instead of `clicks-stream`, you can follow the click event to the outbound `clicks-stream` and then to the pipeline.
+There, you'll see that the pipeline isn't receiving the message because its inbound stream is misnamed `click-stream`.
+Then, you can stop the pipeline, fix the inbound stream name, and then restart the pipeline to get data flowing again.
+
+If that doesn't resolve the issue, you can test input data at the point of failure.
+In this case, you want to determine if the input data is malformed, or if the object itself is failing.
+There are two tools you can use to debug this at various stages of the pipleine:
+
+* In Decodable, you can use the **Preview** feature to see a sample of data processing in each pipeline.
+* In {product}, each tenant has a **Try Me** feature where you can simulate producing and consuming messages in specific topics.
 
 == Clean up
+
+To clean up the resources created for this tutorial, you need to remove the Decodable and {product-short} objects you created.
 
 === Removing Decodable objects
 
@@ -31,19 +42,19 @@ image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
 
 === Removing {product-short} objects
 
-. In the {astra-ui}, navigate to the "Streaming" area to see a list of your tenants.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **Streaming**.
 
-. Click the 3 dots associated with "webstore-clicks" tenant and choose the "Delete". This will remove all sinks, topics, messages, and namespaces.
+. Find the `webstore-clicks` tenant, click icon:material:more_vert[name="More"], and then select **Delete**.
 +
-image:decodable-data-pipeline/04/image3.png["Delete {product} tenant"]
+This removes the tenant and all associated sinks, topics, messages, and namespaces.
 
-. Navigate to the "Databases" area and click the 3 dots associated with "webstore-clicks". Choose "Terminate" to remove all traces of the database (it might take a few seconds).
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **{product-short}**.
+
+. Find the `webstore-clicks` database, click icon:material:more_vert[name="More"], and then select **Terminate**.
 +
-image:decodable-data-pipeline/04/image4.png["Terminate {astra-db} database"]
-
-You have now removed all objects and are ready to start fresh!
-Your next processing pipeline can solve a business challenge like fraud detection, or removing personally identifiable information (PII), or maybe how to get to the moon! Have fun!
+This removes the database and all associated keyspaces and tables.
+This can take a few minutes.
 
 == Next step
 
-Return to the xref:real-time-data-pipeline/index.adoc[guide home].
+Now that you've created a sample pipeline, try modifying the tutorial to create a pipeline for your own use cases, like fraud detection or removing personally identifiable information (PII).

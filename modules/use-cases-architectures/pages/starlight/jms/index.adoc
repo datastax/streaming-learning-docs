@@ -42,8 +42,6 @@ Using a standalone cluster? The Starlight for JMS docs provide the "xref:starlig
 === Retrieve connection properties in {product}
 
 . In the {product} portal "Connect" tab, the "{pulsar-short}" area provides important connection information.
-+
-image:astra-streaming-connect-pulsar.png[{product} kafka settings]
 
 . Scroll down to the "Tenant Details" area to find your {pulsar-short} connection information.
 +

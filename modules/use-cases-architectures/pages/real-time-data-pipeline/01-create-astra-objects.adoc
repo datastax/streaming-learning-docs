@@ -8,66 +8,45 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == Creating message topics to capture the stream of click data
 
-. In the {astra-ui-link}, go to "Streaming", and then click "Create Tenant".
-+
-image:decodable-data-pipeline/01/image4.png[]
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], select *Streaming*, and then click **Create Tenant**.
 
-. Name the new streaming tenant “webstore-clicks".
-Choose any cloud provider and region.
-Click “Create Tenant”.
-+
-image:decodable-data-pipeline/01/image6.png[]
+. Name the new streaming tenant `webstore-clicks`, select any cloud provider and region, and then click **Create Tenant**.
 
-. You will be redirected to your new tenant’s quickstart. Navigate to the “Namespace and Topics” tab at the top of the screen.
-+
-image:decodable-data-pipeline/01/image16.png[]
+. From your tenant's overview page, click the **Namespace and Topics** tab.
 
-. Create a new namespace with the name “production”.
-We are treating namespaces as logical development environments to illustrate how you could create a continuous delivery flow.
-You could also have namespaces for “development” and “staging”.
+. Create a new namespace with the name `production`.
 +
-image:decodable-data-pipeline/01/image11.png[]
+In this example, namespaces represent logical development environments to illustrate how you could create a continuous delivery flow.
+You could also have namespaces for `development` and `staging`.
 
-. The namespaces view will refresh to display your new "production" namespace.
-Click the “Add Topic” button associated with the "production" namespace.
-Name your new topic “all-clicks” and leave it as a “Persistent” topic.
-Click the “Add Topic” button to finish creating the topic.
-+
-image:decodable-data-pipeline/01/image15.png[]
+. Click **Add Topic** next to your new `production` namespace, name the topic `all-clicks`, make sure **Persistent** is selected, and then click **Add Topic**.
 
-. Create a second new topic.
-Click the “Add Topic” button associated with the "production" namespace.
-Name your second new topic “product-clicks” and leave it as a “Persistent” topic.
-Click the “Add Topic” button to finish creating the topic.
-+
-image:decodable-data-pipeline/01/image8.png[]
+. Create another topic in the `production` namespace, name the topic `product-clicks`, make sure **Persistent** is selected, and then click **Add Topic**.
 
-. You should have 2 namespaces.
-The “production” namespace should contain the "all-clicks" and "product-clicks" topics you created.
-The "default" namespace is automatically created by {pulsar-short} within each new streaming tenant.
-+
-image:decodable-data-pipeline/01/image13.png[]
+You now have a `production` namespace with two topics, as well as the `default` namespace that is automatically created by {pulsar-short} whenever you create a streaming tenant.
 
 == Storing the stream of click data
 
-. In the {astra-ui}, go to "Databases", and then click “Create database”.
-+
-image:decodable-data-pipeline/01/image18.png[]
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *{product-short}*.
 
-. Name the database “webstore-clicks” and the keyspace “click_data”.
-Choose any cloud provider and region.
-Click “Create Database”.
+. Click **Create database**, and then complete the fields as follows:
 +
-image:decodable-data-pipeline/01/image5.png[]
-
-. The page will refresh with your new token details.
-Don’t worry about saving the tokens - we will retrieve these later.
-You can “Esc” or just return to the {astra-ui-link} home, where you will see your new streaming tenant and database.
+* **Type**: Select **Serverless (non-vector)** to follow along with this tutorial.
 +
-image:decodable-data-pipeline/01/image1.png[]
+If you select **Serverless (vector)**, you must modify the tutorial to use the `default_keyspace` keyspace or create the tutorial keyspace after you create your database.
 
-. Copy and paste the following CQL statement into the CQL console and press “Enter”.
-This will create a table in the database to hold our "all-clicks" web click data (ie: the raw data).
+* **Database name**: Enter `webstore-clicks`.
+* **Keyspace name**: Enter `click_data`.
+* **Provider** and **Region**: Select the same cloud provider and region as your streaming tenant.
+
+. Click **Create Database**, and then wait for the database to initialize.
+This can take several minutes.
+
+. From your database's overview page, click **CQL Console**, and then wait for `cqlsh` to start.
+
+. Enter the following CQL statement into the CQL console, and then press kbd:[Enter].
++
+This statement creates a table named `all_clicks` in the `click_data` keyspace that will store all unfiltered web click data.
 +
 [source, sql]
 ----
@@ -84,9 +63,7 @@ CREATE TABLE IF NOT EXISTS click_data.all_clicks (
 );
 ----
 
-. Create a second table in the database.
-Copy and paste the following CQL statement into the CQL console and press “Enter”.
-This will create a second table in the database to hold our "product-clicks" web click data (ie: the filtered data).
+. Run the following command in the CQL console to create another table that will store filtered web click data for product clicks only.
 +
 [source, sql]
 ----
@@ -98,22 +75,13 @@ CREATE TABLE click_data.product_clicks (
 ) WITH CLUSTERING ORDER BY (product_name ASC, click_timestamp DESC);
 ----
 
-. You can confirm everything was created correctly by describing the keyspace in the CQL terminal.
+. To verify that the tables were created, run `describe click_data;`.
 +
-[tabs]
+The console prints create statements describing the keyspace itself and the two tables.
++
+.Result
+[%collapsible]
 ====
-CQL::
-+
---
-[source,sql,subs="attributes+"]
-----
-describe click_data;
-----
---
-
-Result::
-+
---
 [source,sql,subs="attributes+"]
 ----
 token@cqlsh> describe click_data;
@@ -167,110 +135,49 @@ CREATE TABLE click_data.product_clicks (
     AND read_repair = 'BLOCKING'
     AND speculative_retry = '99PERCENTILE';
 ----
---
 ====
-
-The output displays three “create” CQL statements for the “click_data” keyspace, the `click_data.all_clicks` table, and the `click_data.product_clicks` table.
 
 == Connecting the topics to the store
 
-. In the {astra-ui}, go to your “webstore-clicks” streaming tenant.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
+
+. Click your `webstore-clicks` streaming tenant.
+
+. Click the **Sinks** tab, click **Create Sink**, and then complete the fields as follows:
 +
-image:decodable-data-pipeline/01/image3.png[]
+* **Namespace**: Select your `production` namespace.
+* **Sink Type**: Select **{astra-db}**.
+* **Name**: Enter `all-clicks`.
+* **Input topic**: Select your `all-clicks` topic in your `production` namespace.
+* **Database**: Select your `webstore-clicks` database.
+* **Token**: Click the link to create an {product-short} application token with the **Organization Administrator** role, and then enter the token in the sink's **Token** field.
+Store the token securely, you will use it multiple times during this tutorial.
+* **Keyspace**: Enter `click_data`.
+* **Table Name**: Enter `all_clicks`.
+* **Mapping**: Use the default mapping, which maps the topic's fields to the table's columns.
 
-. Navigate to the “Sinks” tab and click “Create Sink”.
+. Click **Create**, and then wait for the sink to initialize.
 +
-image:decodable-data-pipeline/01/image10.png[]
+When the sink is ready, its status changes to **Running**.
 
-. Fill in the details about the new sink as follows:
+. Create another sink with the following configuration:
 +
-[cols="1,4a",frame=none]
-|===
-|Namespace
-|production
+* **Namespace**: Select your `production` namespace.
+* **Sink Type**: Select **{astra-db}**.
+* **Name**: Enter `prd-click-astradb`.
+* **Input topic**: Select your `product-clicks` topic in your `production` namespace.
+* **Database**: Select your `webstore-clicks` database.
+* **Token**: Use the same token that you created for the other sink.
+* **Keyspace**: Enter `click_data`.
+* **Table Name**: Enter `product_clicks`.
+* **Mapping**: Use the default mapping, which maps the topic's fields to the table's columns.
 
-|Sink Type
-|{astra-db}
+After the second sink initializes, you have two running sinks.
 
-|Name
-|all-clicks
-
-|Input topic
-|all-clicks
-
-|Database
-|webstore-clicks
-
-|Token:
-|
-. Click “here” to create an {astra-db} application token in a new browser tab.
-. Choose the “Organization Administrator” role and click “Generate Token”.
-+
-image:decodable-data-pipeline/01/image2.png[]
-. Copy the token, and then store it securely.
-You will need to use this token multiple times.
-. Navigate back to the {product} page in your browser and paste the value in the “Token” input.
-+
-image:decodable-data-pipeline/01/image17.png[]
-
-|Keyspace
-|click_data
-
-|Table Name
-|all_clicks
-
-|Mapping
-|(leave alone)
-|===
-
-. Click “Create” to create the sink.
-You will be directed back to the Sinks listing where your new sink is initializing.
-When your new sink is ready, its status will change to “Running”.
-+
-image:decodable-data-pipeline/01/image14.png[]
-
-. Follow the same flow to create a second sink with the following values:
-+
-[cols="1,4",frame=none]
-|===
-|Namespace
-|production
-
-|Sink Type
-|{astra-db}
-
-|Name
-|prd-click-astradb
-
-|Input topic
-|product-clicks
-
-|Database
-|webstore-clicks
-
-|Token:
-|(paste the same value from the previous sink)
-
-|Keyspace
-|click_data
-
-|Table Name
-|product_clicks
-
-|Mapping
-|(leave alone)
-|===
-
-. If everything goes smoothly, you should have 2 sinks in a “Running” state.
-+
-image:decodable-data-pipeline/01/image9.png[]
-+
-[NOTE]
-====
-To debug, click the sink name and scroll to the bottom of the sink's page, where there is a terminal output area to view deployment logs.
-This is a semi-verbose log of the sink starting, validating, and running.
-====
+To debug a sink, you can view the sink's logs in the {astra-ui}.
+To do this, click the sink name, and then scroll to terminal output area on the sink's overview page.
+The deployment logs are printed in this terminal output area, including semi-verbose `starting`, `validating`, and `running` logs.
 
 == Next step
 
-Great work! With the {product-short} objects in place, let's move on to setting up the Decodable processing. xref:real-time-data-pipeline/02-create-decodable-objects.adoc[Setup Decodable >>]
+Now that you created the required {product-short} objects, you can xref:real-time-data-pipeline/02-create-decodable-objects.adoc[set up the Decodable processing].
