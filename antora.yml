@@ -18,7 +18,7 @@ asciidoc:
     pulsar: 'Apache Pulsar'
     pulsar-short: 'Pulsar'
     pulsar-reg: 'Apache Pulsar(TM)'
-    pulsar-version: '2.10' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
+    pulsar-version: '3.1' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
     debezium-version: '1.7'
     astra-streaming-examples-repo: 'https://raw.githubusercontent.com/datastax/astra-streaming-examples/master'
     kafka-for-astra: 'Starlight for Kafka'
