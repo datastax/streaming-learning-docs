@@ -12,6 +12,26 @@ https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
 == Get Started
 
+To create a Debezium SQL Server source connector, do the following.
+Your deployment's values may differ.
+
+. Create an Azure SQL Server named `kalash-server-stream672` with a database `cdc_test`, containing the table `dbo.accounts`.
+. Name your connector `dbz-stream672`.
+. Create the required topics under the namespace `kalash-stream672/default`, following the correct Debezium naming conventions.
+
+  * `<connector_name>-debezium-history-topic`
+  * `<connector_name>-debezium-offset-topic`
+  * `<server_name>`
+  * `<server_name>.<dbname>.<tablename>`
+
+These topics must be created manually, as topic autocreation is not available.
+Data should be consumed from the `events` topic.
+The `topic.prefix` configuration value must match `database.server.name`. In this configuration, both are set to `kalash-server-stream672`.
+
+Ensure `task.id` is passed as a string (`"0"`), not an integer (0), otherwise the connector will throw a `NullPointerException`.
+
+For more on Debezium topic naming conventions, refer to the https://debezium.io/documentation/reference/stable/connectors/sqlserver.html#sqlserver-topic-names[Debezium documentation].
+
 include::partial$connectors/sources/get-started.adoc[]
 
 == Managing the Connector
