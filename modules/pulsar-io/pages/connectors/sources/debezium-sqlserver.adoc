@@ -19,19 +19,24 @@ Your deployment's values may differ.
 . Choose a connector name.
 . For Debezium SQL Server source connectors, you must manually create the required topics in your Pulsar namespace, following Debezium's topic naming conventions:
 
-  * `CONNECTOR_NAME-debezium-history-topic`
-  * `CONNECTOR_NAME-debezium-offset-topic`
-  * `SERVER_NAME`
-  * `SERVER_NAME.DB_NAME.TABLE_NAME`
+  * `**CONNECTOR_NAME**-debezium-history-topic`
+  * `**CONNECTOR_NAME**-debezium-offset-topic`
+  * `**SERVER_NAME**`
+  * `**SERVER_NAME**.**DB_NAME**.**TABLE_NAME**`
 
-These topics must be created manually, as topic autocreation is not available.
+
+You must create these topics manually.
+Autocreation is not available.
 
 . In the source connector configuration, set the `topic.prefix` configuration value to match `database.server.name`.
 In the example configuration, both are set to `kalash-server-stream672`.
-. In the source connector configuration, ensure `task.id` is passed as a string (`"0"`), not an integer (`0`), otherwise the connector will throw a `NullPointerException`.
-. Set your consumers to subscribe to the `events`` topic in your Pulsar namespace to receive change data capture (CDC) events. This topic contains the change data capture (CDC) events emitted by Debezium for the configured tables.
+. In the source connector configuration, ensure `task.id` is passed as a string (`"0"`), not an integer (`0`); otherwise, the connector will throw a `NullPointerException`.
 
-For more on Debezium topic naming conventions, refer to the https://debezium.io/documentation/reference/stable/connectors/sqlserver.html#sqlserver-topic-names[Debezium documentation].
+. Set your consumers to subscribe to the `events` topic in your Pulsar namespace to receive change data capture (CDC) events.
+This topic contains the change data capture (CDC) events emitted by Debezium for the configured tables.
+
+For more on Debezium topic naming conventions, see the https://debezium.io/documentation/reference/stable/connectors/sqlserver.html#sqlserver-topic-names[Debezium documentation].
+
 
 include::partial$connectors/sources/get-started.adoc[]
 
