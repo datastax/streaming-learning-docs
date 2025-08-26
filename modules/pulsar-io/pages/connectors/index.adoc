@@ -9,20 +9,149 @@ Connect popular data sources to {pulsar} topics or sink data from {pulsar-short}
 
 Below is a list of {pulsar} source and sink connectors supported by {product}.
 
-[NOTE]
+[IMPORTANT]
 ====
-{product} does not support custom sink or source connectors.
+{product} doesn't support custom sink or source connectors.
 ====
-
-== Sink Connectors
 
 [#sink-connectors]
-include::partial$connectors/sinks/sink-connectors.adoc[tag=production]
+== Sink Connectors
 
-== Source Connectors
+[#astradb-sink]
+=== AstraDB sink
+
+The AstraDB sink connector reads messages from {pulsar} topics and writes them to AstraDB systems.
+
+xref:connectors/sinks/astra-db.adoc[AstraDB sink documentation].
+
+[#cloudstorage-sink]
+=== Cloud Storage sink
+
+The Cloud Storage sink connector reads messages from {pulsar} topics and writes them to Cloud Storage systems.
+
+xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink documentation].
+
+[#elasticsearch-sink]
+=== ElasticSearch sink
+
+The Elasticsearch sink connector reads messages from {pulsar} topics and writes them to Elasticsearch systems.
+
+xref:connectors/sinks/elastic-search.adoc[Elasticsearch sink documentation].
+
+[#bigquery-sink]
+=== Google BigQuery sink
+
+The Google BigQuery sink connector reads messages from {pulsar} topics and writes them to BigQuery systems.
+
+xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink documentation].
+
+[#jdbc-clickhouse-sink]
+=== JDBC-Clickhouse sink
+
+The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.
+
+xref:connectors/sinks/jdbc-clickhouse.adoc[JDBC ClickHouse sink documentation].
+
+[#jdbc-mariadb-sink]
+=== JDBC-MariaDB sink
+
+The JDBC-MariaDB sink connector reads messages from {pulsar} topics and writes them to JDBC-MariaDB systems.
+
+xref:connectors/sinks/jdbc-mariadb.adoc[JDBC MariaDB sink documentation].
+
+[#jdbc-postgres-sink]
+=== JDBC-PostgreSQL sink
+
+The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
+
+xref:connectors/sinks/jdbc-postgres.adoc[JDBC PostgreSQL sink documentation].
+
+[#jdbc-sqlite-sink]
+=== *JDBC-SQLite*
+
+The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.
+
+xref:connectors/sinks/jdbc-sqllite.adoc[JDBC SQLite sink documentation].
+
+[#kafka-sink]
+=== *Kafka*
+
+The Kafka sink connector reads messages from {pulsar} topics and writes them to Kafka systems.
+
+xref:connectors/sinks/kafka.adoc[Kafka sink documentation].
+
+[#kinesis-sink]
+=== Kinesis
+
+The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.
+
+xref:connectors/sinks/kinesis.adoc[Kinesis sink documentation].
+
+[#snowflake-sink]
+=== Snowflake
+
+The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake systems.
+
+xref:connectors/sinks/snowflake.adoc[Snowflake sink documentation].
 
 [#source-connectors]
-include::partial$connectors/sources/source-connectors.adoc[tag=production]
+== Source Connectors
+
+[#datagenerator-source]
+=== Data Generator source
+
+The Data generator source connector produces messages for testing and persists the messages to {pulsar-short} topics.
+
+xref:connectors/sources/data-generator.adoc[Data Generator source documentation]
+
+[#debezium-mongodb-source]
+=== Debezium MongoDB source
+
+The Debezium MongoDB source connector reads data from Debezium MongoDB systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/debezium-mongodb.adoc[Debezium MongoDB source documentation]
+
+[#debezium-mysql-source]
+=== Debezium MySQL source
+
+The Debezium MySQL source connector reads data from Debezium MySQL systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/debezium-mysql.adoc[Debezium MySQL source documentation]
+
+[#debezium-oracle-source]
+=== Debezium Oracle source
+
+The Debezium Oracle source connector reads data from Debezium Oracle systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/debezium-oracle.adoc[Debezium Oracle source documentation]
+
+[#debezium-postgres-source]
+=== Debezium Postgres source
+
+The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/debezium-postgres.adoc[Debezium PostgreSQL source documentation]
+
+[#debezium-sql-server-source]
+=== Debezium SQL Server source
+
+The Debezium SQL Server source connector reads data from Debezium SQL Server systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/debezium-sqlserver.adoc[Debezium SQL Server source documentation]
+
+[#kafka-source]
+=== Kafka source
+
+The Kafka source connector reads data from Kafka systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/kafka.adoc[Kafka source connector documentation]
+
+[#kinesis-source]
+=== AWS Kinesis source
+
+The AWS Kinesis source connector reads data from Kinesis systems and produces data to {pulsar-short} topics.
+
+xref:connectors/sources/kinesis.adoc[Kinesis source connector documentation]
 
 == Experimental Connectors
 
@@ -30,15 +159,83 @@ include::partial$connectors/sources/source-connectors.adoc[tag=production]
 
 To get access to these connectors, contact {support-url}[{company} Support].
 
+[#sink-experimental]
 === Sink Connectors (experimental)
 
-[#sink-experimental]
-include::partial$connectors/sinks/sink-connectors.adoc[tag=sink-experimental]
-
-=== Source Connectors (experimental)
+Kinetica +
+Aerospike +
+Azure DocumentDB +
+Azure Data Explorer (Kusto) +
+Batch Data Generator +
+CoAP +
+Couchbase +
+DataDog +
+Diffusion +
+Flume +
+Apache Geode +
+Hazelcast +
+Apache HBase +
+HDFS 2 +
+HDFS 3 +
+Humio +
+InfluxDB +
+JMS +
+Apache Kudu +
+MarkLogic +
+MongoDB +
+MQTT +
+Neo4J +
+New Relic +
+OrientDB +
+Apache Phoenix +
+PLC4X +
+RabbitMQ +
+Redis +
+SAP HANA +
+SingleStore +
+Apache Solr +
+Splunk +
+XTDB +
+Zeebe +
 
 [#source-experimental]
-include::partial$connectors/sources/source-connectors.adoc[tag=source-experimental]
+=== Source Connectors (experimental)
+
+{cass-short} Source +
+Kinetica +
+Azure DocumentDB +
+Batch Data Generator +
+Big Query +
+canal +
+CoAP +
+Couchbase +
+datadog +
+diffusion +
+DynamoDB +
+file +
+flume +
+Apache Geode +
+Hazelcast +
+Humio +
+JMS +
+Apache Kudu +
+MarkLogic +
+MongoDB +
+MQTT +
+Neo4J +
+New Relic +
+NSQ +
+OrientDB +
+Apache Phoenix +
+PLC4X +
+RabbitMQ +
+Redis +
+SAP HANA +
+SingleStore +
+Splunk +
+Twitter +
+XTDB +
+Zeebe +
 
 == Listing Sink Connectors
 
@@ -60,7 +257,6 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 curl::
 +
 --
-// tag::rest-env-vars[]
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
@@ -81,7 +277,6 @@ This is different from your {astra-db} application tokens.
 export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
-// end::rest-env-vars[]
 
 . Use these values to form curl commands to the REST API:
 +
@@ -112,8 +307,29 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 cURL::
 +
 --
-include::pulsar-io:connectors/index.adoc[tag=rest-env-vars]
+You need a {pulsar-short} token for REST API authentication.
+This is different from your {astra-db} application tokens.
 
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
+
+. Click your tenant's name, and then click the *Settings* tab.
+
+. Click *Create Token*.
+
+. Copy the token, store it securely, and then click *Close*.
+
+. Click the *Connect* tab, and then copy the *Web Service URL*.
+
+. Create environment variables for your tenant's token and web service URL:
++
+[source,shell,subs="attributes+"]
+----
+export WEB_SERVICE_URL=<replace-me>
+export ASTRA_STREAMING_TOKEN=<replace-me>
+----
+
+. Use the token to authenticate requests:
++
 [source,shell,subs="attributes+"]
 ----
 curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTRA_STREAMING_TOKEN"
@@ -121,6 +337,6 @@ curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTR
 --
 ====
 
-== What's next?
+== See also
 
 For more on {pulsar-short} IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[{pulsar-short} documentation].

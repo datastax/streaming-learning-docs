@@ -16,7 +16,7 @@ include::example$connectors/sinks/pulsar-admin-info.sh[]
 cURL::
 +
 --
-include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq]
+include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -34,7 +34,7 @@ include::partial$connectors/sinks/curl-monitor-response.adoc[]
 === Health
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -49,20 +49,85 @@ include::example$connectors/sinks/pulsar-admin-status.sh[]
 cURL::
 +
 --
-include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq]
+include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/curl-status.sh[]
 ----
---
 
-Response::
-+
---
-include::partial$connectors/sinks/curl-status-response.adoc[]
---
+.Result
+[%collapsible]
 ====
+Status response for all connector instances:
+
+[source,json]
+----
+{
+ "numInstances": 0,
+ "numRunning": 0,
+ "instances": [
+   {
+     "instanceId": 0,
+     "status": {
+       "running": true,
+       "error": "string",
+       "numRestarts": 0,
+       "numReadFromPulsar": 0,
+       "numSystemExceptions": 0,
+       "latestSystemExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numSinkExceptions": 0,
+       "latestSinkExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numWrittenToSink": 0,
+       "lastReceivedTime": 0,
+       "workerId": "string"
+     }
+   }
+ ]
+}
+----
+
+Status response for individual connector instance:
+
+[source,json]
+----
+{
+ "running": true,
+ "error": "string",
+ "numRestarts": 0,
+ "numReadFromPulsar": 0,
+ "numSystemExceptions": 0,
+ "latestSystemExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numSinkExceptions": 0,
+ "latestSinkExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numWrittenToSink": 0,
+ "lastReceivedTime": 0,
+ "workerId": "string"
+}
+----
+====
+--
+======
 
 === Metrics
 

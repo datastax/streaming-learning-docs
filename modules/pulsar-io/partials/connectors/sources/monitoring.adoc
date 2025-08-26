@@ -55,7 +55,7 @@ include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 === Health
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -97,14 +97,79 @@ export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 include::example$connectors/sources/curl-status.sh[]
 ----
---
-+
-Response::
-+
---
-include::partial$connectors/sources/curl-status-response.adoc[]
---
+
+.Result
+[%collapsible]
 ====
+Status response for all connector instances:
+
+[source,json]
+----
+{
+  "numInstances": 0,
+  "numRunning": 0,
+  "instances": [
+    {
+      "instanceId": 0,
+      "status": {
+        "running": true,
+        "error": "string",
+        "numRestarts": 0,
+        "numReceivedFromSource": 0,
+        "numSystemExceptions": 0,
+        "latestSystemExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numSourceExceptions": 0,
+        "latestSourceExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numWritten": 0,
+        "lastReceivedTime": 0,
+        "workerId": "string"
+      }
+    }
+  ]
+}
+----
+
+Status response for individual connector instance:
+
+[source,json]
+----
+{
+  "running": true,
+  "error": "string",
+  "numRestarts": 0,
+  "numReceivedFromSource": 0,
+  "numSystemExceptions": 0,
+  "latestSystemExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numSourceExceptions": 0,
+  "latestSourceExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numWritten": 0,
+  "lastReceivedTime": 0,
+  "workerId": "string"
+}
+----
+====
+--
+======
 
 === Metrics
 
