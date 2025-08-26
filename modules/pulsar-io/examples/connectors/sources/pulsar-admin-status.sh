@@ -1,4 +1,4 @@
-# Stop all instances of a connector
+# Check connector status
 ./bin/pulsar-admin sources status \
   --instance-id "$SOURCE_INSTANCEID" \
   --namespace "$NAMESPACE" \

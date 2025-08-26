@@ -4,7 +4,7 @@
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -24,7 +24,7 @@ include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq;curl-start]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -44,7 +44,7 @@ include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq;curl-stop]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -65,7 +65,8 @@ include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq;curl-restart]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-update.sh[]
@@ -95,7 +96,7 @@ include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----

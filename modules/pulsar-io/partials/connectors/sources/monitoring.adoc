@@ -5,7 +5,7 @@
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the {pulsar-short} folder:
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -59,7 +59,7 @@ include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded the `client.conf` to the `pulsar` folder:
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----

@@ -49,7 +49,7 @@ To list available sink connectors in your {product} tenant, use any of the follo
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the {pulsar-short} folder:
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -101,7 +101,7 @@ To list available source connectors in your {product} tenant, use any of the fol
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the {pulsar-short} folder:
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
