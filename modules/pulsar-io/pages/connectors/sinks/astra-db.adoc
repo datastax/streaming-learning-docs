@@ -5,7 +5,7 @@
 
 {company} {astra-db} Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[{cass-reg} sink connector for {pulsar-reg}]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a {cass-short} cluster outside of DB.
 
-The {product} portal provides simple way to connect this sink and a table in {astra-db} with simply a token. Using pulsar-admin or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
+The {product} portal provides simple way to connect this sink and a table in {astra-db} with simply a token. Using `pulsar-admin` or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
 
 This reference assumes you are manually connecting to a {cass-short} table.
 
@@ -39,9 +39,9 @@ include::example$connectors/sinks/astra.csv[]
 
 === {cass-short} Connection
 
-These values are provided in the *Configs* area.
+These values are provided in the `Configs` area.
 
-The "cloud.secureConnectBundle" can either be a path to your bundle zip or you can base64 encode the zip and provide it in the format: "base64:<b64 string>".
+The `cloud.secureConnectBundle` can either be a path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the zip provided it in the format `base64:<b64 string>`.
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -51,7 +51,7 @@ include::example$connectors/sinks/{connectorType}/config.csv[]
 // TODO: Need descriptions of every param
 === Auth Properties
 
-These values are provided in the *auth* area in the above {cass-short} connection parameters.
+These values are provided in the `auth`` area in the preceding {cass-short} connection parameters.
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -60,48 +60,70 @@ include::example$connectors/sinks/{connectorType}/auth.csv[]
 
 === Topic Properties
 
-These values are provided in the *topic* area in the above {cass-short} connection parameters.
+These values are provided in the `topic` area in the preceding {cass-short} connection parameters.
 
 Refer to the official documentation for a https://docs.datastax.com/en/pulsar-connector/docs/cfgRefPulsarDseConnection.html[connection properties reference].
 
 === Mapping topic data to table columns
 
-[TIP]
-====
-There are quite a few examples in the "https://docs.datastax.com/en/pulsar-connector/docs/cfgPulsarMapTopicTable.html[Mapping pulsar topics to database tables]" area of the official documentation
-====
+An essential part of using this sink connector is mapping message values to table columns.
+There are many factors that influence how this done and what is possible.
 
-An essential part of using this sink connector is mapping message values to table columns.  There are many factors that influence how this done and what is possible. The 'mapping' string is a simple comma-separated list of column names and message value fields.
+While the preceding examples showed how to configure the connector in one large command, it is easier to manage this as a separate file.
+The following steps explain how to configure the connector using a JSON configuration file with the minimum required values.
 
-While the getting started examples above show how to configure the connector in one large command, it is easier to manage this as a separate file. The following example show how to configure the connector using a configuration in json format. The "https://docs.datastax.com/en/pulsar-connector/docs/pulsarQuickStart.html[{pulsar-short} Connector single instance quick start]" guide provides a good example of this. Below are the minimum requirements.
+For a more detailed example of this pattern, see the xref:pulsar-connector:ROOT:pulsarQuickStart.adoc[{pulsar-short} Connector single instance quickstart].
 
-Create a file named configs.json using the following structure:
-
-[source]
+. Create a file named `configs.json` with the following content:
++
+[source,json,subs="+quotes"]
 ----
 "archive": "builtin://cassandra-enhanced",
-"tenant": "<your tenant>",
-"namespace": "<your namespace>",
-"name": "<a really great name>",
-"inputs": ["<your topic name>"],
-"configs:": {
-  "topics": <the topic name (just the name, not the full address)>,
-  "cloud.secureConnectBundle": </path/to/secure-connect-database_name.zip OR base64 encode of the zip>,
+"tenant": "**TENANT_NAME**",
+"namespace": "**NAMESPACE_NAME**",
+"name": "**CONNECTOR_NAME**",
+"inputs": ["**TOPIC_NAME**"],
+"configs": {
+  "topics": "**TOPIC_NAME**",
+  "cloud.secureConnectBundle": "**SCB**",
   "topic": {
-   "<the topic name (usually the same as above)>": {
-      "<the table keyspace name>": {
-        "<the table name>": {
-          "<all the connection properties>",
-          ...
-          "mapping": <field-to-column mapping>
+   "**TOPIC_NAME**": {
+      "**KEYSPACE_NAME**": {
+        "**TABLE_NAME**": {
+          **CONNECTION_PROPERTIES**,
+          "mapping": "**MAPPING_STRING**"
         }
       }
     }
   }
 }
 ----
++
+Replace the following:
 
-Use the pulsar-admin cli to create the connector
+* **TENANT_NAME**: Your tenant's name.
+* **NAMESPACE_NAME**: The tenant's associated namespace name.
+* **CONNECTOR_NAME**: The name of the connector.
+* **TOPIC_NAME**: In `inputs` and `configs.topics`, specify the names of the topics to connect.
+Specify topic names only; don't use the full topic addresses.
+You can specify multiple topics.
+Define one `configs.topic` object for each topic that you want to connect.
+* **SCB**: The path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the SCB zip.
+* **KEYSPACE_NAME**: The name of the keyspace in your database that contains the table you want to connect to a topic.
+* **TABLE_NAME**: The name of the table to connect to a topic.
+* **TABLE_CONNECTION_PROPERTIES**: Additional topic-to-table connection properties, if required.
+For more information, see xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[].
+* **MAPPING_STRING**: The mapping string for the table columns as a comma-separated list of column names and message value fields.
+For example:
++
+[source,text]
+----
+symbol=value.symbol, ts=value.ts, exchange=value.exchange, industry=value.industry, name=key, value=value.value
+----
++
+For more mapping examples, see xref:pulsar-connector:ROOT:cfgPulsarMapTopicTable.adoc[Mapping pulsar topics to database tables].
+
+. Use the `pulsar-admin` CLI to create the connector with your JSON file:
 
 [source,shell]
 ----
@@ -111,5 +133,3 @@ Use the pulsar-admin cli to create the connector
 	--sink-config-file configs.json \
 	--sink-type cassandra-enhanced
 ----
-
-To create the value for the mapping parameter you would provide direction how each column value will be filled. An example string is: `symbol=value.symbol, ts=value.ts, exchange=value.exchange, industry=value.industry, name=key, value=value.value`.
