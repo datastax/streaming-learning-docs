@@ -67,14 +67,14 @@ The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and write
 xref:connectors/sinks/jdbc-postgres.adoc[JDBC PostgreSQL sink documentation].
 
 [#jdbc-sqlite-sink]
-=== *JDBC-SQLite*
+=== JDBC-SQLite
 
 The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.
 
 xref:connectors/sinks/jdbc-sqllite.adoc[JDBC SQLite sink documentation].
 
 [#kafka-sink]
-=== *Kafka*
+=== Kafka
 
 The Kafka sink connector reads messages from {pulsar} topics and writes them to Kafka systems.
 
@@ -304,7 +304,7 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 You need a {pulsar-short} token for REST API authentication.

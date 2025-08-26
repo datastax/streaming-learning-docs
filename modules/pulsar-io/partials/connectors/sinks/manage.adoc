@@ -19,7 +19,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
@@ -58,7 +58,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
@@ -97,7 +97,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
@@ -130,7 +130,7 @@ include::example$connectors/sinks/{connectorType}/pulsar-admin-update.sh[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
@@ -167,7 +167,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]

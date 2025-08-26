@@ -17,7 +17,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
@@ -169,7 +169,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]

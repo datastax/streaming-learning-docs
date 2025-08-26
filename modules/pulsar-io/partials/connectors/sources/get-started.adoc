@@ -21,7 +21,7 @@ include::example$connectors/sources/{connectorType}/pulsar-admin-create.sh[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 include::partial$connectors/sources/curl-tab-prereq.adoc[]

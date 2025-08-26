@@ -17,7 +17,7 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 You need a {pulsar-short} token for REST API authentication.
@@ -79,7 +79,7 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 ----
 --
 
-cURL::
+curl::
 +
 --
 You need a {pulsar-short} token for REST API authentication.

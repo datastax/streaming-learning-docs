@@ -116,6 +116,7 @@ These values are provided in the `Configs` area:
 These values are provided in the `auth` area of the preceding {cass-short} connection parameters:
 
 [cols=3]
+|===
 | Name | Required | Default
 
 | gssapi
@@ -133,6 +134,7 @@ These values are provided in the `auth` area of the preceding {cass-short} conne
 | username
 | yes
 | `token`
+|===
 
 === Topic Properties
 
