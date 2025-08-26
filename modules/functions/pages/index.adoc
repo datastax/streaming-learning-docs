@@ -12,24 +12,201 @@ Unqualified orgs can use transform functions without upgrading to a Pay As You G
 
 [#transform-list]
 == Transforms
-include::partial$/function-list.adoc[]
+
+* **Cast**: The xref:cast.adoc[cast transform function] modifies the key or value schema to a target compatible schema.
+* **Compute**: The xref:compute.adoc[compute transform function] computes new field values based on an expression evaluated at runtime. If the field already exists, it will be overwritten.
+* **Drop-fields**: The xref:drop-fields.adoc[drop-fields transform function] drops fields from structured data.
+* **Drop**: The xref:drop.adoc[drop transform function] drops a record from further processing.
+* **Flatten**: The xref:flatten.adoc[flatten transform function] flattens structured data.
+* **Merge KeyValue**: The xref:merge-key-value.adoc[merge KeyValue transform function] merges the fields of KeyValue records where both the key and value are structured data with the same schema type.
+* **Unwrap KeyValue**: The xref:unwrap-key-value.adoc[unwrap KeyValue transform function] extracts the KeyValue's key or value, and then makes it the record value if the record is a KeyValue.
 
 [#transform-config]
 == Configuration
 
-include::partial$/configuration.adoc[]
+The `TransformFunction` reads its configuration as `JSON` from the Function `userConfig` parameter in the format:
+
+[source,json]
+----
+{
+  "steps": [
+    {
+      "type": "drop-fields", "fields": "keyField1,keyField2", "part": "key"
+    },
+    {
+      "type": "merge-key-value"
+    },
+    {
+      "type": "unwrap-key-value"
+    },
+    {
+      "type": "cast", "schema-type": "STRING"
+    }
+  ]
+}
+----
+
+Transform functions are performed in the order in which they appear in the `steps` array.
+Each step is defined by its `type` and uses its own arguments.
+Each step can be dynamically toggled on or off by supplying a `when` condition that evaluates to true or false.
+
+For example, if the previous configuration is applied to a `KeyValue<AVRO, AVRO>` input record, the following transformed values are returned after each step:
+
+[source,avro]
+----
+# Original input record
+{key={keyField1: key1, keyField2: key2, keyField3: key3}, value={valueField1: value1, valueField2: value2, valueField3: value3}}
+
+# Transformations
+(KeyValue<AVRO, AVRO>)
+           |
+           | "type": "drop-fields", "fields": "keyField1,keyField2", "part": "key"
+           |
+{key={keyField3: key3}, value={valueField1: value1, valueField2: value2, valueField3: value3}} (KeyValue<AVRO, AVRO>)
+           |
+           | "type": "merge-key-value"
+           |
+{key={keyField3: key3}, value={keyField3: key3, valueField1: value1, valueField2: value2, valueField3: value3}} (KeyValue<AVRO, AVRO>)
+           |
+           | "type": "unwrap-key-value"
+           |
+{keyField3: key3, valueField1: value1, valueField2: value2, valueField3: value3} (AVRO)
+           |
+           | "type": "cast", "schema-type": "STRING"
+           |
+{"keyField3": "key3", "valueField1": "value1", "valueField2": "value2", "valueField3": "value3"} (STRING)
+----
 
 [#deploy-cli]
 == Deploy with {pulsar-short} CLI
 
-include::partial$/deploy-cli.adoc[]
+https://github.com/datastax/pulsar[Luna Streaming 2.10+] is required to deploy custom functions in {pulsar-short}.
+
+The transform function `.nar` lives in the `/functions` directory of your {pulsar-short} deployment.
+
+[tabs]
+======
+{pulsar-short} standalone::
++
+--
+To deploy the built-in transform function locally in {pulsar-short} standalone, do the following:
+
+. Start {pulsar-short} standalone:
++
+[source,shell]
+----
+./bin/pulsar standalone
+----
+
+. Create a transform function in `localrun` mode:
++
+[source,shell,subs="attributes+"]
+----
+./bin/pulsar-admin functions localrun \
+--jar functions/pulsar-transformations-2.0.1.nar \
+--classname com.datastax.oss.pulsar.functions.transforms.TransformFunction \
+--inputs my-input-topic \
+--output my-output-topic \
+--user-config '{"steps": [{"type": "drop-fields", "fields": "password"}, {"type": "merge-key-value"}, {"type": "unwrap-key-value"}, {"type": "cast", "schema-type": "STRING"}]}'
+----
+--
+
+{pulsar-short} cluster::
++
+--
+To deploy a built-in transform function to a {pulsar-short} cluster, do the following:
+
+. Create a built-in transform function with the {pulsar-short} CLI:
++
+----
+./bin/pulsar-admin functions create \
+--tenant $TENANT \
+--namespace $NAMESPACE \
+--name transform-function \
+--inputs persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC
+--output persistent://$TENANT/$NAMESPACE/$OUTPUT_TOPIC  \
+--classname com.datastax.oss.pulsar.functions.transforms.TransformFunction \
+--jar functions/pulsar-transformations-2.0.1.nar
+----
++
+.Result
+[%collapsible]
+====
+[source,console]
+----
+Created successfully
+----
+====
+
+. Confirm your function has been created:
++
+[source,shell]
+----
+./bin/pulsar-admin functions list --tenant $TENANT
+----
++
+.Result
+[%collapsible]
+====
+[source,console]
+----
+cast-function
+flatten-function
+transform-function
+transform-function-2
+----
+====
+--
+======
 
 [#deploy-as]
 == Deploy with {product}
 
-include::partial$/deploy-as.adoc[]
+Deploy transform functions in the *Functions* tab of the {astra-ui}.
 
-== What's next?
+The process is similar to xref:astra-streaming:developing:astream-functions.adoc[creating a function in the {astra-ui}], but with a few additional steps.
 
-For more, see xref:astra-streaming:developing:astream-functions.adoc[] or the https://pulsar.apache.org/docs/functions-overview[{pulsar-short} documentation].
+. After naming your new function, select the *Use {company} transform function* option.
 
+. Select a transform function from the list of available functions:
++
+image::astream-transform-functions.png[Connect Topics]
+
+. Select the transform function's namespace and input topic(s).
+
+. Select the transform function's namespace, output topic, and log topic.
++
+The log topic is a separate output topic for messages containing additional `loglevel`, `fqn`, and `instance` properties.
+
+. Specify advanced configuration options, if applicable.
+
+. Pass JSON configuration values with your function, if applicable.
++
+For more, see the transform function <<Configuration>> table.
+
+. Select *Create*.
+The transform function will initialize and begin processing data changes.
+
+. Confirm your function has been created with the {pulsar-short} CLI:
++
+[source,shell]
+----
+./bin/pulsar-admin functions list --tenant $TENANT
+----
++
+.Result
+[%collapsible]
+====
+[source,console]
+----
+cast-function
+flatten-function
+transform-function
+transform-function-2
+----
+====
+
+== See also
+
+* xref:astra-streaming:developing:astream-functions.adoc[]
+* https://pulsar.apache.org/docs/functions-overview[{pulsar-short} documentation]
