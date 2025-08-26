@@ -1,4 +1,4 @@
-Set the required variables using any of the methods below.
+Set the following environment variables using `pulsar-admin` or curl:
 
 [source,shell,subs="attributes+"]
 ----
@@ -9,7 +9,7 @@ export SOURCE_NAME={connectorName}
 ----
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -37,4 +37,4 @@ Sample Config Data::
 --
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 --
-====
+======

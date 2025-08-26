@@ -1,7 +1,7 @@
 === Info
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -57,7 +57,7 @@ Sample Config Data::
 --
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 --
-====
+======
 
 === Health
 

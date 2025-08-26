@@ -1,6 +1,7 @@
 === Start
+
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -17,6 +18,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 # optionally add --instance-id to only start an individual instance
 ----
 --
+
 cURL::
 +
 --
@@ -33,11 +35,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
 -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
-====
+======
 
 === Stop
+
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -54,6 +57,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 # optionally add --instance-id to only stop an individual instance
 ----
 --
+
 cURL::
 +
 --
@@ -70,11 +74,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
   --H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
-====
+======
 
 === Restart
+
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -91,6 +96,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 # optionally add --instance-id to only restart an individual instance
 ----
 --
+
 cURL::
 +
 --
@@ -107,12 +113,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
 -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
-====
+======
 
 === Update
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -140,11 +146,12 @@ Sample Config Data::
 --
 include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
 --
-====
+======
 
 === Delete
+
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
@@ -159,6 +166,7 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
   --tenant "$TENANT"
 ----
 --
+
 cURL::
 +
 --
@@ -171,4 +179,4 @@ curl -sS --fail --location --request DELETE ''$WEB_SERVICE_URL'/admin/v3/sinks/'
   --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
 ----
 --
-====
+======
