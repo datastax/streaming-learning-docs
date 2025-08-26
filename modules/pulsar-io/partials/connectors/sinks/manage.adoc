@@ -8,7 +8,13 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/pulsar-admin-start.sh[]
+# Start all instances of a connector
+./bin/pulsar-admin sinks start \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only start an individual instance
 ----
 --
 cURL::
@@ -18,7 +24,13 @@ include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-start.sh[]
+# Start all instances of a connector
+curl -sS --fail --location --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/start' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
+
+# Start an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/start" \
+-H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
 ====
@@ -33,7 +45,13 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/pulsar-admin-stop.sh[]
+# Stop all instances of a connector
+./bin/pulsar-admin sinks stop \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only stop an individual instance
 ----
 --
 cURL::
@@ -43,7 +61,13 @@ include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-stop.sh[]
+# Stop all instances of a connector
+curl -sS --fail --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/stop' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
+
+# Stop an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/stop" \
+  --H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
 ====
@@ -58,7 +82,13 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/pulsar-admin-restart.sh[]
+# Restart all instances of a connector
+./bin/pulsar-admin sinks restart \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only restart an individual instance
 ----
 --
 cURL::
@@ -68,7 +98,13 @@ include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-restart.sh[]
+# Restart all instances of a connector
+curl -sS --fail --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/restart' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
+
+# Restart an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/restart" \
+-H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
 ====
@@ -114,9 +150,13 @@ include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
 --
 include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sinks/pulsar-admin-delete.sh[]
+# Delete all instances of a connector
+./bin/pulsar-admin sinks delete \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
 ----
 --
 cURL::
@@ -126,7 +166,9 @@ include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-delete.sh[]
+# Delete all instances of a connector
+curl -sS --fail --location --request DELETE ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
 ----
 --
 ====

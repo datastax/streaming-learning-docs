@@ -22,33 +22,76 @@ There are some limitations for certain formats, as explained in the following se
 
 === {pulsar-short} Schema types supported by the writers
 
-[%header,format=csv,cols="1,^1,^1,^1,^1"]
+[cols=5]
 |===
-include::example$connectors/sinks/cloud-storage/data-format.csv[]
+|Pulsar Schema |Writer: Avro |Writer: JSON |Writer: Parquet |Writer: Bytes
+
+|Primitive
+a|❌
+a|✅
+
+The JSON writer will try to convert data with a String or Bytes schema to JSON-format data if convertible.
+
+a|❌
+a|✅
+
+|Avro
+a|✅
+a|✅
+a|✅
+a|✅
+
+|Json
+a|✅
+a|✅
+a|✅
+a|✅
+
+|Protobuf
+
+The Protobuf schema is based on the Avro schema.
+It uses Avro as an intermediate format, so it may not provide the best effort conversion.
+
+a|✅
+a|✅
+a|✅
+a|✅
+
+|ProtobufNative
+a|✅
+
+The ProtobufNative record holds the Protobuf descriptor and the message.
+When writing to Avro format, the connector uses `avro-protobuf` to do the conversion.
+
+a|❌
+a|✅
+a|✅
 |===
-
-____
-*The JSON writer will try to convert data with a String or Bytes schema to JSON-format data if convertable.
-
-**The Protobuf schema is based on the Avro schema. It uses Avro as an intermediate format, so it may not provide the best effort conversion.
-
-\*** The ProtobufNative record holds the Protobuf descriptor and the message. When writing to Avro format, the connector uses avro-protobuf to do the conversion.
-____
 
 === Supported withMetadata configurations for writer formats
 
-[%header,format=csv,cols="1,^1",width="50%"]
+[cols=2]
 |===
-include::example$connectors/sinks/cloud-storage/with-meta-data.csv[]
+|Writer Format |withMetadata
+
+|Avro
+a|✅
+
+|JSON
+a|✅
+
+|Parquet
+a|✅
+
+|Bytes
+a|❌
 |===
 
-____
-*When using Parquet with PROTOBUF_NATIVE format, the connector will write the messages with the DynamicMessage format. When withMetadata is set to true, the connector will add __message_metadata__ to the messages with PulsarIOCSCProtobufMessageMetadata format.
-____
+==== Parquet with PROTOBUF_NATIVE format
 
-.PROTOBUF_NATIVE example
-[%collapsible]
-====
+When using Parquet with `PROTOBUF_NATIVE` format, the connector writes the messages with the `DynamicMessage` format.
+When `withMetadata` is true, the connector adds __message_metadata__ to the messages with `PulsarIOCSCProtobufMessageMetadata` format.
+
 For example, if a message `User` has the following schema:
 
 [source,protobuf]
@@ -76,9 +119,8 @@ message User {
  PulsarIOCSCProtobufMessageMetadata __message_metadata__ = 3;
 }
 ----
-====
 
-== Skip unsupported messages
+==== Skip unsupported messages
 
 By default, when the connector receives a message with a non-supported schema type, the connector will fail the message.
 If you want to skip the non-supported messages, you can set `skipFailedMessages` to true.
@@ -118,9 +160,129 @@ Set your cloud storage provider and other required values in the `configs` area.
 Google Cloud Storage::
 +
 --
-[%header,format=csv,cols="2,1,1,3"]
+[cols="2,1,1,3"]
 |===
-include::example$connectors/sinks/cloud-storage/gcp-gcs.csv[]
+|Name |Required |Default |Description
+
+|bucket
+|yes
+|null
+|The Cloud Storage bucket
+
+|provider
+|yes
+|null
+|The Cloud Storage type. Google cloud storage only supports the google-cloud-storage provider.
+
+|avroCodec
+|no
+|snappy
+|Compression codec used when formatType=avro. Available compression types are: null (no compression), deflate, bzip2, xz, zstandard, snappy.
+
+|batchSize
+|no
+|10
+|The number of records submitted in batch.
+
+|batchTimeMs
+|no
+|1000
+|The interval for batch submission.
+
+|bytesFormatTypeSeparator
+|no
+|0x10
+|It is inserted between records for the formatType of bytes. By default, it is set to '0x10'. An input record that contains the line separator looks like multiple records in the output object.
+
+|formatType
+|no
+|json
+|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+
+|gcsServiceAccountKeyFileContent
+|no
+|empty
+|The contents of the JSON service key file. If empty, credentials are read from gcsServiceAccountKeyFilePath file.
+
+|gcsServiceAccountKeyFilePath
+|no
+|empty
+|Path to the GCS credentials file. If empty, the credentials file are read from the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+
+|jsonAllowNaN
+|no
+|false
+|Recognize 'NaN', 'INF', '-INF' as legal floating number values when formatType=json. Since JSON specification does not allow such values this is a non-standard feature and disabled by default.
+
+|maxBatchBytes
+|no
+|10000000
+|The maximum number of bytes in a batch.
+
+|parquetCodec
+|no
+|gzip
+|Compression codec used when formatType=parquet. Available compression types are: null (no compression), snappy, gzip, lzo, brotli, lz4, zstd.
+
+|partitionerType
+|no
+|partition
+|The partitioning type. It can be configured by topic partitions or by time. By default, the partition type is configured by topic partitions.
+
+|partitionerUseIndexAsOffset
+|no
+|false
+|Whether to use the Pulsar's message index as offset or the record sequence. It's recommended if the incoming messages may be batched. The brokers may or not expose the index metadata and, if it's not present on the record, the sequence will be used. See PIP-70 for more details.
+
+|pathPrefix
+|no
+|false
+|If it is set, the output files are stored in a folder under the given bucket path. The pathPrefix must be in the format of xx/xxx/.
+
+|pendingQueueSize
+|no
+|10
+|The number of records buffered in queue. By default, it is equal to batchSize. You can set it manually.
+
+|skipFailedMessages
+|no
+|false
+|Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
+
+|sliceTopicPartitionPath
+|no
+|false
+|When it is set to true, split the partitioned topic name into separate folders in the bucket path.
+
+|timePartitionDuration
+|no
+|86400000
+|The time interval for time-based partitioning. Support formatted interval string, such as 30d, 24h, 30m, 10s, and also support number in milliseconds precision, such as 86400000 refers to 24h or 1d.
+
+|timePartitionPattern
+|no
+|yyyy-MM-dd
+|The format pattern of the time-based partitioning. For details, refer to the Java date and time format.
+
+|useHumanReadableMessageId
+|no
+|false
+|Use a human-readable format string for messageId in message metadata. The messageId is in a format like ledgerId:entryId:partitionIndex:batchIndex. Otherwise, the messageId is a Hex-encoded string.
+
+|useHumanReadableSchemaVersion
+|no
+|false
+|Use a human-readable format string for the schema version in the message metadata. If it is set to true, the schema version is in plain string format. Otherwise, the schema version is in hex-encoded string format.
+
+|withMetadata
+|no
+|false
+|Save message attributes to metadata.
+
+|withTopicPartitionNumber
+|no
+|true
+|When it is set to true, include the topic partition number to the object path.
 |===
 --
 
@@ -136,18 +298,288 @@ The suggested permission policies for AWS S3 are:
 
 If you don't want to provide a region in the configuration, then enable the `s3:GetBucketLocation` permission policy as well.
 
-[%header,format=csv,cols="2,1,1,3"]
+[cols="2,1,1,3"]
 |===
-include::example$connectors/sinks/cloud-storage/aws-S3.csv[]
+|Name |Required |Default |Description
+
+|accessKeyId
+|yes
+|null
+|The Cloud Storage access key ID. It requires permission to write objects.
+
+|bucket
+|yes
+|null
+|The Cloud Storage bucket.
+
+|endpoint
+|yes
+|null
+|The Cloud Storage endpoint.
+
+|provider
+|yes
+|null
+|The Cloud Storage type, such as aws-s3, s3v2 (s3v2 uses the AWS client but not the JCloud client).
+
+|secretAccessKey
+|yes
+|null
+|The Cloud Storage secret access key.
+
+|avroCodec
+|no
+|snappy
+|Compression codec used when formatType=avro. Available compression types are: null (no compression), deflate, bzip2, xz, zstandard, snappy.
+
+|batchSize
+|no
+|10
+|The number of records submitted in batch.
+
+|batchTimeMs
+|no
+|1000
+|The interval for batch submission.
+
+|bytesFormatTypeSeparator
+|no
+|0x10
+|It is inserted between records for the formatType of bytes. By default, it is set to '0x10'. An input record that contains the line separator looks like multiple records in the output object.
+
+|formatType
+|no
+|json
+|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+
+|jsonAllowNaN
+|no
+|false
+|Recognize 'NaN', 'INF', '-INF' as legal floating number values when formatType=json. Since JSON specification does not allow such values this is a non-standard feature and disabled by default.
+
+|maxBatchBytes
+|no
+|10000000
+|The maximum number of bytes in a batch.
+
+|parquetCodec
+|no
+|gzip
+|Compression codec used when formatType=parquet. Available compression types are: null (no compression), snappy, gzip, lzo, brotli, lz4, zstd.
+
+|partitionerType
+|no
+|partition
+|The partitioning type. It can be configured by topic partitions or by time. By default, the partition type is configured by topic partitions.
+
+|partitionerUseIndexAsOffset
+|no
+|false
+|Whether to use the Pulsar's message index as offset or the record sequence. It's recommended if the incoming messages may be batched. The brokers may or not expose the index metadata and, if it's not present on the record, the sequence will be used. See PIP-70 for more details.
+
+|pathPrefix
+|no
+|false
+|If it is set, the output files are stored in a folder under the given bucket path. The pathPrefix must be in the format of xx/xxx/.
+
+|pendingQueueSize
+|no
+|10
+|The number of records buffered in queue. By default, it is equal to batchSize. You can set it manually.
+
+|role
+|no
+|null
+|The Cloud Storage role.
+
+|roleSessionName
+|no
+|null
+|The Cloud Storage role session name.
+
+|skipFailedMessages
+|no
+|false
+|Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
+
+|sliceTopicPartitionPath
+|no
+|false
+|When it is set to true, split the partitioned topic name into separate folders in the bucket path.
+
+|timePartitionDuration
+|no
+|86400000
+|The time interval for time-based partitioning. Support formatted interval string, such as 30d, 24h, 30m, 10s, and also support number in milliseconds precision, such as 86400000 refers to 24h or 1d.
+
+|timePartitionPattern
+|no
+|yyyy-MM-dd
+|The format pattern of the time-based partitioning. For details, refer to the Java date and time format.
+
+|useHumanReadableMessageId
+|no
+|false
+|Use a human-readable format string for messageId in message metadata. The messageId is in a format like ledgerId:entryId:partitionIndex:batchIndex. Otherwise, the messageId is a Hex-encoded string.
+
+|useHumanReadableSchemaVersion
+|no
+|false
+|Use a human-readable format string for the schema version in the message metadata. If it is set to true, the schema version is in plain string format. Otherwise, the schema version is in hex-encoded string format.
+
+|withMetadata
+|no
+|false
+|Save message attributes to metadata.
+
+|withTopicPartitionNumber
+|no
+|true
+|When it is set to true, include the topic partition number to the object path.
 |===
 --
 
 Azure Blob Storage::
 +
 --
-[%header,format=csv,cols="2,1,1,3"]
+[cols="2,1,1,3"]
 |===
-include::example$connectors/sinks/cloud-storage/azure-blob.csv[]
+|Name |Required |Default |Description
+
+|azureStorageAccountConnectionString
+|yes
+|
+|The Azure Blob Storage connection string. Required when authenticating via connection string.
+
+|azureStorageAccountKey
+|yes
+|
+|The Azure Blob Storage account key. Required when authenticating via account name and account key.
+
+|azureStorageAccountName
+|yes
+|
+|The Azure Blob Storage account name. Required when authenticating via account name and account key.
+
+|azureStorageAccountSASToken
+|yes
+|
+|The Azure Blob Storage account SAS token. Required when authenticating via SAS token.
+
+|bucket
+|yes
+|null
+|The Cloud Storage bucket.
+
+|endpoint
+|yes
+|null
+|The Azure Blob Storage endpoint.
+
+|provider
+|yes
+|null
+|The Cloud Storage type. Azure Blob Storage only supports the azure-blob-storage provider.
+
+|avroCodec
+|no
+|snappy
+|Compression codec used when formatType=avro. Available compression types are: null (no compression), deflate, bzip2, xz, zstandard, snappy.
+
+|batchSize
+|no
+|10
+|The number of records submitted in batch.
+
+|batchTimeMs
+|no
+|1000
+|The interval for batch submission.
+
+|bytesFormatTypeSeparator
+|no
+|0x10
+|It is inserted between records for the formatType of bytes. By default, it is set to '0x10'. An input record that contains the line separator looks like multiple records in the output object.
+
+|formatType
+|no
+|json
+|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+
+|jsonAllowNaN
+|no
+|false
+|Recognize 'NaN', 'INF', '-INF' as legal floating number values when formatType=json. Since JSON specification does not allow such values this is a non-standard feature and disabled by default.
+
+|maxBatchBytes
+|no
+|10000000
+|The maximum number of bytes in a batch.
+
+|parquetCodec
+|no
+|gzip
+|Compression codec used when formatType=parquet. Available compression types are: null (no compression), snappy, gzip, lzo, brotli, lz4, zstd.
+
+|partitionerType
+|no
+|partition
+|The partitioning type. It can be configured by topic partitions or by time. By default, the partition type is configured by topic partitions.
+
+|partitionerUseIndexAsOffset
+|no
+|false
+|Whether to use the Pulsar's message index as offset or the record sequence. It's recommended if the incoming messages may be batched. The brokers may or not expose the index metadata and, if it's not present on the record, the sequence will be used. See PIP-70 for more details.
+
+|pathPrefix
+|no
+|false
+|If it is set, the output files are stored in a folder under the given bucket path. The pathPrefix must be in the format of xx/xxx/.
+
+|pendingQueueSize
+|no
+|10
+|The number of records buffered in queue. By default, it is equal to batchSize. You can set it manually.
+
+|skipFailedMessages
+|no
+|false
+|Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
+
+|sliceTopicPartitionPath
+|no
+|false
+|When it is set to true, split the partitioned topic name into separate folders in the bucket path.
+
+|timePartitionDuration
+|no
+|86400000
+|The time interval for time-based partitioning. Support formatted interval string, such as 30d, 24h, 30m, 10s, and also support number in milliseconds precision, such as 86400000 refers to 24h or 1d.
+
+|timePartitionPattern
+|no
+|yyyy-MM-dd
+|The format pattern of the time-based partitioning. For details, refer to the Java date and time format.
+
+|useHumanReadableMessageId
+|no
+|false
+|Use a human-readable format string for messageId in message metadata. The messageId is in a format like ledgerId:entryId:partitionIndex:batchIndex. Otherwise, the messageId is a Hex-encoded string.
+
+|useHumanReadableSchemaVersion
+|no
+|false
+|Use a human-readable format string for the schema version in the message metadata. If it is set to true, the schema version is in plain string format. Otherwise, the schema version is in hex-encoded string format.
+
+|withMetadata
+|no
+|false
+|Save message attributes to metadata.
+
+|withTopicPartitionNumber
+|no
+|true
+|When it is set to true, include the topic partition number to the object path.
 |===
 --
 ======

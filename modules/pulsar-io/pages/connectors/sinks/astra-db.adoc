@@ -39,28 +39,104 @@ include::example$connectors/sinks/astra.csv[]
 
 === {cass-short} Connection
 
-These values are provided in the `Configs` area.
+These values are provided in the `Configs` area:
 
-The `cloud.secureConnectBundle` can either be a path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the zip provided it in the format `base64:<b64 string>`.
-
-[%header,format=csv,cols="2,1,1,3"]
+[cols=4]
 |===
-include::example$connectors/sinks/{connectorType}/config.csv[]
+| Name | Required | Default | Description
+
+| auth
+| yes
+| `{}`
+| Refer to the auth properties reference
+
+| cloud.secureConnectBundle
+| yes
+|
+|Can either be a path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the zip provided it in the format `base64:<b64 string>`.
+
+| compression
+| yes
+| None
+|
+
+| connectionPoolLocalSize
+| yes
+| 4
+|
+
+| ignoreErrors
+| yes
+| None
+|
+
+| jmx
+| yes
+| true
+|
+
+| maxConcurrentRequests
+| yes
+| 500
+|
+
+| maxNumberOfRecordsInBatch
+| yes
+| 32
+|
+
+| queryExecutionTimeout
+| yes
+| 30
+|
+
+| task.max
+| yes
+| 1
+|
+
+| tasks.max
+| yes
+| 1
+|
+
+| topic
+| yes
+| `{}`
+| Refer to the topic properties reference
+
+| topics
+| yes
+|
+|The topic name to watch
 |===
 
-// TODO: Need descriptions of every param
 === Auth Properties
 
-These values are provided in the `auth`` area in the preceding {cass-short} connection parameters.
+These values are provided in the `auth` area of the preceding {cass-short} connection parameters:
 
-[%header,format=csv,cols="2,1,1,3"]
-|===
-include::example$connectors/sinks/{connectorType}/auth.csv[]
-|===
+[cols=3]
+| Name | Required | Default
+
+| gssapi
+| yes
+| `{ "service": "dse" }`
+
+| password
+| yes
+|
+
+| provider
+| yes
+| None
+
+| username
+| yes
+| `token`
 
 === Topic Properties
 
-These values are provided in the `topic` area in the preceding {cass-short} connection parameters.
+These values are provided in the `topic` area of the preceding {cass-short} connection parameters.
 
 Refer to the official documentation for a https://docs.datastax.com/en/pulsar-connector/docs/cfgRefPulsarDseConnection.html[connection properties reference].
 

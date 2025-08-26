@@ -7,9 +7,13 @@
 --
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sources/pulsar-admin-info.sh[]
+# Get information about connector
+./bin/pulsar-admin sources get \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
@@ -37,11 +41,14 @@ export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 
-. Use these values to form curl commands to the REST API:
+. Use these values to form curl commands to the REST API, for example:
 +
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sources/curl-info.sh[]
+# Get a connector's information
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
 
@@ -61,9 +68,14 @@ include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 --
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sources/pulsar-admin-status.sh[]
+# Check connector status
+./bin/pulsar-admin sources status \
+  --instance-id "$SOURCE_INSTANCEID" \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
@@ -91,11 +103,19 @@ export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 
-. Use these values to form curl commands to the REST API:
+. Use these values to form curl commands to the REST API, for example:
 +
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sources/curl-status.sh[]
+# Get the status of all connector instances
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+
+# Get the status of an individual connector instance
+curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 
 .Result
