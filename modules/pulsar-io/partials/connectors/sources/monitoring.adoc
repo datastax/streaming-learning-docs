@@ -59,7 +59,7 @@ include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded the client.conf to the pulsar folder.
+Assuming you have downloaded the `client.conf` to the `pulsar` folder:
 
 [source,shell,subs="attributes+"]
 ----

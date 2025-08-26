@@ -4,7 +4,12 @@
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-start]
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
+
+[source,shell,subs="attributes+"]
+----
+include::example$connectors/sources/pulsar-admin-start.sh[]
+----
 --
 cURL::
 +
@@ -19,7 +24,12 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-start]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-stop]
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
+
+[source,shell,subs="attributes+"]
+----
+include::example$connectors/sources/pulsar-admin-stop.sh[]
+----
 --
 cURL::
 +
@@ -34,7 +44,12 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-stop]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-restart]
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
+
+[source,shell,subs="attributes+"]
+----
+include::example$connectors/sources/pulsar-admin-restart.sh[]
+----
 --
 cURL::
 +
@@ -50,7 +65,8 @@ include::partial$connectors/sources/curl-tab.adoc[tags=curl-prereq;curl-restart]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-update.sh[]
@@ -80,7 +96,12 @@ include::partial$connectors/sources/curl-monitor-response.adoc[]
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sources/pulsar-admin-tab.adoc[tags=admin-prereq;admin-delete]
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
+
+[source,shell,subs="attributes+"]
+----
+include::example$connectors/sources/pulsar-admin-delete.sh[]
+----
 --
 cURL::
 +

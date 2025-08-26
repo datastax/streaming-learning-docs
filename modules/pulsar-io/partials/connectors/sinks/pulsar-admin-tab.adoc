@@ -29,15 +29,3 @@ include::example$connectors/sinks/pulsar-admin-restart.sh[]
 include::example$connectors/sinks/pulsar-admin-delete.sh[]
 ----
 // end::admin-delete[]
-// tag::admin-info[]
-[source,shell,subs="attributes+"]
-----
-include::example$connectors/sinks/pulsar-admin-info.sh[]
-----
-// end::admin-info[]
-// tag::admin-status[]
-[source,shell,subs="attributes+"]
-----
-include::example$connectors/sinks/pulsar-admin-status.sh[]
-----
-// end::admin-status[]

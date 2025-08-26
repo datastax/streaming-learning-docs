@@ -37,6 +37,7 @@ include::partial$connectors/sinks/curl-monitor-response.adoc[]
 +
 --
 include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/pulsar-admin-status.sh[]
