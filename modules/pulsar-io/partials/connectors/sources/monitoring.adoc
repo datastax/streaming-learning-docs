@@ -1,19 +1,23 @@
 === Info
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded client.conf to the {pulsar-short} folder:
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sources/pulsar-admin-info.sh[]
+# Get information about connector
+./bin/pulsar-admin sources get \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
-cURL::
+curl::
 +
 --
 You need a {pulsar-short} token for REST API authentication.
@@ -37,11 +41,14 @@ export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 
-. Use these values to form curl commands to the REST API:
+. Use these values to form curl commands to the REST API, for example:
 +
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sources/curl-info.sh[]
+# Get a connector's information
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 --
 
@@ -50,24 +57,29 @@ Sample Config Data::
 --
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 --
-====
+======
 
 === Health
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
-Assuming you have downloaded the client.conf to the pulsar folder.
+include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sources/pulsar-admin-status.sh[]
+# Check connector status
+./bin/pulsar-admin sources status \
+  --instance-id "$SOURCE_INSTANCEID" \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
-cURL::
+curl::
 +
 --
 You need a {pulsar-short} token for REST API authentication.
@@ -91,20 +103,93 @@ export WEB_SERVICE_URL=<replace-me>
 export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 
-. Use these values to form curl commands to the REST API:
+. Use these values to form curl commands to the REST API, for example:
 +
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sources/curl-status.sh[]
+# Get the status of all connector instances
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+
+# Get the status of an individual connector instance
+curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-+
-Response::
-+
---
-include::partial$connectors/sources/curl-status-response.adoc[]
---
+
+.Result
+[%collapsible]
 ====
+Status response for all connector instances:
+
+[source,json]
+----
+{
+  "numInstances": 0,
+  "numRunning": 0,
+  "instances": [
+    {
+      "instanceId": 0,
+      "status": {
+        "running": true,
+        "error": "string",
+        "numRestarts": 0,
+        "numReceivedFromSource": 0,
+        "numSystemExceptions": 0,
+        "latestSystemExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numSourceExceptions": 0,
+        "latestSourceExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numWritten": 0,
+        "lastReceivedTime": 0,
+        "workerId": "string"
+      }
+    }
+  ]
+}
+----
+
+Status response for individual connector instance:
+
+[source,json]
+----
+{
+  "running": true,
+  "error": "string",
+  "numRestarts": 0,
+  "numReceivedFromSource": 0,
+  "numSystemExceptions": 0,
+  "latestSystemExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numSourceExceptions": 0,
+  "latestSourceExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numWritten": 0,
+  "lastReceivedTime": 0,
+  "workerId": "string"
+}
+----
+====
+--
+======
 
 === Metrics
 

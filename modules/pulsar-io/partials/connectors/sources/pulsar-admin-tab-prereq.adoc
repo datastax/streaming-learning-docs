@@ -1,0 +1,3 @@
+Refer to the complete https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sources[pulsar-admin sources spec] for all available options.
+
+Assuming you have downloaded `client.conf` to the `{pulsar-short}` folder:

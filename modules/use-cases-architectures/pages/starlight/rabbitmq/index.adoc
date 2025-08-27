@@ -70,24 +70,25 @@ TIP: Click the clipboard icon to copy the RabbitMQ connection values, as well as
 
 === Produce and consume a message
 
-[tabs]
-====
-RabbitMQ Client (Java)::
-+
---
-This example uses Maven for the project structure.
+This example uses Maven for the project structure for a Rabbit MQ Java client.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo] to see the complete source for this example.
+For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[{product} examples repository].
 
 . Create a new Maven project.
 +
 [source,shell]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-client/create-project.sh[]
+mvn archetype:generate \
+    -DgroupId=org.example \
+    -DartifactId=StarlightForRabbitMqClient \
+    -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DinteractiveMode=false
+
+cd StarlightForRabbitMqClient
 ----
 
-. Open the new project in your favorite IDE or text editor and add the RabbitMQ client dependency to "pom.xml".
+. Open the new project in your IDE or text editor, and then add the RabbitMQ client dependency to `pom.xml`:
 +
 [source,xml]
 ----
@@ -98,63 +99,108 @@ include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-cl
 </dependency>
 ----
 
-. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code.
-Notice there are class variables that need replacing.
-Apply the values previously retrieved in {product}.
+. Open the file `src/main/java/org/example/App.java`, and then enter the following code.
+If you cloned the example repo, replace the entire contents with the following code.
+Your editor will report errors because this isn't a complete program yet.
++
+Replace placeholders with the values you previously retrieved from {product}.
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-client/StarlightForRabbitMqClient/src/main/java/org/example/App.java[tag=init-app]
-----
-+
-NOTE: Don't worry if your editor shows errors, this isn't a complete program... yet.
+package org.example;
 
-. Add the following code to create a valid connection, a channel, and a queue that will be used by both the producer and consumer.
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.TimeoutException;
+
+public class App {
+  private static final String username = "";
+  private static final String password = "<REPLACE_WITH_PULSAR_TOKEN>";
+  private static final String host = "<REPLACE_WITH_SERVICE_URL>";
+  private static final int port = 5671;
+  private static final String virtual_host = "<REPLACE_WITH_TENANT_NAME>/<REPLACE_WITH_NAMESPACE>"; //The "rabbitmq" namespace should have been created when you enabled S4R
+  private static final String queueName = "<REPLACE_WITH_TOPIC_NAME>"; //This will get created automatically
+  private static final String amqp_URI = String.format("amqps://%s:%s@%s:%d/%s", username, password, host, port, virtual_host.replace("/","%2f"));
+
+  public static void main(String[] args) throws IOException, TimeoutException, URISyntaxException, NoSuchAlgorithmException, KeyManagementException, InterruptedException {
+----
+
+. Add the code to create a connection, channel, and queue that will be used by both the producer and consumer:
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-client/StarlightForRabbitMqClient/src/main/java/org/example/App.java[tag=create-queue]
+    ConnectionFactory factory = new ConnectionFactory();
+    factory.setUri(amqp_URI);
+
+    /*
+    You could also set each value individually
+      factory.setHost(host);
+      factory.setPort(port);
+      factory.setUsername(username);
+      factory.setPassword(password);
+      factory.setVirtualHost(virtual_host);
+      factory.useSslProtocol();
+     */
+
+    Connection connection = factory.newConnection();
+    Channel channel = connection.createChannel();
+
+    channel.queueDeclare(queueName, false, false, false, null);
 ----
 
-. Add the producer code to the file.
-This is a very simple flow that sends a single message and awaits acknowledgment.
+. Add the producer code, which is a simple flow that sends a single message and awaits acknowledgment:
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-client/StarlightForRabbitMqClient/src/main/java/org/example/App.java[tag=build-producer]
+    String publishMessage = "Hello World!";
+    channel.basicPublish("", queueName, null, publishMessage.getBytes());
+    System.out.println(" Sent '" + publishMessage + "'");
 ----
 
-. Add the consumer code to the file.
-This creates a basic consumer with callback on message receipt.
-Because the consumer isn't a blocking thread, we'll sleep for a few seconds and let things process.
+. Add the consumer code, which creates a basic consumer with callback on message receipt.
+Because the consumer isn't a blocking thread, the `sleep` allows time for messages to be received and processed.
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-rabbitmq/rabbitmq-client/StarlightForRabbitMqClient/src/main/java/org/example/App.java[tag=build-consumer]
+    DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+      String consumeMessage = new String(delivery.getBody(), StandardCharsets.UTF_8);
+      System.out.println(" Received '" + consumeMessage + "'");
+    };
+
+    channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
+
+    Thread.sleep(4000); // wait a bit for messages to be received
+
+    channel.close();
+    connection.close();
+  }
+}
 ----
 
-. You now have a complete program, so let's see it in action!
-Build and run the jar with the following terminal commands.
+. Build and run the JAR file for the complete program:
 +
 [source,shell]
 ----
 mvn clean package assembly:single
 java -jar target/StarlightForRabbitMqClient-1.0-SNAPSHOT-jar-with-dependencies.jar
 ----
-
-. If all goes as it should, your output will be similar to this:
 +
+.Result
+[%collapsible]
+====
 [source,shell]
 ----
 Sent 'Hello World!'
 Received 'Hello World!'
 ----
-
-Congrats! You used the RabbitMQ client to send and receive messages in {pulsar-short}.
---
 ====
 
-== What's next?
+== Next steps
 
 * xref:starlight-for-rabbitmq:ROOT:index.adoc[{starlight-rabbitmq} documentation]
 * xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]

@@ -1,6 +1,0 @@
-Pulsar Schema,Writer: Avro,Writer: JSON,Writer: Parquet,Writer: Bytes
-Primitive,❌,✅ *,❌,✅
-Avro,✅,✅,✅,✅
-Json,✅,✅,✅,✅
-Protobuf **,✅,✅,✅,✅
-ProtobufNative,✅ * * *,❌,✅,✅

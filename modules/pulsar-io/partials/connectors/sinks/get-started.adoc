@@ -1,6 +1,7 @@
 // TODO: include details about retrieving a tenant name
 // TODO: include details about creating a topic
-Set the required variables using any of the methods below.
+Set the following environment variables using `pulsar-admin` or curl:
+
 [source,shell,subs="attributes+"]
 ----
 export TENANT=<replace-me>
@@ -10,11 +11,11 @@ export SINK_NAME={connectorName}
 ----
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -22,10 +23,10 @@ include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
 ----
 --
 
-cURL::
+curl::
 +
 --
-include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq]
+include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
@@ -38,4 +39,4 @@ Sample Config Data::
 --
 include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
 --
-====
+======

@@ -1,0 +1,23 @@
+You need a {pulsar-short} token for REST API authentication.
+This is different from your {astra-db} application tokens.
+
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
+
+. Click your tenant's name, and then click the *Settings* tab.
+
+. Click *Create Token*.
+
+. Copy the token, store it securely, and then click *Close*.
+
+. Click the *Connect* tab, and then copy the *Web Service URL*.
+
+. Create environment variables for your tenant's token and web service URL:
++
+[source,shell,subs="attributes+"]
+----
+export WEB_SERVICE_URL=<replace-me>
+export ASTRA_STREAMING_TOKEN=<replace-me>
+----
++
+Refer to the complete https://pulsar.apache.org/source-rest-api/#tag/sources[{pulsar-short} sources REST API spec],
+for all available options.

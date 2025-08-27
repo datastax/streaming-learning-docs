@@ -1,64 +1,263 @@
 === Info
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/pulsar-admin-info.sh[]
+# Get information about a connector
+./bin/pulsar-admin sinks get \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
-cURL::
+curl::
 +
 --
-include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq]
+include::partial$connectors/sinks/curl-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-info.sh[]
+# Get information about a connector
+curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
 ----
---
-
-Response::
 +
---
-include::partial$connectors/sinks/curl-monitor-response.adoc[]
---
+.Result
+[%collapsible]
 ====
+[source,json]
+----
+{
+  "tenant": "string",
+  "namespace": "string",
+  "name": "string",
+  "className": "string",
+  "sourceSubscriptionName": "string",
+  "sourceSubscriptionPosition": "Latest",
+  "inputs": [
+    "string"
+  ],
+  "topicToSerdeClassName": {
+    "property1": "string",
+    "property2": "string"
+  },
+  "topicsPattern": "string",
+  "topicToSchemaType": {
+    "property1": "string",
+    "property2": "string"
+  },
+  "topicToSchemaProperties": {
+    "property1": "string",
+    "property2": "string"
+  },
+  "inputSpecs": {
+    "property1": {
+      "schemaType": "string",
+      "serdeClassName": "string",
+      "schemaProperties": {
+        "property1": "string",
+        "property2": "string"
+      },
+      "consumerProperties": {
+        "property1": "string",
+        "property2": "string"
+      },
+      "receiverQueueSize": 0,
+      "cryptoConfig": {
+        "cryptoKeyReaderClassName": "string",
+        "cryptoKeyReaderConfig": {
+          "property1": {},
+          "property2": {}
+        },
+        "encryptionKeys": [
+          "string"
+        ],
+        "producerCryptoFailureAction": "FAIL",
+        "consumerCryptoFailureAction": "FAIL"
+      },
+      "poolMessages": true,
+      "regexPattern": true
+    },
+    "property2": {
+      "schemaType": "string",
+      "serdeClassName": "string",
+      "schemaProperties": {
+        "property1": "string",
+        "property2": "string"
+      },
+      "consumerProperties": {
+        "property1": "string",
+        "property2": "string"
+      },
+      "receiverQueueSize": 0,
+      "cryptoConfig": {
+        "cryptoKeyReaderClassName": "string",
+        "cryptoKeyReaderConfig": {
+          "property1": {},
+          "property2": {}
+        },
+        "encryptionKeys": [
+          "string"
+        ],
+        "producerCryptoFailureAction": "FAIL",
+        "consumerCryptoFailureAction": "FAIL"
+      },
+      "poolMessages": true,
+      "regexPattern": true
+    }
+  },
+  "maxMessageRetries": 0,
+  "deadLetterTopic": "string",
+  "configs": {
+    "property1": {},
+    "property2": {}
+  },
+  "secrets": {
+    "property1": {},
+    "property2": {}
+  },
+  "parallelism": 0,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "retainOrdering": true,
+  "retainKeyOrdering": true,
+  "resources": {
+    "cpu": 0,
+    "ram": 0,
+    "disk": 0
+  },
+  "autoAck": true,
+  "timeoutMs": 0,
+  "negativeAckRedeliveryDelayMs": 0,
+  "sinkType": "string",
+  "archive": "string",
+  "cleanupSubscription": true,
+  "runtimeFlags": "string",
+  "customRuntimeOptions": "string",
+  "transformFunction": "string",
+  "transformFunctionClassName": "string",
+  "transformFunctionConfig": "string"
+}
+----
+====
+--
+======
 
 === Health
 
 [tabs]
-====
+======
 {pulsar-short} Admin::
 +
 --
-include::partial$connectors/sinks/pulsar-admin-tab.adoc[tags=admin-prereq]
+include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/pulsar-admin-status.sh[]
+# Check connector status
+./bin/pulsar-admin sinks status \
+  --instance-id "$SINK_INSTANCEID" \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
 ----
 --
 
-cURL::
+curl::
 +
 --
-include::partial$connectors/sinks/curl-tab.adoc[tags=curl-prereq]
+include::partial$connectors/sinks/curl-tab-prereq.adoc[]
+
 [source,shell,subs="attributes+"]
 ----
-include::example$connectors/sinks/curl-status.sh[]
-----
---
+# Get the status of all connector instances
+curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/status' \
+  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
 
-Response::
-+
---
-include::partial$connectors/sinks/curl-status-response.adoc[]
---
+# Get the status of an individual connector instance
+curl "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+----
+
+.Result
+[%collapsible]
 ====
+Status response for all connector instances:
+
+[source,json]
+----
+{
+ "numInstances": 0,
+ "numRunning": 0,
+ "instances": [
+   {
+     "instanceId": 0,
+     "status": {
+       "running": true,
+       "error": "string",
+       "numRestarts": 0,
+       "numReadFromPulsar": 0,
+       "numSystemExceptions": 0,
+       "latestSystemExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numSinkExceptions": 0,
+       "latestSinkExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numWrittenToSink": 0,
+       "lastReceivedTime": 0,
+       "workerId": "string"
+     }
+   }
+ ]
+}
+----
+
+Status response for individual connector instance:
+
+[source,json]
+----
+{
+ "running": true,
+ "error": "string",
+ "numRestarts": 0,
+ "numReadFromPulsar": 0,
+ "numSystemExceptions": 0,
+ "latestSystemExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numSinkExceptions": 0,
+ "latestSinkExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numWrittenToSink": 0,
+ "lastReceivedTime": 0,
+ "workerId": "string"
+}
+----
+====
+--
+======
 
 === Metrics
 

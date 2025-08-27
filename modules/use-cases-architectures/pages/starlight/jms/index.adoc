@@ -52,13 +52,19 @@ image:pulsar-client-settings.png[]
 This example uses Maven for the project structure.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-TIP: Visit our https://github.com/datastax/astra-streaming-examples[examples repo] to see the complete source of this example.
+For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[{product} examples repository].
 
 . Create a new Maven project.
 +
 [source,shell]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-jms/create-project.sh[]
+mvn archetype:generate \
+    -DgroupId=org.example \
+    -DartifactId=StarlightForJMSClient \
+    -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DinteractiveMode=false
+
+cd StarlightForJMSClient
 ----
 
 . Open the new project in your favorite IDE or text editor and add the jms dependency to "pom.xml".
@@ -72,51 +78,97 @@ include::{astra-streaming-examples-repo}/java/starlight-for-jms/create-project.s
 </dependency>
 ----
 
-. Open the file "src/main/java/org/example/App.java" and replace the entire contents with the below code. Notice there are class variables that need replacing. Apply the values previously retrieved in {product}.
+. Open the file `src/main/java/org/example/App.java`, and then enter the following contents.
+If you cloned the example repository, replace the entire contents of the file with the following code.
+Your editor will report an error because this isn't a complete script yet.
++
+Replace placeholders with the values you previously retrieved from {product}.
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=init-app]
-----
-+
-NOTE: Don't worry if your editor shows errors, this isn't a complete program... yet.
+package org.example;
 
-. Add the following code to build the configuration that will be used by both the producer and consumer.
+import com.datastax.oss.pulsar.jms.PulsarConnectionFactory;
+
+import javax.jms.JMSContext;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.Queue;
+import java.util.HashMap;
+import java.util.Map;
+
+public class App
+{
+  private static String webServiceUrl = "<REPLACE_WITH_WEB_SERVICE_URL>";
+  private static String brokerServiceUrl = "<REPLACE_WITH_BROKER_SERVICE_URL>";
+  private static String pulsarToken = "<REPLACE_WITH_PULSAR_TOKEN>";
+  private static String tenantName = "<REPLACE_WITH_TENANT_NAME>";
+  private static final String namespace = "<REPLACE_WITH_NAMESPACE>";
+  private static final String topicName = "<REPLACE_WITH_TOPIC_NAME>";
+  private static final String topic = String.format("persistent://%s/%s/%s", tenantName,namespace,topicName);
+  public static void main( String[] args ) throws Exception
+  {
+----
+
+. Add the following code to build the configuration that will be used by both the producer and consumer:
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=build-config]
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("webServiceUrl",webServiceUrl);
+    properties.put("brokerServiceUrl",brokerServiceUrl);
+    properties.put("authPlugin","org.apache.pulsar.client.impl.auth.AuthenticationToken");
+    properties.put("authParams",pulsarToken);
 ----
 
-. Add the following code into the file.
-This is a very simple 'PulsarConnectionFactory' that first creates a JMS queue using the full {pulsar-short} topic address, then creates a message listener callback function that watches the queue.
-Finally, it produces a single message on the queue.
+. Add the following code that defines a simple 'PulsarConnectionFactory' that creates a JMS queue using the full {pulsar-short} topic address, then creates a message listener callback function that watches the queue, and then produces a single message on the queue.
 +
 [source,java]
 ----
-include::{astra-streaming-examples-repo}/java/starlight-for-jms/StarlightForJMSClient/src/main/java/org/example/App.java[tag=build-factory]
+    try (PulsarConnectionFactory factory = new PulsarConnectionFactory(properties); ){
+      JMSContext context = factory.createContext();
+      Queue queue = context.createQueue(topic);
+
+      context.createConsumer(queue).setMessageListener(new MessageListener() {
+        @Override
+        public void onMessage(Message message) {
+          try {
+            System.out.println("Received: " + message.getBody(String.class));
+          } catch (Exception err) {
+            err.printStackTrace();
+          }
+        }
+      });
+
+      String message = "Hello there!";
+      System.out.println("Sending: "+message);
+      context.createProducer().send(queue, message);
+
+      Thread.sleep(4000); //wait for the message to be consumed
+    }
+  }
+}
 ----
 
-. You now have a complete program, so let's see it in action! Build and run the jar with the following terminal commands.
+. Build and run a JAR file for this program:
 +
 [source,shell]
 ----
 mvn clean package assembly:single
 java -jar target/StarlightForJMSClient-1.0-SNAPSHOT-jar-with-dependencies.jar
 ----
-
-. If all goes as it should, your output will be similar to this:
 +
-[source,shell]
+.Result
+[%collapsible]
+====
+[source,console]
 ----
 Sending: Hello there!
 Received: Hello there!
 ----
+====
 
-See how easy that was? You're already an app modernization ninja! +
-Keep building those skills with the guides in the next section.
-
-== What's next?
+== Next steps
 
 * xref:starlight-for-jms:examples:pulsar-jms-implementation.adoc[]
 * xref:starlight-for-jms:reference:pulsar-jms-mappings.adoc[]
