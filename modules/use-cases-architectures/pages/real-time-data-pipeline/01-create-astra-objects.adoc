@@ -139,6 +139,7 @@ CREATE TABLE click_data.product_clicks (
 
 == Connecting the topics to the store
 
+. To return to the *Streaming tenants* dashboard from the CQL console, click your user name, and then select the org your `webstore-clicks` streaming tenant was created in.
 . In the {astra-ui-link}, click *Streaming tenants*.
 
 . Click your `webstore-clicks` streaming tenant.
