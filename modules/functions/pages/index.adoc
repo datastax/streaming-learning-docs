@@ -3,8 +3,8 @@
 
 A {pulsar-short} *transform function* is a low-code implementation of xref:astra-streaming:developing:astream-functions.adoc[{pulsar-short} functions]. +
 Functions receive data from one or more input topics, apply user-supplied processing, and publish the results to another topic. +
-Custom functions are a powerful feature, but for common data transformations, we now include *Transform Functions*. +
-<<Drop-fields>>, <<Flatten>>, <<Compute>>, and more without coding or deep schema knowledge. +
+Custom functions are a powerful feature, but for common data transformations, we now include *Transform Functions*.
+Drop fields, flatten, compute, and more without coding or deep schema knowledge.
 {company} has created the following transform functions for common data transforms, but we're always experimenting with new ones.
 Check back as the list grows, or let us know some functions you'd find helpful in your deployment.
 
