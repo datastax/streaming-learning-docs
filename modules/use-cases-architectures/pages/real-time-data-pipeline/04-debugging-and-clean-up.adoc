@@ -42,13 +42,13 @@ image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
 
 === Removing {product-short} objects
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **Streaming**.
+. In the {astra-ui-link}, click *Streaming tenants*.
 
 . Find the `webstore-clicks` tenant, click icon:ellipsis-vertical[name="More"], and then select **Delete**.
 +
 This removes the tenant and all associated sinks, topics, messages, and namespaces.
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select **{product-short}**.
+. Click **Serverless databases** to switch to the Serverless databases dashboard.
 
 . Find the `webstore-clicks` database, click icon:ellipsis-vertical[name="More"], and then select **Terminate**.
 +

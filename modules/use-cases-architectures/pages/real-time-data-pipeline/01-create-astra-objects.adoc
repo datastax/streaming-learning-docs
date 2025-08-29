@@ -8,7 +8,7 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == Creating message topics to capture the stream of click data
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], select *Streaming*, and then click **Create Tenant**.
+. In the {astra-ui-link}, click *Create tenant*.
 
 . Name the new streaming tenant `webstore-clicks`, select any cloud provider and region, and then click **Create Tenant**.
 
@@ -27,7 +27,7 @@ You now have a `production` namespace with two topics, as well as the `default` 
 
 == Storing the stream of click data
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *{product-short}*.
+. From your tenant's page, click **Dashboard**, and then click **Serverless databases**.
 
 . Click **Create database**, and then complete the fields as follows:
 +
@@ -139,7 +139,8 @@ CREATE TABLE click_data.product_clicks (
 
 == Connecting the topics to the store
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
+. To return to the *Streaming tenants* dashboard from the CQL console, click your user name, and then select the org your `webstore-clicks` streaming tenant was created in.
+. In the {astra-ui-link}, click *Streaming tenants*.
 
 . Click your `webstore-clicks` streaming tenant.
 
