@@ -139,7 +139,7 @@ CREATE TABLE click_data.product_clicks (
 
 == Connecting the topics to the store
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
+. In the {astra-ui-link}, click *Streaming tenants*.
 
 . Click your `webstore-clicks` streaming tenant.
 
