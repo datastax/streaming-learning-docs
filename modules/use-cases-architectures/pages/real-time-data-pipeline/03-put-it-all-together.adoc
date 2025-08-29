@@ -74,13 +74,13 @@ In “Input Metrics”, we see that 1 record has been received.
 +
 image:decodable-data-pipeline/03/image4.png[]
 
-. Return to your {product} tenant “webstore-clicks” and navigate to the “Namespace and Topics” area.
+. Return to your “webstore-clicks” tenant and navigate to the “Namespace and Topics” area.
 Expand the “production” namespace and select the “all-clicks” topic.
 Confirm that “Data In” has 1 message and “Data Out” has 1 message. This means the topic took the data in and a consumer acknowledged receipt of the message.
 +
 image:decodable-data-pipeline/03/image6.png[]
 
-. In the “Sinks” tab in {product}, select the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This means the sink consumed a message from the topic and wrote the data to the store.
+. In the “Sinks” tab, select the “all-clicks” sink. In “Instance Stats” you see “Reads” has a value of 1 and “Writes” has a value of 1. This means the sink consumed a message from the topic and wrote the data to the store.
 +
 image:decodable-data-pipeline/03/image5.png[]
 
@@ -128,7 +128,7 @@ Similar to how you followed the above flow of raw click data, follow this flow t
 
 . Go to your `Astra-Streaming-Product-Webclicks-Connection` connection, and then check that the **Input Metrics** have 1 record.
 
-. In {product}, go to your tenant, and then go to the `product-clicks` topic in the `production` namespace.
+Go to your `webstore-clicks` tenant, and then go to the `product-clicks` topic in the `production` namespace.
 
 . Make sure **Data In** and **Data Out** have 1 message each.
 
