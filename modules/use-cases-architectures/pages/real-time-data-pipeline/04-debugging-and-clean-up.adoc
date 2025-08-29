@@ -48,7 +48,7 @@ image:decodable-data-pipeline/04/image2.png["Delete decodable connection"]
 +
 This removes the tenant and all associated sinks, topics, messages, and namespaces.
 
-. In the {astra-ui-link} header, click **Serverless databases**.
+. Click **Serverless databases** to switch to the Serverless databases dashboard.
 
 . Find the `webstore-clicks` database, click icon:ellipsis-vertical[name="More"], and then select **Terminate**.
 +

@@ -27,7 +27,7 @@ You now have a `production` namespace with two topics, as well as the `default` 
 
 == Storing the stream of click data
 
-. In the {astra-ui-link} header, click **Serverless databases**.
+. From your tenant's page, click **Dashboard**, and then click **Serverless databases**.
 
 . Click **Create database**, and then complete the fields as follows:
 +
