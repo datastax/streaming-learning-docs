@@ -8,9 +8,10 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 == Creating message topics to capture the stream of click data
 
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], select *Streaming*, and then click **Create Tenant**.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], select *Streaming*, and then click **Create tenant**.
 
-. Name the new streaming tenant `webstore-clicks`, select any cloud provider and region, and then click **Create Tenant**.
+
+. Name the new streaming tenant `webstore-clicks`, select any cloud provider and region, and then click **Create tenant**.
 
 . From your tenant's overview page, click the **Namespace and Topics** tab.
 
