@@ -10,7 +10,7 @@ This guide is part of a series that creates a real-time data pipeline with {prod
 
 To connect {product} to Decodable, you need some information from your {product} tenant.
 
-. In the {astra-ui-link}, click *Streaming tenants*, and then click your `webstore-clicks` streaming tenant.
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], select *Streaming*, and then click your `webstore-clicks` streaming tenant.
 +
 image:decodable-data-pipeline/02/image4.png[]
 
