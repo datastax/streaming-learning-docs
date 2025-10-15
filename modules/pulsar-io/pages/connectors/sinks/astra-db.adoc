@@ -1,9 +1,8 @@
 = {astra-db} ({cass-reg} enhanced)
 :connectorName: astra-db-sink
 :connectorType: astra-db
-:page-tag: astra-db,cdc,sink-connector
 
-{company} {astra-db} Sink Connector is based on the open-source https://docs.datastax.com/en/pulsar-connector/docs/index.html[{cass-reg} sink connector for {pulsar-reg}]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a {cass-short} cluster outside of DB.
+{company} {astra-db} Sink Connector is based on the open-source xref:pulsar-connector:ROOT:index.adoc[{cass-reg} sink connector for {pulsar-reg}]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a {cass-short} cluster outside of DB.
 
 The {product} portal provides simple way to connect this sink and a table in {astra-db} with simply a token. Using `pulsar-admin` or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
 
@@ -140,7 +139,7 @@ These values are provided in the `auth` area of the preceding {cass-short} conne
 
 These values are provided in the `topic` area of the preceding {cass-short} connection parameters.
 
-Refer to the official documentation for a https://docs.datastax.com/en/pulsar-connector/docs/cfgRefPulsarDseConnection.html[connection properties reference].
+Refer to the official documentation for a xref:pulsar-connector:ROOT:cfgRefPulsarDseConnection.adoc[connection properties reference].
 
 === Mapping topic data to table columns
 

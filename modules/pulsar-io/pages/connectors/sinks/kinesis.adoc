@@ -1,7 +1,6 @@
 = Kinesis
 :connectorName: kinesis-sink
 :connectorType: kinesis
-:page-tag: kinesis,sink-connector
 
 Amazon Kinesis collects, processes, and analyzes real-time streaming data for timely insights and quick reactions to new information.
 

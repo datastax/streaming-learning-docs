@@ -1,7 +1,6 @@
 = Debezium SQL Server
 :connectorName: debezium-mssql-src
 :connectorType: debezium-sqlserver
-:page-tag: sql-server,cdc,debezium,source-connector
 
 The Debezium SQL Server connector is based on the change data capture feature available in SQL Server 2016 Service Pack 1 (SP1) and later editions.
 

@@ -6,7 +6,7 @@ To run this example, you'll need:
 
 * https://openjdk.java.net/install/[Java OpenJDK 11]
 
-* A configured {product} instance with at least *one streaming tenant* and *one topic*. See the https://docs.datastax.com/en/astra-streaming/docs/astream-quick-start.html[{product} quick start] for instructions.
+* A configured {product} instance with at least one streaming tenant and one topic. See the xref:astra-streaming:getting-started:index.adoc[{product} quick start] for instructions.
 
 * A local clone of the https://github.com/datastax/pulsar-subscription-example[{company} {pulsar-short} Subscription Example repository]
 

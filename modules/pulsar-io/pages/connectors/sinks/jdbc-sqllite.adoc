@@ -1,7 +1,6 @@
 = JDBC SQLite
 :connectorName: jdbc-sqlite
 :connectorType: jdbc-sqlite
-:page-tag: jdbc,sqlite,sink-connector
 
 SQLite is the most used database engine in the world.
 

@@ -2,7 +2,7 @@
 :navtitle: Questions and patterns
 :description: This article describes how table schema changes are handled in the {cass-reg} Connector for {pulsar-reg}.
 
-We have collected common questions and patterns from our customers that are using CDC. We hope this will help you in your journey of getting the most out of this feature. Please also refer to the https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/faqs.html[CDC for {cass-short} FAQs] in the official documentation for more information.
+We have collected common questions and patterns from our customers that are using CDC. We hope this will help you in your journey of getting the most out of this feature. Please also refer to the xref:cdc-for-cassandra:ROOT:faqs.adoc[CDC for {cass-short} FAQs] in the official documentation for more information.
 
 .How do I know if CDC is enabled on a table?
 [%collapsible]
@@ -57,7 +57,7 @@ Another scenario might be the {pulsar-short} broker is too busy to process messa
 
 The design of CDC in {cass-short} assumed that when table changes are sync’d to the raw_cdc log, another process will be draining that log. There is a max log size setting that will disable writes to the table when the set threshold is reached. If a connection to the {pulsar-short} cluster is needed for the log to be drained, and it’s not responsive, the log will being to fill, which can impact a table’s write availability.
 
-For more, see the https://docs.datastax.com/en/cdc-for-cassandra/docs/latest/install.html#scaling-up-your-configuration[Scaling up your configuration] section in the official documentation.
+For more, see the xref:cdc-for-cassandra:ROOT:install.adoc#scaling-up-your-configuration[Scaling up your configuration] section in the official documentation.
 ====
 
 .Does the {cass-short} Source Connector use a dead-letter topic?

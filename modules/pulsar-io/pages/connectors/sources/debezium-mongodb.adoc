@@ -1,7 +1,6 @@
 = Debezium MongoDB
 :connectorName: debezium-mongo-src
 :connectorType: debezium-mongodb
-:page-tag: debezium,cdc,mongodb,source-connector
 
 Debezium’s MongoDB connector tracks a MongoDB replica set or a MongoDB sharded cluster for document changes in databases and collections and records those changes as messages in an {pulsar-reg} topic.
 

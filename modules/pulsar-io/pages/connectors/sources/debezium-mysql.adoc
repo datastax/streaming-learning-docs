@@ -1,7 +1,6 @@
 = Debezium MySQL
 :connectorName: debezium-mysql-src
 :connectorType: debezium-mysql
-:page-tag: mysql,debezium,cdc,source-connector
 
 The Debezium MySQL connector reads the binlog, produces change events for row-level INSERT, UPDATE, and DELETE operations, and emits these change events as messages in an {pulsar-reg} topic.
 

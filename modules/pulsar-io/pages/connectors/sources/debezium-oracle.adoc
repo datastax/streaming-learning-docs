@@ -1,7 +1,6 @@
 = Debezium Oracle
 :connectorName: debezium-orcl-src
 :connectorType: debezium-oracle
-:page-tag: oracle,debezium,cdc,source-connector
 
 Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running.
 

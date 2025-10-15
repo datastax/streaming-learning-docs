@@ -1,7 +1,6 @@
 = Kinesis
 :connectorName: kinesis-src
 :connectorType: kinesis
-:page-tag: kinesis,source-connector
 
 The Kinesis source connector pulls data from Amazon Kinesis and persists data into an {pulsar-reg} topic.
 

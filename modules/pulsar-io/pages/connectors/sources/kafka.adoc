@@ -1,7 +1,6 @@
 = Kafka
 :connectorName: kafka-src
 :connectorType: kafka
-:page-tag: kafka,source-connector
 
 The Kafka source connector pulls data from a Kafka topic and persists the data into an {pulsar-reg} topic.
 

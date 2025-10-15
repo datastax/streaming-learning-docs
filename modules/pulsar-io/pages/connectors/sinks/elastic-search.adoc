@@ -1,7 +1,6 @@
 = Elasticsearch
 :connectorName: es-sink
 :connectorType: elastic-search
-:page-tag: elasticsearch,sink-connector
 
 Elasticsearch is the distributed, RESTful search and analytics engine at the heart of the Elastic Stack.
 
