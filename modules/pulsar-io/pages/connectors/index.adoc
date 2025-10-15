@@ -1,6 +1,5 @@
 = Connectors
 :navtitle: Connector Overview
-:page-tag: connectors,sinks,sources,astra-streaming,dev,develop,pulsar,go
 
 {product} offers fully-managed {pulsar-reg} connectors.
 

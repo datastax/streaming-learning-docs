@@ -1,7 +1,6 @@
 = JDBC PostgreSQL
 :connectorName: jdbc-postgres
 :connectorType: jdbc-postgres
-:page-tag: jdbc,postgres,sink-connector
 
 PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development.
 

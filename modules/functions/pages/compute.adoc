@@ -1,6 +1,5 @@
 = Compute
 :functionName: compute
-:page-tag: compute, transform-function
 
 The `compute` transform function computes field values based on an `expression` evaluated at runtime. +
 If the field already exists, it will be overwritten. +

@@ -1,6 +1,5 @@
 = Cast
 :functionName: cast
-:page-tag: cast, transform-function
 
 The cast transform function transforms the data to a target compatible schema.
 

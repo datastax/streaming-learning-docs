@@ -1,7 +1,6 @@
 
 = Drop fields
 :functionName: drop-fields
-:page-tag: drop-fields, transform-function
 
 The {functionName} transform function drops fields of structured data (Currently only AVRO is supported). +
 The cast transform function transforms the data to a target compatible schema.

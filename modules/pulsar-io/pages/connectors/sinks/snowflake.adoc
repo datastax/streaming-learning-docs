@@ -1,7 +1,6 @@
 = Snowflake
 :connectorName: snowflake-sink
 :connectorType: snowflake
-:page-tag: snowflake,sink-connector
 
 A Snowflake database is where an organization's uploaded structured and semi-structured data sets are held for processing and analysis.
 

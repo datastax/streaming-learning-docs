@@ -1,7 +1,6 @@
 = Debezium PostgreSQL
 :connectorName: debezium-pg-src
 :connectorType: debezium-postgres
-:page-tag: postgres,debezium,cdc,source-connector
 
 The PostgreSQL connector produces a change event for every row-level insert, update, and delete operation that it captures, and sends change event records for each table in a separate {pulsar-reg} topic.
 

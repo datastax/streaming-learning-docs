@@ -1,6 +1,5 @@
 = Drop
 :functionName: drop
-:page-tag: drop, transform-function
 
 The {functionName} transform function drops a record from further processing. +
 Use in conjunction with `when` to selectively drop records. +
