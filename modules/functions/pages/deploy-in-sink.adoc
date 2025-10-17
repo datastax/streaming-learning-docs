@@ -1,6 +1,6 @@
 = Deploy transform function in sink
 
-As of https://www.ibm.com/docs/en/supportforpulsar[IBM Elite Support for Apache Pulsar (formerly Luna Streaming)] version 2.10.1.6, transform functions can be deployed inside of a sink process. +
+With modern Pulsar versions, transform functions can be deployed inside of a sink process. +
 Before this update, functions transformed data either after it was written to a topic by a source connector, or before it was read from a topic by a sink connector. +
 This required either an intermediate topic, with additional storage, IO, and latency, or a custom connector. +
 Now, functions can be deployed at sink creation and apply preprocessing to sink topic writes. +

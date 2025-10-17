@@ -1,91 +1,134 @@
-= {company} Streaming Learning
+= Data streaming and event stream processing
+:page-layout: landing
+:data-uri:
 
-The learning site is a collection of guides and articles about {company} streaming products. Each product has its own area dedicated to providing specifics to get started, its features, and other details. The learning site helps you get the most out of each product and get to production using best practices.
+[.[&>h2]:!hidden]
+== {empty}
 
-== Processing Data
-
+[subs="macros,attributes"]
 ++++
-<div class="landing-row">
-++++
+<div class="lg:row-span-2 flex flex-col items-start gap-4 rounded border p-4">
 
-[sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:change-data-capture/index.adoc[Change Data Capture (CDC)]
-****
---
-Change Data Capture (CDC) is a design pattern used in software development to capture and propagate changes made to data in a system. The CDC pattern is commonly used in real-time data streaming applications to enable near-real-time processing of data changes.
---
-****
+  <div class="rounded bg-level1 p-2">
+      svg:ROOT:what-is-astra-db.svg[role="mx-auto my-auto w-8 h-8"]
+  </div>
 
-[sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[Real-time data pipeline]
-****
---
-A real-time data pipeline is a series of steps that takes data from its original source and moves it to a destination such as a data warehouse or data lake. The pipeline is a set of steps that are executed in a specific order to transform the data and make it available for analysis.
---
-****
+  <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">Streaming Learning</h3></div>
 
-++++
+  Learn about the amazing things you can do with all of our streaming products.
+  We've included best practices for Apache Pulsar, a full connector reference,
+  and examples for getting the most out of Astra's CDC feature.
+
+  xref:streaming-learning:use-cases-architectures:real-time-data-pipeline/index.adoc[Build a real-time data pipeline]
+
 </div>
-++++
 
-== Migrating to {pulsar-reg}
+<div class="grid lg:grid-rows-1 lg:grid-cols-2 gap-6 mt-6">
 
-++++
-<div class="landing-row">
-++++
+  <div class="flex flex-col items-start gap-4 rounded border p-4">
 
-[sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Starlight for JMS]
-****
---
-Starlight for JMS allows enterprises to take advantage of the scalability and resiliency of a modern streaming platform to run their existing JMS applications.
+    <div class="rounded bg-level1 flex p-2">
+        svg:ROOT:using-the-astra-console.svg[role="mx-auto my-auto w-8 h-8"]
+    </div>
 
-xref:streaming-learning:use-cases-architectures:starlight/jms/index.adoc[Get started now] | xref:starlight-for-jms:ROOT:index.adoc[Configuring] | https://github.com/datastax/pulsar-jms[Source Code]
---
-****
+    <h3 class="discrete !text-h2 !m-0 [&>a]:text-white">Astra Streaming</h3>
 
-[sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[{kafka-for-astra}]
-****
---
-{kafka-for-astra} brings native {pulsar} protocol support by introducing a Kafka protocol handler on {pulsar-short} brokers.
+    Delivered as a fully-managed SaaS with boundless scale, massive throughput and low latency,
+    Astra Streaming is the simplest way to modernize your event driven architecture and turbo charge your data in motion strategy.
 
-xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Get started now] | xref:starlight-for-kafka:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-kafka[Source Code]
---
-****
+    xref:astra-streaming:getting-started:index.adoc[Astra Streaming quickstat]
 
-[sidebar.landing-card]
-.xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[{starlight-rabbitmq}]
-****
---
-{starlight-rabbitmq} combines the AMQP 0.9.1 API with {pulsar-short}, providing a powerful way to modernize your RabbitMQ infrastructure, improve performance, and reduce costs.
+  </div>
 
-xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Get started now] | xref:starlight-for-rabbitmq:ROOT:index.adoc[Configuring] | https://github.com/datastax/starlight-for-rabbitmq[Source Code]
---
-****
+  <div class="flex flex-col items-start gap-4 rounded border p-4">
 
-++++
+    <div class="rounded bg-level1 flex p-2">
+      svg:ROOT:what-is-datastax-luna.svg[role="mx-auto my-auto w-8 h-8"]
+    </div>
+
+    <h3 class="discrete !text-h2 !m-0 [&>a]:text-white">IBM Elite Support for Apache Pulsar</h3>
+
+    A production-ready distribution of Apache Pulsar with 24/7 expert enterprise support.
+
+    https://www.ibm.com/docs/en/supportforpulsar[Learn more]
+
+  </div>
+
 </div>
+
+<div class="lg:row-span-2 flex flex-col items-start gap-4 rounded border p-4 mt-6">
+
+  <div class="rounded bg-level1 p-2">
+      svg:ROOT:avoid-cloud-lockin.svg[role="mx-auto my-auto w-8 h-8"]
+  </div>
+
+  <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">KAAP Operator</h3></div>
+
+  The Kubernetes Autoscaler for Apache Pulsar (KAAP) simplifies
+  running Apache Pulsar on Kubernetes by applying the familiar operator pattern
+  to Pulsar's components, and horizonally scaling resources up or down based on
+  CPU and memory workloads.
+
+  xref:kaap-operator::index.adoc[Learn more about KAAP]
+
+</div>
+
+<div class="grid lg:grid-rows-1 lg:grid-cols-3 gap-6 mt-6">
+
+  <div class="flex flex-col items-start gap-4 rounded border p-4">
+
+    <div class="rounded bg-level1 p-2">
+        svg:ROOT:connect-clients-to-astra-db.svg[role="mx-auto my-auto w-8 h-8"]
+    </div>
+
+    <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">Sink and source connectors</h3></div>
+
+    Pulsar supports many popular streaming connectors, including:
+
+    <ul class="!m-0 [&>li]:my-2">
+      <li>xref:streaming-learning:pulsar-io:connectors/sinks/elastic-search.adoc[]</li>
+      <li>xref:streaming-learning:pulsar-io:connectors/sinks/kafka.adoc[]</li>
+      <li>xref:streaming-learning:pulsar-io:connectors/sinks/snowflake.adoc[]</li>
+      <li>xref:streaming-learning:pulsar-io:connectors/index.adoc[And more]</li>
+    </ul>
+
+  </div>
+
+  <div class="flex flex-col items-start gap-4 rounded border p-4">
+
+    <div class="rounded bg-level1 p-2">
+        svg:ROOT:migrating-apps.svg[role="mx-auto my-auto w-8 h-8"]
+    </div>
+
+    <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">Starlight API integrations</h3></div>
+
+    Learn about the Starlight API suite to painlessly integrate existing messaging workloads.
+
+    <ul class="!m-0 [&>li]:my-2">
+      <li>xref:starlight-for-jms::index.adoc[Starlight for JMS]</li>
+      <li>xref:starlight-for-kafka::index.adoc[]</li>
+      <li>xref:starlight-for-rabbitmq::index.adoc[]</li>
+    </ul>
+
+  </div>
+
+  <div class="flex flex-col items-start gap-4 rounded border p-4">
+
+    <div class="rounded bg-level1 p-2">
+        svg:ROOT:what-is-astra-streaming.svg[role="mx-auto my-auto w-8 h-8"]
+    </div>
+
+    <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">xref:astra-streaming:developing:astream-cdc.adoc[Change Data Capture]</h3></div>
+
+    Change Data Capture (CDC) for Astra Streaming enables you to send data
+    changes in real time throughout your entire ecosystem.  With a wide range of
+    connectors to data warehouses, messaging systems, data lakes as well as client
+    libraries, you can send your data wherever it needs to go in real time.
+
+    xref:astra-streaming:developing:astream-cdc.adoc[]
+
+  </div>
+
+</div>
+
 ++++
-
-== APIs & References
-
-=== Connectors
-
-A connector is a function that moves data between {pulsar} and external systems. Source are used to push data to {pulsar-short} from external systems such as databases, message queues, and storage systems. Sinks are used to pull data from a {pulsar-short} topic to an external system like a database, data warehouse, or storage system. +
-xref:streaming-learning:pulsar-io:connectors/index.adoc#_source_connectors[Sources] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_sink_connectors[Sinks] | xref:streaming-learning:pulsar-io:connectors/index.adoc#_experimental_connectors[Experimental]
-
-=== {pulsar-short} Functions
-
-Functions are lightweight compute processes that enable you to process each message received on a topic. You can apply custom logic to that message, transforming or enriching it, and then output it to a different topic. +
-xref:streaming-learning:functions:astream-functions.adoc[Learn more]
-
-=== Transformation Functions
-
-Transform functions are a low-code implementation of common {pulsar-short} functions. They are used to transform messages from one format to another. Use them to transform a message, enrich messages with additional data, or filter messages based on their content. +
-xref:streaming-learning:functions:cast.adoc[Cast] | xref:streaming-learning:functions:compute.adoc[Compute] | xref:streaming-learning:functions:drop.adoc[Drop] | xref:streaming-learning:functions:flatten.adoc[Flatten] | xref:streaming-learning:functions:merge-key-value.adoc[Merge] | xref:streaming-learning:functions:unwrap-key-value.adoc[Unwrap]
-
-=== Topic Subscriptions
-
-Subscriptions in {pulsar-short} describe which consumers are consuming data from a topic and how they want to consume that data. +
-xref:streaming-learning:subscriptions:astream-subscriptions-exclusive.adoc[Exclusive] | xref:streaming-learning:subscriptions:astream-subscriptions-shared.adoc[Shared] | xref:streaming-learning:subscriptions:astream-subscriptions-failover.adoc[Failover] | xref:streaming-learning:subscriptions:astream-subscriptions-keyshared.adoc[Key Shared]
