@@ -13,8 +13,6 @@ Functions are implemented using https://pulsar.apache.org/docs/en/functions-over
 [IMPORTANT]
 ====
 Custom functions require a xref:astra-streaming:operations:astream-pricing.adoc[paid {product} plan].
-
-Organizations on the *Free* plan can use xref:functions:index.adoc[transform functions] only.
 ====
 
 == Deploy Python functions in a zip file
@@ -419,7 +417,6 @@ If you want to use different topics, change `in`, `out`, and `log` accordingly.
 This indicates that the function was deployed and ready to run when triggered by incoming messages.
 +
 If the response is `402 Payment Required` with `Reason: only qualified organizations can create functions`, then you must upgrade to a xref:astra-streaming:operations:astream-pricing.adoc[paid {product} plan].
-Organizations on the *Free* plan can use xref:functions:index.adoc[transform functions] only.
 +
 You can also verify that a function was created by checking the **Functions** tab or by running `./pulsar-admin functions list --tenant **TENANT_NAME**`.
 

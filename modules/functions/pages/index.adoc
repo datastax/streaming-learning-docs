@@ -8,8 +8,6 @@ Drop fields, flatten, compute, and more without coding or deep schema knowledge.
 {company} has created the following transform functions for common data transforms, but we're always experimenting with new ones.
 Check back as the list grows, or let us know some functions you'd find helpful in your deployment.
 
-Unqualified orgs can use transform functions without upgrading to a Pay As You Go plan.
-
 [#transform-list]
 == Transforms
 
