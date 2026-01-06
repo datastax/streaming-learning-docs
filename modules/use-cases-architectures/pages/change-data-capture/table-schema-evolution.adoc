@@ -7,7 +7,7 @@
 This article is a continuation of the xref:change-data-capture/index.adoc[] article. Please read that article first to understand the fundamentals of what resources are being used.
 ====
 
-The message schema is of particular importance in completing the CDC pattern. Initially, it is set to match the {cass-short} table’s schema as closely as possible, but some data types are not known in {pulsar-short} (or more accurately, not known in Avro). To overcome this, there are adaptations performed when the {cass-short} Source Connector builds the {pulsar-short} message. Some types are not compatible and not able to be adapted. In this case, those columns of data are dropped while creating the {pulsar-short} message.
+The message schema is of particular importance in completing the CDC pattern. Initially, it is set to match the {cass-short} table’s schema as closely as possible, but some data types are not known in {pulsar-short} (or more accurately, not known in Avro). To overcome this, there are adaptations performed when the xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-short} connector] builds the {pulsar-short} message. Some types are not compatible and not able to be adapted. In this case, those columns of data are dropped while creating the {pulsar-short} message.
 
 To better understand how exactly the CDC agent constructs the event message, here is the pseudo code of how the schema is created:
 

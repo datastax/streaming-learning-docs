@@ -60,12 +60,12 @@ The design of CDC in {cass-short} assumed that when table changes are sync’d t
 For more, see the xref:cdc-for-cassandra:ROOT:install.adoc#scaling-up-your-configuration[Scaling up your configuration] section in the official documentation.
 ====
 
-.Does the {cass-short} Source Connector use a dead-letter topic?
+.Does the {company} CDC for {cass-short} connector use a dead-letter topic?
 [%collapsible]
 ====
 A dead letter topic is used when a message cannot be delivered to a consumer. Maybe the message acknowledgment time expired (no consumer acknowledged receipt of the message), or a consumer negatively acknowledged the message, or a retry letter topic is in use and retries were exhausted.
 
-The {cass-short} Source Connector creates a consumer to receive new event messages from the CDC agent, but does not configure a dead letter topic. It is assumed that parallel instances, broker compute, and function worker compute will be sized to handle the workload.
+The xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-short} connector] creates a consumer to receive new event messages from the CDC agent, but does not configure a dead letter topic. It is assumed that parallel instances, broker compute, and function worker compute will be sized to handle the workload.
 ====
 
 .How do I scale CDC to handle my production loads?
@@ -73,7 +73,7 @@ The {cass-short} Source Connector creates a consumer to receive new event messag
 ====
 There are 3 areas of scalability to focus on. First are the hosts in the {cass-short} cluster. The CDC agent is running on each host in its own JVM. If you are administering your own {cass-short} cluster, then you can tune the JVM compute properties to handle the appropriate workload. If you are using {cass-short} in a serverless environment, then the JVM is already set to handle significant load.
 
-The second area of focus is the number of {cass-short} Source Connector instances running. This is initially set when the Source Connector is created, and can be updated throughout the life of the running connector. Depending on your {pulsar-short} configuration, an instance can represent a process thread on the broker or a function worker. If using Kubernetes, this could be a pod. Each represents different scaling strategies like increasing compute, adding more workers, and more K8s nodes.
+The second area of focus is the number of xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-short} connector] instances that are running. This is initially set when the {cass-short} CDC connector is created, and it can be updated throughout the life of the running connector. Depending on your {pulsar-short} configuration, an instance can represent a process thread on the broker or a function worker. If using Kubernetes, this could be a pod. Each represents different scaling strategies like increasing compute, adding more workers, and more K8s nodes.
 
 Finally, the third area focuses on managing the broker backlog size and throughput tolerances. There are potentially a large amount of messages being created, so you must ensure the {pulsar-short} cluster is sized correctly. Our Luna Streaming xref:luna-streaming:install-upgrade:production-cluster-sizing.adoc[] can help you understand this better.
 ====

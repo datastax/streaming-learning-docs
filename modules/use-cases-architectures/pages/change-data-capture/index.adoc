@@ -6,20 +6,15 @@ Change Data Capture (CDC) is a design pattern used in software development to ca
 
 Before we get into the specifics of CDC, let’s first understand the resources needed to complete the flow.
 
-[TIP]
-====
-Throughout this document, "Source Connector" will refer to the CDC Source Connector component, while "source connector" refers to any other source connector in a {pulsar-short} deployment.
-
-For more information about the CDC Source Connector component, see the xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-reg} connector documentation].
-====
-
 == {pulsar-reg} source connectors
 
 Source connectors in {pulsar} are responsible for ingesting data from external sources into the {pulsar-short} system. They can be used to collect data from a variety of sources including databases, message queues, and file systems. When the source connector “sees” data, it streams the data to a {pulsar-short} topic. This enables users to easily integrate data from disparate sources into their {pulsar-short}-based applications. Source connectors make it easy to ingest, process, and analyze large volumes of data from a variety of sources into {pulsar-short}.
 
 {pulsar-short} offers extensible APIs where developers can use a defined interface to develop their own connector. The interface takes much of the boilerplate burdens away from a developer and gets them right to the purpose of the connector. Creating a connector means adding in the know-how to work with data from the source and adapt it to produce a compliant message with the {pulsar-short} client.
 
-As you’ll learn in the next section, among the processes needed to capture change data, the {cass-short} Source Connector is a very important part. To run a source connector, you provide configuration about what data will be selected, how to connect with the upstream system, and the destination topic for the new message. The source connector takes care of producing the message. {pulsar-short} source connectors run as {pulsar-short} functions within the cluster, so many of the features of functions apply (like the number of instances to run and how to configure the function instance running environment). Metrics and logs for a source connector are automatically made a part of the cluster.
+As you’ll learn in the next section, among the processes needed to capture change data, the xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-reg} connector] is a critical source connector. This is one of many available source connectors for {pulsar-short}, but is specifically designed to work with {cass-short} and its CDC features.
+
+To run a source connector, you provide configuration about what data will be selected, how to connect with the upstream system, and the destination topic for the new message. The source connector takes care of producing the message. {pulsar-short} source connectors run as {pulsar-short} functions within the cluster, so many of the features of functions apply (like the number of instances to run and how to configure the function instance running environment). Metrics and logs for a source connector are automatically made a part of the cluster.
 
 === Monitoring source connectors
 
@@ -53,19 +48,19 @@ In the context of CDC there are a few schema configurations of note. All of thes
 
 - *schema-validation-enforce*: this flag limits how producers and consumers are allowed to be configured. When enabled (true) producer and consumer clients must have a schema set before sending the message. When disabled (set to false) {pulsar-short} will allow producers and consumers without a set schema to send or receive messages. CDC disables this option (set to false), so producers and consumers do not have to know the message schema ahead of time.
 
-== {cass-short} change data capture (CDC) agent and {cass-short} Source Connector for {pulsar}
+== {cass-short} CDC agent and connector for {pulsar}
 
 The {cass-short} CDC agent is a process running on each node in a {cass-short} cluster that watches for data changes on tables that have enabled the CDC feature. Using {cass-short}'s https://cassandra.apache.org/doc/4.0/cassandra/configuration/cass_yaml_file.html#commitlog_sync[commitlog_sync option], the agent periodically syncs a separate log in a special “cdc_raw” directory. Each log entry is a CDC event. The CDC agent creates a new event message containing the row coordinates of the changed data and produces the message to a downstream {pulsar-short} cluster.
 
-Each table that has CDC enabled also has a corresponding Source Connector in {pulsar-short}. This is unlike the CDC agent where the process runs on each {cass-short} node, keeping a log of all table changes. Each table-specific Source Connector subscribes to the events topic the agent is producing messages to. When the connector “sees” a message for its table, it uses the row coordinates within the message to retrieve the mutated data from {cass-short} and create a new message with the specifics. That new message is written to a data topic where others can subscribe and receive CDC messages.
+Each table that has CDC enabled also has a corresponding xref:cdc-for-cassandra:ROOT:index.adoc[{company} CDC for {cass-short} connector] in {pulsar-short}. This is unlike the CDC agent where the process runs on each {cass-short} node, keeping a log of all table changes. Each table-specific {cass-short} CDC connector subscribes to the events topic the agent is producing messages to. When the connector “sees” a message for its table, it uses the row coordinates within the message to retrieve the mutated data from {cass-short} and create a new message with the specifics. That new message is written to a data topic where others can subscribe and receive CDC messages.
 
 === Event deduplication
 
-A particular advantage in the Source Connector is its deduplication feature. You might have read about {pulsar-short}'s built in https://pulsar.apache.org/docs/2.11.x/concepts-messaging/#message-deduplication[deduplication capabilities] - this is *not* utilized in the message flow because CDC needs a finer grain control to detect duplicates. As the CDC agent discovers a new commit log, an authentic identifier is created using the MD5 hash algorithm. That key identifier is added to the event message.
+A particular advantage in the {company} CDC for {cass-short} connector is its deduplication feature. You might have read about {pulsar-short}'s built in https://pulsar.apache.org/docs/2.11.x/concepts-messaging/#message-deduplication[deduplication capabilities] - this is *not* utilized in the message flow because CDC needs a finer grain control to detect duplicates. As the CDC agent discovers a new commit log, an authentic identifier is created using the MD5 hash algorithm. That key identifier is added to the event message.
 
-When message consumers like the Source Connector connect to the event topic, they establish a subscription type. {pulsar-short} has 4 types of subcriptions: exclusive, shared, failover, and key_shared. In a typical CDC flow, the Source Connector will have multiple instances running in parallel. When multiple consumers are a part of a key_shared subscription, {pulsar-short} will deliver a duplicate hash key to the same consumer no matter how many times it’s sent.
+When message consumers, like the {cass-short} CDC connector, connect to the event topic, they establish a subscription type. {pulsar-short} has 4 types of subcriptions: exclusive, shared, failover, and key_shared. In a typical CDC flow, the {cass-short} CDC connector will have multiple instances running in parallel. When multiple consumers are a part of a key_shared subscription, {pulsar-short} will deliver a duplicate hash key to the same consumer no matter how many times it’s sent.
 
-When a {cass-short} cluster has multiple hosts (with multiple commit logs), and they all use the same mutation to calculate the same hash key, the same consumer will always receive it. Each Source Connector keeps a cache of hashes it has seen and ensures duplicates are dropped before producing the data message.
+When a {cass-short} cluster has multiple hosts (with multiple commit logs), and they all use the same mutation to calculate the same hash key, the same consumer will always receive it. Each {cass-short} CDC connector keeps a cache of hashes it has seen and ensures duplicates are dropped before producing the data message.
 
 Learn more about {pulsar-short}'s key_shared subscription type in the https://pulsar.apache.org/docs/2.11.x/concepts-messaging/#key_shared[{pulsar-short} documentation].
 
