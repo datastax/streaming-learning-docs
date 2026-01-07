@@ -1,4 +1,4 @@
-.Processing data
+.Process data
 * Change Data Capture (CDC)
 ** xref:use-cases-architectures:change-data-capture/index.adoc[]
 ** xref:use-cases-architectures:change-data-capture/table-schema-evolution.adoc[]
@@ -6,11 +6,10 @@
 ** xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[]
 * xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with {product}]
 
-.Migrating to {pulsar}
-* xref:use-cases-architectures:starlight/index.adoc[]
-* xref:use-cases-architectures:starlight/kafka/index.adoc[]
-* xref:use-cases-architectures:starlight/rabbitmq/index.adoc[]
-* xref:use-cases-architectures:starlight/jms/index.adoc[]
+.Migrate to {pulsar}
+* xref:starlight-for-kafka:ROOT:index.adoc[]
+* xref:starlight-for-rabbitmq:ROOT:index.adoc[]
+* xref:starlight-for-jms:ROOT:index.adoc[]
 
 .APIs and References
 * Connectors

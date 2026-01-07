@@ -106,8 +106,8 @@
 
     <ul class="!m-0 [&>li]:my-2">
       <li>xref:starlight-for-jms::index.adoc[Starlight for JMS]</li>
-      <li>xref:starlight-for-kafka::index.adoc[]</li>
-      <li>xref:starlight-for-rabbitmq::index.adoc[]</li>
+      <li>xref:starlight-for-kafka::index.adoc[Starlight for Kafka]</li>
+      <li>xref:starlight-for-rabbitmq::index.adoc[Starlight for RabbitMQ]</li>
     </ul>
 
   </div>
