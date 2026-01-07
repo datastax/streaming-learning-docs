@@ -19,7 +19,7 @@ asciidoc:
     pulsar-version: '3.1' #DO NOT INCLUDE PATCH VERSION <MAJOR>.<MINOR>.<PATCH>
     debezium-version: '1.7'
     astra-streaming-examples-repo: 'https://raw.githubusercontent.com/datastax/astra-streaming-examples/master'
-    kafka-for-astra: 'Starlight for Kafka'
+    starlight-kafka: 'Starlight for Kafka'
     starlight-rabbitmq: 'Starlight for RabbitMQ'
     cass: Apache Cassandra
     cass-short: Cassandra

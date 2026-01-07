@@ -1,67 +1,196 @@
-= Getting started with the {starlight-rabbitmq} extension
+= Get started with the {starlight-rabbitmq} extension
 :navtitle: {starlight-rabbitmq}
-:description: Learn how to get started using the {starlight-rabbitmq} extension with {pulsar-short} and get hands on by publishing and consuming messages from a topic.
+:description: Use the {starlight-rabbitmq} extension with {pulsar-reg}.
 
-{starlight-rabbitmq} acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[{pulsar-reg}] cluster.
+The https://github.com/datastax/starlight-for-rabbitmq[{starlight-rabbitmq} extension] enables https://www.rabbitmq.com/[RabbitMQ] protocol support for https://pulsar.apache.org/[{pulsar-reg}] by introducing a RabbitMQ protocol handler on {pulsar-short} brokers or {pulsar-short} proxies.
+
+The extension acts as a proxy between your https://www.rabbitmq.com/[RabbitMQ] application and https://pulsar.apache.org/[{pulsar-reg}] cluster.
 It implements the AMQP 0.9.1 protocol used by RabbitMQ clients and translates AMQP frames and concepts to {pulsar-short} concepts.
 
-If source code is your thing, visit the https://github.com/datastax/starlight-for-rabbitmq[project's repo on GitHub].
+By adding the Starlight for RabbitMQ protocol handler to your {pulsar-short} cluster, you can migrate your existing RabbitMQ applications and services to {pulsar-short} without modifying the code.
 
-== Architecture reference
-
-If you want to dive deep into how {starlight-rabbitmq} works, xref:starlight-for-rabbitmq:ROOT:index.adoc[read the documentation].
+For more information about the {starlight-rabbitmq} architecture, see the xref:starlight-for-rabbitmq:ROOT:index.adoc[{starlight-rabbitmq} documentation].
 
 image:s4r-architecture.png[{starlight-rabbitmq} Architecture]
 
-== Establishing the RabbitMQ protocol handler
+== Establish the RabbitMQ protocol handler
 
 Before you can use a RabbitMQ client to interact with your {pulsar-short} cluster, you need the {starlight-rabbitmq} protocol handler installed in the cluster.
 Installation looks a bit different depending on where your {pulsar-short} cluster is running.
 Choose the option that best fits your needs.
 
 [tabs]
-====
+======
 Astra Streaming::
 +
 --
-If you want a working RabbitMQ extension as quickly as possible, this is your best bet. This is also a good option for those that already have a streaming tenant and are looking to extend it.
+Get started producing and consuming RabbitMQ messages on an Astra Streaming {pulsar-short} cluster.
 
-. Sign in to your Astra account and navigate to your streaming tenant.
+. Sign in to your Astra account, go to Astra Streaming, and then xref:astra-streaming:getting-started:index.adoc[create a tenant] or click an existing tenant.
+
+. Go to your tenant's **Connect** tab, select **RabbitMQ**, and then click **Enable RabbitMQ**.
+
+. Review the information about the {starlight-rabbitmq} extension, and then click **Enable RabbitMQ** to confirm that you want to enable this extension on your tenant.
 +
-TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
+[IMPORTANT]
+====
+This action creates a configuration file and a `rabbitmq` namespace in your Astra Streaming tenant automatically.
 
-. Go to the "Connect" tab and choose the "RabbitMQ" option.
+The `rabbitmq` namespace is required for the {starlight-rabbitmq} extension to function properly.
+It is a permanent namespace that cannot be removed except by deleting the entire tenant and all of its data.
+====
 
-. Click "Enable RabbitMQ".
+. Save the RabbitMQ configuration details to a file named `rabbitmq.conf`.
+The actual values depend on your Astra Streaming tenant's configuration and cloud provider.
++
+.rabbitmq.conf
+[source,conf,subs="+quotes"]
+----
+username: **TENANT_NAME**
+password: token:***
+host: rabbitmq-**PROVIDER**-**REGION**.streaming.datastax.com
+port: 5671
+virtual_host: **PROVIDER**/rabbitmq
+----
 
-. A message will let you know of the additions (and restrictions) that come with using {starlight-rabbitmq}.
+=== Connect RabbitMQ and {pulsar-short}
+//Move to messaging section?
+This example uses a Python script to create a connection between RabbitMQ and your {pulsar-short} tenant.
+It also establishes a message queue named `queuename`, prints ten messages, and then closes the connection.
 
-. Click the "Enable RabbitMQ" button to confirm your understanding.
+. Create a `connect-test.py` file containing the following code:
++
+.connect-test.py
+[source,python,subs="+quotes"]
+----
+import ssl
+import pika
 
-Your Astra Streaming tenant is ready for prime time! Continue to the next section of the guide to see it in action.
+virtual_host = "**VIRTUAL_HOST**"
+token = "**TOKEN**"
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.verify_mode = ssl.CERT_NONE
+context.check_hostname = False
+context.load_default_certs()
+ssl_options = pika.SSLOptions(context)
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(
+    virtual_host=virtual_host,
+    host="**HOST**",
+    ssl_options=ssl_options,
+    port=**PORT**,
+    credentials=pika.PlainCredentials("", token)))
+print("connection success")
+
+channel = connection.channel()
+print("started a channel")
+
+channel.queue_declare(queue='queuename')
+
+for x in range(10):
+    channel.basic_publish(exchange='',
+                      routing_key='routingkey',
+                      body='message body goes here')
+    print(" sent one")
+
+connection.close()
+----
++
+Replace the following with values from your `rabbitmq.conf` file:
++
+* `**VIRTUAL_HOST**`
+* `**TOKEN**` (from the `password` field)
+* `**HOST**`
+* `**PORT**`
+
+. Save the `connect-test.py` file.
+
+. Run `connect-test.py`:
++
+[source,shell]
+----
+python3 connect-test.py
+----
+
+. Make sure the result is similar to the following:
++
+[source,console]
+----
+connection success
+started a channel
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+ sent one
+----
+
+. Navigate to your `rabbitmq` namespace dashboard in Astra Streaming, and then monitor the namespace's activity.
++
+If configured correctly, you should have new topics called `amq.default.__queuename` and `amq.default_routingkey` that were created by the Python script, as well as an increasing amount of traffic and messages.
+Your RabbitMQ messages are being published to a {pulsar-short} topic.
+
+=== RabbitMQ exchanges and {pulsar-short} topics
+
+//TBD if duplicated from Starlight docs and/or unique to Astra
+
+{starlight-rabbitmq} maps RabbitMQ _exchanges_ to {pulsar-short} _topics_, as described in the following table:
+
+[cols="1,1,1,1"]
+|===
+|Exchange |Routing key |{pulsar-short} topic name |Usage example
+
+|`amp.direct`
+|used
+|`amq.direct.__{routing key}`
+|`channel.basic_publish(exchange='amp.direct',`
+
+|`amp.default` or empty string
+|used
+|`amq.default.__{routing key}`
+|`channel.basic_publish(exchange="),`
+
+|`amp.match`
+|not used
+|`amp.match`
+|`channel.basic_publish(exchange=amp.match),`
+
+|`amp.fanout`
+|not used
+|`amp.fanout`
+|`channel.basic_publish(exchange='amp.fanout'),`
+
+|`headers`
+|not used
+|Name of the header
+|`channel.exchange_declare(exchange='header_logs', exchange_type='headers')
+channel.basic_publish(exchange='header_logs'),`
+
+|===
 --
+
 Luna Streaming::
 +
 --
-The {starlight-rabbitmq} extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]" guide to create a simple {pulsar-short} cluster with the {starlight-rabbitmq} extension ready for use.
+The {starlight-rabbitmq} extension is included in the `luna-streaming-all` image used to deploy a Luna cluster.
+The Luna Helm chart simplifies deployment of the the RabbitMQ extension.
 
-== Use Starlight for RabbitMQ with Luna Streaming
+The following steps explain how to deploy a Luna Streaming Helm chart to create a simple {pulsar-short} cluster with the {starlight-rabbitmq} extension ready for use.
 
-Starlight for RabbitMQ brings native https://www.rabbitmq.com/[RabbitMQ] protocol support to https://pulsar.apache.org/[{pulsar-reg}] by introducing a RabbitMQ protocol handler on {pulsar-short} brokers or {pulsar-short} proxies.
-By adding the Starlight for RabbitMQ protocol handler to your {pulsar-short} cluster, you can migrate your existing RabbitMQ applications and services to {pulsar-short} without modifying the code.
-
-The following steps explain how to deploy a Luna Streaming Helm chart with the Starlight for RabbitMQ protocol handler extension.
-
-=== Prerequisites
-
+. Make sure you meet the following prerequisites:
++
 * https://helm.sh/docs/intro/install/[Helm 3 CLI] (we used version 3.8.0)
 * https://kubernetes.io/docs/tasks/tools/[Kubectl CLI] (we used version 1.23.4)
 * Python (we used version 3.8.10)
 * Enough access to a K8s cluster to create a namespace, deployments, and pods
 
-=== Install Luna Streaming Helm chart
-
-. Add the {company} Helm chart repo to your Helm store.
+. Add the {company} Helm chart repo to your Helm store
 +
 [source,shell]
 ----
@@ -84,34 +213,35 @@ helm install \
   datastax-pulsar/pulsar
 ----
 
-. Wait for the broker pod to be in a running state. You might see a few restarts as your components start up.
+. Wait for the broker pod to reach a running state.
+It might restart a few times while your components start up.
 +
 [source,shell]
 ----
 kubectl -n datastax-pulsar wait --for=condition=Ready pod/pulsar-broker-0 --timeout=120s
 ----
 
-=== Forward service port
-
-You'll need to interact with a few of the services in the K8s cluster.
-Map a few ports to those services.
-
-In a new terminal, port forward {pulsar-short}'s admin service:
-
+. Forward service ports so you can interact with certain services on the Kubernetes cluster:
++
+.. In a new terminal, port forward {pulsar-short}'s admin service:
++
 [source,shell]
 ----
 kubectl port-forward -n datastax-pulsar service/pulsar-broker 8080:8080
 ----
 
-In a separate terminal window, port forward the Starlight for RabbitMQ service:
-
+.. In a separate terminal window, port forward the Starlight for RabbitMQ service:
++
 [source,shell]
 ----
 kubectl port-forward -n datastax-pulsar service/pulsar-proxy 5672:5672
 ----
 
-=== Produce a message with the RabbitMQ Python client
+The Luna Helm chart deployed Starlight for RabbitMQ on the {pulsar-short} proxy and opened the correct port.
+Your application can now communicate with {pulsar-short} as if it were a real RabbitMQ host.
 
+=== Produce a message with the RabbitMQ Python client
+//Move to messaging section
 If you hadn't noticed, we never opened the {pulsar-short} binary port to accept new messages.
 Only the admin port and the RabbitMQ port are open.
 To further demonstrate how native Starlight for RabbitMQ is, we will use the Pika RabbitMQ Python library to produce and consume messages from {pulsar-short}.
@@ -163,28 +293,31 @@ received message: test
 deleted test-queue queue
 ----
 
-=== Next steps
-
-The Luna Helm chart deployed Starlight for RabbitMQ on the {pulsar-short} proxy and opened the correct port.
-Your application will now "talk" to {pulsar-short} as if it were a real RabbitMQ host.
-
-* xref:streaming-learning:use-cases-architectures:starlight/rabbitmq/index.adoc[Messaging with Starlight for RabbitMQ]
 --
+
 Self Managed::
 +
 --
 Already have your own {pulsar-short} Cluster? Or maybe you're using a standalone cluster? {starlight-rabbitmq} can easily be a part of that cluster! Follow the "xref:starlight-for-rabbitmq:installation:getting-started.adoc[]" guide.
 --
-====
+======
 
-== Messaging with {starlight-rabbitmq}
+== Message with {starlight-rabbitmq}
 
 {starlight-rabbitmq} supports quite a few different use cases.
 With a {pulsar-short} cluster between publishers and consumers you can interchange the type of publisher and consumer to fit your needs.
 
-*The below examples are using an Astra Streaming tenant as the AMQP listener.* If you are using Luna Streaming or a self-managed tenant, switch the listener URL for your own.
+[TIP]
+====
+The following examples use an Astra Streaming tenant as the AMQP listener.
+
+If you are using Luna Streaming or a self-managed tenant, use the listener URL for your tenant.
+====
 
 === Retrieve RabbitMQ connection properties in Astra Streaming
+
+//Already covered on the Astra tab above. Image isn't needed.
+//See if this can be made generic or already provided for both in the Starlight docs
 
 In the Astra Streaming portal "Connect" tab, the "RabbitMQ" area provides important connection information.
 You will need this connection information to create a working RabbitMQ client or use the CLI.
@@ -230,7 +363,7 @@ Your editor will report errors because this isn't a complete program yet.
 +
 Replace placeholders with the values you previously retrieved from Astra Streaming.
 +
-[source,java]
+[source,java,subs="+quotes"]
 ----
 package org.example;
 
@@ -245,11 +378,11 @@ import java.util.concurrent.TimeoutException;
 
 public class App {
   private static final String username = "";
-  private static final String password = "<REPLACE_WITH_PULSAR_TOKEN>";
-  private static final String host = "<REPLACE_WITH_SERVICE_URL>";
+  private static final String password = "**PULSAR_TOKEN**";
+  private static final String host = "**SERVICE_URL**";
   private static final int port = 5671;
-  private static final String virtual_host = "<REPLACE_WITH_TENANT_NAME>/<REPLACE_WITH_NAMESPACE>"; //The "rabbitmq" namespace should have been created when you enabled S4R
-  private static final String queueName = "<REPLACE_WITH_TOPIC_NAME>"; //This will get created automatically
+  private static final String virtual_host = "**TENANT_NAME**>/rabbitmq"; //The "rabbitmq" namespace should have been created when you enabled S4R
+  private static final String queueName = "**TOPIC_NAME**"; //This will get created automatically if it doesn't already exist
   private static final String amqp_URI = String.format("amqps://%s:%s@%s:%d/%s", username, password, host, port, virtual_host.replace("/","%2f"));
 
   public static void main(String[] args) throws IOException, TimeoutException, URISyntaxException, NoSuchAlgorithmException, KeyManagementException, InterruptedException {
@@ -324,8 +457,3 @@ Sent 'Hello World!'
 Received 'Hello World!'
 ----
 ====
-
-== Next steps
-
-* xref:starlight-for-rabbitmq:ROOT:index.adoc[{starlight-rabbitmq} documentation]
-* xref:luna-streaming:components:starlight-for-rabbitmq.adoc[]

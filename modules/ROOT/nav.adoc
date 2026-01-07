@@ -7,9 +7,9 @@
 * xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with Astra Streaming]
 
 .Migrate to {pulsar}
-* xref:starlight-for-kafka:ROOT:index.adoc[]
-* xref:starlight-for-rabbitmq:ROOT:index.adoc[]
-* xref:starlight-for-jms:ROOT:index.adoc[]
+* xref:starlight-for-kafka:ROOT:index.adoc[{starlight-kafka}]
+* xref:starlight-for-rabbitmq:ROOT:index.adoc[{starlight-rabbitmq}]
+* xref:starlight-for-jms:ROOT:index.adoc[Starlight for JMS]
 
 .APIs and References
 * Connectors
