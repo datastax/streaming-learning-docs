@@ -8,7 +8,7 @@ The Data Generator source connector creates fake data on an {pulsar-reg} topic u
 
 The connector will produce data indefinitely while it is running.
 
-{product} currently supports {pulsar} {pulsar-version}, which uses version 0.5.9 of the jfairy library.
+Astra Streaming currently supports {pulsar} {pulsar-version}, which uses version 0.5.9 of the jfairy library.
 
 For a reference of the full "Person" class, https://github.com/apache/pulsar/blob/branch-{pulsar-version}/pulsar-io/data-generator/src/main/java/org/apache/pulsar/io/datagenerator/Person.java[view the source].
 
@@ -28,7 +28,7 @@ include::partial$connectors/sources/monitoring.adoc[]
 
 There are two sets of parameters that support source connectors.
 
-=== {product}
+=== Astra Streaming
 
 [%header,format=csv,cols="2,1,1,3"]
 |===

@@ -14,7 +14,7 @@ Each client handles message consumption a little differently but there is one ov
 
 Below are example implementations for each runtime consuming messages from the CDC data topic.
 
-While these examples are in the `astra-streaming-examples` repository, they are not {product}-specific.
+While these examples are in the `astra-streaming-examples` repository, they are not Astra Streaming-specific.
 You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 * svg:common::icons/logos/csharp.svg[role="icon text-xl",name="C#"] https://github.com/datastax/astra-streaming-examples/blob/master/csharp/astra-cdc/Program.cs[{csharp} CDC project example]
@@ -27,7 +27,7 @@ You can use these examples to consume CDC data topics in your own {cass-short}/{
 
 It is very common to have a function consuming the CDC data. Functions usually perform additional processing on the data and pass it to another topic. Similar to a client consumer, it will need to deserialize the message data. Below are examples of different functions consuming messages from the CDC data topic.
 
-While these examples are in the `astra-streaming-examples` repository, they are not {product}-specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
+While these examples are in the `astra-streaming-examples` repository, they are not Astra Streaming-specific. You can use these examples to consume CDC data topics in your own {cass-short}/{pulsar-short} clusters.
 
 * svg:common::icons/logos/go.svg[role="icon text-xl",name="Go"] https://github.com/datastax/astra-streaming-examples/blob/master/go/astra-cdc/main/main.go[Golang CDC project example]
 * svg:common::icons/logos/java.svg[role="icon text-xl",name="Java"] https://github.com/datastax/astra-streaming-examples/blob/master/java/astra-cdc/javaexamples/functions/CDCFunction.java[Java CDC function example]

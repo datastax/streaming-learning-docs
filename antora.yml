@@ -9,8 +9,6 @@ nav:
 asciidoc:
   attributes:
     company: 'DataStax'
-    product: 'Astra Streaming'
-    product-short: 'Astra'
     astra-db: 'Astra DB'
     astra-ui: 'Astra Portal'
     astra-url: 'https://astra.datastax.com'

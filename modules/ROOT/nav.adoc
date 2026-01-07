@@ -4,7 +4,7 @@
 ** xref:use-cases-architectures:change-data-capture/table-schema-evolution.adoc[]
 ** xref:use-cases-architectures:change-data-capture/consuming-change-data.adoc[]
 ** xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[]
-* xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with {product}]
+* xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with Astra Streaming]
 
 .Migrate to {pulsar}
 * xref:starlight-for-kafka:ROOT:index.adoc[]

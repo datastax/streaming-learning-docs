@@ -12,16 +12,16 @@ To get started, you need the following:
 * A working {pulsar-short} cluster.
 * Access to the cluster's admin port 8080 and the binary port 6650.
 
-This guide uses {product} to get started with Starlight for JMS.
+This guide uses Astra Streaming to get started with Starlight for JMS.
 For more information, see the xref:starlight-for-jms:ROOT:index.adoc[Starlight for JMS documentation].
 
 [tabs]
 ====
-{product}::
+Astra Streaming::
 +
 --
 
-If you don't have a tenant in {product}, follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
+If you don't have a tenant in Astra Streaming, follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
 --
 Luna Streaming::
@@ -38,9 +38,9 @@ Using a standalone cluster? The Starlight for JMS docs provide the "xref:starlig
 
 == Messaging with Starlight for JMS
 
-=== Retrieve connection properties in {product}
+=== Retrieve connection properties in Astra Streaming
 
-. In the {product} portal "Connect" tab, the "{pulsar-short}" area provides important connection information.
+. In the Astra Streaming portal "Connect" tab, the "{pulsar-short}" area provides important connection information.
 
 . Scroll down to the "Tenant Details" area to find your {pulsar-short} connection information.
 +
@@ -51,7 +51,7 @@ image:pulsar-client-settings.png[]
 This example uses Maven for the project structure.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[{product} examples repository].
+For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[Astra Streaming examples repository].
 
 . Create a new Maven project.
 +
@@ -81,7 +81,7 @@ cd StarlightForJMSClient
 If you cloned the example repository, replace the entire contents of the file with the following code.
 Your editor will report an error because this isn't a complete script yet.
 +
-Replace placeholders with the values you previously retrieved from {product}.
+Replace placeholders with the values you previously retrieved from Astra Streaming.
 +
 [source,java]
 ----

@@ -20,14 +20,14 @@ Choose the option that best fits your needs.
 
 [tabs]
 ====
-{product}::
+Astra Streaming::
 +
 --
 
 If you want a working Kafka extension as quickly as possible, this is your best bet.
 This is also a good option for those that already have a streaming tenant and are looking to extend it.
 
-. Sign in to your {product-short} account and navigate to your streaming tenant.
+. Sign in to your Astra account and navigate to your streaming tenant.
 +
 TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-started:index.adoc[]" guide.
 
@@ -39,12 +39,170 @@ TIP: Don't have a streaming tenant? Follow our "xref:astra-streaming:getting-sta
 
 . Select the "Enable Kafka" button to confirm your understanding.
 
-Your {product} tenant is ready for prime time! Continue to the next section of the guide to see it in action.
+Your Astra Streaming tenant is ready for prime time! Continue to the next section of the guide to see it in action.
 --
 Luna Streaming::
 +
 --
 The {kafka-for-astra} extension is included in the `luna-streaming-all` image used to deploy a Luna cluster. The Luna helm chart makes deploying the Kafka extension quite easy. Follow the "xref:luna-streaming:components:starlight-for-kafka.adoc[]" guide to create a simple {pulsar-short} cluster with the {kafka-for-astra} extension ready for use.
+
+== Use Starlight for Kafka with Luna Streaming
+
+Starlight for Kafka brings the native Apache Kafka protocol support to {pulsar} by introducing a Kafka protocol handler on {pulsar-short} brokers.
+By adding the Starlight for Kafka protocol handler to your {pulsar-short} cluster, you can migrate your existing Kafka applications and services to {pulsar-short} without modifying the code.
+
+The following steps explain how to deploy a Luna Streaming Helm chart with the Starlight for Kafka protocol handler extension.
+
+=== Prerequisites
+
+* https://helm.sh/docs/intro/install/[Helm 3 CLI] (we used version 3.8.0)
+* https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[Kafka CLI] (we used version 3.3.1)
+* https://kubernetes.io/docs/tasks/tools/[Kubectl CLI] (we used version 1.23.4)
+* Enough access to a K8s cluster to create a namespace, deployments, and pods
+
+=== Install Luna Streaming Helm chart
+
+. Add the {company} Helm chart repo to your Helm store.
++
+[source,shell]
+----
+helm repo add datastax-pulsar https://datastax.github.io/pulsar-helm-chart
+----
+
+. Install the Helm chart using a minimalist values file.
+This command creates a Helm release named `my-pulsar-cluster` using the {company} Luna Helm chart, within the K8s namespace `datastax-pulsar`.
+The minimal cluster creates only the essential components and has no ingress or load balanced services.
++
+[source,shell]
+----
+VALUES_URL="https://raw.githubusercontent.com/datastaxdevs/luna-streaming-examples/main/starlight-for-kafka/values.yaml"
+helm install \
+  --namespace datastax-pulsar \
+  --create-namespace \
+  --values $VALUES_URL \
+  --version 3.0.4 \
+  my-pulsar-cluster \
+  datastax-pulsar/pulsar
+----
+
+. Wait for the broker pod to be in a running state. You might see a few restarts as your components start up.
++
+[source,shell]
+----
+kubectl -n datastax-pulsar wait --for=condition=Ready pod/pulsar-broker-0 --timeout=120s
+----
+
+=== Forward service port
+
+You'll need to interact with a few of the services in the K8s cluster.
+Map a few ports to those services.
+
+In a new terminal, port forward {pulsar-short}'s admin service:
+
+[source,shell]
+----
+kubectl port-forward -n datastax-pulsar service/pulsar-broker 8080:8080
+----
+
+In a separate terminal window, port forward the Starlight for Kafka serivce:
+
+[source,shell]
+----
+kubectl port-forward -n datastax-pulsar service/pulsar-proxy 9092:9092
+----
+
+=== Inspect the created namespaces and topics
+
+The Luna Streaming Helm Chart automatically creates a tenant named "public" and a namespace within that tenant named "default".
+
+The Starlight for Kafka extension creates a few namespaces and topics to function correctly.
+
+List the namespaces in the "public" tenant to see what was created:
+
+[source,shell]
+----
+~/apache-pulsar-2.10.1$ ./bin/pulsar-admin namespaces list public
+----
+
+The output should be similar to the following.
+
+[source,shell]
+----
+public/__kafka
+public/__kafka_producerid
+public/default
+----
+
+Notice the namespaces prefixed with "__kafka".
+These are used by the service for different functions.
+To learn more about Starlight for Kafka operations, see the S4K xref:starlight-for-kafka:ROOT:index.adoc[documentation].
+
+=== Produce a message with the Kafka CLI
+
+If you hadn't noticed, we never opened the {pulsar-short} binary port to accept new messages.
+Only the admin port and the Kafka port are open.
+To further show how native Starlight for Kafka is to {pulsar-short}, we will use the Kafka CLI to produce and consume messages from {pulsar-short}.
+
+From within the Kafka directory, run the following command to start the shell:
+
+[source,shell]
+----
+~/kafka_2.13-3.3.1$ ./bin/kafka-console-producer.sh --topic quickstart --bootstrap-server localhost:9092
+----
+
+Type a message, press Enter to send it, then Ctrl-C to exit the producer shell.
+
+[source,shell]
+----
+This my first message
+----
+
+Wait a second! We never created a topic! And where did the "quickstart" topic come from?!
+
+The default behavior of Starlight for Kafka is to create a new single partition, persistent topic when one is not present.
+You can configure this behavior and many other S4K parameters in the https://github.com/datastaxdevs/luna-streaming-examples/blob/main/starlight-for-kafka/values.yaml[Helm chart].
+Learn more about the configuration values xref:starlight-for-kafka:configuration:starlight-kafka-configuration.adoc[here].
+
+Let's have a look at the topic that was created. From your {pulsar-short} home folder, run the following command:
+
+[source,shell]
+----
+~/apache-pulsar-2.10.1$ ./bin/pulsar-admin topics list public/default
+----
+
+The output will include the newly created topic:
+
+[source,shell]
+----
+persistent://public/default/quickstart-partition-0
+----
+
+== Consume the new message with the Kafka CLI
+
+Let's use the Kafka CLI to consume the message we just produced.
+
+Start the consumer shell from the Kafka home folder with the following command:
+
+[source,shell]
+----
+~/kafka_2.13-3.3.1$ ./bin/kafka-console-consumer.sh --topic quickstart --from-beginning --bootstrap-server localhost:9092
+----
+
+The data of our new message will be output. Enter Ctrl-C to exit the shell.
+
+[source,shell]
+----
+This my first message
+----
+
+=== Next steps
+
+Kafka users and existing applications using Kafka can enjoy the many benefits of a {pulsar-short} cluster, while never having to change tooling or libraries.
+Other folks that are more comfortable with {pulsar-short} tooling and clients can also interact with the same topics. Together, new and legacy applications work together to create modern solutions.
+
+Here are links to other guides and resource you might be interested in.
+
+* xref:streaming-learning:use-cases-architectures:starlight/kafka/index.adoc[Messaging with Starlight for Kafka]
 --
 Self Managed::
 +
@@ -57,14 +215,14 @@ Already have your own {pulsar-short} cluster? Or maybe you're using a standalone
 
 {kafka-for-astra} supports quite a few different use cases. With a {pulsar-short} cluster between producers and consumers you can interchange the type of producer and consumer to fit your needs.
 
-*The below examples are using an {product} tenant as the Kafka bootstrap server.* If you are using Luna Streaming or a self-managed tenant, switch the bootstrap server URL for your own.
+*The below examples are using an Astra Streaming tenant as the Kafka bootstrap server.* If you are using Luna Streaming or a self-managed tenant, switch the bootstrap server URL for your own.
 
-=== Retrieve Kafka connection properties in {product}
+=== Retrieve Kafka connection properties in Astra Streaming
 
-In the {product} portal "Connect" tab, the "kafka" area provides important connection information.
+In the Astra Streaming portal "Connect" tab, the "kafka" area provides important connection information.
 You will need this connection information to create a working Kafka client or use the CLI.
 
-image:kafka-client-settings.png[{product} kafka settings]
+image:kafka-client-settings.png[Astra Streaming kafka settings]
 
 TIP: Click the clipboard icon to copy the Kafka connection values, as well as a working token to paste in code.
 
@@ -78,7 +236,7 @@ Kafka CLI::
 Download the latest Kafka distribution https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[here].
 With the tarball extracted, the producer and consumer CLIs are in the 'bin' folder.
 
-. To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with {product}]" guide, the below values will be a perfect fit for your existing tenant.
+. To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with Astra Streaming]" guide, the below values will be a perfect fit for your existing tenant.
 +
 [source,shell]
 ----
@@ -127,7 +285,7 @@ Kafka Client (Java)::
 This example uses Maven for the project structure.
 If you prefer Gradle or another tool, this code should still be a good fit.
 
-For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[{product} examples repository].
+For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[Astra Streaming examples repository].
 
 . Create a new Maven project.
 +
@@ -157,7 +315,7 @@ cd StarlightForKafkaClient
 If you cloned the example repo, replace the entire contents of `App.java` with the following code.
 Your editor will report an error because this isn't a complete script yet.
 +
-Replace placeholders with the values you previously retrieved from {product}.
+Replace placeholders with the values you previously retrieved from Astra Streaming.
 +
 [source,java]
 ----

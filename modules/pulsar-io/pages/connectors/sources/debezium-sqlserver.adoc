@@ -6,7 +6,7 @@ The Debezium SQL Server connector is based on the change data capture feature av
 
 The SQL Server capture process monitors designated databases and tables and stores changes into specifically created change tables with stored procedure facades.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported SQL Server versions, please refer to the
+Astra Streaming currently supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported SQL Server versions, please refer to the
 https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
 == Get Started
@@ -51,7 +51,7 @@ include::partial$connectors/sources/monitoring.adoc[]
 
 There are two sets of parameters that support source connectors.
 
-=== {product}
+=== Astra Streaming
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
@@ -62,7 +62,7 @@ include::example$connectors/sources/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The {product} SQL Server source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/sqlserver.html#sqlserver-connector-properties[Debezium SQL Server connector properties] for a complete list.
+The Astra Streaming SQL Server source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/sqlserver.html#sqlserver-connector-properties[Debezium SQL Server connector properties] for a complete list.
 
 == What's next?
 

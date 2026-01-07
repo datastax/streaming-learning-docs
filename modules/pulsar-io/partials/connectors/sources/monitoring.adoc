@@ -193,4 +193,4 @@ Status response for individual connector instance:
 
 === Metrics
 
-{product} exposes Prometheus formatted metrics for every connector. Refer to xref:astra-streaming:operations:astream-scrape-metrics.adoc[scrape metrics with Prometheus] page for more detail.
+Astra Streaming exposes Prometheus formatted metrics for every connector. Refer to xref:astra-streaming:operations:astream-scrape-metrics.adoc[scrape metrics with Prometheus] page for more detail.
