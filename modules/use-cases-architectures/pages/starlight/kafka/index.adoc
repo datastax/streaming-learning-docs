@@ -3,28 +3,26 @@
 :description: Use the {starlight-kafka} extension with {pulsar-reg}.
 
 The https://github.com/datastax/starlight-for-kafka[{starlight-kafka} extension] brings the native Apache Kafka(R) protocol support to {pulsar-reg} by introducing a Kafka protocol handler on {pulsar-short} brokers.
+
 By adding the {starlight-kafka} protocol handler to your existing {pulsar-short} cluster, you can migrate your existing Kafka applications and services to {pulsar-short} without modifying the code.
 
-For more information about the {starlight-kafka} architecture, see the xref:starlight-for-kafka:ROOT:index.adoc[{starlight-kafka} documentation].
-
+//Move this image to the Starlight for Kafka main index page
 image:s4k-architecture.png[{starlight-kafka} Architecture]
 
 == Establish the Kafka protocol handler
 
 Before a Kafka client can interact with your {pulsar-short} cluster, you need the {starlight-kafka} protocol handler installed in the cluster.
-Installation looks a bit different depending on where your {pulsar-short} cluster is running.
-Choose the option that best fits your needs.
-
+//Compare all with Rabbit
 [tabs]
 ======
 Astra Streaming::
 +
 --
-Get started producing and consuming Kafka messages on a {pulsar-short} cluster.
+These steps explain how to enable the {starlight-kafka} protocol handler in an Astra Streaming {pulsar-short} cluster, and then connect it to your Kafka instance:
 
-=== Enable {starlight-kafka} on an Astra Streaming tenant
+. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
 
-. Sign in to your Astra account, go to Astra Streaming, and then xref:astra-streaming:getting-started:index.adoc[create a tenant] or click an existing tenant.
+. xref:astra-streaming:getting-started:index.adoc[Create a tenant] or click the name of an existing tenant.
 
 . Go to your tenant's **Connect** tab, select **Kafka**, and then click **Enable Kafka**.
 
@@ -42,8 +40,14 @@ These namespaces are required for the {starlight-kafka} extension to function pr
 These are permanent namespaces that cannot be removed except by deleting the entire tenant and all of its data.
 ====
 
-. Save the Kafka configuration details to a file named `ssl.properties`.
+. Save the Kafka connection details to a file named `ssl.properties`.
 The actual values depend on your Astra Streaming tenant's configuration and cloud provider.
++
+[TIP]
+====
+In Astra Streaming, if you click icon:download[name="Download"] or icon:clipboard[name="Copy"], then a token is included in the `password` field automatically.
+You can also generate a token on your tenant's **Settings** tab.
+====
 +
 .ssl.properties
 [source,plain,subs="+quotes"]
