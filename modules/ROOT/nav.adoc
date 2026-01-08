@@ -1,9 +1,5 @@
 .Processing data
-* Change Data Capture (CDC)
-** xref:use-cases-architectures:change-data-capture/index.adoc[]
-** xref:use-cases-architectures:change-data-capture/table-schema-evolution.adoc[]
-** xref:use-cases-architectures:change-data-capture/consuming-change-data.adoc[]
-** xref:use-cases-architectures:change-data-capture/questions-and-patterns.adoc[]
+* xref:cdc-for-cassandra:ROOT:cdc-concepts.adoc[Change Data Capture (CDC)]
 * xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with {product}]
 
 .Migrating to {pulsar}

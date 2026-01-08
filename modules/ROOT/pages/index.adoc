@@ -17,7 +17,7 @@
 
   Learn about the amazing things you can do with all of our streaming products.
   We've included best practices for Apache Pulsar, a full connector reference,
-  and examples for getting the most out of Astra's CDC feature.
+  and examples for getting the most out of CDC.
 
   xref:astra-streaming:getting-started:real-time-data-pipelines-tutorial.adoc[Build real-time data pipelines with {product}]
 
@@ -36,7 +36,7 @@
     Delivered as a fully-managed SaaS with boundless scale, massive throughput and low latency,
     Astra Streaming is the simplest way to modernize your event driven architecture and turbo charge your data in motion strategy.
 
-    xref:astra-streaming:getting-started:index.adoc[Astra Streaming quickstat]
+    xref:astra-streaming:getting-started:index.adoc[Astra Streaming quickstart]
 
   </div>
 
@@ -120,10 +120,11 @@
 
     <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">xref:astra-streaming:developing:astream-cdc.adoc[Change Data Capture]</h3></div>
 
-    Change Data Capture (CDC) for Astra Streaming enables you to send data
-    changes in real time throughout your entire ecosystem.  With a wide range of
-    connectors to data warehouses, messaging systems, data lakes as well as client
-    libraries, you can send your data wherever it needs to go in real time.
+    Change Data Capture (CDC) enables you to send data
+    changes in real time throughout your entire ecosystem.
+    With a wide range of connectors to data warehouses,
+    messaging systems, data lakes as well as client libraries,
+    you can send your data wherever it needs to go in real time.
 
     xref:astra-streaming:developing:astream-cdc.adoc[]
 
