@@ -15,7 +15,7 @@ image:s4r-architecture.png[{starlight-rabbitmq} Architecture]
 [#establish-the-rabbitmq-protocol-handler]
 == Establish the RabbitMQ protocol handler
 
-Before you can use a RabbitMQ client to interact with your {pulsar-short} cluster, you need the {starlight-rabbitmq} protocol handler installed in the cluster.
+Before a RabbitMQ client can interact with your {pulsar-short} cluster, you need the {starlight-rabbitmq} protocol handler installed in the cluster.
 
 [tabs]
 ======
@@ -56,7 +56,7 @@ ampq_URI: {asterisk}{asterisk}{asterisk}{asterisk}{asterisk}{asterisk}@rabbitmq-
 +
 [TIP]
 ====
-In Astra Streaming, if you click icon:download[name="Download"] or icon:clipboard[name="Copy"], then a token is included in the `password` field automatically.
+In Astra Streaming, if you click icon:download[name="Download"] or icon:clipboard[name="Copy"], then a {pulsar-short} token is included in the `password` field automatically.
 You can also generate a token on your tenant's **Settings** tab.
 ====
 +
@@ -74,9 +74,8 @@ The following steps explain how to deploy a Luna Streaming Helm chart to create 
 
 . Make sure you meet the following prerequisites:
 +
-* Install https://helm.sh/docs/intro/install/[Helm 3 CLI] 3.8.0 or later.
-* Install https://kubernetes.io/docs/tasks/tools/[kubectl CLI] 1.23.4 or later.
-* Install Python 3.8.10 or later.
+* Install https://helm.sh/docs/intro/install/[Helm 3 CLI] version 3.8.0 or later.
+* Install https://kubernetes.io/docs/tasks/tools/[kubectl CLI] version 1.23.4 or later.
 * Have access to a Kubernetes cluster with permission to create a namespace, deployments, and pods.
 
 . Add the {company} Helm chart repo to your Helm store:
@@ -110,28 +109,28 @@ It might restart a few times while the components start up.
 kubectl -n datastax-pulsar wait --for=condition=Ready pod/pulsar-broker-0 --timeout=120s
 ----
 
-. Forward service ports so you can interact with certain services on the Kubernetes cluster.
+. Enable port forwarding for the {pulsar-short} Admin and {starlight-rabbitmq} services that are running on the Kubernetes cluster:
 +
-.. In a new terminal, port forward {pulsar-short}'s admin service:
+.. In a new terminal, port forward the {pulsar-short} Admin service:
 +
 [source,shell]
 ----
 kubectl port-forward -n datastax-pulsar service/pulsar-broker 8080:8080
 ----
 
-.. In a separate terminal window, port forward the Starlight for RabbitMQ service:
+.. In a separate terminal window, port forward the {starlight-rabbitmq} service:
 +
 [source,shell]
 ----
 kubectl port-forward -n datastax-pulsar service/pulsar-proxy 5672:5672
 ----
+
 +
 [TIP]
 ====
 You don't need to open the {pulsar-short} binary port to accept new messages when using {starlight-rabbitmq}.
 This is because RabbitMQ clients communicate using the AMQP protocol over the RabbitMQ port (5672).
 ====
-+
 The Luna Helm chart deployed Starlight for RabbitMQ on the {pulsar-short} proxy and opened the correct port.
 The forwarded ports allow you to access {pulsar-short} and {starlight-rabbitmq} services when running RabbitMQ client scripts and using CLI tools locally.
 Your applications can now communicate with {pulsar-short} as if it were a real RabbitMQ host, as explained in the next section.
@@ -164,7 +163,7 @@ Astra Streaming::
 --
 [tabs]
 ====
-Python::
+Python client::
 +
 The following example uses a Python script to create a connection between RabbitMQ and your Astra Streaming tenant.
 It also establishes a message queue named `queuename`, prints ten messages, and then closes the connection.
@@ -244,7 +243,7 @@ started a channel
 If you everything was configured correctly, then the `rabbitmq` namespace should have topics named `amq.default.__queuename` and `amq.default_routingkey` that were created by the Python script.
 Additionally, the namespace's metrics should reflect that at least 10 messages were published and consumed by your Astra Streaming {pulsar-short} topics.
 
-Java::
+Java client::
 +
 The following example uses a Java program to create a connection between RabbitMQ and your Astra Streaming tenant, and then it establishes a message queue and sends a message.
 +
@@ -314,7 +313,7 @@ public class App {
 +
 . Optional: Replace `queuename` with another name for the queue that publishes and consumes messages.
 This name is also used as the corresponding topic name in Astra Streaming.
-If the topic doesn't exist, Astra Streaming creates it automatically when the producer sends the first message.
+If the topic doesn't exist, it is created automatically when the producer sends the first message.
 +
 . Add the following code to create a connection, channel, and queue that is used by both the producer and consumer:
 +
@@ -404,7 +403,7 @@ For other connection methods, see the documentation for your preferred RabbitMQ 
 
 [tabs]
 ====
-Python::
+Python client::
 +
 The following example uses the Pika RabbitMQ Python library to produce and consume messages from {pulsar-short}.
 +
@@ -460,7 +459,7 @@ deleted test-queue queue
 . Use the {pulsar} admin CLI or the Luna Streaming {pulsar-short} Admin Console to inspect your tenant's activity.
 Make sure the `test-queue` topic was created and a message was published and consumed.
 
-Java::
+Java client::
 +
 The following example uses a Java program to create a connection between RabbitMQ and your Luna Streaming {pulsar-short} tenant, and then it establishes a message queue and sends a message.
 +
@@ -638,10 +637,7 @@ For more information, see the documentation for your preferred RabbitMQ client l
 |`headers`
 |Not used
 |Header name
-a|
-[source,python]
-----
-channel.exchange_declare(exchange='header_logs', exchange_type='headers')
-channel.basic_publish(exchange='header_logs'),
-----
+|`channel.exchange_declare(exchange='header_logs', exchange_type='headers')`
+
+`channel.basic_publish(exchange='header_logs'),`
 |===

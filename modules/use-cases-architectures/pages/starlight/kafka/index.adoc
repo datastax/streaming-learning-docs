@@ -9,16 +9,17 @@ By adding the {starlight-kafka} protocol handler to your existing {pulsar-short}
 //Move this image to the Starlight for Kafka main index page
 image:s4k-architecture.png[{starlight-kafka} Architecture]
 
+[#establish-the-kafka-protocol-handler]
 == Establish the Kafka protocol handler
 
 Before a Kafka client can interact with your {pulsar-short} cluster, you need the {starlight-kafka} protocol handler installed in the cluster.
-//Compare all with Rabbit
+
 [tabs]
 ======
 Astra Streaming::
 +
 --
-These steps explain how to enable the {starlight-kafka} protocol handler in an Astra Streaming {pulsar-short} cluster, and then connect it to your Kafka instance:
+These steps explain how to enable the {starlight-kafka} protocol handler in an Astra Streaming {pulsar-short} cluster, and then get the connection details for your Kafka client:
 
 . In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
 
@@ -43,78 +44,32 @@ These are permanent namespaces that cannot be removed except by deleting the ent
 . Save the Kafka connection details to a file named `ssl.properties`.
 The actual values depend on your Astra Streaming tenant's configuration and cloud provider.
 +
-[TIP]
-====
-In Astra Streaming, if you click icon:download[name="Download"] or icon:clipboard[name="Copy"], then a token is included in the `password` field automatically.
-You can also generate a token on your tenant's **Settings** tab.
-====
-+
 .ssl.properties
-[source,plain,subs="+quotes"]
+[source,plain,subs="+quotes,+attributes"]
 ----
 username: **TENANT_NAME**
-password: token:***
+password: token:{asterisk}{asterisk}{asterisk}{asterisk}{asterisk}{asterisk}
 bootstrap.servers: kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093
 schema.registry.url: https://kafka-**PROVIDER**-**REGION**.streaming.datastax.com:8081
 security.protocol: SASL_SSL
 sasl.mechanism: PLAIN
 ----
-
-=== Connect Kafka and {pulsar-short}
-// Move to messaging section?
-This example uses tools included with the https://kafka.apache.org/downloads[Apache Kafka tarball].
-
-. In Astra Streaming, create a new topic in the `kafka` namespace.
 +
-No specific name is required.
+[TIP]
+====
+In Astra Streaming, if you click icon:download[name="Download"] or icon:clipboard[name="Copy"], then a {pulsar-short} token is included in the `password` field automatically.
+You can also generate a token on your tenant's **Settings** tab.
+====
 
-. In your Kafka instance, move your `ssl.properties` file to your `Kafka_2.13-3.1.0/config` folder.
-These values are required for SSL encryption.
-The exact values depend on your Astra Streaming tenant's configuration.
+. Optional: Add a session timeout value to the `ssl.properties` file to avoid connection issues with some Kafka clients:
 +
-[source,properties,subs="+quotes"]
+[source,properties]
 ----
-bootstrap.servers=kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093
-security.protocol=SASL_SSL
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='**TENANT_NAME**' password='token:{pulsar tenant token}'
-sasl.mechanism=PLAIN
 session.timeout.ms=45000
 ----
++
+Continue to the next section to learn how to use the connection details in a Kafka client script.
 
-. In the `Kafka` directory, create a Kafka producer to produce messages on the topic you created in the `kafka` namespace:
-+
-[source,shell,subs="+quotes"]
-----
-bin/kafka-console-producer \
---broker-list kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093 \
---topic **TENANT_NAME**/kafka/**TOPIC_NAME** \
---producer.config config/ssl.properties
-----
-+
-Once the producer is ready, it accepts standard input from the user:
-+
-[source,console]
-----
->hello pulsar
-----
-
-. In a new terminal window, create a Kafka consumer to consume messages from the beginning of your topic:
-+
-[source,shell]
-----
-bin/kafka-console-consumer \
---bootstrap-server kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093 \
---topic **TENANT_NAME**/kafka/**TOPIC_NAME** \
---consumer.config config/ssl.properties \
---from-beginning
-----
-
-. Send a few messages in the terminal to generate traffic on the tenant.
-
-. In Astra Streaming, go to your tenant's **Namespaces and Topics** tab to inspect the activity in the `kafka` namespace.
-+
-To verify that your Kafka messages are being produced and consumed in your Astra Streaming {pulsar-short} cluster, check the **Data In** metrics.
-The number of messages should be, at least, equal to the number of messages you sent with your Kafka producer on the command line.
 --
 
 Luna Streaming::
@@ -123,14 +78,14 @@ Luna Streaming::
 The {starlight-kafka} extension is included in the `luna-streaming-all` image used to deploy a Luna cluster.
 The Luna Helm chart simplifies deployment of the Kafka extension.
 
-The following steps explain how to deploy a Luna Streaming Helm chart to create a simple {pulsar-short} cluster with the Starlight for Kafka protocol handler extension.
+The following steps explain how to deploy a Luna Streaming Helm chart to create a simple {pulsar-short} cluster with the {starlight-kafka} extension ready to use.
 
 . Make sure you meet the following prerequisites:
 +
-* https://helm.sh/docs/intro/install/[Helm 3 CLI] (we used version 3.8.0)
-* https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[Kafka CLI] (we used version 3.3.1)
-* https://kubernetes.io/docs/tasks/tools/[Kubectl CLI] (we used version 1.23.4)
-* Enough access to a K8s cluster to create a namespace, deployments, and pods
+* Install https://helm.sh/docs/intro/install/[Helm 3 CLI] version 3.8.0 or later.
+* Install https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[Kafka CLI] version 3.3.1 or later
+* Install https://kubernetes.io/docs/tasks/tools/[kubectl CLI] version 1.23.4 or later.
+* Have access to a Kubernetes cluster with permission to create a namespace, deployments, and pods.
 
 . Add the {company} Helm chart repo to your Helm store:
 +
@@ -139,9 +94,9 @@ The following steps explain how to deploy a Luna Streaming Helm chart to create 
 helm repo add datastax-pulsar https://datastax.github.io/pulsar-helm-chart
 ----
 
-. Install the Helm chart using a minimalist values file.
-This command creates a Helm release named `my-pulsar-cluster` using the {company} Luna Helm chart, within the K8s namespace `datastax-pulsar`.
-The minimal cluster creates only the essential components and has no ingress or load balanced services.
+. Install the Helm chart using a minimal values file.
+The following command creates a Helm release named `my-pulsar-cluster` using the {company} Luna Helm chart within a Kubernetes namespace named `datastax-pulsar`.
+This minimal configuration creates only the essential components and has no ingress or load balanced services.
 +
 [source,shell]
 ----
@@ -156,33 +111,18 @@ helm install \
 ----
 
 . Wait for the broker pod to reach a running state.
-It might restart a few times while your components start up.
+It might restart a few times while the components start up.
 +
 [source,shell]
 ----
 kubectl -n datastax-pulsar wait --for=condition=Ready pod/pulsar-broker-0 --timeout=120s
 ----
 
-. Forward service ports so you can interact with certain services on the Kubernetes cluster:
+. Use the {pulsar-short} Admin CLI to inspect the tenants, namespaces, and topics that were created in your {pulsar-short} cluster when you deployed the Helm chart with the {starlight-kafka} extension enabled.
 +
-.. In a new terminal, port forward {pulsar-short}'s admin service:
-+
-[source,shell]
-----
-kubectl port-forward -n datastax-pulsar service/pulsar-broker 8080:8080
-----
-
-.. In a separate terminal window, port forward the Starlight for Kafka service:
-+
-[source,shell]
-----
-kubectl port-forward -n datastax-pulsar service/pulsar-proxy 9092:9092
-----
-
-. Inspect the created namespaces and topics.
-+
-The Luna Streaming Helm Chart automatically creates a tenant named `public` and a namespace within that tenant named `default`.
-The Starlight for Kafka extension creates a few namespaces and topics automatically because these are required for the extension to function correctly.
+By default, the Helm chart create a tenant named `public` with a namespace named `default`.
+In addition, the {starlight-kafka} extension creates several namespaces and topics that are required for its functionality.
+These namespaces are prefixed with `+__kafka+`.
 +
 List the namespaces in the `public` tenant:
 +
@@ -191,7 +131,7 @@ List the namespaces in the `public` tenant:
 ~/apache-pulsar-3.1.3$ ./bin/pulsar-admin namespaces list public
 ----
 +
-The output should be similar to the following:
+Make sure the output includes the `default` and `+__kafka+` namespaces:
 +
 [source,shell]
 ----
@@ -199,165 +139,114 @@ public/__kafka
 public/__kafka_producerid
 public/default
 ----
+
+. Enable port forwarding for the {pulsar-short} Admin and {starlight-kafka} services that are running on the Kubernetes cluster:
 +
-The automatically generated namespaces prefixed with "+__kafka+".
-These are used by the service for different functions.
-For more information, see the xref:starlight-for-kafka:ROOT:index.adoc[Starlight for Kafka documentation].
-
-=== Produce a message with the Kafka CLI
-
-//Move to messaging section
-
-If you hadn't noticed, we never opened the {pulsar-short} binary port to accept new messages.
-Only the admin port and the Kafka port are open.
-To further show how native Starlight for Kafka is to {pulsar-short}, we will use the Kafka CLI to produce and consume messages from {pulsar-short}.
-
-From within the Kafka directory, run the following command to start the shell:
-
+.. In a new terminal, port forward the {pulsar-short} Admin service:
++
 [source,shell]
 ----
-~/kafka_2.13-3.3.1$ ./bin/kafka-console-producer.sh --topic quickstart --bootstrap-server localhost:9092
+kubectl port-forward -n datastax-pulsar service/pulsar-broker 8080:8080
 ----
 
-Type a message, press Enter to send it, then Ctrl-C to exit the producer shell.
-
+.. In a separate terminal window, port forward the {starlight-kafka} service:
++
 [source,shell]
 ----
-This my first message
+kubectl port-forward -n datastax-pulsar service/pulsar-proxy 9092:9092
 ----
 
-A `quickstart` topic is created automatically because the default behavior of Starlight for Kafka is to create a new single partition, persistent topic when one is not present.
-You can configure this behavior and many other S4K parameters in the https://github.com/datastaxdevs/luna-streaming-examples/blob/main/starlight-for-kafka/values.yaml[Helm chart].
-Learn more about the configuration values xref:starlight-for-kafka:configuration:starlight-kafka-configuration.adoc[here].
++
+[TIP]
+====
+You don't need to open the {pulsar-short} binary port to accept new messages when using {starlight-kafka}.
+This is because Kafka clients communicate using the Kafka protocol on port 9092, which is handled by the {starlight-kafka} extension.
+====
+After deploying the Helm chart and enabling port forwarding, your applications can communicate with {pulsar-short} as if it were a real Kafka host, as explained in the next section.
 
-Let's have a look at the topic that was created. From your {pulsar-short} home folder, run the following command:
-
-[source,shell]
-----
-~/apache-pulsar-3.1.3$ ./bin/pulsar-admin topics list public/default
-----
-
-The output will include the newly created topic:
-
-[source,shell]
-----
-persistent://public/default/quickstart-partition-0
-----
-
-== Consume the new message with the Kafka CLI
-//Move to messaging section
-Let's use the Kafka CLI to consume the message we just produced.
-
-Start the consumer shell from the Kafka home folder with the following command:
-
-[source,shell]
-----
-~/kafka_2.13-3.3.1$ ./bin/kafka-console-consumer.sh --topic quickstart --from-beginning --bootstrap-server localhost:9092
-----
-
-The data of our new message will be output:
-
-[source,shell]
-----
-This my first message
-----
-
-Enter Ctrl-C to exit the shell.
 --
 
-Self Managed::
+Self-managed::
 +
 --
-Already have your own {pulsar-short} cluster? Or maybe you're using a standalone cluster? {starlight-kafka} can easily be a part of that cluster! Follow the "xref:starlight-for-kafka:installation:starlight-kafka-quickstart.adoc[]" guide.
+To use {starlight-kafka} with self-managed or standalone {pulsar-short} clusters, see xref:starlight-for-kafka:installation:starlight-kafka-quickstart.adoc[].
 --
 ======
 
-== Message with {starlight-kafka}
+== Produce and consume messages with {starlight-kafka}
 
-{starlight-kafka} supports quite a few different use cases. With a {pulsar-short} cluster between producers and consumers you can interchange the type of producer and consumer to fit your needs.
+This section explains how to use your Pulsar tenant's connection details with a Kafka client to produce and consume messages with {starlight-kafka}.
 
-//Use tabs instead of astra only. Compare with what is already in the target Starlight topics.
-[TIP]
-====
-The following examples use an Astra Streaming tenant as the Kafka bootstrap server.
+{starlight-kafka} supports many different use cases.
+With a {pulsar-short} cluster between publishers and consumers, you can change the type of publisher and consumer to fit your needs.
 
-If you are using Luna Streaming or a self-managed tenant, use the bootstrap server URL for your tenant.
-====
-
-=== Retrieve Kafka connection properties in Astra Streaming
-
-//Already covered on the Astra tab above. Image isn't needed.
-//See if this can be made generic or already provided for both in the Starlight docs
-
-In the Astra Streaming portal "Connect" tab, the "kafka" area provides important connection information.
-You will need this connection information to create a working Kafka client or use the CLI.
-
-image:kafka-client-settings.png[Astra Streaming kafka settings]
-
-TIP: Click the clipboard icon to copy the Kafka connection values, as well as a working token to paste in code.
-
-=== Produce and consume a message
+The following examples use the Kafka CLI and Java.
+For complete source code examples and examples for other languages, see the https://github.com/datastax/astra-streaming-examples[{company} streaming examples repository].
+These examples are written for Astra Streaming but they can be adapted for Luna Streaming or self-managed {pulsar-short} clusters by replacing the connection details with those for your cluster.
 
 [tabs]
 ======
+Astra Streaming::
++
+--
+[tabs]
+====
 Kafka CLI::
 +
---
-Download the latest Kafka distribution https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz[here].
-With the tarball extracted, the producer and consumer CLIs are in the 'bin' folder.
-
-. To get started, let's set a few variables. If you've completed our "xref:astra-streaming:getting-started:index.adoc[Getting started with Astra Streaming]" guide, the below values will be a perfect fit for your existing tenant.
+This example uses command line tools included with the https://kafka.apache.org/downloads[Apache Kafka tarball].
 +
-[source,shell]
-----
-SERVICE_URL="<REPLACE_WITH_BOOTSTRAP_SERVER_URL>"
-TENANT="<REPLACE_WITH_TENANT_NAME>"
-NAMESPACE="<REPLACE_WITH_NAMESPACE>"
-TOPIC="<REPLACE_WITH_TOPIC>"
-----
-
-. Now let's enter those variables in Kafka's producer shell.
+. Enable {starlight-kafka} and get the `ssl.properties` connection details, as explained in <<establish-the-kafka-protocol-handler>>.
 +
-[source,shell]
-----
-# cd kafka_2.13-3.3.1
-./bin/kafka-console-producer.sh --topic "$TENANT/$NAMESPACE/$TOPIC" --bootstrap-server "$SERVICE_URL"
-----
-
-. Type in a super memorable message and hit 'enter' to send. Press 'Ctrl-C' to exit the shell.
+. In Astra Streaming, in the `kafka` namespace, create a topic to receive messages from the `kafka-console-producer`.
+You can use any valid name for the topic.
 +
-[source,shell]
-----
-> This is my first S4K message.
-----
-A new message has been produced in the provided tenant/namespace/topic and is ready for consumption.
-. Start the Kafka consumer shell.
+. Move your Astra Streaming `ssl.properties` file into your Kafka installation's `config` subdirectory, such as `kafka_2.13-3.1.0/config`.
 +
-[source,shell]
-----
-# cd kafka_2.13-3.3.1
-./bin/kafka-console-consumer.sh --topic "$TENANT/$NAMESPACE/$TOPIC" --from-beginning --bootstrap-server "$SERVICE_URL"
-----
-
-. The consumer should immediately find the new message and output its value.
+. In a terminal window, use the `kafka-console-producer` tool to create a Kafka producer that produces messages on the topic you created in the `kafka` namespace:
 +
-[source,shell]
+[source,shell,subs="+quotes"]
 ----
-This is my first S4K message.
+bin/kafka-console-producer \
+--broker-list kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093 \
+--topic **TENANT_NAME**/kafka/**TOPIC_NAME** \
+--producer.config config/ssl.properties
 ----
-
-. Press 'Ctrl-C' to exit the consumer shell.
---
-
-Kafka Client (Java)::
 +
---
-This example uses Maven for the project structure.
-If you prefer Gradle or another tool, this code should still be a good fit.
+When the producer is ready, it accepts standard input from the user.
+To send a message, type it in the terminal, and then press kbd:[Return].
+Optionally, you can send some messages before starting the consumer to see how it retrieves past messages.
++
+. In a new terminal window, use the `kafka-console-consumer` tool to create a Kafka consumer that consumes messages from the beginning of your topic:
++
+[source,shell,subs="+quotes"]
+----
+bin/kafka-console-consumer \
+--bootstrap-server kafka-**PROVIDER**-**REGION**.streaming.datastax.com:9093 \
+--topic **TENANT_NAME**/kafka/**TOPIC_NAME** \
+--consumer.config config/ssl.properties \
+--from-beginning
+----
++
+Because this command uses the `--from-beginning` option, when the consumer starts, it retrieves any messages that were sent to the topic before it started.
++
+. Send a few messages in the `kafka-console-producer` terminal to generate more traffic on the tenant.
++
+As you send messages and the consumer receives them, they appear in the `kafka-console-consumer` terminal.
++
+. In Astra Streaming, go to your tenant's **Namespaces and Topics** tab to inspect the activity in the `kafka` namespace.
+To verify that your Kafka messages are being produced and consumed in your Astra Streaming {pulsar-short} cluster, check the **Data In** metrics.
+The number of messages should be equal to the number of messages you sent with the `kafka-console-producer`.
++
+. To exit the producer and consumer shells, press kbd:[Ctrl]+kbd:[C] in each terminal.
 
-For complete source code examples, see the https://github.com/datastax/astra-streaming-examples[Astra Streaming examples repository].
-
-. Create a new Maven project.
+Java client::
++
+The following example uses a Java program to create a connection between Kafka and your Astra Streaming tenant, configures a producer and consumer, and then sends a message.
+This example uses Maven, but you can also use Gradle.
++
+. Enable {starlight-kafka} and get the `ssl.properties` connection details, as explained in <<establish-the-kafka-protocol-handler>>.
++
+. Create a new Maven project:
 +
 [source,shell]
 ----
@@ -366,12 +255,18 @@ mvn archetype:generate \
     -DartifactId=StarlightForKafkaClient \
     -DarchetypeArtifactId=maven-archetype-quickstart \
     -DinteractiveMode=false
-
+----
++
+. Change to the new project directory:
++
+[source,shell]
+----
 cd StarlightForKafkaClient
 ----
-
-. Open the new project in your IDE or text editor, and then add the Kafka client dependency to `pom.xml`:
 +
+. Open the new project in your IDE, and then add the Kafka client dependency to `pom.xml`:
++
+.pom.xml
 [source,xml]
 ----
 <dependency>
@@ -380,14 +275,14 @@ cd StarlightForKafkaClient
   <version>3.3.1</version>
 </dependency>
 ----
-
-. Open the file `src/main/java/org/example/App.java`, and then enter the following code.
-If you cloned the example repo, replace the entire contents of `App.java` with the following code.
-Your editor will report an error because this isn't a complete script yet.
 +
-Replace placeholders with the values you previously retrieved from Astra Streaming.
+. Open the `App.java` file at `src/main/java/org/example/App.java`, and then delete any preexisting code in this file.
+In the next steps, you will add code to this file to create a complete program that produces and consumes messages.
 +
-[source,java]
+. Paste the following code in the file, and then replace the placeholder values with the values from your `ssl.properties` file.
+Your editor will report errors because this isn't a complete program yet.
++
+[source,java,subs="+quotes"]
 ----
 package org.example;
 
@@ -405,17 +300,20 @@ import java.util.Collections;
 import java.util.Properties;
 
 public class App {
-  private static String bootstrapServers = "<REPLACE_WITH_BOOTSTRAP_SERVER_URL>";
-  private static String pulsarToken = "<REPLACE_WITH_PULSAR_TOKEN>";
-  private static String tenantName = "<REPLACE_WITH_TENANT_NAME>";
-  private static final String namespace = "<REPLACE_WITH_NAMESPACE>";
-  private static final String topicName = "<REPLACE_WITH_TOPIC>";
+  private static String bootstrapServers = "**BOOTSTRAP_SERVER_URL**";
+  private static String pulsarToken = "**PASSWORD**";
+  private static String tenantName = "**USERNAME**";
+  private static final String namespace = "kafka";
+  private static final String topicName = "quickstart";
   private static final String topic = String.format("persistent://%s/%s/%s", tenantName,namespace,topicName);
 
   public static void main(String[] args) {
 ----
-
-. Add the following code that builds the configuration that will be used by both the producer and consumer:
++
+. Optional: Replace `quickstart` with another name for the topic that receives messages from the Kafka producer.
+If the topic doesn't exist, it is created it automatically when the producer sends the first message.
++
+. Add the following code that builds the configuration for the producer and consumer:
 +
 [source,java]
 ----
@@ -431,7 +329,7 @@ public class App {
     config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     config.put("group.id", "my-consumer-group");
 ----
-
++
 . Add the producer code, which is a simple flow that sends a single message and awaits acknowledgment:
 +
 [source,java]
@@ -451,7 +349,7 @@ public class App {
     producer.flush();
     producer.close();
 ----
-
++
 . Add the consumer code, which creates a basic subscription and retrieves the latest messages on the topic:
 +
 [source,java]
@@ -472,8 +370,8 @@ public class App {
   }
 }
 ----
-
-. Build and run a JAR file for the complete program:
++
+. Save `App.java`, and then build and run the JAR file for the complete program:
 +
 [source,shell]
 ----
@@ -481,9 +379,8 @@ mvn clean package assembly:single
 java -jar target/StarlightForKafkaClient-1.0-SNAPSHOT-jar-with-dependencies.jar
 ----
 +
-.Result
-[%collapsible]
-====
+. Make sure the result shows that a message was produces and consumed:
++
 [source,shell]
 ----
 Successfully sent message
@@ -491,7 +388,121 @@ Successfully sent message
 Found 1 total record(s)
 ConsumerRecord(topic = persistent://my-tenant-007/my-namespace/my-topic, partition = 0, leaderEpoch = null, offset = 22, CreateTime = 1673545962124, serialized key size = 8, serialized value size = 11, headers = RecordHeaders(headers = [], isReadOnly = false), key =   xxxxx, value = Hello World)
 ----
++
+. In Astra Streaming, go to your tenant's **Namespaces and Topics** tab to inspect the activity in the `kafka` namespace.
++
+If you everything was configured correctly, then the `kafka` namespace should have a topic named `quickstart` that was created by the Java program.
+Additionally, the namespace's metrics should reflect that at least one message was published and consumed by your Astra Streaming {pulsar-short} topic.
 ====
+
+--
+
+Luna Streaming::
++
+--
+To use the Kafka CLI or a Kafka client with {starlight-kafka}, you use your Luna Streaming {pulsar-short} tenant as the Kafka bootstrap server.
+The following example command line tools included with the https://kafka.apache.org/downloads[Apache Kafka tarball], and it connects on `localhost:9092` because port forwarding was enabled in <<establish-the-kafka-protocol-handler>>.
+
+. In your Kafka installation directory, start the `kafka-console-producer` shell:
++
+[source,shell]
+----
+bin/kafka-console-producer.sh \
+--topic quickstart \
+--bootstrap-server localhost:9092
+----
++
+You can replace `quickstart` with any other name for the topic that will receive messages from the producer.
+If the specified topic doesn't exist in your Luna Streaming tenant, it is created automatically when the producer sends the first message.
+You can configure this behavior and other xref:starlight-for-kafka:configuration:starlight-kafka-configuration.adoc[{starlight-kafka} parameters] in the https://github.com/datastaxdevs/luna-streaming-examples/blob/main/starlight-for-kafka/values.yaml[Helm chart].
++
+.Connect to a remote cluster
+[%collapsible]
+====
+To connect to a remote Luna Streaming cluster, provide the full topic name and the bootstrap server URL for your Luna Streaming tenant:
+
+[source,shell,subs="+quotes"]
+----
+bin/kafka-console-producer.sh --topic "**TENANT_NAME**/**NAMESPACE_NAME**/**TOPIC_NAME**" --bootstrap-server "**SERVICE_URL**"
+----
+====
+
+. When the producer is ready, type a message, and then press kbd:[Return] to send it.
+Optionally, you can send several messages before starting the consumer to see how it retrieves past messages.
+
+. In a new terminal window, start the `kafka-console-consumer` shell:
++
+[source,shell]
+----
+bin/kafka-console-consumer.sh \
+--topic quickstart \
+--bootstrap-server localhost:9092 \
+--from-beginning
+----
++
+Because this command uses the `--from-beginning` option, when the consumer starts, it retrieves any messages that were sent to the topic before it started.
+
+. Send a few messages in the `kafka-console-producer` terminal to generate more traffic on the tenant.
++
+As you send messages and the consumer receives them, they appear in the `kafka-console-consumer` terminal.
+
+. Use the {pulsar-short} Admin CLI or the Luna Streaming {pulsar-short} Admin Console to inspect your tenant's activity, and verify that messages were published and consumed on the specified topic.
+
+. To exit the producer and consumer shells, press kbd:[Ctrl]+kbd:[C] in each terminal.
+--
+
+Self-managed::
++
+--
+To use the Kafka CLI or a Kafka client with {starlight-kafka}, you use your {pulsar-short} tenant as the Kafka bootstrap server.
+The following example command line tools included with the https://kafka.apache.org/downloads[Apache Kafka tarball], and it assumes port forwarding is enabled to connect on `localhost:9092`.
+
+. In your Kafka installation directory, start the `kafka-console-producer` shell:
++
+[source,shell]
+----
+bin/kafka-console-producer.sh \
+--topic quickstart \
+--bootstrap-server localhost:9092
+----
++
+You can replace `quickstart` with any other name for the topic that will receive messages from the producer.
+If the specified topic doesn't exist in your {pulsar-short} tenant, it is created automatically when the producer sends the first message.
+You can configure this behavior and other xref:starlight-for-kafka:configuration:starlight-kafka-configuration.adoc[{starlight-kafka} parameters].
++
+.Connect to a remote cluster
+[%collapsible]
+====
+To connect to a remote {pulsar-short} cluster, provide the full topic name and the bootstrap server URL for your tenant:
+
+[source,shell,subs="+quotes"]
+----
+bin/kafka-console-producer.sh --topic "**TENANT_NAME**/**NAMESPACE_NAME**/**TOPIC_NAME**" --bootstrap-server "**SERVICE_URL**"
+----
+====
+
+. When the producer is ready, type a message, and then press kbd:[Return] to send it.
+Optionally, you can send several messages before starting the consumer to see how it retrieves past messages.
+
+. In a new terminal window, start the `kafka-console-consumer` shell:
++
+[source,shell]
+----
+bin/kafka-console-consumer.sh \
+--topic quickstart \
+--bootstrap-server localhost:9092 \
+--from-beginning
+----
++
+Because this command uses the `--from-beginning` option, when the consumer starts, it retrieves any messages that were sent to the topic before it started.
+
+. Send a few messages in the `kafka-console-producer` terminal to generate more traffic on the tenant.
++
+As you send messages and the consumer receives them, they appear in the `kafka-console-consumer` terminal.
+
+. Use the {pulsar-short} Admin CLI to inspect your tenant's activity, and verify that messages were published and consumed on the specified topic.
+
+. To exit the producer and consumer shells, press kbd:[Ctrl]+kbd:[C] in each terminal.
 --
 ======
 
