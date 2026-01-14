@@ -158,7 +158,7 @@ transform-function-2
 ======
 
 [#deploy-as]
-== Deploy with {product}
+== Deploy with Astra Streaming
 
 Deploy transform functions in the *Functions* tab of the {astra-ui}.
 

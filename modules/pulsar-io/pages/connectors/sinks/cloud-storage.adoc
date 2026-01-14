@@ -141,9 +141,9 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-With the Cloud Storage Sink there are two sets of parameters: {product} parameters and cloud storage provider parameters.
+With the Cloud Storage Sink there are two sets of parameters: Astra Streaming parameters and cloud storage provider parameters.
 
-=== {product} parameters for Cloud Storage Sink
+=== Astra Streaming parameters for Cloud Storage Sink
 
 [%header,format=csv,cols="2,1,1,3"]
 |===

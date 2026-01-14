@@ -4,7 +4,7 @@
 Functions are lightweight compute processes that enable you to process each message received on a topic.
 You can apply custom logic to that message, transforming or enriching it, and then output it to a different topic.
 
-Functions run inside {product} and are therefore serverless.
+Functions run inside Astra Streaming and are therefore serverless.
 You write the code for your function in Java, Python, or Go, then upload the code.
 It is automatically run for each message published to the specified input topic.
 
@@ -12,13 +12,13 @@ Functions are implemented using https://pulsar.apache.org/docs/en/functions-over
 
 [IMPORTANT]
 ====
-Custom functions require a xref:astra-streaming:operations:astream-pricing.adoc[paid {product} plan].
+Custom functions require a xref:astra-streaming:operations:astream-pricing.adoc[paid Astra Streaming plan].
 ====
 
 == Deploy Python functions in a zip file
 
-{product} supports Python-based {pulsar-short} functions.
-These functions can be packaged in a zip file and deployed to {product} or {pulsar-short}.
+Astra Streaming supports Python-based {pulsar-short} functions.
+These functions can be packaged in a zip file and deployed to Astra Streaming or {pulsar-short}.
 The same zip file can be deployed to either environment.
 
 To demonstrate this, the following steps create function configuration YAML file, package all necessary function files as a zip archive, and then use the `pulsar-admin` CLI to deploy the zip.
@@ -152,8 +152,8 @@ Replace the following:
 * `**INPUT_TOPIC_NAME**`: The input topic for the function
 * `**OUTPUT_TOPIC_NAME**`: The output topic for the function
 
-. Use `pulsar-admin` to deploy the Python zip to {product} or {pulsar-short}.
-The command below assumes you've properly configured the `client.conf` file for `pulsar-admin` commands against your {pulsar-short} cluster. If you are using {product}, see xref:astra-streaming:developing:configure-pulsar-env.adoc[] for more information.
+. Use `pulsar-admin` to deploy the Python zip to Astra Streaming or {pulsar-short}.
+The command below assumes you've properly configured the `client.conf` file for `pulsar-admin` commands against your {pulsar-short} cluster. If you are using Astra Streaming, see xref:astra-streaming:developing:configure-pulsar-env.adoc[] for more information.
 +
 [source,console]
 ----
@@ -163,7 +163,7 @@ bin/pulsar-admin functions create --function-config-file /absolute/path/to/func-
 . Verify that the function was deployed:
 +
 * Go to the {astra-ui} to see your newly deployed function listed under the **Functions** tab for your tenant.
-See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in Astra Streaming.
 * Use the `pulsar-admin` CLI to list functions for a specific tenant and namespace:
 +
 [source,bash,subs="+quotes"]
@@ -173,8 +173,8 @@ bin/pulsar-admin functions list --tenant **TENANT_NAME** --namespace **NAMESPACE
 
 == Deploy Java functions in a JAR file
 
-{product} supports Java-based {pulsar-short} functions which are packaged in a JAR file.
-The JAR can be deployed to {product} or {pulsar-short}.
+Astra Streaming supports Java-based {pulsar-short} functions which are packaged in a JAR file.
+The JAR can be deployed to Astra Streaming or {pulsar-short}.
 The same JAR file can be deployed to either environment.
 
 In this example, you'll create a function JAR file using Maven, then use the `pulsar-admin` CLI to deploy the JAR.
@@ -289,15 +289,15 @@ userConfig:
 +
 [IMPORTANT]
 ====
-{product} requires the `inputs` topic to have a message schema defined before deploying the function.
+Astra Streaming requires the `inputs` topic to have a message schema defined before deploying the function.
 Otherwise, deployment errors may occur.
 Use the {astra-ui} to define the message schema for a topic.
 ====
 
-. Use the `pulsar-admin` CLI to deploy your function JAR to {product} or {pulsar-short}.
+. Use the `pulsar-admin` CLI to deploy your function JAR to Astra Streaming or {pulsar-short}.
 +
 The following command assumes you've properly configured the `client.conf` file for `pulsar-admin` commands against your {pulsar-short} cluster.
-If you are using {product}, see xref:astra-streaming:developing:configure-pulsar-env.adoc[] for more information.
+If you are using Astra Streaming, see xref:astra-streaming:developing:configure-pulsar-env.adoc[] for more information.
 +
 [source,bash]
 ----
@@ -307,7 +307,7 @@ bin/pulsar-admin functions create --function-config-file  /absolute/path/to/func
 . Verify that the function was deployed:
 +
 * Go to the {astra-ui} to see your newly deployed function listed under the **Functions** tab for your tenant.
-See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in {product}.
+See <<controlling-your-function,Controlling your function>> for more information on testing and monitoring your function in Astra Streaming.
 * Use the `pulsar-admin` CLI to list functions for a specific tenant and namespace:
 +
 [source,bash,subs="+quotes"]
@@ -315,9 +315,9 @@ See <<controlling-your-function,Controlling your function>> for more information
 bin/pulsar-admin functions list --tenant **TENANT_NAME** --namespace **NAMESPACE_NAME**
 ----
 
-== Add functions in {product} dashboard
+== Add functions in Astra Streaming dashboard
 
-Add functions in the **Functions** tab of the {product} dashboard.
+Add functions in the **Functions** tab of the Astra Streaming dashboard.
 
 . Select *Create Function* to get started.
 
@@ -326,7 +326,7 @@ Add functions in the **Functions** tab of the {product} dashboard.
 image::astream-name-function.png[Function and Namespace]
 
 . Select the file you want to pull the function from and which function you want to use within that file.
-{product} generates a list of acceptable classes.
+Astra Streaming generates a list of acceptable classes.
 +
 image::astream-exclamation-function.png[Exclamation Function]
 +
@@ -416,7 +416,7 @@ If you want to use different topics, change `in`, `out`, and `log` accordingly.
 . Verify that the response is `Created Successfully!`.
 This indicates that the function was deployed and ready to run when triggered by incoming messages.
 +
-If the response is `402 Payment Required` with `Reason: only qualified organizations can create functions`, then you must upgrade to a xref:astra-streaming:operations:astream-pricing.adoc[paid {product} plan].
+If the response is `402 Payment Required` with `Reason: only qualified organizations can create functions`, then you must upgrade to a xref:astra-streaming:operations:astream-pricing.adoc[paid Astra Streaming plan].
 +
 You can also verify that a function was created by checking the **Functions** tab or by running `./pulsar-admin functions list --tenant **TENANT_NAME**`.
 
@@ -512,4 +512,4 @@ A *Function-name Deleted Successfully!* message confirms the function was perman
 
 == Next steps
 
-Learn more about developing functions for {product} and {pulsar-short} https://pulsar.apache.org/docs/en/functions-develop/[here].
+Learn more about developing functions for Astra Streaming and {pulsar-short} https://pulsar.apache.org/docs/en/functions-develop/[here].

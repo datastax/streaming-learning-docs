@@ -1,16 +1,16 @@
 = Connectors
 :navtitle: Connector Overview
 
-{product} offers fully-managed {pulsar-reg} connectors.
+Astra Streaming offers fully-managed {pulsar-reg} connectors.
 
 Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API.
 Connect popular data sources to {pulsar} topics or sink data from {pulsar-short} topics to popular systems.
 
-Below is a list of {pulsar} source and sink connectors supported by {product}.
+Below is a list of {pulsar} source and sink connectors supported by Astra Streaming.
 
 [IMPORTANT]
 ====
-{product} doesn't support custom sink or source connectors.
+Astra Streaming doesn't support custom sink or source connectors.
 ====
 
 [#sink-connectors]
@@ -154,7 +154,7 @@ xref:connectors/sources/kinesis.adoc[Kinesis source connector documentation]
 
 == Experimental Connectors
 
-{company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *{product}*.
+{company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *Astra Streaming*.
 
 To get access to these connectors, contact {support-url}[{company} Support].
 
@@ -238,7 +238,7 @@ Zeebe +
 
 == Listing Sink Connectors
 
-To list available sink connectors in your {product} tenant, use any of the following.
+To list available sink connectors in your Astra Streaming tenant, use any of the following.
 
 [tabs]
 ====
@@ -288,7 +288,7 @@ curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_ST
 
 == Listing Source Connectors
 
-To list available source connectors in your {product} tenant, use any of the following.
+To list available source connectors in your Astra Streaming tenant, use any of the following.
 
 [tabs]
 ====

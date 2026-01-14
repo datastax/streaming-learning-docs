@@ -22,9 +22,9 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-The BigQuery sink has multiple sets of parameters: the {product} parameters, the Kafka Connect Adapter parameters, and the Google BigQuery parameters. Each set of parameters provides a way to coordinate how data will be streamed from {pulsar-short} to BigQuery.
+The BigQuery sink has multiple sets of parameters: the Astra Streaming parameters, the Kafka Connect Adapter parameters, and the Google BigQuery parameters. Each set of parameters provides a way to coordinate how data will be streamed from {pulsar-short} to BigQuery.
 
-=== {product}
+=== Astra Streaming
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
