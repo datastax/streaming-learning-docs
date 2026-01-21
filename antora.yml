@@ -9,6 +9,7 @@ nav:
 asciidoc:
   attributes:
     company: 'DataStax'
+    support-url: 'https://www.ibm.com/mysupport/s/'
     astra-db: 'Astra DB'
     astra-ui: 'Astra Portal'
     astra-url: 'https://astra.datastax.com'
@@ -24,4 +25,3 @@ asciidoc:
     cass: Apache Cassandra
     cass-short: Cassandra
     cass-reg: Apache Cassandra(R)
-    support-url: 'https://support.datastax.com'
