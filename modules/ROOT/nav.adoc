@@ -42,4 +42,4 @@
 ** xref:functions:unwrap-key-value.adoc[]
 ** xref:functions:deploy-in-sink.adoc[]
 ** xref:functions:drop-fields.adoc[]
-* xref:astra-streaming:astream-subscriptions.adoc[Topic subscriptions]
+* xref:astra-streaming:ROOT:astream-subscriptions.adoc[Topic subscriptions]
