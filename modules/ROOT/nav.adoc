@@ -42,9 +42,4 @@
 ** xref:functions:unwrap-key-value.adoc[]
 ** xref:functions:deploy-in-sink.adoc[]
 ** xref:functions:drop-fields.adoc[]
-* Topic Subscriptions
-** xref:subscriptions:index.adoc[]
-** xref:subscriptions:astream-subscriptions-exclusive.adoc[]
-** xref:subscriptions:astream-subscriptions-failover.adoc[]
-** xref:subscriptions:astream-subscriptions-shared.adoc[]
-** xref:subscriptions:astream-subscriptions-keyshared.adoc[]
+* xref:astra-streaming:ROOT:astream-subscriptions.adoc[Topic subscriptions]
