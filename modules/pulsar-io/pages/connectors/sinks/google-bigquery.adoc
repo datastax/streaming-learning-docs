@@ -29,10 +29,7 @@ Each set of parameters provides a way to coordinate how data is streamed from {p
 
 === Astra Streaming
 
-[%header,format=csv,cols="2,1,1,3"]
-|===
-include::example$connectors/sinks/astra.csv[]
-|===
+include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 === Kafka Connect Adapter Configuration (configs)
 
