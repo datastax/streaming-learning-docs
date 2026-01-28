@@ -14,6 +14,7 @@ For configuration details, see the connector's documentation.
 //Luna Streaming: Cloud Storage sink, Google BigQuery sink are experimental
 //Elasticsearch is lowercase
 //Luna Streaming extra Experimental source: Netty
+//Luna Streaming -2.x and -1.x have fewer connectors
 
 [#sink-connectors]
 == Sink connectors
