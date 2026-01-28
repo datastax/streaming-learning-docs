@@ -118,11 +118,9 @@ curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
 
-.Result
-[%collapsible]
-====
 Status response for all connector instances:
 
+.Result
 [source,json]
 ----
 {
@@ -161,6 +159,7 @@ Status response for all connector instances:
 
 Status response for individual connector instance:
 
+.Result
 [source,json]
 ----
 {
@@ -187,7 +186,7 @@ Status response for individual connector instance:
   "workerId": "string"
 }
 ----
-====
+
 --
 ======
 

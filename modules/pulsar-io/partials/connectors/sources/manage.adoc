@@ -151,8 +151,6 @@ include::example$connectors/sources/{connectorType}/curl-update.sh[]
 ----
 
 .Result
-[%collapsible]
-====
 [source,json]
 ----
  {
@@ -209,7 +207,7 @@ include::example$connectors/sources/{connectorType}/curl-update.sh[]
    "batchBuilder": "string"
 }
 ----
-====
+
 --
 ======
 
