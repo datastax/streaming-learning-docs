@@ -238,24 +238,19 @@ Zeebe +
 
 == Listing Sink Connectors
 
-To list available sink connectors in your Astra Streaming tenant, use any of the following.
+To list available sink connectors in your Astra Streaming tenant, you can use the {pulsar-short} Admin CLI or API.
 
-[tabs]
-====
-{pulsar-short} Admin::
-+
---
+=== {pulsar-short} Admin CLI
+
 include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sinks available-sinks
 ----
---
 
-curl::
-+
---
+=== {pulsar-short} Admin API
+
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
@@ -283,29 +278,22 @@ export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-====
 
 == Listing Source Connectors
 
-To list available source connectors in your Astra Streaming tenant, use any of the following.
+To list available source connectors in your Astra Streaming tenant, you can use the {pulsar-short} Admin CLI or API.
 
-[tabs]
-====
-{pulsar-short} Admin::
-+
---
+=== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sources available-sources
 ----
---
 
-curl::
-+
---
+=== {pulsar-short} Admin API
+
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
@@ -333,8 +321,6 @@ export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-====
 
 == See also
 

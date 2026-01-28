@@ -1,42 +1,33 @@
 // TODO: include details about retrieving a tenant name
 // TODO: include details about creating a topic
-Set the following environment variables using `pulsar-admin` or curl:
+Set the following environment variables using the `pulsar-admin` CLI or the {pulsar-admin} API:
 
-[source,shell,subs="attributes+"]
+[source,shell,subs="+quote,+attributes"]
 ----
-export TENANT=<replace-me>
-export INPUT_TOPIC=<replace-me>
-export NAMESPACE=default
+export TENANT=**TENANT_NAME**
+export INPUT_TOPIC=**TOPIC_NAME**
+export NAMESPACE=**NAMESPACE_NAME** # or default
 export SINK_NAME={connectorName}
 ----
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+=== {pulsar-short} Admin CLI
+
 include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
 ----
---
 
-curl::
-+
---
+=== {pulsar-short} Admin API
+
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/curl-create.sh[]
 ----
---
 
-Sample Config Data::
-+
---
+=== Sample Config Data
+
 include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
---
-======

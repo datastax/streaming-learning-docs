@@ -1,10 +1,7 @@
 === Info
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
@@ -15,11 +12,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
   --name "$SOURCE_NAME" \
   --tenant "$TENANT"
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
@@ -50,22 +45,15 @@ curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NA
   -H "accept: application/json" \
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
 
-Sample Config Data::
-+
---
+==== Sample Config Data
+
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]
---
-======
 
 === Health
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
@@ -77,11 +65,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
   --name "$SOURCE_NAME" \
   --tenant "$TENANT"
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 You need a {pulsar-short} token for REST API authentication.
 This is different from your {astra-db} application tokens.
 
@@ -186,9 +172,6 @@ Status response for individual connector instance:
   "workerId": "string"
 }
 ----
-
---
-======
 
 === Metrics
 

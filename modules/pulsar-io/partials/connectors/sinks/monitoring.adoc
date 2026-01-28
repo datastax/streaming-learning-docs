@@ -1,10 +1,7 @@
 === Info
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -15,11 +12,9 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
   --name "$SINK_NAME" \
   --tenant "$TENANT"
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -28,7 +23,7 @@ include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'' \
   --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
 ----
-+
+
 .Result
 [source,json]
 ----
@@ -144,16 +139,10 @@ curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESP
 }
 ----
 
---
-======
-
 === Health
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -165,11 +154,9 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
   --name "$SINK_NAME" \
   --tenant "$TENANT"
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -252,9 +239,6 @@ Status response for individual connector instance:
  "workerId": "string"
 }
 ----
-
---
-======
 
 === Metrics
 

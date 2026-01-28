@@ -139,26 +139,19 @@ include::partial$connectors/sinks/manage.adoc[]
 
 include::partial$connectors/sinks/monitoring.adoc[]
 
-== Connector Reference
-
-With the Cloud Storage Sink there are two sets of parameters: Astra Streaming parameters and cloud storage provider parameters.
-
-=== Astra Streaming parameters for Cloud Storage Sink
+== Astra Streaming parameters for Cloud Storage Sink configuration
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
 include::example$connectors/sinks/astra.csv[]
 |===
 
-=== Cloud storage provider parameters for Cloud Storage Sink
+== Cloud storage provider parameters for Cloud Storage Sink configuration
 
 Set your cloud storage provider and other required values in the `configs` area.
 
-[tabs]
-======
-Google Cloud Storage::
-+
---
+=== Google Cloud Storage
+
 [cols="2,1,1,3"]
 |===
 |Name |Required |Default |Description
@@ -283,11 +276,9 @@ Google Cloud Storage::
 |true
 |When it is set to true, include the topic partition number to the object path.
 |===
---
 
-AWS S3 Storage::
-+
---
+=== AWS S3 Storage
+
 The suggested permission policies for AWS S3 are:
 
 - `s3:AbortMultipartUpload`
@@ -436,11 +427,9 @@ If you don't want to provide a region in the configuration, then enable the `s3:
 |true
 |When it is set to true, include the topic partition number to the object path.
 |===
---
 
-Azure Blob Storage::
-+
---
+=== Azure Blob Storage
+
 [cols="2,1,1,3"]
 |===
 |Name |Required |Default |Description
@@ -580,5 +569,3 @@ Azure Blob Storage::
 |true
 |When it is set to true, include the topic partition number to the object path.
 |===
---
-======

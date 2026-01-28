@@ -1,10 +1,7 @@
 === Start
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
@@ -17,11 +14,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 # optionally add --instance-id to only start an individual instance
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 Start all instances of a connector:
@@ -39,16 +34,11 @@ Start an individual instance of a connector:
 curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/start" \
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-======
 
 === Stop
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
@@ -61,11 +51,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 # optionally add --instance-id to only stop an individual instance
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 Stop all instances of a connector:
@@ -83,16 +71,11 @@ Stop an individual instance of a connector:
 curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/stop" \
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-======
 
 === Restart
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -105,11 +88,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 # optionally add --instance-id to only restart an individual instance
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 [source,shell]
@@ -122,27 +103,20 @@ curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$S
 curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/restart" \
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-======
 
 === Update
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-update.sh[]
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
@@ -208,16 +182,10 @@ include::example$connectors/sources/{connectorType}/curl-update.sh[]
 }
 ----
 
---
-======
-
 === Delete
 
-[tabs]
-======
-{pulsar-short} Admin::
-+
---
+==== {pulsar-short} Admin CLI
+
 include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
@@ -228,11 +196,9 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
   --name "$SOURCE_NAME" \
   --tenant "$TENANT"
 ----
---
 
-curl::
-+
---
+==== {pulsar-short} Admin API
+
 include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 [source,shell]
@@ -241,5 +207,3 @@ include::partial$connectors/sources/curl-tab-prereq.adoc[]
 curl -sS --fail -X DELETE "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
   -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
---
-======
