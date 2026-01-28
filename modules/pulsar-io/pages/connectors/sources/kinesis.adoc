@@ -2,6 +2,8 @@
 :connectorName: kinesis-src
 :connectorType: kinesis
 
+The AWS Kinesis source connector reads data from Kinesis systems and produces data to {pulsar-short} topics.
+
 The Kinesis source connector pulls data from Amazon Kinesis and persists data into an {pulsar-reg} topic.
 
 For more, see https://pulsar.apache.org/docs/io-kinesis-source[{pulsar}'s Kinesis source documentation].
@@ -71,5 +73,5 @@ If `awsCredentialPluginName` set to empty, the Kinesis sink creates a default AW
 
 |===
 
-The Astra Streaming Kinesis source connector supports all configuration properties provided by {pulsar}.
+The {product} Kinesis source connector supports all configuration properties provided by {pulsar}.
 For a complete list, see the https://pulsar.apache.org/docs/io-kinesis-source#configuration[Kinesis source connector properties].

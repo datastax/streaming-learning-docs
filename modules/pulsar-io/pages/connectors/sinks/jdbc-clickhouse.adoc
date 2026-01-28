@@ -2,13 +2,12 @@
 :connectorName: jdbc-clickhouse
 :connectorType: jdbc-clickhouse
 
+The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.
+
 ClickHouse is an open-source column-oriented database management system for online analytical processing that allows users to generate analytical reports using SQL queries in
 real-time.
 
-[NOTE]
-====
-Astra Streaming currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[Clickhouse 0.3.2 library] to interact with Clickhouse.
-====
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[Clickhouse 0.3.2 library] to interact with Clickhouse.
 
 == Get Started
 
@@ -37,7 +36,7 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming JDBC Clickhouse sink connector supports all configuration properties provided by {pulsar}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
+The {product} JDBC Clickhouse sink connector supports all configuration properties provided by {pulsar}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
 properties]
 for a complete list.
 

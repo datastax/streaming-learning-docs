@@ -1,244 +1,142 @@
-= Connectors
-:navtitle: Connector Overview
+= {pulsar-short} I/O connectors in {product}
+:navtitle: Available connectors
 
-Astra Streaming offers fully-managed {pulsar-reg} connectors.
+{product} offers fully-managed versions of https://pulsar.apache.org/docs/en/io-overview/[{pulsar-reg} connectors].
 
-Create, monitor, and manage both source and sink connectors through our simple UI, the `pulsar-admin` CLI, or RESTful API.
-Connect popular data sources to {pulsar} topics or sink data from {pulsar-short} topics to popular systems.
-
-Below is a list of {pulsar} source and sink connectors supported by Astra Streaming.
+You can use the {astra-ui}, the `pulsar-admin` CLI, or the {pulsar-short} Admin API to create, monitor, and manage sink and source connectors.
+For configuration details, see the connector's documentation.
 
 [IMPORTANT]
 ====
-Astra Streaming doesn't support custom sink or source connectors.
+{product} doesn't support custom sink or source connectors.
 ====
 
+//Luna Streaming: Cloud Storage sink, Google BigQuery sink are experimental
+//Elasticsearch is lowercase
+//Luna Streaming extra Experimental source: Netty
+
 [#sink-connectors]
-== Sink Connectors
+== Sink connectors
 
-[#astradb-sink]
-=== AstraDB sink
+Sink connectors export data from {pulsar-short} topics to external systems.
 
-The AstraDB sink connector reads messages from {pulsar} topics and writes them to AstraDB systems.
+Supported sink connectors::
+The following sink connectors are included in {product}:
++
+* xref:connectors/sinks/astra-db.adoc[AstraDB sink]
+* xref:connectors/sinks/kafka.adoc[Apache Kafka sink]
+* xref:connectors/sinks/kinesis.adoc[AWS Kinesis sink]
+* xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink]
+* xref:connectors/sinks/elastic-search.adoc[Elasticsearch sink]
+* xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink]
+* xref:connectors/sinks/jdbc-clickhouse.adoc[JDBC ClickHouse sink]
+* xref:connectors/sinks/jdbc-mariadb.adoc[JDBC MariaDB sink]
+* xref:connectors/sinks/jdbc-postgres.adoc[JDBC PostgreSQL sink]
+* xref:connectors/sinks/jdbc-sqllite.adoc[JDBC SQLite sink]
+* xref:connectors/sinks/snowflake.adoc[Snowflake sink]
 
-xref:connectors/sinks/astra-db.adoc[AstraDB sink documentation].
-
-[#cloudstorage-sink]
-=== Cloud Storage sink
-
-The Cloud Storage sink connector reads messages from {pulsar} topics and writes them to Cloud Storage systems.
-
-xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink documentation].
-
-[#elasticsearch-sink]
-=== ElasticSearch sink
-
-The Elasticsearch sink connector reads messages from {pulsar} topics and writes them to Elasticsearch systems.
-
-xref:connectors/sinks/elastic-search.adoc[Elasticsearch sink documentation].
-
-[#bigquery-sink]
-=== Google BigQuery sink
-
-The Google BigQuery sink connector reads messages from {pulsar} topics and writes them to BigQuery systems.
-
-xref:connectors/sinks/google-bigquery.adoc[Google BigQuery sink documentation].
-
-[#jdbc-clickhouse-sink]
-=== JDBC-Clickhouse sink
-
-The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.
-
-xref:connectors/sinks/jdbc-clickhouse.adoc[JDBC ClickHouse sink documentation].
-
-[#jdbc-mariadb-sink]
-=== JDBC-MariaDB sink
-
-The JDBC-MariaDB sink connector reads messages from {pulsar} topics and writes them to JDBC-MariaDB systems.
-
-xref:connectors/sinks/jdbc-mariadb.adoc[JDBC MariaDB sink documentation].
-
-[#jdbc-postgres-sink]
-=== JDBC-PostgreSQL sink
-
-The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
-
-xref:connectors/sinks/jdbc-postgres.adoc[JDBC PostgreSQL sink documentation].
-
-[#jdbc-sqlite-sink]
-=== JDBC-SQLite
-
-The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.
-
-xref:connectors/sinks/jdbc-sqllite.adoc[JDBC SQLite sink documentation].
-
-[#kafka-sink]
-=== Kafka
-
-The Kafka sink connector reads messages from {pulsar} topics and writes them to Kafka systems.
-
-xref:connectors/sinks/kafka.adoc[Kafka sink documentation].
-
-[#kinesis-sink]
-=== Kinesis
-
-The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.
-
-xref:connectors/sinks/kinesis.adoc[Kinesis sink documentation].
-
-[#snowflake-sink]
-=== Snowflake
-
-The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake systems.
-
-xref:connectors/sinks/snowflake.adoc[Snowflake sink documentation].
+Experimental sink connectors::
+The following source connectors are experimental.
+They are in development, and they aren't fully supported or tested with {product}.
+To get access to experimental connectors, contact {support-url}[{company} Support].
++
+* Aerospike
+* Apache Geode
+* Apache HBase
+* Apache Kudu
+* Apache Phoenix
+* Apache Solr
+* Batch Data Generator
+* CoAP
+* Couchbase
+* DataDog
+* Diffusion
+* Flume
+* Hazelcast
+* HDFS 2
+* HDFS 3
+* Humio
+* InfluxDB
+* JMS
+* Kinetica
+* MarkLogic
+* Microsoft Azure Data Explorer (Kusto)
+* Microsoft Azure DocumentDB
+* MongoDB
+* MQTT
+* Neo4J
+* New Relic
+* OrientDB
+* PLC4X
+* RabbitMQ
+* Redis
+* SAP HANA
+* SingleStore
+* Splunk
+* XTDB
+* Zeebe
 
 [#source-connectors]
-== Source Connectors
+== Source connectors
 
-[#datagenerator-source]
-=== Data Generator source
+Source connectors ingest data from external systems into {pulsar-short} topics in your {product} tenants.
 
-The Data generator source connector produces messages for testing and persists the messages to {pulsar-short} topics.
+Supported source connectors::
+The following source connectors are included in {product}:
++
+* xref:connectors/sources/kafka.adoc[Apache Kafka source]
+* xref:connectors/sources/kinesis.adoc[AWS Kinesis source]
+* xref:connectors/sources/data-generator.adoc[Data Generator source]
+* xref:connectors/sources/debezium-mongodb.adoc[Debezium MongoDB source]
+* xref:connectors/sources/debezium-mysql.adoc[Debezium MySQL source]
+* xref:connectors/sources/debezium-oracle.adoc[Debezium Oracle source]
+* xref:connectors/sources/debezium-postgres.adoc[Debezium PostgreSQL source]
+* xref:connectors/sources/debezium-sqlserver.adoc[Debezium SQL Server source]
 
-xref:connectors/sources/data-generator.adoc[Data Generator source documentation]
+Experimental source connectors::
+The following source connectors are experimental.
+They are in development, and they aren't fully supported or tested with {product}.
+To get access to experimental connectors, contact {support-url}[{company} Support].
++
+* {cass}
+* Apache Geode
+* Apache Kudu
+* Apache Phoenix
+* Batch Data Generator
+* Big Query
+* Canal
+* CoAP
+* Couchbase
+* DataDog
+* Diffusion
+* DynamoDB
+* File
+* Flume
+* Hazelcast
+* Humio
+* JMS
+* Kinetica
+* MarkLogic
+* Microsoft Azure DocumentDB
+* MongoDB
+* MQTT
+* Neo4J
+* New Relic
+* NSQ
+* OrientDB
+* PLC4X
+* RabbitMQ
+* Redis
+* SAP HANA
+* SingleStore
+* Splunk
+* Twitter
+* XTDB
+* Zeebe
 
-[#debezium-mongodb-source]
-=== Debezium MongoDB source
-
-The Debezium MongoDB source connector reads data from Debezium MongoDB systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/debezium-mongodb.adoc[Debezium MongoDB source documentation]
-
-[#debezium-mysql-source]
-=== Debezium MySQL source
-
-The Debezium MySQL source connector reads data from Debezium MySQL systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/debezium-mysql.adoc[Debezium MySQL source documentation]
-
-[#debezium-oracle-source]
-=== Debezium Oracle source
-
-The Debezium Oracle source connector reads data from Debezium Oracle systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/debezium-oracle.adoc[Debezium Oracle source documentation]
-
-[#debezium-postgres-source]
-=== Debezium Postgres source
-
-The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/debezium-postgres.adoc[Debezium PostgreSQL source documentation]
-
-[#debezium-sql-server-source]
-=== Debezium SQL Server source
-
-The Debezium SQL Server source connector reads data from Debezium SQL Server systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/debezium-sqlserver.adoc[Debezium SQL Server source documentation]
-
-[#kafka-source]
-=== Kafka source
-
-The Kafka source connector reads data from Kafka systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/kafka.adoc[Kafka source connector documentation]
-
-[#kinesis-source]
-=== AWS Kinesis source
-
-The AWS Kinesis source connector reads data from Kinesis systems and produces data to {pulsar-short} topics.
-
-xref:connectors/sources/kinesis.adoc[Kinesis source connector documentation]
-
-== Experimental Connectors
-
-{company} is always experimenting with connectors. Below are the connectors currently in development that have not yet been promoted to official support in *Astra Streaming*.
-
-To get access to these connectors, contact {support-url}[{company} Support].
-
-[#sink-experimental]
-=== Sink Connectors (experimental)
-
-Kinetica +
-Aerospike +
-Azure DocumentDB +
-Azure Data Explorer (Kusto) +
-Batch Data Generator +
-CoAP +
-Couchbase +
-DataDog +
-Diffusion +
-Flume +
-Apache Geode +
-Hazelcast +
-Apache HBase +
-HDFS 2 +
-HDFS 3 +
-Humio +
-InfluxDB +
-JMS +
-Apache Kudu +
-MarkLogic +
-MongoDB +
-MQTT +
-Neo4J +
-New Relic +
-OrientDB +
-Apache Phoenix +
-PLC4X +
-RabbitMQ +
-Redis +
-SAP HANA +
-SingleStore +
-Apache Solr +
-Splunk +
-XTDB +
-Zeebe +
-
-[#source-experimental]
-=== Source Connectors (experimental)
-
-{cass-short} Source +
-Kinetica +
-Azure DocumentDB +
-Batch Data Generator +
-Big Query +
-canal +
-CoAP +
-Couchbase +
-datadog +
-diffusion +
-DynamoDB +
-file +
-flume +
-Apache Geode +
-Hazelcast +
-Humio +
-JMS +
-Apache Kudu +
-MarkLogic +
-MongoDB +
-MQTT +
-Neo4J +
-New Relic +
-NSQ +
-OrientDB +
-Apache Phoenix +
-PLC4X +
-RabbitMQ +
-Redis +
-SAP HANA +
-SingleStore +
-Splunk +
-Twitter +
-XTDB +
-Zeebe +
-
-== Listing Sink Connectors
-
-To list available sink connectors in your Astra Streaming tenant, you can use the {pulsar-short} Admin CLI or API.
+== List sink connectors
+//Combine w/ CLI ref and API ref pages; replace below w/ links.
+To list available sink connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
 
 === {pulsar-short} Admin CLI
 
@@ -280,8 +178,8 @@ curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_ST
 ----
 
 == Listing Source Connectors
-
-To list available source connectors in your Astra Streaming tenant, you can use the {pulsar-short} Admin CLI or API.
+//Combine w/ CLI ref and API ref pages; replace below w/ links.
+To list available source connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
 
 === {pulsar-short} Admin CLI
 
@@ -321,7 +219,3 @@ export ASTRA_STREAMING_TOKEN=<replace-me>
 ----
 curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTRA_STREAMING_TOKEN"
 ----
-
-== See also
-
-For more on {pulsar-short} IO connectors, see the https://pulsar.apache.org/docs/en/io-overview/[{pulsar-short} documentation].

@@ -2,6 +2,8 @@
 :connectorName: cloud-storage-sink
 :connectorType: cloud-storage
 
+The Cloud Storage sink connector reads messages from {pulsar} topics and writes them to Cloud Storage systems.
+
 Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a {pulsar-short} topic to the given system following a desired format.
 
 The cloud storage system supported are:

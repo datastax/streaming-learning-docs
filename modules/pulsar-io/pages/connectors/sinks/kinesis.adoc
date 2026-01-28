@@ -2,16 +2,15 @@
 :connectorName: kinesis-sink
 :connectorType: kinesis
 
+The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.
+
 Amazon Kinesis collects, processes, and analyzes real-time streaming data for timely insights and quick reactions to new information.
 
 Amazon Kinesis cost-effectively processes streaming data at any scale, and offers the flexibility to choose the tools that best suit your application's requirements.
 
 The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers to easily consume and process data from Amazon Kinesis.
 
-[NOTE]
-====
-Astra Streaming currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
-====
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
 
 == Get Started
 
@@ -40,7 +39,7 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Kinesis sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-kinesis-sink#property[connector properties] for a complete list.
+The {product} Kinesis sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-kinesis-sink#property[connector properties] for a complete list.
 
 == What's next?
 

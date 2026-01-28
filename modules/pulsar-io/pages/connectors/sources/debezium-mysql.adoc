@@ -2,9 +2,11 @@
 :connectorName: debezium-mysql-src
 :connectorType: debezium-mysql
 
+The Debezium MySQL source connector reads data from Debezium MySQL systems and produces data to {pulsar-short} topics.
+
 The Debezium MySQL connector reads the binlog, produces change events for row-level INSERT, UPDATE, and DELETE operations, and emits these change events as messages in an {pulsar-reg} topic.
 
-Astra Streaming currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries.
+{product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries.
 
 == Get Started
 
@@ -33,7 +35,7 @@ include::example$connectors/sources/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
+The {product} MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
 
 == What's next?
 

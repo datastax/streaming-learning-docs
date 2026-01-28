@@ -2,9 +2,11 @@
 :connectorName: debezium-pg-src
 :connectorType: debezium-postgres
 
+The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL systems and produces data to {pulsar-short} topics.
+
 The PostgreSQL connector produces a change event for every row-level insert, update, and delete operation that it captures, and sends change event records for each table in a separate {pulsar-reg} topic.
 
-Astra Streaming currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported PostgreSQL versions, please refer to the
+{product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported PostgreSQL versions, please refer to the
 https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
 == Get Started
@@ -34,7 +36,7 @@ include::example$connectors/sources/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming PostgreSQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/postgresql.html#postgresql-connector-properties[Debezium PostgreSQL connector properties] for a complete list.
+The {product} PostgreSQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/postgresql.html#postgresql-connector-properties[Debezium PostgreSQL connector properties] for a complete list.
 
 == What's next?
 

@@ -2,6 +2,8 @@
 :connectorName: kafka-src
 :connectorType: kafka
 
+The Kafka source connector reads data from Kafka systems and produces data to {pulsar-short} topics.
+
 The Kafka source connector pulls data from a Kafka topic and persists the data into an {pulsar-reg} topic.
 
 For more, see https://pulsar.apache.org/docs/io-kafka-source[{pulsar}'s Kafka source documentation].
@@ -60,5 +62,5 @@ The deserializer is set by a specific implementation of https://github.com/apach
 
 |===
 
-The Astra Streaming Kafka source connector supports all configuration properties provided by {pulsar}.
+The {product} Kafka source connector supports all configuration properties provided by {pulsar}.
 For a complete list, see the https://pulsar.apache.org/docs/io-kafka-source#property[Kafka source connector properties].

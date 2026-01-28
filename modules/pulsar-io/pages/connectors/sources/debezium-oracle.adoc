@@ -1,12 +1,13 @@
 = Debezium Oracle
 :connectorName: debezium-orcl-src
 :connectorType: debezium-oracle
+The Debezium Oracle source connector reads data from Debezium Oracle systems and produces data to {pulsar-short} topics.
 
 Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running.
 
 The connector can be configured to emit change events for specific subsets of schemas and tables, or to ignore, mask, or truncate values in specific columns.
 
-Astra Streaming currently supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries.
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries.
 
 == Get Started
 
@@ -33,7 +34,7 @@ include::example$connectors/sources/astra.csv[]
 
 === Debezium Oracle
 
-The Astra Streaming Oracle source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#oracle-connector-properties[Debezium Oracle connector properties] for a complete list.
+The {product} Oracle source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#oracle-connector-properties[Debezium Oracle connector properties] for a complete list.
 
 == What's next?
 

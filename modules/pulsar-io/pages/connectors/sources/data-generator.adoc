@@ -2,13 +2,15 @@
 :connectorName: data-gen-src
 :connectorType: data-generator
 
+The Data generator source connector produces messages for testing and persists the messages to {pulsar-short} topics.
+
 The Data Generator source connector creates fake data on an {pulsar-reg} topic using the https://github.com/Codearte/jfairy[JFAIRY library] to generate a message containing "person" data.
 
 "Person" data includes first and last name, home address, and email address, among other details.
 
 The connector will produce data indefinitely while it is running.
 
-Astra Streaming currently supports {pulsar} {pulsar-version}, which uses version 0.5.9 of the jfairy library.
+{product} currently supports {pulsar} {pulsar-version}, which uses version 0.5.9 of the jfairy library.
 
 For a reference of the full "Person" class, https://github.com/apache/pulsar/blob/branch-{pulsar-version}/pulsar-io/data-generator/src/main/java/org/apache/pulsar/io/datagenerator/Person.java[view the source].
 

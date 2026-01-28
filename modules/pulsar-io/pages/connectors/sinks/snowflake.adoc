@@ -2,6 +2,8 @@
 :connectorName: snowflake-sink
 :connectorType: snowflake
 
+The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake systems.
+
 A Snowflake database is where an organization's uploaded structured and semi-structured data sets are held for processing and analysis.
 
 Snowflake automatically manages all parts of the data storage process, including organization, structure, metadata, file size, compression, and statistics.
@@ -33,7 +35,7 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming Snowflake sink connector supports all configuration properties provided by {company}. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
+The {product} Snowflake sink connector supports all configuration properties provided by {company}. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
 properties] for a complete list.
 
 == What's next?

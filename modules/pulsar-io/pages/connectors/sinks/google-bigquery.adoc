@@ -2,6 +2,8 @@
 :connectorName: bigquery-sink
 :connectorType: bigquery
 
+The Google BigQuery sink connector reads messages from {pulsar} topics and writes them to BigQuery systems.
+
 https://cloud.google.com/bigquery[Google BigQuery] is a fully managed enterprise data warehouse that helps you manage and analyze your data with built-in features like machine learning, geospatial analysis, and business intelligence. BigQuery's serverless architecture lets you use SQL queries to answer your organization's biggest questions with zero infrastructure management. BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
 
 BigQuery {pulsar-short} Sink is not integrated with BigQuery directly. It uses {pulsar-short}'s built-in https://pulsar.apache.org/docs/adaptors-kafka/[Kafka Connect adapter] library to transform message data into a Kafka compatible format. Then the https://docs.confluent.io/kafka-connectors/bigquery/current/kafka_connect_bigquery_config.html[Kafka Connect BigQuery Sink] is used as the actual BigQuery integration. The adaptor provides a flexible and extensible framework for data transformation and processing. It supports various data formats, including JSON, Avro, and Protobuf, and enables users to apply transformations on the data as it is being streamed from {pulsar-short}.
@@ -22,7 +24,8 @@ include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 
-The BigQuery sink has multiple sets of parameters: the Astra Streaming parameters, the Kafka Connect Adapter parameters, and the Google BigQuery parameters. Each set of parameters provides a way to coordinate how data will be streamed from {pulsar-short} to BigQuery.
+The BigQuery sink has three sets of parameters.
+Each set of parameters provides a way to coordinate how data is streamed from {pulsar-short} to BigQuery.
 
 === Astra Streaming
 
@@ -251,14 +254,16 @@ This presents two issues:
 |
 a| Can be either a string representation of the Google credentials file or the path to the Google credentials file itself.
 
-When using the Astra Streaming UI, the string representation must be used. If using pulsar-admin with Astra Streaming, either the representation or file can be used.
+When configuring this connector in the {astra-ui}, the string representation must be used.
+With the {pulsar-short} Admin CLI or API, you can use either the representation or a file.
 
 | keySource
 | yes
 | `FILE`
 a| Determines whether the keyfile configuration is the path to the credentials JSON file or to the JSON itself. Available values are `FILE` and `JSON`.
 
-When using the Astra Streaming UI, JSON will be the only option. If using pulsar-admin with Astra Streaming, either the representation or file can be used.
+When configuring this connector in the {astra-ui}, JSON is the only option.
+With the {pulsar-short} Admin CLI or API, you can use either the representation or a file.
 
 | name
 | yes

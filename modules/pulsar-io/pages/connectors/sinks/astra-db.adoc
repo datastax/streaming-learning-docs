@@ -2,16 +2,18 @@
 :connectorName: astra-db-sink
 :connectorType: astra-db
 
-{company} {astra-db} Sink Connector is based on the open-source xref:pulsar-connector:ROOT:index.adoc[{cass-reg} sink connector for {pulsar-reg}]. Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a {cass-short} cluster outside of DB.
+The {astra-db} sink connector reads messages from {pulsar} topics and writes them to {astra-db} databases.
 
-The Astra Streaming portal provides simple way to connect this sink and a table in {astra-db} with simply a token. Using `pulsar-admin` or the REST API, you can configure the sink to connect with a {cass-short} connection manually.
+{company} {astra-db} sink connector is based on the open-source xref:pulsar-connector:ROOT:index.adoc[{cass} sink connector for {pulsar-reg}].
+Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a self-managed {cass-short} cluster.
+For the complete connector code, see the https://github.com/datastax/pulsar-sink[{company} {pulsar-short} sink connector GitHub repository].
 
-This reference assumes you are manually connecting to a {cass-short} table.
+You can configure this connector with the {astra-ui}, the `pulsar-admin` CLI, or the {pulsar-short} Admin API.
+The {astra-ui} provides the most simplified and guided configuration, and it is only suitable for connecting to {astra-db} databases.
+With the CLI and API, you must provide the complete configuration programmatically, but you can use these tools to connect to either {astra-db} databases or self-managed {cass-short} clusters.
+A {pulsar-short} token is required for all configuration methods.
 
-[TIP]
-====
-If you would like to see the code, refer to the https://github.com/datastax/pulsar-sink[open source here].
-====
+This reference assumes you are connecting to a {cass-short} table using the {pulsar-short} Admin API or CLI.
 
 == Get Started
 

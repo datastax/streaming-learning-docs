@@ -1,6 +1,7 @@
 = JDBC PostgreSQL
 :connectorName: jdbc-postgres
 :connectorType: jdbc-postgres
+The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
 
 PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development.
 
@@ -8,10 +9,7 @@ It has earned a strong reputation for reliability, feature robustness, and perfo
 
 The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol. This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.
 
-[NOTE]
-====
-Astra Streaming currently supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
-====
+{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
 
 == Get Started
 
@@ -40,7 +38,7 @@ include::example$connectors/sinks/astra.csv[]
 
 These values are provided in the "configs" area.
 
-The Astra Streaming JDBC PostgreSQL sink connector supports all configuration properties provided by {pulsar-short}. Refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
+The {product} JDBC PostgreSQL sink connector supports all configuration properties provided by {pulsar-short}. Refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
 properties] for a complete list.
 
 == What's next?
