@@ -1,144 +1,198 @@
-[cols=4]
+[TIP]
+====
+A {pulsar-short} connectors and functions both use https://pulsar.apache.org/docs/3.1.x/functions-concepts/[{pulsar-short} functions workers].
+Therefore, some function configuration parameters are also used to configure connectors.
+
+Additionally, the following table uses the JSON field name for the parameters.
+For the equivalent command line arguments, see the https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference].
+====
+
+The following table uses the field name.
+Parameter names are different when passed directly on the command line with the {pulsar-short} Admin CLI.
+
+[cols=3]
 |===
-|Name |Required |Default |Description
+|Field name |Required |Description
 
-|"archive","true","","The connector type, like 'builtin://elastic_search'"
-|
-|
-|
+|`archive`
+|Yes
+|The built-in {product} {pulsar-short} connector type.
+Formatted as `builtin://**CONNECTOR**`, such as `builtin://elastic_search`.
 
-|"autoAck","true","false","Boolean denotes whether or not the framework will automatically acknowledge messages"
-|
-|
-|
+|`autoAck`
+|Yes
+|Whether the framework automatically acknowledges messages.
 
-|"className","true","","The connector type's class reference, like 'org.apache.pulsar.io.debezium.mysql.DebeziumMysqlSource'"
-|
-|
-|
+Default: `false` (automatic acknowledgment disabled)
 
-|"cleanupSubscription","false","false","Boolean denotes whether the subscriptions the functions created/used should be deleted when the functions is deleted"
-|
-|
-|
+|`className`
+|Yes
+|The connector type's class reference beginning with `org.apache.pulsar`, such as
+`org.apache.pulsar.common.schema.KeyValue` or `org.apache.pulsar.io.kafka.connect.KafkaConnectSink`.
 
-|"configs","false","{}","A key/value map of config properties specific to the type of connector. See the reference table below for values."
-|
-|
-|
+|`cleanupSubscription`
+|No
+|Whether to delete subscriptions that are created or used by a sink when the sink is deleted.
 
-|"customRuntimeOptions","false","","A string that encodes options to customize the runtime, see Apache Pulsar docs for configured runtime for details"
-|
-|
-|
+Default: `false`
 
-|"deadLetterTopic","false","","Name of the dead topic where the failing messages will be sent"
-|
-|
-|
+|`configs`
+|No
+|A JSON-formatted key-value map containing configuration properties specific to the connector type, such as provider-specific authentication and integration settings.
+For available options, see <<configs>>.
 
-|"inputSpecs","false","","The map of input topics to its consumer configuration, each configuration has schema of {""schemaType"": ""type-x"", ""serdeClassName"": ""name-x"", ""isRegexPattern""": true, ""receiverQueueSize"": 5}"
-|
-|
-|
+Default: `{}` (Empty map, uses defaults)
 
-|"inputs","true","[]"," The input topic or topics of the Sink (specified as a JSON array)"
-|
-|
-|
+|`customRuntimeOptions`
+|No
+|A string that encodes options to configure the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
 
-|"maxMessageRetries","false","","Maximum number of times that a message will be redelivered before being sent to the dead letter queue"
-|
-|
-|
+|`deadLetterTopic`
+|No
+|The name of the topic that receives unacknowledged messages, such as those that exceed the maximum number of retries or fail to be processed completely.
 
-|"name","true","","Give your sink a good name for later reference. The name must start with a lowercase alphabetic character. It can only contain lowercase alphanumeric characters, and hyphens(kebab-case)."
-|
-|
-|
+If `null` or not set, unacknowledged messages are discarded.
 
-|"namespace","true","","The namespace you'd like the sink created under"
-|
-|
-|
+See also `maxMessageRetries` and `negativeAckRedeliveryDelayMs`.
 
-|"negativeAckRedeliveryDelayMs","false","","The negative ack message redelivery delay in milliseconds"
-|
-|
-|
+|`inputSpecs`
+|No
+a|A map of input topics to https://pulsar.apache.org/docs/3.1.x/functions-cli/#consumerconfig[consumer configuration].
+By default, most values are `null` or empty.
+For example:
 
-|"parallelism","true","1","The number of sink instances to run"
-|
-|
-|
+[source,json]
+----
+  "inputSpecs": {
+    "persistent://$TENANT/$NAMESPACE/$TOPIC": {
+      "schemaType": null,
+      "serdeClassName": null,
+      "schemaProperties": {},
+      "consumerProperties": {},
+      "receiverQueueSize": null,
+      "cryptoConfig": null,
+      "poolMessages": false,
+      "regexPattern": false
+    }
+  },
+----
 
-|"processingGuarantees","true","ATLEAST_ONCE","The delivery semantics applied to the Pulsar Sink. Values are 'ATLEAST_ONCE', 'ATMOST_ONCE', 'EFFECTIVELY_ONCE'"
-|
-|
-|
+|`inputs`
+|Yes
+|An array of input topics that the sink consumes messages from, such as `["persistent://$TENANT/$NAMESPACE/$TOPIC"]`.
 
-|"resources","false","","The compute resources that need to be allocated per instance (applicable only to the process)(as a JSON string). Example: {""cpu"": 0.25,""disk"":1000000000,""ram"":500000000}"
-|
-|
-|
+To consume all topics matching a naming pattern, use `topicsPattern` instead.
+`inputs` and `topicsPattern` are mutually exclusive.
 
-|"retainKeyOrdering","false","true","Sink consumes and processes messages in key order"
-|
-|
-|
+Default: `[]`
 
-|"retainOrdering","false","false","Boolean denotes whether the Pulsar Sink consumes and processes messages in order"
-|
-|
-|
+|`maxMessageRetries`
+|No
+|Maximum number of times that a message attempts to be delivered before being sent to the dead letter queue as an unacknowledged message.
 
-|"runtimeFlags","false","","A string that encodes options to customize the runtime, see Apache Pulsar docs for configured runtime for details"
-|
-|
-|
+See also `negativeAckRedeliveryDelayMs` and `deadLetterTopic`.
 
-|"secrets","false","","This is a map of secretName(that is how the secret is going to be accessed in the function via context) to an object that encapsulates how the secret is fetched by the underlying secrets provider. The type of an value here can be found by the SecretProviderConfigurator.getSecretObjectType() method"
-|
-|
-|
+|`name`
+|Yes
+|The name for the connector.
+It must start with a lowercase letter, and contain only numbers, hyphens (`-`), and lowercase letters.
+{company} recommends memorable, human-readable names that summarize the connector's purpose.
+For example: `jdbc-sqllite-sink-prod-us-east-1`.
 
-|"sourceSubscriptionName","false","","Pulsar source subscription name if user wants a specific subscription-name for input-topic consumer"
-|
-|
-|
+|`namespace`
+|Yes
+|The namespace in your {pulsar-short} tenant where you want to create the connector.
 
-|"sourceSubscriptionPosition","false","Earliest","The position to begin reading from the source"
-|
-|
-|
+|`negativeAckRedeliveryDelayMs`
+|No
+|The amount of time, in milliseconds, to wait before attempting redelivery if message delivery times out or fails.
 
-|"tenant","true","","The tenant you'd like the sink created under"
-|
-|
-|
+See also `maxMessageRetries` and `deadLetterTopic`.
 
-|"timeoutMs","false","5000","Denotes the message timeout in milliseconds"
-|
-|
-|
+|`parallelism`
+|Yes
+|The number of https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instances] to run.
 
-|"topicToSchemaProperties","false","",""
-|
-|
-|
+Default: `1`
 
-|"topicToSchemaType","false","","The map of input topics to Schema types or class names (specified as a JSON object)"
-|
-|
-|
+|`processingGuarantees`
+|Yes
+|The messaging delivery semantic to use when writing to topics: `ATLEAST_ONCE`, `ATMOST_ONCE`, or `EFFECTIVELY_ONCE`.
 
-|"topicToSerdeClassName","false","","The map of input topics to SerDe class names (specified as a JSON object)"
-|
-|
-|
+Respect for the processing guarantee depends on the connector implementation.
 
-|"topicsPattern","false","","TopicsPattern to consume from list of topics under a namespace that match the pattern. [input] and [topicsPattern] are mutually exclusive. Add SerDe class name for a pattern in customSerdeInputs (supported for java fun only)"
-|
-|
-|
+For more information, see the {pulsar-short} documentation on https://pulsar.apache.org/docs/3.1.x/functions-concepts/#processing-guarantees-and-subscription-types[Function processing guarantees] and https://pulsar.apache.org/docs/3.1.x/io-overview/#processing-guarantee[Processing guarantees in I/O connectors].
+
+Default: `ATLEAST_ONCE`
+
+|`resources`
+|No
+|A JSON string describing the compute resources to allocate to each https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instance].
+For example: `{"cpu":0.25,"disk":1000000000,"ram":500000000}`.
+
+|`retainKeyOrdering`
+|No
+|Whether the sink consumes and processes messages in key order.
+
+Default: `true`
+
+|`retainOrdering`
+|No
+|Whether the sink consumes and processes messages in the order they were written to the topic.
+
+Default: `false`
+
+|`runtimeFlags`
+|No
+|A string that encodes flags to pass to the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
+Only applicable to process and Kubernetes runtimes.
+
+|`secrets`
+|No
+|If security is enabled on your https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-worker[function workers], you can provide a map of secret names (`secretName`) to secrets provider configuration objects.
+The `secretName` is used by the connector to reference the secret.
+The mapped object contains the required parameters to fetch the secret from the secrets provider.
+
+To get the types for the values in this mapping, use the `https://pulsar.apache.org/docs/3.1.x/functions-develop-security/[SecretProviderConfigurator.getSecretObjectType()]` method.
+
+This is separate from the {pulsar-short} authentication token and security settings passed elsewhere in the connector configuration.
+
+|`sourceSubscriptionName`
+|No
+|The name of a specific {pulsar-short} source subscription, if required by your input topic consumer.
+
+|`sourceSubscriptionPosition`
+|No
+|The position to begin reading from in the source, if `sourceSubscriptionName` is set.
+
+Default: `Latest`
+
+|`tenant`
+|Yes
+|The {pulsar-short} tenant where you want to create the connector.
+
+|`timeoutMs`
+|No
+|The message timeout in milliseconds
+
+Default: `5000`
+
+|`topicToSchemaProperties`
+|No
+|A map of input topics to schema properties specified as a JSON object.
+
+|`topicToSchemaType`
+|No
+|A map of input topics to schema types or class names specified as a JSON object.
+
+|`topicToSerdeClassName`
+|No
+|A map of input topics to SerDe class names specified as a JSON object.
+
+|`topicsPattern`
+|No
+|A topic naming pattern to select topics to consume from all topics in a namespace.
+
+To consume an exact list of topics, use `inputs` instead.
+`inputs` and `topicsPattern` are mutually exclusive.
 |===

@@ -32,7 +32,8 @@ There are two sets of parameters that support sink connectors.
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-=== Kinesis (configs)
+[#configs]
+=== Kinesis (`configs`)
 
 These values are provided in the "configs" area.
 

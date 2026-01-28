@@ -29,7 +29,8 @@ There are two sets of parameters that support source connectors.
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
-=== Debezium Oracle
+[#configs]
+=== Debezium Oracle (`configs`)
 
 The {product} Oracle source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#oracle-connector-properties[Debezium Oracle connector properties] for a complete list.
 

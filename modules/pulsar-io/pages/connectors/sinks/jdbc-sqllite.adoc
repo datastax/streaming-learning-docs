@@ -34,7 +34,8 @@ There are two sets of parameters that support sink connectors.
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-=== SQLite (configs)
+[#configs]
+=== SQLite (`configs`)
 
 These values are provided in the "configs" area.
 

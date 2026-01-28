@@ -34,7 +34,8 @@ There are two sets of parameters that support source connectors.
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
-=== Data Generator (configs)
+[#configs]
+=== Data Generator (`configs`)
 
 These values are provided in the "configs" area.
 

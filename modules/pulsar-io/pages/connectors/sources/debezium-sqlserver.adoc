@@ -57,7 +57,8 @@ There are two sets of parameters that support source connectors.
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
-=== Debezium SQL Server (configs)
+[#configs]
+=== Debezium SQL Server (`configs`)
 
 These values are provided in the "configs" area.
 

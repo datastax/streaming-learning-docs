@@ -131,7 +131,7 @@ include::example$connectors/sources/{connectorType}/curl-update.sh[]
    "tenant": "string",
    "namespace": "string",
    "name": "string",
-   "className": "string",
+   "typeClassName": "string",
    "topicName": "string",
    "producerConfig": {
      "maxPendingMessages": 0,

@@ -31,7 +31,8 @@ There are two sets of parameters that support sink connectors.
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-=== PostgreSQL (configs)
+[#configs]
+=== PostgreSQL (`configs`)
 
 These values are provided in the "configs" area.
 

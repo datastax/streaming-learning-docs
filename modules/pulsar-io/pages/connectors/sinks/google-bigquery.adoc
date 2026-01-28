@@ -31,7 +31,8 @@ Each set of parameters provides a way to coordinate how data is streamed from {p
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-=== Kafka Connect Adapter Configuration (configs)
+[#configs]
+=== Kafka Connect Adapter Configuration (`configs`)
 
 These values are provided in the `configs` area.
 

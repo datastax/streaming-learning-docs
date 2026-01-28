@@ -30,7 +30,8 @@ There are two sets of parameters that support sink connectors.
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-=== MariaSQL (configs)
+[#configs]
+=== MariaSQL (`configs`)
 
 These values are provided in the "configs" area.
 

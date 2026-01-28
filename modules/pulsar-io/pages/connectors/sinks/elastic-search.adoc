@@ -26,11 +26,12 @@ include::partial$connectors/sinks/manage.adoc[]
 
 include::partial$connectors/sinks/monitoring.adoc[]
 
-== Astra Streaming parameters for Elasticsearch sink configuration
+== Astra Streaming parameters for the Elasticsearch sink
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-== Elasticsearch (configs) parameters for Elasticsearch sink configuration
+[#configs]
+== Elasticsearch parameters for the Elasticsearch sink (`configs`)
 
 The {product} Elasticsearch sink connector supports all https://pulsar.apache.org/docs/io-elasticsearch-sink/#property[Elasticsearch sink connector properties] provided in the OSS {pulsar} Elasticsearch sink connector.
 

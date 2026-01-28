@@ -141,11 +141,12 @@ include::partial$connectors/sinks/manage.adoc[]
 
 include::partial$connectors/sinks/monitoring.adoc[]
 
-== Astra Streaming parameters for Cloud Storage Sink configuration
+== Astra Streaming parameters for the Cloud Storage sink
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
-== Cloud storage provider parameters for Cloud Storage Sink configuration
+[#configs]
+== Cloud storage provider parameters for the Cloud Storage sink (`configs`)
 
 Set your cloud storage provider and other required values in the `configs` area.
 

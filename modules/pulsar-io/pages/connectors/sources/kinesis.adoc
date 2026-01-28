@@ -28,7 +28,8 @@ There are two sets of parameters that support source connectors.
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
-=== Kinesis configuration options
+[#configs]
+=== Kinesis configuration options (`configs`)
 
 These values are provided in the `configs` area:
 

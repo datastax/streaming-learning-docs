@@ -1,94 +1,126 @@
-[cols=4]
+[TIP]
+====
+A {pulsar-short} connectors and functions both use https://pulsar.apache.org/docs/3.1.x/functions-concepts/[{pulsar-short} functions workers].
+Therefore, some function configuration parameters are also used to configure connectors.
+
+Additionally, the following table uses the JSON field name for the parameters.
+For the equivalent command line arguments, see the https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference].
+====
+
+[cols=3]
 |===
-|Name |Required |Default |Description
+|Field name |Required |Description
 
-|"archive","true","","The connector type, like 'builtin://debezium-mysql'"
-|
-|
-|
+|`archive`
+|Yes
+|The built-in {product} {pulsar-short} connector that you want to deploy.
+Formatted as `builtin://**CONNECTOR**`, such as `builtin://debezium-mysql`.
 
-|"batchBuilder","false","","BatchBuilder provides two types of batch construction methods, DEFAULT and KEY_BASED. The default value is: DEFAULT"
-|
-|
-|
+|`batchBuilder`
+|No
+|The batch construction method: `DEFAULT` or `KEY_BASED`.
 
-|"batchSourceConfig","false","","Batch source config key/value (as a JSON string)"
-|
-|
-|
+Default: `DEFAULT`
 
-|"className","true","","The connector type's class reference, like 'org.apache.pulsar.io.debezium.mysql.DebeziumMysqlSource'"
-|
-|
-|
+|`batchSourceConfig`
+|No
+|The batch source configuration key-value as a JSON string.
 
-|"configs","false","{}","JSON key/value config of source type specific settings. Example: {""property1"":""1234"",""property2"":{""subProperty"":""asdf""}}"
-|
-|
-|
+|`configs`
+|No
+|A JSON-formatted key-value map containing configuration properties specific to the connector type, such as provider-specific authentication and integration settings.
+For available options, see <<configs>>.
 
-|"customRuntimeOptions","false","","A string that encodes options to customize the runtime, see Apache Pulsar docs for configured runtime for details"
-|
-|
-|
+Default: `{}` (Empty map, uses defaults)
 
-|"name","true","","Give your source a good name for later reference. The name must start with a lowercase alphabetic character. It can only contain lowercase alphanumeric characters, and hyphens (kebab-case)."
-|
-|
-|
+|`customRuntimeOptions`
+|No
+|A string that encodes options to configure the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
 
-|"namespace","true","","The namespace you'd like the source created under"
-|
-|
-|
+|`name`
+|Yes
+|The name for the connector.
+It must start with a lowercase letter, and contain only numbers, hyphens (`-`), and lowercase letters.
+{company} recommends memorable, human-readable names that summarize the connector's purpose.
+For example: `debezium-mysql-source-prod-us-east-1`.
 
-|"parallelism","true","1","The number of a Pulsar Source instances to run"
-|
-|
-|
+|`namespace`
+|Yes
+|The namespace in your {pulsar-short} tenant where you want to create the connector.
 
-|"processingGuarantees","true","ATLEAST_ONCE","The delivery semantics applied to the Pulsar Sink. Values are 'ATLEAST_ONCE', 'ATMOST_ONCE', 'EFFECTIVELY_ONCE'"
-|
-|
-|
+|`parallelism`
+|Yes
+|The number of https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instances] to run.
 
-|"producerConfig","false","","The custom producer configuration (as a JSON string)"
-|
-|
-|
+Default: `1`
 
-|"resources","false","","The compute resources that need to be allocated per source instance (applicable only to the process)(as a JSON string). Example: {""cpu"": 0.25,""disk"":1000000000,""ram"":500000000}"
-|
-|
-|
+|`processingGuarantees`
+|Yes
+|The messaging delivery semantic to use when writing to topics: `ATLEAST_ONCE`, `ATMOST_ONCE`, or `EFFECTIVELY_ONCE`.
 
-|"runtimeFlags","false","","A string that encodes options to customize the runtime, see Apache Pulsar docs for configured runtime for details"
-|
-|
-|
+Respect for the processing guarantee depends on the connector implementation.
 
-|"schemaType","false","","The schema type (either a builtin schema like 'avro', 'json', etc.. or custom Schema class name to be used to encode messages emitted from the Pulsar Source"
-|
-|
-|
+For more information, see the {pulsar-short} documentation on https://pulsar.apache.org/docs/3.1.x/functions-concepts/#processing-guarantees-and-subscription-types[Function processing guarantees] and https://pulsar.apache.org/docs/3.1.x/io-overview/#processing-guarantee[Processing guarantees in I/O connectors].
 
-|"secrets","false","","This is a map of secretName(that is how the secret is going to be accessed in the function via context) to an object that encapsulates how the secret is fetched by the underlying secrets provider. The type of an value here can be found by the SecretProviderConfigurator.getSecretObjectType() method"
-|
-|
-|
+Default: `ATLEAST_ONCE`
 
-|"serdeClassName","false","","The SerDe classname for the Pulsar Source"
-|
-|
-|
+|`producerConfig`
+|No
+a|A JSON string containing a https://pulsar.apache.org/docs/3.1.x/functions-cli/#producerconfig[custom producer configuration].
+By default, most values are `null` or empty.
+For example:
 
-|"tenant","true","","The tenant you'd like the source created under"
-|
-|
-|
+[source,json]
+----
+  "producerConfig": {
+    "maxPendingMessages": null,
+    "maxPendingMessagesAcrossPartitions": null,
+    "useThreadLocalProducers": false,
+    "cryptoConfig": null,
+    "batchBuilder": ""
+  },
+----
 
-|"topicName","true","","The name of an existing topic in Astra Streaming, where messages will be published to. Should be in the format of [non-]persistent://<tenant>/<namespace>/<topic-name>"
-|
-|
-|
+|`resources`
+|No
+|A JSON string describing the compute resources to allocate to each https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instance].
+For example: `{"cpu":0.25,"disk":1000000000,"ram":500000000}`.
+
+|`runtimeFlags`
+|No
+|A string that encodes flags to pass to the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
+Only applicable to process and Kubernetes runtimes.
+
+|`schemaType`
+|No
+|The schema type used to encode messages emitted from a {pulsar-short} source.
+Accepts either a built-in schema like `avro` or `json`, or a custom `Schema` class name.
+
+|`secrets`
+|No
+|If security is enabled on your https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-worker[function workers], you can provide a map of secret names (`secretName`) to secrets provider configuration objects.
+The `secretName` is used by the connector to reference the secret.
+The mapped object contains the required parameters to fetch the secret from the secrets provider.
+
+To get the types for the values in this mapping, use the `https://pulsar.apache.org/docs/3.1.x/functions-develop-security/[SecretProviderConfigurator.getSecretObjectType()]` method.
+
+This is separate from the {pulsar-short} authentication token and security settings passed elsewhere in the connector configuration.
+
+|`serdeClassName`
+|No
+|The SerDe classname for the source.
+
+|`tenant`
+|Yes
+|The {pulsar-short} tenant where you want to create the connector.
+
+|`topicName`
+|Yes
+|An existing topic in {product} where messages are published.
+Must be formatted as a full persistent or non-persistent topic name, such as `persistent://$TENANT/$NAMESPACE/$TOPIC`.
+
+|`typeClassName`
+|Yes
+|The class reference for the connector type.
+Begins with `org.apache.pulsar`, such as `org.apache.pulsar.common.schema.KeyValue` or `org.apache.pulsar.io.debezium.mysql.DebeziumMysqlSource`.
 |===

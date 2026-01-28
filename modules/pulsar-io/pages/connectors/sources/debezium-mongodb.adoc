@@ -30,7 +30,8 @@ There are two sets of parameters that support source connectors.
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
-=== Debezium MongoDB (configs)
+[#configs]
+=== Debezium MongoDB (`configs`)
 
 These values are provided in the "configs" area.
 
