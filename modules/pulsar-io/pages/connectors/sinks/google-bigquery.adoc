@@ -13,6 +13,12 @@ You will notice references to Kafka throughout the configuration. *You don't nee
 
 include::partial$connectors/sinks/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sinks/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sinks/manage.adoc[]
 
 == Connector Reference

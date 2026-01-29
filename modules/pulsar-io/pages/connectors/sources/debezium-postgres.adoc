@@ -12,6 +12,12 @@ https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
 include::partial$connectors/sources/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sources/manage.adoc[]
 
 == Connector Reference

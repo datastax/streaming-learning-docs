@@ -37,10 +37,16 @@ In the following example configuration, both are set to `kalash-server-stream672
 
 . Set your consumers to subscribe to the `events` topic in your Pulsar namespace to receive change data capture (CDC) events.
 This topic contains the change data capture (CDC) events emitted by Debezium for the configured tables.
-
++
 For more on Debezium topic naming conventions, see the https://debezium.io/documentation/reference/stable/connectors/sqlserver.html#sqlserver-topic-names[Debezium documentation].
 
 include::partial$connectors/sources/get-started.adoc[]
+
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
 
 include::partial$connectors/sources/manage.adoc[]
 

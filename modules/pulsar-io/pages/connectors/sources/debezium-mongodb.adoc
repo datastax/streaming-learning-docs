@@ -13,6 +13,12 @@ The connector automatically handles the addition or removal of shards in a shard
 
 include::partial$connectors/sources/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sources/manage.adoc[]
 
 == Connector Reference

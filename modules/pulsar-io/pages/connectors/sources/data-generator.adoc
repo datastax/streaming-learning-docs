@@ -17,6 +17,12 @@ For a reference of the full "Person" class, https://github.com/apache/pulsar/blo
 
 include::partial$connectors/sources/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sources/manage.adoc[]
 
 == Connector Reference

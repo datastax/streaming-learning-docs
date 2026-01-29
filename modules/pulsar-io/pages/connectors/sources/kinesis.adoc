@@ -11,6 +11,12 @@ For more, see https://pulsar.apache.org/docs/io-kinesis-source[{pulsar}'s Kinesi
 
 include::partial$connectors/sources/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sources/manage.adoc[]
 
 == Connector Reference

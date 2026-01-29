@@ -18,6 +18,12 @@ This reference assumes you are connecting to a {cass-short} table using the {pul
 
 include::partial$connectors/sinks/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sinks/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sinks/manage.adoc[]
 
 == Connector Reference

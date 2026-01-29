@@ -28,6 +28,5 @@ include::example$connectors/sources/{connectorType}/pulsar-admin-create.sh[]
 include::example$connectors/sources/{connectorType}/curl-create.sh[]
 ----
 
-=== Example configuration data structure
-
+.Example configuration data structure
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]

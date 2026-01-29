@@ -35,6 +35,5 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$
   --form "sinkConfig=@configs.json;type=application/json"
 ----
 
-=== Example configuration data structure
-
+.Example configuration data structure
 include::example$connectors/sinks/{connectorType}/sample-data.adoc[]

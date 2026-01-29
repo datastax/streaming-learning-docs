@@ -11,6 +11,12 @@ Snowflake automatically manages all parts of the data storage process, including
 
 include::partial$connectors/sinks/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sinks/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sinks/manage.adoc[]
 
 == Connector Reference

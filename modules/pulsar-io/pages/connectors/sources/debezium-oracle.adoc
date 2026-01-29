@@ -13,6 +13,12 @@ The connector can be configured to emit change events for specific subsets of sc
 
 include::partial$connectors/sources/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sources/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sources/manage.adoc[]
 
 == Connector Reference

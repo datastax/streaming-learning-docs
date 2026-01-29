@@ -13,6 +13,12 @@ Read more about {pulsar-reg}'s JDBC sink connector https://pulsar.apache.org/doc
 
 include::partial$connectors/sinks/get-started.adoc[]
 
+== Edit the connector
+
+include::partial$connectors/sinks/edit.adoc[]
+
+== Manage the connector
+
 include::partial$connectors/sinks/manage.adoc[]
 
 == Connector Reference
