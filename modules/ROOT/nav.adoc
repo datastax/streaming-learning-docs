@@ -31,5 +31,5 @@
 *** xref:pulsar-io:connectors/sinks/kafka.adoc[]
 *** xref:pulsar-io:connectors/sinks/kinesis.adoc[]
 *** xref:pulsar-io:connectors/sinks/snowflake.adoc[]
-* xref:astra-streaming:developing:astream-functions.adoc[]
+* xref:astra-streaming:developing:astream-functions.adoc[{pulsar-short} functions]
 * xref:astra-streaming:ROOT:astream-subscriptions.adoc[Topic subscriptions]
