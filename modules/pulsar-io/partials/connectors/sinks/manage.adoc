@@ -11,13 +11,20 @@ To get the current configuration, see xref:pulsar-io:connectors/index.adoc#get-s
 .pulsar-admin CLI
 [source,shell,subs="+attributes"]
 ----
-include::partial$connectors/sinks/cli-update.sh[]
+./bin/pulsar-admin sinks update \
+  --sink-type {connectorType} \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$TOPIC" \
+  --tenant "$TENANT" \
+  --parallelism 2
 ----
 
 .{pulsar-short} Admin API
-[source,shell,subs="+attributes"]
+[source,shell]
 ----
-include::partial$connectors/sinks/curl-update.sh[]
+curl -sS --fail -L -X PUT "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN" \
+  --form "sinkConfig=@configs.json;type=application/json"
 ----
 
 == Manage the connector

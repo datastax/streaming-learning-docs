@@ -19,13 +19,20 @@ For example: `{connectorType}-sink-prod-us-east-1`.
 .pulsar-admin CLI
 [source,shell,subs="+attributes"]
 ----
-include::partial$connectors/sinks/cli-create.sh[]
+./bin/pulsar-admin sinks create \
+  --sink-type {connectorType} \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$TOPIC" \
+  --tenant "$TENANT" \
+  --sink-config-file configs.json
 ----
 +
 .{pulsar-short} Admin API
-[source,shell,subs="+attributes"]
+[source,shell]
 ----
-include::partial$connectors/sinks/curl-create.sh[]
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN" \
+  --form "sinkConfig=@configs.json;type=application/json"
 ----
 
 === Example configuration data structure
