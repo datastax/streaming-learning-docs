@@ -4,7 +4,7 @@
   "tenant": "${TENANT}",
   "namespace": "${NAMESPACE}",
   "name": "${SINK_NAME}",
-  "className": "built://elastic_search",
+  "className": "org.apache.pulsar.io.elasticsearch.ElasticSearchSink",
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
@@ -60,19 +60,19 @@
     "indexName":"my_index"
   },
   "secrets": {},
-  "parallelism": 0,
+  "parallelism": 1,
   "processingGuarantees": "ATLEAST_ONCE",
-  "retainOrdering": true,
+  "retainOrdering": false,
   "retainKeyOrdering": true,
   "resources": {
-    "cpu": 0,
-    "ram": 0,
-    "disk": 0
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
   },
   "autoAck": true,
-  "timeoutMs": 0,
+  "timeoutMs": 5000,
   "negativeAckRedeliveryDelayMs": 0,
-  "archive": "string",
+  "archive": "builtin://elastic_search",
   "cleanupSubscription": true,
   "runtimeFlags": "string",
   "customRuntimeOptions": "string",

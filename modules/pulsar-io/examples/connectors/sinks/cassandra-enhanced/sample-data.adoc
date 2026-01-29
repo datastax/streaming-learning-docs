@@ -4,7 +4,7 @@
   "tenant": "${TENANT}",
   "namespace": "${NAMESPACE}",
   "name": "${SINK_NAME}",
-  "className": "string",
+  "className": "org.apache.pulsar.io.cassandra.sink.CassandraEnhancedSink",
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
@@ -122,12 +122,12 @@
   "retainOrdering": false,
   "retainKeyOrdering": true,
   "resources": {
-    "cpu": 0,
-    "ram": 0,
-    "disk": 0
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
   },
   "autoAck": true,
-  "timeoutMs": 0,
+  "timeoutMs": 5000,
   "negativeAckRedeliveryDelayMs": 0,
   "archive": "builtin://cassandra-enhanced",
   "cleanupSubscription": true,

@@ -50,10 +50,10 @@
     "disk": 1000000000,
     "ram": 1000000000
   },
-  "retainKeyOrdering": false,
   "retainOrdering": false,
+  "retainKeyOrdering": true,
   "runtimeFlags": null,
-  "secrets": null,
+  "secrets": {},
   "sourceSubscriptionName": null,
   "sourceSubscriptionPosition": "Latest",
   "tenant": "${TENANT}",
@@ -61,7 +61,6 @@
   "topicToSchemaProperties": null,
   "topicToSchemaType": null,
   "topicToSerdeClassName": null,
-  "topicsPattern": null,
   "transformFunction": null,
   "transformFunctionClassName": null,
   "transformFunctionConfig": null

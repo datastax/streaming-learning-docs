@@ -36,7 +36,7 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Data Generator (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 [%header,format=csv,cols="2,1,1,3"]
 |===

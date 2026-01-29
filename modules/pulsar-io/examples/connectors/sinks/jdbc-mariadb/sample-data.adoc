@@ -4,7 +4,7 @@
   "tenant": "${TENANT}",
   "namespace": "${NAMESPACE}",
   "name": "${SINK_NAME}",
-  "className": "string",
+  "className": "org.apache.pulsar.io.jdbc.sink.MariaDBSink",
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
@@ -62,15 +62,15 @@
   "secrets": {},
   "parallelism": 1,
   "processingGuarantees": "ATLEAST_ONCE",
-  "retainOrdering": true,
+  "retainOrdering": false,
   "retainKeyOrdering": true,
   "resources": {
-    "cpu": 0,
-    "ram": 0,
-    "disk": 0
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
   },
   "autoAck": true,
-  "timeoutMs": 0,
+  "timeoutMs": 5000,
   "negativeAckRedeliveryDelayMs": 0,
   "archive": "builtin://jdbc-mariadb",
   "cleanupSubscription": true,

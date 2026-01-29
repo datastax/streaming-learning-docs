@@ -23,19 +23,15 @@
   "serdeClassName": "string",
   "schemaType": "string",
   "configs": {
-    "property1": {},
-    "property2": {}
+
   },
-  "secrets": {
-    "property1": {},
-    "property2": {}
-  },
-  "parallelism": 0,
+  "secrets": {},
+  "parallelism": 1,
   "processingGuarantees": "ATLEAST_ONCE",
   "resources": {
-    "cpu": 0,
-    "ram": 0,
-    "disk": 0
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
   },
   "archive": "string",
   "runtimeFlags": "string",

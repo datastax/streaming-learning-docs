@@ -31,7 +31,7 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 [#configs]
 === Kafka (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 The {product} Kafka sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-kafka-sink#property[connector properties] for a complete list.
 

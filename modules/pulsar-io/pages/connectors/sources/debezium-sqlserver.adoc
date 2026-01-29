@@ -61,7 +61,7 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Debezium SQL Server (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 The SQL Server source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/sqlserver.html#sqlserver-connector-properties[Debezium SQL Server connector properties] for a complete list.
 

@@ -31,7 +31,7 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Debezium PostgreSQL (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 The {product} PostgreSQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/postgresql.html#postgresql-connector-properties[Debezium PostgreSQL connector properties] for a complete list.
 

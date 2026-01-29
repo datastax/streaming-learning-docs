@@ -30,7 +30,7 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Debezium MySQL (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 The {product} MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
 

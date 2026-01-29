@@ -30,7 +30,7 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 [#configs]
 === Snowflake (`configs`)
 
-These values are provided in the "configs" area.
+These parameters are set in the `configs` section of the connector configuration.
 
 The {product} Snowflake sink connector supports all configuration properties provided by {company}. Please refer to the https://github.com/datastax/snowflake-connector#configuration[connector
 properties] for a complete list.
