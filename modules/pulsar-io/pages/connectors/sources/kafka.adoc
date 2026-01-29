@@ -1,5 +1,4 @@
 = Kafka
-:connectorName: kafka-src
 :connectorType: kafka
 
 The Kafka source connector reads data from Kafka systems and produces data to {pulsar-short} topics.

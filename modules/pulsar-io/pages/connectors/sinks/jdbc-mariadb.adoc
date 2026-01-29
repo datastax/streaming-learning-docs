@@ -1,5 +1,4 @@
 = JDBC MariaDB
-:connectorName: jdbc-mariadb
 :connectorType: jdbc-mariadb
 
 The JDBC-MariaDB sink connector reads messages from {pulsar} topics and writes them to JDBC-MariaDB systems.

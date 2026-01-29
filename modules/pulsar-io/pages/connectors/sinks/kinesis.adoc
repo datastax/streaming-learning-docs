@@ -1,5 +1,4 @@
 = Kinesis
-:connectorName: kinesis-sink
 :connectorType: kinesis
 
 The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.

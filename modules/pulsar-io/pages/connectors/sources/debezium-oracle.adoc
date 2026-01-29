@@ -1,6 +1,6 @@
 = Debezium Oracle
-:connectorName: debezium-orcl-src
 :connectorType: debezium-oracle
+
 The Debezium Oracle source connector reads data from Debezium Oracle systems and produces data to {pulsar-short} topics.
 
 Debezium’s Oracle connector captures and records row-level changes that occur in databases on Oracle servers, including tables that are added while the connector is running.

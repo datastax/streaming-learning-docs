@@ -1,5 +1,4 @@
 = Debezium MySQL
-:connectorName: debezium-mysql-src
 :connectorType: debezium-mysql
 
 The Debezium MySQL source connector reads data from Debezium MySQL systems and produces data to {pulsar-short} topics.

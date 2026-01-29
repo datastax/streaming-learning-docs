@@ -1,14 +1,7 @@
-# NOTE: This is not a working example.
-
-CREATE KEYSPACE ks1 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
-CREATE TABLE ks1.table1 (name text, PRIMARY KEY (name));
-
-# create topic pulsar-topic-ks1-table1
-
 ./bin/pulsar-admin sinks create \
   --sink-type cassandra-enhanced \
-  --name "pulsar-sink-ks1-table1" \
-  --inputs "persistent://$TENANT/$NAMESPACE/pulsar-topic-ks1-table1" \
+  --name "$SINK_NAME" \
+  --inputs "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC" \
   --tenant "$TENANT" \
   --sink-config '{
     "contactPoints": "cassandra",
@@ -23,53 +16,53 @@ CREATE TABLE ks1.table1 (name text, PRIMARY KEY (name));
     "jmx": true,
     "compression": "None",
     "auth": {
-        "provider": "None",
-        "username": null,
-        "password": null,
-        "gssapi": {
-            "keyTab": null,
-            "principal": null,
-            "service": "dse"
-        }
+      "provider": "None",
+      "username": null,
+      "password": null,
+      "gssapi": {
+        "keyTab": null,
+        "principal": null,
+        "service": "dse"
+      }
     },
     "ssl": {
-        "provider": "None",
-        "hostnameValidation": true,
-        "keystore": {
-            "password": null,
-            "path": null
-        },
-        "openssl": {
-            "keyCertChain": null,
-            "privateKey": null
-        },
-        "truststore": {
+      "provider": "None",
+      "hostnameValidation": true,
+      "keystore": {
         "password": null,
         "path": null
-        },
-        "cipherSuites": null
+      },
+      "openssl": {
+        "keyCertChain": null,
+        "privateKey": null
+      },
+      "truststore": {
+        "password": null,
+        "path": null
+      },
+      "cipherSuites": null
     },
     "topic": {
-        "pulsar-topic-ks1-table1": {
-            "ks1": {
-                "table1": {
-                    "mapping": "name=value.name",
-                    "consistencyLevel": "LOCAL_ONE",
-                    "ttl": -1,
-                    "ttlTimeUnit": "SECONDS",
-                    "timestampTimeUnit": "MICROSECONDS",
-                    "nullToUnset": true,
-                    "deletesEnabled": true
-                }
-            },
-            "codec": {
-                "locale": "en_US",
-                "timeZone": "UTC",
-                "timestamp": "CQL_TIMESTAMP",
-                "date": "ISO_LOCAL_DATE",
-                "time": "ISO_LOCAL_TIME",
-                "unit": "MILLISECONDS"
-            }
+      "${INPUT_TOPIC}": {
+        "${KEYSPACE_NAME}": {
+          "${TABLE_NAME}": {
+            "mapping": "name=value.name",
+            "consistencyLevel": "LOCAL_ONE",
+            "ttl": -1,
+            "ttlTimeUnit": "SECONDS",
+            "timestampTimeUnit": "MICROSECONDS",
+            "nullToUnset": true,
+            "deletesEnabled": true
+          }
+        },
+        "codec": {
+          "locale": "en_US",
+          "timeZone": "UTC",
+          "timestamp": "CQL_TIMESTAMP",
+          "date": "ISO_LOCAL_DATE",
+          "time": "ISO_LOCAL_TIME",
+          "unit": "MILLISECONDS"
         }
       }
-    }'
+    }
+  }'

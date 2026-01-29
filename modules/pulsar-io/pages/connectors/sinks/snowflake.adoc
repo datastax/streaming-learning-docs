@@ -1,5 +1,4 @@
 = Snowflake
-:connectorName: snowflake-sink
 :connectorType: snowflake
 
 The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake systems.

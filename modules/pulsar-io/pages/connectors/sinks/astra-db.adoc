@@ -1,5 +1,4 @@
-= {astra-db} ({cass-reg} enhanced)
-:connectorName: astra-db-sink
+= {astra-db} (cassandra-enhanced)
 :connectorType: astra-db
 
 The {astra-db} sink connector reads messages from {pulsar} topics and writes them to {astra-db} databases.
@@ -150,15 +149,15 @@ For a more detailed example of this pattern, see the xref:pulsar-connector:ROOT:
 [source,json,subs="+quotes"]
 ----
 "archive": "builtin://cassandra-enhanced",
-"tenant": "**TENANT_NAME**",
-"namespace": "**NAMESPACE_NAME**",
-"name": "**CONNECTOR_NAME**",
-"inputs": ["**TOPIC_NAME**"],
+"tenant": "${TENANT}",
+"namespace": "${NAMESPACE}",
+"name": "${SINK_NAME}",
+"inputs": ["${INPUT_TOPIC}"],
 "configs": {
-  "topics": "**TOPIC_NAME**",
+  "topics": "${INPUT_TOPIC}",
   "cloud.secureConnectBundle": "**SCB**",
   "topic": {
-   "**TOPIC_NAME**": {
+   "${INPUT_TOPIC}": {
       "**KEYSPACE_NAME**": {
         "**TABLE_NAME**": {
           **CONNECTION_PROPERTIES**,
@@ -171,14 +170,7 @@ For a more detailed example of this pattern, see the xref:pulsar-connector:ROOT:
 ----
 +
 Replace the following:
-
-* **TENANT_NAME**: Your tenant's name.
-* **NAMESPACE_NAME**: The tenant's associated namespace name.
-* **CONNECTOR_NAME**: The name of the connector.
-* **TOPIC_NAME**: In `inputs` and `configs.topics`, specify the names of the topics to connect.
-Specify topic names only; don't use the full topic addresses.
-You can specify multiple topics.
-Define one `configs.topic` object for each topic that you want to connect.
++
 * **SCB**: The path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the SCB zip.
 * **KEYSPACE_NAME**: The name of the keyspace in your database that contains the table you want to connect to a topic.
 * **TABLE_NAME**: The name of the table to connect to a topic.
@@ -195,11 +187,11 @@ symbol=value.symbol, ts=value.ts, exchange=value.exchange, industry=value.indust
 For more mapping examples, see xref:pulsar-connector:ROOT:cfgPulsarMapTopicTable.adoc[Mapping pulsar topics to database tables].
 
 . Use the `pulsar-admin` CLI to create the connector with your JSON file:
-
++
 [source,shell]
 ----
 ./bin/pulsar-admin sinks create \
-	--name dse-sink-kv \
+	--name ${SINK_NAME} \
 	--classname com.datastax.oss.sink.pulsar.StringCassandraSinkTask \
 	--sink-config-file configs.json \
 	--sink-type cassandra-enhanced

@@ -1,22 +1,28 @@
-Set the following environment variables using the `pulsar-admin` CLI or the {pulsar-admin} API:
-
-[source,shell,subs="+quote,+attributes"]
+. Optional: If you are using the `pulsar-admin` CLI or {pulsar-short} Admin API, set the following commonly-used environment variables:
++
+[source,shell,subs="+quotes"]
 ----
-export TENANT=**TENANT_NAME**
-export DESTINATION_TOPIC=**TOPIC_NAME**
-export NAMESPACE=**NAMESPACE_NAME** # or default
-export SOURCE_NAME={connectorName}
+export TENANT="**TENANT_NAME**"
+export TOPIC="**OUTPUT_TOPIC_NAME**"
+export NAMESPACE="**NAMESPACE_NAME**" # or default
+export SOURCE_NAME="**SOURCE_CONNECTOR_UNIQUE_NAME**"
+export PULSAR_TOKEN="**TENANT_PULSAR_TOKEN**" # API only
+export WEB_SERVICE_URL="**TENANT_PULSAR_WEB_SERVICE_URL**" # API only
 ----
++
+`**SOURCE_NAME**` is the name for your new source connector.
+{company} recommends a memorable, human-readable name that summarizes the connector's purpose.
+For example: `{connectorType}-source-prod-us-east-1`.
 
-=== {pulsar-short} Admin CLI
-
+. Create the connector:
++
+.{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-create.sh[]
 ----
-
-=== {pulsar-short} Admin API
-
++
+.{pulsar-short} Admin API
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/curl-create.sh[]

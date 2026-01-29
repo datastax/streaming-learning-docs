@@ -1,24 +1,28 @@
-// TODO: include details about retrieving a tenant name
-// TODO: include details about creating a topic
-Set the following environment variables using the `pulsar-admin` CLI or the {pulsar-admin} API:
-
-[source,shell,subs="+quote,+attributes"]
+. Optional: If you are using the `pulsar-admin` CLI or {pulsar-short} Admin API, set the following commonly-used environment variables:
++
+[source,shell,subs="+quotes"]
 ----
-export TENANT=**TENANT_NAME**
-export INPUT_TOPIC=**TOPIC_NAME**
-export NAMESPACE=**NAMESPACE_NAME** # or default
-export SINK_NAME={connectorName}
+export TENANT="**TENANT_NAME**"
+export TOPIC="**INPUT_TOPIC_NAME**"
+export NAMESPACE="**NAMESPACE_NAME**" # or default
+export SINK_NAME="**SINK_CONNECTOR_UNIQUE_NAME**"
+export PULSAR_TOKEN="**TENANT_PULSAR_TOKEN**" # API only
+export WEB_SERVICE_URL="**TENANT_PULSAR_WEB_SERVICE_URL**" # API only
 ----
++
+`**SINK_NAME**` is the name for your new sink connector.
+{company} recommends a memorable, human-readable name that summarizes the connector's purpose.
+For example: `{connectorType}-sink-prod-us-east-1`.
 
-=== {pulsar-short} Admin CLI
-
+. Create the connector:
++
+.{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
 ----
-
-=== {pulsar-short} Admin API
-
++
+.{pulsar-short} Admin API
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/curl-create.sh[]

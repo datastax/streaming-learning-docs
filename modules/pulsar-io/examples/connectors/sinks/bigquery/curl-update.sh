@@ -1,10 +1,3 @@
-curl -sS --fail --request PUT "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME?opt=poweruser" \
+curl -sS --fail --request PUT "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
   --header "Authorization: Bearer $PULSAR_TOKEN" \
-  --form 'sinkConfig="{
-    \"archive\":\"builtin:\/\/bigquery\",
-    \"tenant\":\"'$TENANT'\",
-    \"namespace\":\"'$NAMESPACE'\",
-    \"name\":\"'$SINK_NAME'\",
-    \"parallelism\": 2,
-    \"inputs\":[\"'$TENANT'\/'$NAMESPACE'\/'$INPUT_TOPIC'\"]
-  }"'
+  --form "sinkConfig=@configs.json;type=application/json"

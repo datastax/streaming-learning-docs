@@ -1,5 +1,4 @@
 = Kinesis
-:connectorName: kinesis-src
 :connectorType: kinesis
 
 The AWS Kinesis source connector reads data from Kinesis systems and produces data to {pulsar-short} topics.

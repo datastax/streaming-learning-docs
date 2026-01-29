@@ -1,5 +1,4 @@
 = Data Generator
-:connectorName: data-gen-src
 :connectorType: data-generator
 
 The Data generator source connector produces messages for testing and persists the messages to {pulsar-short} topics.

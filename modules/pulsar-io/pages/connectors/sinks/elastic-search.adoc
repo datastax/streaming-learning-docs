@@ -1,5 +1,4 @@
 = Elasticsearch
-:connectorName: es-sink
 :connectorType: elastic-search
 
 Elasticsearch is the distributed, RESTful search and analytics engine at the heart of the Elastic Stack.

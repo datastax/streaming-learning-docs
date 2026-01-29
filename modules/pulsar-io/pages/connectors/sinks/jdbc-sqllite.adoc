@@ -1,5 +1,4 @@
 = JDBC SQLite
-:connectorName: jdbc-sqlite
 :connectorType: jdbc-sqlite
 
 The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.

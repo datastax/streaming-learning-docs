@@ -1,20 +1,19 @@
 [source,json]
 ----
 {
-  "tenant": "string",
-  "namespace": "string",
-  "name": "string",
+  "tenant": "${TENANT}",
+  "namespace": "${NAMESPACE}",
+  "name": "${SINK_NAME}",
   "className": "string",
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
-    "string"
+    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}"
   ],
   "topicToSerdeClassName": {
     "property1": "string",
     "property2": "string"
   },
-  "topicsPattern": "string",
   "topicToSchemaType": {
     "property1": "string",
     "property2": "string"
@@ -24,34 +23,7 @@
     "property2": "string"
   },
   "inputSpecs": {
-    "property1": {
-      "schemaType": "string",
-      "serdeClassName": "string",
-      "schemaProperties": {
-        "property1": "string",
-        "property2": "string"
-      },
-      "consumerProperties": {
-        "property1": "string",
-        "property2": "string"
-      },
-      "receiverQueueSize": 0,
-      "cryptoConfig": {
-        "cryptoKeyReaderClassName": "string",
-        "cryptoKeyReaderConfig": {
-          "property1": {},
-          "property2": {}
-        },
-        "encryptionKeys": [
-          "string"
-        ],
-        "producerCryptoFailureAction": "FAIL",
-        "consumerCryptoFailureAction": "FAIL"
-      },
-      "poolMessages": true,
-      "regexPattern": true
-    },
-    "property2": {
+    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}": {
       "schemaType": "string",
       "serdeClassName": "string",
       "schemaProperties": {
@@ -82,14 +54,13 @@
   "maxMessageRetries": 0,
   "deadLetterTopic": "string",
   "configs": {
-    "property1": {},
-    "property2": {}
+    "userName": "clickhouse",
+    "password": "${PASSWORD}",
+    "jdbcUrl": "jdbc:clickhouse://localhost:8123/pulsar_clickhouse_jdbc_sink",
+    "tableName": "pulsar_clickhouse_jdbc_sink"
   },
-  "secrets": {
-    "property1": {},
-    "property2": {}
-  },
-  "parallelism": 0,
+  "secrets": {},
+  "parallelism": 1,
   "processingGuarantees": "ATLEAST_ONCE",
   "retainOrdering": true,
   "retainKeyOrdering": true,
@@ -101,8 +72,7 @@
   "autoAck": true,
   "timeoutMs": 0,
   "negativeAckRedeliveryDelayMs": 0,
-  "sinkType": "string",
-  "archive": "string",
+  "archive": "builtin://jdbc-clickhouse",
   "cleanupSubscription": true,
   "runtimeFlags": "string",
   "customRuntimeOptions": "string",

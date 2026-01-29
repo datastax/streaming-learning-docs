@@ -1,5 +1,4 @@
 = Kafka
-:connectorName: kafka-sink
 :connectorType: kafka
 
 The Kafka sink connector reads messages from {pulsar} topics and writes them to Kafka systems.

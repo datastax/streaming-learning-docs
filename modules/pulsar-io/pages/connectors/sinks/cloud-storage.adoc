@@ -1,5 +1,4 @@
 = Cloud Storage
-:connectorName: cloud-storage-sink
 :connectorType: cloud-storage
 
 The Cloud Storage sink connector reads messages from {pulsar} topics and writes them to Cloud Storage systems.

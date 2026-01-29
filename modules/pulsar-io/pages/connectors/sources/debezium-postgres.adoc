@@ -1,5 +1,4 @@
 = Debezium PostgreSQL
-:connectorName: debezium-pg-src
 :connectorType: debezium-postgres
 
 The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL systems and produces data to {pulsar-short} topics.

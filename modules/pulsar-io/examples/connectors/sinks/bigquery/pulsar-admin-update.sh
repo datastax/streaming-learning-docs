@@ -1,6 +1,6 @@
 ./bin/pulsar-admin sinks update \
   --sink-type bigquery \
   --name "$SINK_NAME" \
-  --inputs "$TENANT/$NAMESPACE/$INPUT_TOPIC" \
+  --inputs "$TENANT/$NAMESPACE/$TOPIC" \
   --tenant "$TENANT" \
   --parallelism 2

@@ -4,7 +4,7 @@ curl -sS --fail -X PUT "$WEB_SERVICE_URL/admin/v3/astrasources/$TENANT/$NAMESPAC
   -H "Authorization: $PULSAR_TOKEN" \
   -d '{
         "tenant": "'$TENANT'",
-        "topicName": "persistent://'$TENANT'/'$NAMESPACE'/'$DESTINATION_TOPIC'",
+        "topicName": "persistent://'$TENANT'/'$NAMESPACE'/'$TOPIC'",
         "name": "'$SOURCE_NAME'",
         "namespace": "'$NAMESPACE'",
         "archive": "builtin://debezium-mssql",

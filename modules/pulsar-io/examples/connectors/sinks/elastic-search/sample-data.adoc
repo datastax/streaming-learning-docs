@@ -1,20 +1,19 @@
 [source,json]
 ----
 {
-  "tenant": "string",
-  "namespace": "string",
-  "name": "string",
-  "className": "string",
+  "tenant": "${TENANT}",
+  "namespace": "${NAMESPACE}",
+  "name": "${SINK_NAME}",
+  "className": "built://elastic_search",
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
-    "string"
+    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}"
   ],
   "topicToSerdeClassName": {
     "property1": "string",
     "property2": "string"
   },
-  "topicsPattern": "string",
   "topicToSchemaType": {
     "property1": "string",
     "property2": "string"
@@ -24,34 +23,7 @@
     "property2": "string"
   },
   "inputSpecs": {
-    "property1": {
-      "schemaType": "string",
-      "serdeClassName": "string",
-      "schemaProperties": {
-        "property1": "string",
-        "property2": "string"
-      },
-      "consumerProperties": {
-        "property1": "string",
-        "property2": "string"
-      },
-      "receiverQueueSize": 0,
-      "cryptoConfig": {
-        "cryptoKeyReaderClassName": "string",
-        "cryptoKeyReaderConfig": {
-          "property1": {},
-          "property2": {}
-        },
-        "encryptionKeys": [
-          "string"
-        ],
-        "producerCryptoFailureAction": "FAIL",
-        "consumerCryptoFailureAction": "FAIL"
-      },
-      "poolMessages": true,
-      "regexPattern": true
-    },
-    "property2": {
+    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}": {
       "schemaType": "string",
       "serdeClassName": "string",
       "schemaProperties": {
@@ -82,13 +54,12 @@
   "maxMessageRetries": 0,
   "deadLetterTopic": "string",
   "configs": {
-    "property1": {},
-    "property2": {}
+    "elasticSearchUrl": "http://localhost:9200",
+    "username": "user",
+    "password":"${PASSWORD}",
+    "indexName":"my_index"
   },
-  "secrets": {
-    "property1": {},
-    "property2": {}
-  },
+  "secrets": {},
   "parallelism": 0,
   "processingGuarantees": "ATLEAST_ONCE",
   "retainOrdering": true,
@@ -101,7 +72,6 @@
   "autoAck": true,
   "timeoutMs": 0,
   "negativeAckRedeliveryDelayMs": 0,
-  "sinkType": "string",
   "archive": "string",
   "cleanupSubscription": true,
   "runtimeFlags": "string",

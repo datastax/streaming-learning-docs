@@ -1,5 +1,4 @@
 = JDBC Clickhouse
-:connectorName: jdbc-clickhouse
 :connectorType: jdbc-clickhouse
 
 The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.

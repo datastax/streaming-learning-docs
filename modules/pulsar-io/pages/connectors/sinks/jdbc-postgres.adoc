@@ -1,6 +1,6 @@
 = JDBC PostgreSQL
-:connectorName: jdbc-postgres
 :connectorType: jdbc-postgres
+
 The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
 
 PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development.

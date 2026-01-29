@@ -1,5 +1,4 @@
 = Debezium MongoDB
-:connectorName: debezium-mongo-src
 :connectorType: debezium-mongodb
 
 The Debezium MongoDB source connector reads data from Debezium MongoDB systems and produces data to {pulsar-short} topics.

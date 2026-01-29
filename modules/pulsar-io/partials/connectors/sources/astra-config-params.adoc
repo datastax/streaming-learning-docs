@@ -41,8 +41,8 @@ Default: `{}` (Empty map, uses defaults)
 |Yes
 |The name for the connector.
 It must start with a lowercase letter, and contain only numbers, hyphens (`-`), and lowercase letters.
-{company} recommends memorable, human-readable names that summarize the connector's purpose.
-For example: `debezium-mysql-source-prod-us-east-1`.
+{company} recommends a memorable, human-readable name that summarizes the connector's purpose.
+For example: `{connectorType}-source-prod-us-east-1`.
 
 |`namespace`
 |Yes
