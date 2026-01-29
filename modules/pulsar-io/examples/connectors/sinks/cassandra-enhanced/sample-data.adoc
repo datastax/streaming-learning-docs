@@ -8,7 +8,7 @@
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
-    "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC"
+    "persistent://${TENANT}/${NAMESPACE}/${TOPIC}"
   ],
   "topicToSerdeClassName": {
     "property1": "string",
@@ -93,7 +93,7 @@
       "cipherSuites": null
     },
     "topic": {
-      "${INPUT_TOPIC}": {
+      "${TOPIC}": {
         "${KEYSPACE_NAME}": {
           "${TABLE_NAME}": {
             "mapping": "name=value.name",

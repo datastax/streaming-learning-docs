@@ -8,7 +8,7 @@
   "sourceSubscriptionName": "string",
   "sourceSubscriptionPosition": "Latest",
   "inputs": [
-    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}"
+    "persistent://${TENANT}/${NAMESPACE}/${TOPIC}"
   ],
   "topicToSerdeClassName": {
     "property1": "string",
@@ -23,7 +23,7 @@
     "property2": "string"
   },
   "inputSpecs": {
-    "persistent://${TENANT}/${NAMESPACE}/${INPUT_TOPIC}": {
+    "persistent://${TENANT}/${NAMESPACE}/${TOPIC}": {
       "schemaType": "string",
       "serdeClassName": "string",
       "schemaProperties": {

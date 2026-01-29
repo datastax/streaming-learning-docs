@@ -1,7 +1,7 @@
 [source,json]
 ----
 {
-  "topicName": "string",
+  "topicName": "${TOPIC}",
   "producerConfig": {
     "maxPendingMessages": 0,
     "maxPendingMessagesAcrossPartitions": 0,

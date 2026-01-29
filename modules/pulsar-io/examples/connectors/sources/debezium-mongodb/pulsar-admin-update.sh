@@ -3,5 +3,4 @@
   --name "$SOURCE_NAME" \
   --destination-topic-name "persistent://$TENANT/$NAMESPACE/$TOPIC" \
   --tenant "$TENANT" \
-  --parallelism 2 \
-  --source-config '{}'
+  --parallelism 2

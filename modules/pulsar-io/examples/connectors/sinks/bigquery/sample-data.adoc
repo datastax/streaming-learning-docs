@@ -39,7 +39,7 @@
   "customRuntimeOptions": "internal_data",
   "deadLetterTopic": null,
   "inputSpecs": {
-    "${TENANT}/${NAMESPACE}/${INPUT_TOPIC}": {
+    "${TENANT}/${NAMESPACE}/${TOPIC}": {
       "consumerProperties": {},
       "cryptoConfig": null,
       "poolMessages": false,
@@ -51,7 +51,7 @@
     }
   },
   "inputs": [
-    "${TENANT}/${NAMESPACE}/${INPUT_TOPIC}"
+    "${TENANT}/${NAMESPACE}/${TOPIC}"
   ],
   "maxMessageRetries": null,
   "name": "${SINK_NAME}",

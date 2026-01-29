@@ -152,12 +152,12 @@ For a more detailed example of this pattern, see the xref:pulsar-connector:ROOT:
 "tenant": "${TENANT}",
 "namespace": "${NAMESPACE}",
 "name": "${SINK_NAME}",
-"inputs": ["${INPUT_TOPIC}"],
+"inputs": ["${TOPIC}"],
 "configs": {
-  "topics": "${INPUT_TOPIC}",
+  "topics": "${TOPIC}",
   "cloud.secureConnectBundle": "**SCB**",
   "topic": {
-   "${INPUT_TOPIC}": {
+   "${TOPIC}": {
       "**KEYSPACE_NAME**": {
         "**TABLE_NAME**": {
           **CONNECTION_PROPERTIES**,

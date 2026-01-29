@@ -34,5 +34,6 @@ These values are provided in the "configs" area.
 
 [%header,format=csv,cols="2,1,1,3"]
 |===
-include::example$connectors/sources/{connectorType}/config.csv[]
+"Name","Required","Default","Description"
+"sleepBetweenMessages ","false","50","How many seconds to sleep between emitting messages"
 |===

@@ -9,4 +9,3 @@ curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$S
           "sleepBetweenMessages": "50"
         }
       }'
-
