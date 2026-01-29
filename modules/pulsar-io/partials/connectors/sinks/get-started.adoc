@@ -19,7 +19,7 @@ For example: `{connectorType}-sink-prod-us-east-1`.
 .{pulsar-short} Admin CLI
 [source,shell,subs="+attributes"]
 ----
-include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
+include::partial$connectors/sinks/cli-create.sh[]
 ----
 +
 .{pulsar-short} Admin API

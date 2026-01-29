@@ -22,7 +22,7 @@ To get the current configuration, see xref:pulsar-io:connectors/index.adoc#get-s
 .{pulsar-short} Admin CLI
 [source,shell,subs="+attributes"]
 ----
-include::example$connectors/sinks/{connectorType}/pulsar-admin-update.sh[]
+include::partial$connectors/sinks/cli-update.sh[]
 ----
 
 .{pulsar-short} Admin API

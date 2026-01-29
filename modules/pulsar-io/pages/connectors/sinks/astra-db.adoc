@@ -1,5 +1,5 @@
 = {astra-db} (cassandra-enhanced)
-:connectorType: astra-db
+:connectorType: cassandra-enhanced
 
 The {astra-db} sink connector reads messages from {pulsar} topics and writes them to {astra-db} databases.
 
