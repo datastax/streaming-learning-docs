@@ -7,13 +7,20 @@ Additionally, some parameters can be modified with specific arguments, such as `
 To get the current configuration, see xref:pulsar-io:connectors/index.adoc#get-source-connector-configuration-data[Get source connector configuration data].
 
 .pulsar-admin CLI
-[source,shell,subs="attributes+"]
+[source,shell,subs="+attributes"]
 ----
-include::example$connectors/sources/{connectorType}/pulsar-admin-update.sh[]
+./bin/pulsar-admin sources update \
+  --source-type {connectorType} \
+  --name "$SOURCE_NAME" \
+  --destination-topic-name "persistent://$TENANT/$NAMESPACE/$TOPIC" \
+  --tenant "$TENANT" \
+  --parallelism 2
 ----
 
 .{pulsar-short} Admin API
-[source,shell,subs="attributes+"]
+[source,shell]
 ----
-include::example$connectors/sources/{connectorType}/curl-update.sh[]
+curl -sS --fail -L -X PUT "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN" \
+  --form "sourceConfig=@mynetty-source-config.json;type=application/json"
 ----

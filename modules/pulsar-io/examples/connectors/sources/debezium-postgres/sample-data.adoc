@@ -1,7 +1,10 @@
 [source,json]
 ----
 {
-  "topicName": "${TOPIC}",
+  "tenant": "${TENANT}",
+  "namespace": "${NAMESPACE}",
+  "topicName": "persistent://${TENANT}/${NAMESPACE}/${TOPIC}",
+  "name": "${SOURCE_NAME}",
   "producerConfig": {
     "maxPendingMessages": 0,
     "maxPendingMessagesAcrossPartitions": 0,
@@ -33,7 +36,10 @@
     "database.whitelist": "inventory",
     "json-with-envelope": "true",
     "key.converter": "org.apache.kafka.connect.json.JsonConverter",
-    "value.converter": "org.apache.kafka.connect.json.JsonConverter"
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "plugin.name": "pgoutput",
+    "schema.whitelist": "public",
+    "table.whitelist": "public.users"
   },
   "secrets": {},
   "parallelism": 1,
@@ -43,7 +49,7 @@
     "disk": 1000000000,
     "ram": 1000000000
   },
-  "archive": "string",
+  "archive": "builtin://debezium-postgres",
   "runtimeFlags": "string",
   "customRuntimeOptions": "string",
   "batchSourceConfig": {

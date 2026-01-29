@@ -14,7 +14,8 @@ export WEB_SERVICE_URL="**TENANT_PULSAR_WEB_SERVICE_URL**" # API only
 {company} recommends a memorable, human-readable name that summarizes the connector's purpose.
 For example: `{connectorType}-sink-prod-us-east-1`.
 
-. Create the connector:
+. Create the connector using JSON-formatted connector configuration data.
+You can pass the configuration directly or with a configuration file.
 +
 .pulsar-admin CLI
 [source,shell,subs="+attributes"]

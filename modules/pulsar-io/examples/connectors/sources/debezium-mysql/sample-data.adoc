@@ -1,7 +1,10 @@
 [source,json]
 ----
 {
-  "topicName": "${TOPIC}",
+  "tenant": "${TENANT}",
+  "namespace": "${NAMESPACE}",
+  "topicName": "persistent://${TENANT}/${NAMESPACE}/${TOPIC}",
+  "name": "${SOURCE_NAME}",
   "producerConfig": {
     "maxPendingMessages": 0,
     "maxPendingMessagesAcrossPartitions": 0,
@@ -43,7 +46,7 @@
     "disk": 1000000000,
     "ram": 1000000000
   },
-  "archive": "string",
+  "archive": "builtin://debezium-mysql",
   "runtimeFlags": "string",
   "customRuntimeOptions": "string",
   "batchSourceConfig": {

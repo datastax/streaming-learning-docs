@@ -1,7 +1,10 @@
 [source,json]
 ----
 {
-  "topicName": "${TOPIC}",
+  "tenant": "${TENANT}",
+  "namespace": "${NAMESPACE}",
+  "topicName": "persistent://${TENANT}/${NAMESPACE}/${TOPIC}",
+  "name": "${SOURCE_NAME}",
   "producerConfig": {
     "maxPendingMessages": 0,
     "maxPendingMessagesAcrossPartitions": 0,
@@ -30,12 +33,12 @@
     "database.history.pulsar.service.url": "pulsar+ssl://pulsar-azure-westus2.streaming.datastax.com:6651",
     "database.history.pulsar.token": "${PULSAR_TOKEN}",
     "database.history.pulsar.topic": "dbz-stream672-history-topic",
-    "database.hostname": "${SERVER_NAME}.database.windows.net",
+    "database.hostname": "sqlserver.database.windows.net",
     "database.include.list": "cdc_test",
     "database.names": "cdc_test",
     "database.password": "${PASSWORD}",
     "database.port": 1433,
-    "database.server.name": "${SERVER_NAME}",
+    "database.server.name": "sqlserver",
     "database.ssl": true,
     "database.ssl.mode": "required",
     "database.tcpKeepAlive": true,
@@ -53,7 +56,7 @@
     "task.class": "io.debezium.connector.sqlserver.SqlServerConnectorTask",
     "task.id": "0",
     "topic.namespace": "${TENANT}/${NAMESPACE}",
-    "topic.prefix": "${SERVER_NAME}",
+    "topic.prefix": "sqlserver",
     "typeClassName": "org.apache.pulsar.common.schema.KeyValue",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter"
   },
@@ -65,7 +68,7 @@
     "disk": 1000000000,
     "ram": 1000000000
   },
-  "archive": "string",
+  "archive": "builtin://debezium-sqlserver",
   "runtimeFlags": "string",
   "customRuntimeOptions": "string",
   "batchSourceConfig": {
