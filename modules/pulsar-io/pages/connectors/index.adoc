@@ -142,7 +142,7 @@ You can use the {astra-ui}, the `xref:developing:produce-consume-pulsar-client.a
 
 Get a list of sink connectors that are available in your {product} {pulsar-short} tenant:
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sinks available-sinks
@@ -158,7 +158,7 @@ curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $PULSAR_T
 
 Get a list of source connectors that are available in your {product} {pulsar-short} tenant:
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sources available-sources
@@ -180,7 +180,7 @@ For example commands and configuration details, see the documentation for your p
 
 Get the configuration for an existing sink connector:
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Get information about a connector
@@ -203,7 +203,7 @@ curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$S
 
 Get the configuration for an existing source connector:
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Get information about connector
@@ -224,7 +224,7 @@ curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/
 [#start-a-sink-connector]
 === Start a sink connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Start all instances of a connector
@@ -251,7 +251,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$
 [#start-a-source-connector]
 === Start a source connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Start all instances of a connector
@@ -278,7 +278,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE
 [#stop-a-sink-connector]
 === Stop a sink connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Stop all instances of a connector
@@ -305,7 +305,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$
 [#stop-a-source-connector]
 === Stop a source connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Stop all instances of a connector
@@ -332,7 +332,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE
 [#restart-a-sink-connector]
 === Restart a sink connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Restart all instances of a connector
@@ -359,7 +359,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$
 [#restart-a-source-connector]
 === Restart a source connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Restart all instances of a connector
@@ -386,7 +386,7 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE
 [#get-sink-connector-status]
 === Get sink connector status
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Check connector status
@@ -481,7 +481,7 @@ Status response for individual connector instance:
 [#get-source-connector-status]
 === Get source connector status
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Check connector status
@@ -576,7 +576,7 @@ Status response for individual connector instance:
 [#delete-a-sink-connector]
 === Delete a sink connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Delete all instances of a connector
@@ -597,7 +597,7 @@ curl -sS --fail -L -X DELETE "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE
 [#delete-a-source-connector]
 === Delete a source connector
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell]
 ----
 # Delete all instances of a connector

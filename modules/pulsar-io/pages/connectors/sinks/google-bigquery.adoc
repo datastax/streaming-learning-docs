@@ -246,7 +246,7 @@ This presents two issues:
 a| Can be either a string representation of the Google credentials file or the path to the Google credentials file itself.
 
 When configuring this connector in the {astra-ui}, the string representation must be used.
-With the {pulsar-short} Admin CLI or API, you can use either the representation or a file.
+With the `pulsar-admin` CLI or {pulsar-short} Admin API, you can use either the representation or a file.
 
 | keySource
 | yes
@@ -254,7 +254,7 @@ With the {pulsar-short} Admin CLI or API, you can use either the representation 
 a| Determines whether the keyfile configuration is the path to the credentials JSON file or to the JSON itself. Available values are `FILE` and `JSON`.
 
 When configuring this connector in the {astra-ui}, JSON is the only option.
-With the {pulsar-short} Admin CLI or API, you can use either the representation or a file.
+With the `pulsar-admin` CLI or {pulsar-short} Admin API, you can use either the representation or a file.
 
 | name
 | yes

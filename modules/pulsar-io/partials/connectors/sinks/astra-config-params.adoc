@@ -8,7 +8,7 @@ For the equivalent command line arguments, see the https://pulsar.apache.org/doc
 ====
 
 The following table uses the field name.
-Parameter names are different when passed directly on the command line with the {pulsar-short} Admin CLI.
+Parameter names are different when passed directly on the command line with the `pulsar-admin` CLI.
 
 [cols=3]
 |===

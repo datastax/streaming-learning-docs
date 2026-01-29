@@ -16,7 +16,7 @@ For example: `{connectorType}-source-prod-us-east-1`.
 
 . Create the connector:
 +
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-create.sh[]

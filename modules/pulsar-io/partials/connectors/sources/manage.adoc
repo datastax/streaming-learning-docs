@@ -1,25 +1,14 @@
-== Start or stop the connector
-
-See the following:
-
-* xref:pulsar-io:connectors/index.adoc#start-a-source-connector[Start a source connector]
-* xref:pulsar-io:connectors/index.adoc#stop-a-source-connector[Stop a source connector]
-* xref:pulsar-io:connectors/index.adoc#restart-a-source-connector[Restart a source connector]
-
-== Check connector status
-
-See xref:pulsar-io:connectors/index.adoc#get-source-connector-status[Get source connector status].
-
 == Edit the connector
 
 To update a connector, pass the new configuration definition to the connector.
-You can include the entire configuration or only the parameters that you want to change.
+For example, if you created the connector with a configuration file, you can pass an updated configuration file.
 
-With the {pulsar-short} Admin CLI, you can use `source-config`, or use specific command line arguments to modify individual configuration parameters.
+You can include the entire configuration or only the parameters that you want to change.
+Additionally, some parameters can be modified with specific arguments, such as `--parallelism`.
 
 To get the current configuration, see xref:pulsar-io:connectors/index.adoc#get-source-connector-configuration-data[Get source connector configuration data].
 
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-update.sh[]
@@ -31,6 +20,10 @@ include::example$connectors/sources/{connectorType}/pulsar-admin-update.sh[]
 include::example$connectors/sources/{connectorType}/curl-update.sh[]
 ----
 
-== Delete the connector
+== Manage the connector
 
-See xref:pulsar-io:connectors/index.adoc#delete-a-source-connector[Delete a source connector].
+* xref:pulsar-io:connectors/index.adoc#start-a-source-connector[Start a source connector]
+* xref:pulsar-io:connectors/index.adoc#stop-a-source-connector[Stop a source connector]
+* xref:pulsar-io:connectors/index.adoc#restart-a-source-connector[Restart a source connector]
+* xref:pulsar-io:connectors/index.adoc#get-source-connector-status[Get source connector status]
+* xref:pulsar-io:connectors/index.adoc#delete-a-source-connector[Delete a source connector]

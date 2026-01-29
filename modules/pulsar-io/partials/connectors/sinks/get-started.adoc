@@ -16,7 +16,7 @@ For example: `{connectorType}-sink-prod-us-east-1`.
 
 . Create the connector:
 +
-.{pulsar-short} Admin CLI
+.pulsar-admin CLI
 [source,shell,subs="+attributes"]
 ----
 include::partial$connectors/sinks/cli-create.sh[]
