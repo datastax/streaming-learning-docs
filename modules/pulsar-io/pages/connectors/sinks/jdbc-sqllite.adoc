@@ -15,26 +15,26 @@ SQLite JDBC is a library for accessing and creating SQLite database files in Jav
 
 == Create the connector
 
-include::partial$connectors/sinks/get-started.adoc[]
+include::pulsar-io:partial$connectors/sinks/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sinks/edit.adoc[]
+include::pulsar-io:partial$connectors/sinks/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sinks/manage.adoc[]
+include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support sink connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} sink connector parameters
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== SQLite (`configs`)
+=== JDBC SQLite sink connector parameters (`configs`)
 
 These parameters are set in the `configs` section of the connector configuration.
 

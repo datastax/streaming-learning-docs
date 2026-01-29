@@ -13,18 +13,18 @@ The cloud storage system supported are:
 
 == Create the connector
 
-include::partial$connectors/sinks/get-started.adoc[]
+include::pulsar-io:partial$connectors/sinks/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sinks/edit.adoc[]
+include::pulsar-io:partial$connectors/sinks/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sinks/manage.adoc[]
+include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 == Data format types
-
+//Not sure where to put
 The Cloud Storage sink connector provides multiple output format options, including JSON (default), Avro, Bytes, or Parquet.
 There are some limitations for certain formats, as explained in the following sections.
 
@@ -140,16 +140,21 @@ If a message fails to send to a Cloud Storage sink, the connector can send the m
 To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config.
 Then, using either `pulsar-admin` or curl, set `--max-redeliver-count` and `--dead-letter-topic`.
 
-== Astra Streaming parameters for the Cloud Storage sink
+== Connector configuration reference
+
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
+
+=== {pulsar-short} sink connector parameters
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-== Cloud storage provider parameters for the Cloud Storage sink (`configs`)
+== Google Cloud Storage parameters (`configs`)
+//See if the 3 sections can be combined into 1 table with columns or lists for each provider.
 
-Set your cloud storage provider and other required values in the `configs` area.
+Set the following parameters in the `configs` section if you are using Google Cloud Storage.
 
-=== Google Cloud Storage
+For other providers, see <<configs-aws>> and <<configs-azure>>.
 
 [cols="2,1,1,3"]
 |===
@@ -276,16 +281,10 @@ Set your cloud storage provider and other required values in the `configs` area.
 |When it is set to true, include the topic partition number to the object path.
 |===
 
+[#configs-aws]
 === AWS S3 Storage
 
-The suggested permission policies for AWS S3 are:
-
-- `s3:AbortMultipartUpload`
-- `s3:GetObject*`
-- `s3:PutObject*`
-- `s3:List*`
-
-If you don't want to provide a region in the configuration, then enable the `s3:GetBucketLocation` permission policy as well.
+Set the following parameters in the `configs` section if you are using AWS S3 Storage:
 
 [cols="2,1,1,3"]
 |===
@@ -294,7 +293,16 @@ If you don't want to provide a region in the configuration, then enable the `s3:
 |accessKeyId
 |yes
 |null
-|The Cloud Storage access key ID. It requires permission to write objects.
+a|The Cloud Storage access key ID. It requires permission to write objects.
+
+The suggested permission policies for AWS S3 are:
+
+- `s3:AbortMultipartUpload`
+- `s3:GetObject*`
+- `s3:PutObject*`
+- `s3:List*`
+
+If your connector configuration doesn't specify a region, then you must also enable `s3:GetBucketLocation`.
 
 |bucket
 |yes
@@ -427,7 +435,10 @@ If you don't want to provide a region in the configuration, then enable the `s3:
 |When it is set to true, include the topic partition number to the object path.
 |===
 
+[#configs-azure]
 === Azure Blob Storage
+
+Set the following parameters in the `configs` section if you are using Azure Blob Storage:
 
 [cols="2,1,1,3"]
 |===

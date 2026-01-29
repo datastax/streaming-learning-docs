@@ -15,26 +15,26 @@ For a reference of the full "Person" class, https://github.com/apache/pulsar/blo
 
 == Create the connector
 
-include::partial$connectors/sources/get-started.adoc[]
+include::pulsar-io:partial$connectors/sources/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sources/edit.adoc[]
+include::pulsar-io:partial$connectors/sources/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sources/manage.adoc[]
+include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support source connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} source connector parameters
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Data Generator (`configs`)
+=== Data generator source connector parameters (`configs`)
 
 These parameters are set in the `configs` section of the connector configuration.
 

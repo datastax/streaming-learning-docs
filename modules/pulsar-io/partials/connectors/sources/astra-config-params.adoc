@@ -1,11 +1,10 @@
-[TIP]
-====
-A {pulsar-short} connectors and functions both use https://pulsar.apache.org/docs/3.1.x/functions-concepts/[{pulsar-short} functions workers].
-Therefore, some function configuration parameters are also used to configure connectors.
+include::pulsar-io:partial$connectors/function-params-tip.adoc[]
 
-Additionally, the following table uses the JSON field name for the parameters.
-For the equivalent command line arguments, see the https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference] and the specification for `https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sources[pulsar-admin sources]`.
-====
+The following table lists the {product} {pulsar-short} source connector configuration parameters by JSON field name.
+For the equivalent command line arguments and more information about these parameters, see the following:
+
+* https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference]
+* https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sources[`pulsar-admin sources` specification]
 
 [cols=3]
 |===
@@ -116,7 +115,7 @@ This is separate from the {pulsar-short} authentication token and security setti
 
 |`topicName`
 |Yes
-|An existing topic in {product} where messages are published.
+|An existing topic in your {product} tenant where messages are published.
 Must be formatted as a full persistent or non-persistent topic name, such as `persistent://$TENANT/$NAMESPACE/$TOPIC`.
 
 |`typeClassName`

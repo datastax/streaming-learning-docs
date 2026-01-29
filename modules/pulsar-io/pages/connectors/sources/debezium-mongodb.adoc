@@ -7,30 +7,33 @@ Debezium’s MongoDB connector tracks a MongoDB replica set or a MongoDB sharded
 
 The connector automatically handles the addition or removal of shards in a sharded cluster, changes in membership of each replica set, elections within each replica set, and the resolution of communications problems.
 
-{product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported MongoDB versions, please refer to the https://debezium.io/releases/{debezium-version}/[Debezium documentation].
+[#compatibility]
+== Compatibility
+
+include::pulsar-io:partial$connectors/sources/debezium-compatibility.adoc[]
 
 == Create the connector
 
-include::partial$connectors/sources/get-started.adoc[]
+include::pulsar-io:partial$connectors/sources/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sources/edit.adoc[]
+include::pulsar-io:partial$connectors/sources/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sources/manage.adoc[]
+include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support source connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} source connector parameters
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Debezium MongoDB (`configs`)
+=== Debezium MongoDB source connector parameters (`configs`)
 
 These parameters are set in the `configs` section of the connector configuration.
 

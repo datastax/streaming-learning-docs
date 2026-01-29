@@ -1,204 +1,188 @@
-= {astra-db} (cassandra-enhanced)
+= {astra-db} and {cass}
 :connectorType: cassandra-enhanced
 
-The {astra-db} sink connector reads messages from {pulsar} topics and writes them to {astra-db} databases.
+The open-source https://pulsar.apache.org/docs/3.1.x/io-cassandra-sink/[{pulsar-reg} {cass-short} sink connector] (`cassandra`) reads messages from {pulsar} topics and writes them to {cass} databases.
 
-{company} {astra-db} sink connector is based on the open-source xref:pulsar-connector:ROOT:index.adoc[{cass} sink connector for {pulsar-reg}].
-Depending on how you deploy the connector, it can be used to sink topic messages with a table in {astra-db} or a table in a self-managed {cass-short} cluster.
-For the complete connector code, see the https://github.com/datastax/pulsar-sink[{company} {pulsar-short} sink connector GitHub repository].
+The xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector] (`{connectorType}`) extends the open-source connector by adding support for {company} product connections.
+This includes {astra-db} connections with a Secure Connect Bundle (SCB) and {astra} application token.
 
+This means that you can use this sink connector to write messages to tables in {astra-db} or self-managed {cass-short} clusters.
+
+//Astra Streaming only
 You can configure this connector with the {astra-ui}, the `pulsar-admin` CLI, or the {pulsar-short} Admin API.
-The {astra-ui} provides the most simplified and guided configuration, and it is only suitable for connecting to {astra-db} databases.
-With the CLI and API, you must provide the complete configuration programmatically, but you can use these tools to connect to either {astra-db} databases or self-managed {cass-short} clusters.
-A {pulsar-short} token is required for all configuration methods.
-
-This reference assumes you are connecting to a {cass-short} table using the {pulsar-short} Admin API or CLI.
+The {astra-ui} provides a guided configuration process, but it is only suitable for connecting to {astra-db} databases.
+With the CLI and API, you can connect to {astra-db} or a self-managed {cass-short} cluster.
 
 == Create the connector
 
-include::partial$connectors/sinks/get-started.adoc[]
+include::pulsar-io:partial$connectors/sinks/get-started.adoc[]
+
+[TIP]
+====
+The preceding example connects to a self-managed {cass-short} cluster.
+
+For an {astra-db} example, see <<topic>>.
+
+For all connection parameters, see <<configs>>.
+====
 
 == Edit the connector
 
-include::partial$connectors/sinks/edit.adoc[]
+include::pulsar-io:partial$connectors/sinks/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sinks/manage.adoc[]
+include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support sink connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
 === {pulsar-short} sink connector parameters
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== {cass-short} Connection (`configs`)
+=== {company} {pulsar} sink connector parameters (`configs`)
 
-These values are provided in the `Configs` area:
+These parameters are set in the `configs` section.
+
+The relevant and required parameters depend on whether you are connecting to {astra-db} or a self-managed {cass-short} cluster, as well as the cluster configuration.
+
+[TIP]
+====
+The following table includes commonly used parameters.
+For all parameters and more information, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
+====
 
 [cols=4]
 |===
 | Name | Required | Default | Description
 
-| auth
-| yes
-| `{}`
-| Refer to the auth properties reference
+|`auth`
+|Yes
+|`{}`
+|Contains the xref:pulsar-connector:ROOT:cfgRefPulsarDseConnection.adoc#authentication-parameters[authentication parameters] to connect to the database.
 
-| cloud.secureConnectBundle
-| yes
-|
-|Can either be a path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the zip provided it in the format `base64:<b64 string>`.
+|`cloud.secureConnectBundle`
+|Yes for {astra-db}
+|`null`
+|The path to your {astra-db} database's SCB zip file, or a base64 encoding of the SCB zip file (`base64:**ENCODED_STRING**`).
 
-| compression
-| yes
-| None
-|
+Only use this parameter for {astra-db} connections.
 
-| connectionPoolLocalSize
-| yes
-| 4
-|
+For self-managed clusters, use `ssl`.
 
-| ignoreErrors
-| yes
-| None
-|
+|`compression`
+|yes
+|`None`
+|The compression algorithm to use.
 
-| jmx
-| yes
-| true
-|
+|`connectionPoolLocalSize`
+|Yes
+|4
+|Number of connections to each node in the local datacenter.
 
-| maxConcurrentRequests
-| yes
-| 500
-|
+|`contactPoints`
+|Yes for self-managed clusters
+|`[localhost]`
+|Either `[localhost]` or a comma-separated list of hostnames or IP addresses for your self-managed {cass-short} cluster nodes.
 
-| maxNumberOfRecordsInBatch
-| yes
-| 32
-|
+If `contactPoints` is set to a list of hosts, then `loadBalancing.localDc` is required.
 
-| queryExecutionTimeout
-| yes
-| 30
-|
+If `cloud.secureConnectBundle` is set, then `contactPoints` is ignored.
+The contact points are set by the SCB.
 
-| task.max
-| yes
-| 1
-|
+|`ignoreErrors`
+|Yes
+|`None`
+|Sets the xref:pulsar-connector:ROOT:cfgPulsarConfigureErrorHandling.adoc[error handling behavior].
 
-| tasks.max
-| yes
-| 1
-|
+|`jmx`
+|Yes
+|`true`
+|Whether to collect and report metrics using Java Management Extensions (JMX).
 
-| topic
-| yes
-| `{}`
-| Refer to the topic properties reference
+|`maxConcurrentRequests`
+|Yes
+|`500`
+|The maximum number of concurrent requests that can be sent to each connected node.
 
-| topics
-| yes
-|
-|The topic name to watch
+|`maxNumberOfRecordsInBatch`
+|Yes
+|`32`
+|The maximum number of records to include in a batch write to the database.
+
+|`queryExecutionTimeout`
+|Yes
+|`30`
+|CQL statement execution timeout limit in seconds.
+
+|`ssl`
+|Depends on cluster configuration
+|`{}`
+|Contains xref:pulsar-connector:ROOT:cfgRefPulsarDSEConnection.adoc[SSL-encryption parameters] for self-managed clusters with client-to-node encryption enabled.
+
+For {astra-db}, use `cloud.secureConnectBundle`, which includes the SSL encryption configuration.
+If `cloud.secureConnectBundle` is set, then `ssl` is ignored.
+
+|`topic`
+|Yes
+|`{}`
+|Contains the <<topic,topic-to-table mapping parameters>>.
+
+|`topics`
+|Yes
+|`[]`
+|The names of topics to subscribe to.
+
+For each topic in `topics`, there must be a corresponding entry in the `topic` section.
 |===
 
-=== Auth Properties
+[#topic]
+=== Topic-to-table mapping parameters (`topic`)
 
-These values are provided in the `auth` area of the preceding {cass-short} connection parameters:
+The `topic` section of the `<<configs,configs>>` contains xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[topic-to-table mapping parameters].
 
-[cols=3]
-|===
-| Name | Required | Default
+The mapping determines which table receives messages from a {pulsar-short} topic, and how the message `value` fields are written to the table columns.
 
-| gssapi
-| yes
-| `{ "service": "dse" }`
+There are many mapping parameters and values to support different write options, value translations, and data formats.
 
-| password
-| yes
-|
+The following example shows a simplified `configs` object that maps one topic to a table in an {astra-db} database:
 
-| provider
-| yes
-| None
-
-| username
-| yes
-| `token`
-|===
-
-=== Topic Properties
-
-These values are provided in the `topic` area of the preceding {cass-short} connection parameters.
-
-Refer to the official documentation for a xref:pulsar-connector:ROOT:cfgRefPulsarDseConnection.adoc[connection properties reference].
-
-=== Mapping topic data to table columns
-
-An essential part of using this sink connector is mapping message values to table columns.
-There are many factors that influence how this done and what is possible.
-
-While the preceding examples showed how to configure the connector in one large command, it is easier to manage this as a separate file.
-The following steps explain how to configure the connector using a JSON configuration file with the minimum required values.
-
-For a more detailed example of this pattern, see the xref:pulsar-connector:ROOT:pulsarQuickStart.adoc[{pulsar-short} Connector single instance quickstart].
-
-. Create a file named `configs.json` with the following content:
-+
-[source,json,subs="+quotes"]
+[source,json]
 ----
-"archive": "builtin://cassandra-enhanced",
-"tenant": "${TENANT}",
-"namespace": "${NAMESPACE}",
-"name": "${SINK_NAME}",
-"inputs": ["${TOPIC}"],
 "configs": {
+  "auth": {
+    "username": "token",
+    "password": "${ASTRA_APPLICATION_TOKEN}"
+  },
+  "cloud.secureConnectBundle": "path/to/scb.zip",
   "topics": "${TOPIC}",
-  "cloud.secureConnectBundle": "**SCB**",
+  // ...
+  // Other configs parameters
+  // ...
   "topic": {
    "${TOPIC}": {
-      "**KEYSPACE_NAME**": {
-        "**TABLE_NAME**": {
-          **CONNECTION_PROPERTIES**,
-          "mapping": "**MAPPING_STRING**"
+      "${KEYSPACE_NAME}": {
+        "${TABLE_NAME}": {
+          "mapping": "column1=value.fieldA,column2=value.fieldC,column3=value.fieldG,column8=value.fieldW"
+          // ...
+          // Other mapping parameters, such as codec and nullToUnset
+          // ...
         }
       }
     }
   }
 }
 ----
-+
-Replace the following:
-+
-* **SCB**: The path to your database's Secure Connect Bundle (SCB) zip or a base64 encoding of the SCB zip.
-* **KEYSPACE_NAME**: The name of the keyspace in your database that contains the table you want to connect to a topic.
-* **TABLE_NAME**: The name of the table to connect to a topic.
-* **TABLE_CONNECTION_PROPERTIES**: Additional topic-to-table connection properties, if required.
-For more information, see xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[].
-* **MAPPING_STRING**: The mapping string for the table columns as a comma-separated list of column names and message value fields.
-For example:
-+
-[source,text]
-----
-symbol=value.symbol, ts=value.ts, exchange=value.exchange, industry=value.industry, name=key, value=value.value
-----
-+
-For more mapping examples, see xref:pulsar-connector:ROOT:cfgPulsarMapTopicTable.adoc[Mapping pulsar topics to database tables].
 
-. Use the `pulsar-admin` CLI to create the connector with your JSON file:
-+
-[source,shell]
-----
-./bin/pulsar-admin sinks create \
-	--name ${SINK_NAME} \
-	--classname com.datastax.oss.sink.pulsar.StringCassandraSinkTask \
-	--sink-config-file configs.json \
-	--sink-type cassandra-enhanced
-----
+The `mapping` string is a comma-separated list of table column names and message `value` fields.
+
+If your connector subscribes to multiple topics, create an entry for each topic in the `topic` section.
+
+For a more information and examples, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
+
+== See also
+
+* https://github.com/datastax/pulsar-sink[{company} {pulsar} connector GitHub repository]

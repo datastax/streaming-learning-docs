@@ -5,31 +5,33 @@ The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL sys
 
 The PostgreSQL connector produces a change event for every row-level insert, update, and delete operation that it captures, and sends change event records for each table in a separate {pulsar-reg} topic.
 
-{product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported PostgreSQL versions, please refer to the
-https://debezium.io/releases/{debezium-version}/[Debezium documentation].
+[#compatibility]
+== Compatibility
+
+include::pulsar-io:partial$connectors/sources/debezium-compatibility.adoc[]
 
 == Create the connector
 
-include::partial$connectors/sources/get-started.adoc[]
+include::pulsar-io:partial$connectors/sources/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sources/edit.adoc[]
+include::pulsar-io:partial$connectors/sources/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sources/manage.adoc[]
+include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support source connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} source connector parameters
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Debezium PostgreSQL (`configs`)
+=== Debezium PostgreSQL source connector parameters (`configs`)
 
 These parameters are set in the `configs` section of the connector configuration.
 

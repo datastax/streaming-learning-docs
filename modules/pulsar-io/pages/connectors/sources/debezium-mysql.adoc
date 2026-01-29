@@ -5,38 +5,39 @@ The Debezium MySQL source connector reads data from Debezium MySQL systems and p
 
 The Debezium MySQL connector reads the binlog, produces change events for row-level INSERT, UPDATE, and DELETE operations, and emits these change events as messages in an {pulsar-reg} topic.
 
-{product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries.
+[#compatibility]
+== Compatibility
+
+include::pulsar-io:partial$connectors/sources/debezium-compatibility.adoc[]
 
 == Create the connector
 
-include::partial$connectors/sources/get-started.adoc[]
+include::pulsar-io:partial$connectors/sources/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sources/edit.adoc[]
+include::pulsar-io:partial$connectors/sources/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sources/manage.adoc[]
+include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support source connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} source connector parameters
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Debezium MySQL (`configs`)
+=== Debezium MySQL source connector parameters (`configs`)
 
 These parameters are set in the `configs` section of the connector configuration.
 
 The {product} MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
 
 == What's next?
-
-For a list of supported MySQL versions, see the https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
 For a detailed explanation of Debezium's MySQL connector, see the https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html[Debezium documentation].
 

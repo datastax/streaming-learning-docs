@@ -11,29 +11,28 @@ You will notice references to Kafka throughout the configuration. *You don't nee
 
 == Create the connector
 
-include::partial$connectors/sinks/get-started.adoc[]
+include::pulsar-io:partial$connectors/sinks/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sinks/edit.adoc[]
+include::pulsar-io:partial$connectors/sinks/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sinks/manage.adoc[]
+include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-The BigQuery sink has three sets of parameters.
-Each set of parameters provides a way to coordinate how data is streamed from {pulsar-short} to BigQuery.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} sink connector parameters
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== Kafka Connect Adapter Configuration (`configs`)
+=== Kafka Connect Adapter parameters (`configs`)
 
-These values are provided in the `configs` area.
+The parameters in the `configs` section define how data is streamed from {pulsar-short} to BigQuery.
 
 For source code for these configuration, see `https://github.com/apache/pulsar/blob/master/pulsar-io/kafka-connect-adaptor/src/main/java/org/apache/pulsar/io/kafka/connect/PulsarKafkaConnectSinkConfig.java[PulsarKafkaConnectSinkConfig.java]`.
 
@@ -74,7 +73,7 @@ Any other value causes an error.
 | kafkaConnectorConfigProperties
 | no
 | `{}`
-| A key/value map of config properties to pass to the Kafka connector. See the reference table below.
+| A key/value map of config properties to pass to the Kafka connector. See <<kafkaConnectorConfigProperties>>.
 
 | lingerTimeMs
 | no
@@ -107,7 +106,8 @@ Any other value causes an error.
 | Pulsar schema does not contain information whether the Schema is optional, Kafka's does. This provides a way to force all primitive schemas to be optional for Kafka.
 |===
 
-=== Google BigQuery Configuration (kafkaConnectorConfigProperties)
+[#kafkaConnectorConfigProperties]
+=== Google BigQuery Configuration (`kafkaConnectorConfigProperties`)
 
 These values are provided in the `kafkaConnectorConfigProperties` area.
 

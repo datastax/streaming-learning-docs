@@ -9,26 +9,26 @@ For more, see https://pulsar.apache.org/docs/io-kafka-source[{pulsar}'s Kafka so
 
 == Create the connector
 
-include::partial$connectors/sources/get-started.adoc[]
+include::pulsar-io:partial$connectors/sources/get-started.adoc[]
 
 == Edit the connector
 
-include::partial$connectors/sources/edit.adoc[]
+include::pulsar-io:partial$connectors/sources/edit.adoc[]
 
 == Manage the connector
 
-include::partial$connectors/sources/manage.adoc[]
+include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
-== Connector Reference
+== Connector configuration reference
 
-There are two sets of parameters that support source connectors.
+include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== Astra Streaming
+=== {pulsar-short} source connector parameters
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Kafka configuration options (`configs`)
+=== Kafka source connector parameters (`configs`)
 
 These values are provided in the `configs` area:
 

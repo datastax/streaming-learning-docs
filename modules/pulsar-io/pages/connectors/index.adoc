@@ -1,7 +1,7 @@
 = {pulsar-short} I/O connectors in {product}
 :navtitle: Available connectors
 
-{product} offers fully-managed versions of https://pulsar.apache.org/docs/en/io-overview/[{pulsar-reg} connectors].
+{product} offers fully-managed versions of https://pulsar.apache.org/docs/en/io-overview/[{pulsar-reg} sink and source connectors].
 
 [IMPORTANT]
 ====
@@ -16,12 +16,12 @@
 [#sink-connectors]
 == Sink connectors
 
-Sink connectors export data from {pulsar-short} topics to external systems.
+Sink connectors export messages from {pulsar-short} topics to external systems.
 
 Supported sink connectors::
 The following sink connectors are included in {product}:
 +
-* xref:connectors/sinks/astra-db.adoc[AstraDB sink]
+* xref:connectors/sinks/astra-db.adoc[{astra-db} and {cass} sink]
 * xref:connectors/sinks/kafka.adoc[Apache Kafka sink]
 * xref:connectors/sinks/kinesis.adoc[AWS Kinesis sink]
 * xref:connectors/sinks/cloud-storage.adoc[Cloud Storage sink]
@@ -34,7 +34,7 @@ The following sink connectors are included in {product}:
 * xref:connectors/sinks/snowflake.adoc[Snowflake sink]
 
 Experimental sink connectors::
-The following source connectors are experimental.
+The following sink connectors are experimental.
 They are in development, and they aren't fully supported or tested with {product}.
 To get access to experimental connectors, contact {support-url}[{company} Support].
 +
@@ -77,14 +77,14 @@ To get access to experimental connectors, contact {support-url}[{company} Suppor
 [#source-connectors]
 == Source connectors
 
-Source connectors ingest data from external systems into {pulsar-short} topics in your {product} tenants.
+Source connectors ingest messages from external systems into {pulsar-short} topics.
 
 Supported source connectors::
 The following source connectors are included in {product}:
 +
 * xref:connectors/sources/kafka.adoc[Apache Kafka source]
 * xref:connectors/sources/kinesis.adoc[AWS Kinesis source]
-* xref:connectors/sources/data-generator.adoc[Data Generator source]
+* xref:connectors/sources/data-generator.adoc[Data generator source]
 * xref:connectors/sources/debezium-mongodb.adoc[Debezium MongoDB source]
 * xref:connectors/sources/debezium-mysql.adoc[Debezium MySQL source]
 * xref:connectors/sources/debezium-oracle.adoc[Debezium Oracle source]
