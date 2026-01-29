@@ -1,15 +1,57 @@
 [source,json]
 ----
 {
-    "bootstrapServers": "asdasd",
-    "consumerConfigProperties": {
-        "sasl.jaas.config": "sensitive_data_removed",
-        "sasl.mechanism": "PLAIN",
-        "sasl.password": "sensitive_data_removed",
-        "sasl.username": "asdasd",
-        "security.protocol": "SASL_SSL"
+  "topicName": "${TOPIC}",
+  "producerConfig": {
+    "maxPendingMessages": 0,
+    "maxPendingMessagesAcrossPartitions": 0,
+    "useThreadLocalProducers": true,
+    "cryptoConfig": {
+      "cryptoKeyReaderClassName": "string",
+      "cryptoKeyReaderConfig": {
+        "property1": {},
+        "property2": {}
+      },
+      "encryptionKeys": [
+        "string"
+      ],
+      "producerCryptoFailureAction": "FAIL",
+      "consumerCryptoFailureAction": "FAIL"
     },
-    "groupId": "asd",
-    "topic": "asdasd"
+    "batchBuilder": "string"
+  },
+  "serdeClassName": "string",
+  "schemaType": "string",
+  "configs": {
+    "bootstrapServers": "${KAFKA_BOOTSTRAP_SERVERS}",
+    "consumerConfigProperties": {
+      "sasl.jaas.config": "${JAAS_CONFIG}",
+      "sasl.mechanism": "PLAIN",
+      "sasl.password": "${PASSWORD}",
+      "sasl.username": "${USERNAME}",
+      "security.protocol": "SASL_SSL"
+    },
+    "groupId": "${KAFKA_GROUP_ID}",
+    "topic": "${KAFKA_TOPIC}"
+  },
+  "secrets": {},
+  "parallelism": 1,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "archive": "string",
+  "runtimeFlags": "string",
+  "customRuntimeOptions": "string",
+  "batchSourceConfig": {
+    "discoveryTriggererClassName": "string",
+    "discoveryTriggererConfig": {
+      "property1": {},
+      "property2": {}
+    }
+  },
+  "batchBuilder": "string"
 }
 ----

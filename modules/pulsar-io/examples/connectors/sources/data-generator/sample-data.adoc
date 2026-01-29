@@ -23,7 +23,7 @@
   "serdeClassName": "string",
   "schemaType": "string",
   "configs": {
-
+    "sleepBetweenMessages": "50"
   },
   "secrets": {},
   "parallelism": 1,

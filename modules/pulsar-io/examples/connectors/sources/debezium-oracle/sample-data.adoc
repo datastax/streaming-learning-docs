@@ -1,20 +1,62 @@
 [source,json]
 ----
-"configs": {
-          "database.hostname": "localhost",
-          "database.port": "1521",
-          "database.user": "dbzuser",
-          "database.password": "dbz",
-          "database.dbname": "a-db",
-          "database.server.name": "my-server",
-          "schema.exclude.list": "system,dbzuser",
-          "snapshot.mode": "initial",
-          "topic.namespace": "'$TENANT'/'$NAMESPACE'",
-          "task.class": "io.debezium.connector.oracle.OracleConnectorTask",
-          "value.converter": "org.apache.kafka.connect.json.JsonConverter",
-          "key.converter": "org.apache.kafka.connect.json.JsonConverter",
-          "typeClassName": "org.apache.pulsar.common.schema.KeyValue",
-          "database.tcpKeepAlive": "true",
-          "decimal.handling.mode": "double"
-        }
+{
+  "topicName": "${TOPIC}",
+  "producerConfig": {
+    "maxPendingMessages": 0,
+    "maxPendingMessagesAcrossPartitions": 0,
+    "useThreadLocalProducers": true,
+    "cryptoConfig": {
+      "cryptoKeyReaderClassName": "string",
+      "cryptoKeyReaderConfig": {
+        "property1": {},
+        "property2": {}
+      },
+      "encryptionKeys": [
+        "string"
+      ],
+      "producerCryptoFailureAction": "FAIL",
+      "consumerCryptoFailureAction": "FAIL"
+    },
+    "batchBuilder": "string"
+  },
+  "serdeClassName": "string",
+  "schemaType": "string",
+  "configs": {
+    "database.hostname": "localhost",
+    "database.port": "1521",
+    "database.user": "dbzuser",
+    "database.password": "${PASSWORD}",
+    "database.dbname": "a-db",
+    "database.server.name": "dbz-server",
+    "schema.exclude.list": "system,dbzuser",
+    "snapshot.mode": "initial",
+    "topic.namespace": "${TENANT}/${NAMESPACE}",
+    "task.class": "io.debezium.connector.oracle.OracleConnectorTask",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "typeClassName": "org.apache.pulsar.common.schema.KeyValue",
+    "database.tcpKeepAlive": "true",
+    "decimal.handling.mode": "double"
+  },
+  "secrets": {},
+  "parallelism": 1,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "archive": "string",
+  "runtimeFlags": "string",
+  "customRuntimeOptions": "string",
+  "batchSourceConfig": {
+    "discoveryTriggererClassName": "string",
+    "discoveryTriggererConfig": {
+      "property1": {},
+      "property2": {}
+    }
+  },
+  "batchBuilder": "string"
+}
 ----

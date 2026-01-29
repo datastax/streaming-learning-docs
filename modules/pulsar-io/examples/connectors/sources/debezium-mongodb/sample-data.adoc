@@ -1,11 +1,53 @@
 [source,json]
 ----
 {
-    "database.whitelist": "asdasd",
-    "mongodb.hosts": "asd",
-    "mongodb.name": "asdasd",
-    "mongodb.password": "asd",
+  "topicName": "${TOPIC}",
+  "producerConfig": {
+    "maxPendingMessages": 0,
+    "maxPendingMessagesAcrossPartitions": 0,
+    "useThreadLocalProducers": true,
+    "cryptoConfig": {
+      "cryptoKeyReaderClassName": "string",
+      "cryptoKeyReaderConfig": {
+        "property1": {},
+        "property2": {}
+      },
+      "encryptionKeys": [
+        "string"
+      ],
+      "producerCryptoFailureAction": "FAIL",
+      "consumerCryptoFailureAction": "FAIL"
+    },
+    "batchBuilder": "string"
+  },
+  "serdeClassName": "string",
+  "schemaType": "string",
+  "configs": {
+    "database.whitelist": "usersdb",
+    "mongodb.hosts": "host:port",
+    "mongodb.name": "streaming_prod",
+    "mongodb.password": "${PASSWORD}",
     "mongodb.task.id": "123",
-    "mongodb.user": "asd"
+    "mongodb.user": "mongodb"
+  },
+  "secrets": {},
+  "parallelism": 1,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "archive": "string",
+  "runtimeFlags": "string",
+  "customRuntimeOptions": "string",
+  "batchSourceConfig": {
+    "discoveryTriggererClassName": "string",
+    "discoveryTriggererConfig": {
+      "property1": {},
+      "property2": {}
+    }
+  },
+  "batchBuilder": "string"
 }
 ----

@@ -1,19 +1,41 @@
 [source,json]
 ----
-"configs": {
+{
+  "topicName": "${TOPIC}",
+  "producerConfig": {
+    "maxPendingMessages": 0,
+    "maxPendingMessagesAcrossPartitions": 0,
+    "useThreadLocalProducers": true,
+    "cryptoConfig": {
+      "cryptoKeyReaderClassName": "string",
+      "cryptoKeyReaderConfig": {
+        "property1": {},
+        "property2": {}
+      },
+      "encryptionKeys": [
+        "string"
+      ],
+      "producerCryptoFailureAction": "FAIL",
+      "consumerCryptoFailureAction": "FAIL"
+    },
+    "batchBuilder": "string"
+  },
+  "serdeClassName": "string",
+  "schemaType": "string",
+  "configs": {
     "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
     "database.dbname": "cdc_test",
     "database.history": "org.apache.pulsar.io.debezium.PulsarDatabaseHistory",
     "database.history.name": "cdc_test_history",
     "database.history.pulsar.service.url": "pulsar+ssl://pulsar-azure-westus2.streaming.datastax.com:6651",
-    "database.history.pulsar.token": "sensitive_data_removed",
+    "database.history.pulsar.token": "${PULSAR_TOKEN}",
     "database.history.pulsar.topic": "dbz-stream672-history-topic",
-    "database.hostname": "kalash-server-stream672.database.windows.net",
+    "database.hostname": "${SERVER_NAME}.database.windows.net",
     "database.include.list": "cdc_test",
     "database.names": "cdc_test",
-    "database.password": "sensitive_data_removed",
+    "database.password": "${PASSWORD}",
     "database.port": 1433,
-    "database.server.name": "kalash-server-stream672",
+    "database.server.name": "${SERVER_NAME}",
     "database.ssl": true,
     "database.ssl.mode": "required",
     "database.tcpKeepAlive": true,
@@ -24,15 +46,35 @@
     "include.schema.changes": true,
     "key.converter": "org.apache.kafka.connect.json.JsonConverter",
     "name": "dbz-stream672",
-    "pulsar.auth.token": "sensitive_data_removed",
+    "pulsar.auth.token": "${PULSAR_TOKEN}",
     "pulsar.service.url": "pulsar+ssl://pulsar-azure-westus2.streaming.datastax.com:6651",
     "snapshot.mode": "always",
     "table.include.list": "dbo.accounts",
     "task.class": "io.debezium.connector.sqlserver.SqlServerConnectorTask",
     "task.id": "0",
-    "topic.namespace": "kalash-stream672/default",
-    "topic.prefix": "kalash-server-stream672",
+    "topic.namespace": "${TENANT}/${NAMESPACE}",
+    "topic.prefix": "${SERVER_NAME}",
     "typeClassName": "org.apache.pulsar.common.schema.KeyValue",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter"
   },
+  "secrets": {},
+  "parallelism": 1,
+  "processingGuarantees": "ATLEAST_ONCE",
+  "resources": {
+    "cpu": 0.25,
+    "disk": 1000000000,
+    "ram": 1000000000
+  },
+  "archive": "string",
+  "runtimeFlags": "string",
+  "customRuntimeOptions": "string",
+  "batchSourceConfig": {
+    "discoveryTriggererClassName": "string",
+    "discoveryTriggererConfig": {
+      "property1": {},
+      "property2": {}
+    }
+  },
+  "batchBuilder": "string"
+}
 ----
