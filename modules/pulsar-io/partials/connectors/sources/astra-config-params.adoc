@@ -4,7 +4,7 @@ A {pulsar-short} connectors and functions both use https://pulsar.apache.org/doc
 Therefore, some function configuration parameters are also used to configure connectors.
 
 Additionally, the following table uses the JSON field name for the parameters.
-For the equivalent command line arguments, see the https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference].
+For the equivalent command line arguments, see the https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference] and the specification for `https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sources[pulsar-admin sources]`.
 ====
 
 [cols=3]

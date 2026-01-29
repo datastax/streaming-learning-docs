@@ -2,8 +2,6 @@
 
 ==== {pulsar-short} Admin CLI
 
-include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 # Get information about a connector
@@ -15,13 +13,11 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 ==== {pulsar-short} Admin API
 
-include::partial$connectors/sinks/curl-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 # Get information about a connector
 curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'' \
-  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 .Result
@@ -143,8 +139,6 @@ curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESP
 
 ==== {pulsar-short} Admin CLI
 
-include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 # Check connector status
@@ -157,18 +151,16 @@ include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
 
 ==== {pulsar-short} Admin API
 
-include::partial$connectors/sinks/curl-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 # Get the status of all connector instances
 curl -sS --fail --location ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/status' \
-  --header "Authorization: Bearer $ASTRA_STREAMING_TOKEN"
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Get the status of an individual connector instance
 curl "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/status" \
   -H "accept: application/json" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+  -H "Authorization: $PULSAR_TOKEN"
 ----
 
 Status response for all connector instances:

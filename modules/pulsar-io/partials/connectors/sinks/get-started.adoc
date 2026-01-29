@@ -12,16 +12,12 @@ export SINK_NAME={connectorName}
 
 === {pulsar-short} Admin CLI
 
-include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
 ----
 
 === {pulsar-short} Admin API
-
-include::partial$connectors/sinks/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----

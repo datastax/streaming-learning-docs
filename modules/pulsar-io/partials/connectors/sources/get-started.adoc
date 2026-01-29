@@ -10,16 +10,12 @@ export SOURCE_NAME={connectorName}
 
 === {pulsar-short} Admin CLI
 
-include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
-
 [source,shell,subs="attributes+"]
 ----
 include::example$connectors/sources/{connectorType}/pulsar-admin-create.sh[]
 ----
 
 === {pulsar-short} Admin API
-
-include::partial$connectors/sources/curl-tab-prereq.adoc[]
 
 [source,shell,subs="attributes+"]
 ----

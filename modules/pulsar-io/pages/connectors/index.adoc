@@ -3,9 +3,6 @@
 
 {product} offers fully-managed versions of https://pulsar.apache.org/docs/en/io-overview/[{pulsar-reg} connectors].
 
-You can use the {astra-ui}, the `pulsar-admin` CLI, or the {pulsar-short} Admin API to create, monitor, and manage sink and source connectors.
-For configuration details, see the connector's documentation.
-
 [IMPORTANT]
 ====
 {product} doesn't support custom sink or source connectors.
@@ -135,88 +132,52 @@ To get access to experimental connectors, contact {support-url}[{company} Suppor
 * XTDB
 * Zeebe
 
-== List sink connectors
-//Combine w/ CLI ref and API ref pages; replace below w/ links.
+== Create and manage connectors
+
+You can use the {astra-ui}, the `xref:developing:produce-consume-pulsar-client.adoc[pulsar-admin]` CLI, or the xref:apis:api-operations.adoc[{pulsar-short} Admin API] to create, monitor, and manage sink and source connectors.
+
+For configuration details, see the documentation for your preferred <<sink-connectors,sink connectors>> and <<source-connectors,source connectors>>.
+
+//Combine below sections w/ "use the Pulsar CLI" page (separate pulsar-client and pulsar-admin) and Admin API ref pages; then replace below w/ links to specific sections
+
+=== Get sink connectors
+
 To list available sink connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
 
-=== {pulsar-short} Admin CLI
-
-include::partial$connectors/sinks/pulsar-admin-tab-prereq.adoc[]
-
+.{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sinks available-sinks
 ----
 
-=== {pulsar-short} Admin API
-
-You need a {pulsar-short} token for REST API authentication.
-This is different from your {astra-db} application tokens.
-
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
-
-. Click your tenant's name, and then click the *Settings* tab.
-
-. Click *Create Token*.
-
-. Copy the token, store it securely, and then click *Close*.
-
-. Click the *Connect* tab, and then copy the *Web Service URL*.
-
-. Create environment variables for your tenant's token and web service URL:
-+
+.{pulsar-short} Admin API
 [source,shell,subs="attributes+"]
 ----
-export WEB_SERVICE_URL=<replace-me>
-export ASTRA_STREAMING_TOKEN=<replace-me>
+curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $PULSAR_TOKEN"
 ----
 
-. Use these values to form curl commands to the REST API:
-+
-[source,shell,subs="attributes+"]
-----
-curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $ASTRA_STREAMING_TOKEN"
-----
+=== Get source connectors
 
-== Listing Source Connectors
-//Combine w/ CLI ref and API ref pages; replace below w/ links.
 To list available source connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
 
-=== {pulsar-short} Admin CLI
-
-include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
-
+.{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
 ----
 ./bin/pulsar-admin sources available-sources
 ----
 
-=== {pulsar-short} Admin API
-
-You need a {pulsar-short} token for REST API authentication.
-This is different from your {astra-db} application tokens.
-
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
-
-. Click your tenant's name, and then click the *Settings* tab.
-
-. Click *Create Token*.
-
-. Copy the token, store it securely, and then click *Close*.
-
-. Click the *Connect* tab, and then copy the *Web Service URL*.
-
-. Create environment variables for your tenant's token and web service URL:
-+
+.{pulsar-short} Admin API
 [source,shell,subs="attributes+"]
 ----
-export WEB_SERVICE_URL=<replace-me>
-export ASTRA_STREAMING_TOKEN=<replace-me>
+curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $PULSAR_TOKEN"
 ----
 
-. Use the token to authenticate requests:
-+
-[source,shell,subs="attributes+"]
-----
-curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $ASTRA_STREAMING_TOKEN"
-----
+=== Manage sink connectors
+
+=== Manage source connectors
+
+=== Monitor sink connectors
+
+=== Monitor source connectors
+
+== Connector metrics

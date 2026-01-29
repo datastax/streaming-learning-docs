@@ -1,5 +1,5 @@
 curl -X PUT "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME?opt=poweruser" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN" \
+  -H "Authorization: $PULSAR_TOKEN" \
   -F 'sinkConfig="{
     \"archive\":\"builtin:\/\/cassandra-enhanced\",
     \"tenant\":\"'$TENANT'\",

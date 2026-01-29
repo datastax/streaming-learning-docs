@@ -2,8 +2,6 @@
 
 ==== {pulsar-short} Admin CLI
 
-include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
-
 [source,shell]
 ----
 # Get information about connector
@@ -15,35 +13,12 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 ==== {pulsar-short} Admin API
 
-You need a {pulsar-short} token for REST API authentication.
-This is different from your {astra-db} application tokens.
-
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
-
-. Click your tenant's name, and then click the *Settings* tab.
-
-. Click *Create Token*.
-
-. Copy the token, store it securely, and then click *Close*.
-
-. Click the *Connect* tab, and then copy the *Web Service URL*.
-
-. Create environment variables for your tenant's token and web service URL:
-+
-[source,shell,subs="attributes+"]
-----
-export WEB_SERVICE_URL=<replace-me>
-export ASTRA_STREAMING_TOKEN=<replace-me>
-----
-
-. Use these values to form curl commands to the REST API, for example:
-+
 [source,shell,subs="attributes+"]
 ----
 # Get a connector's information
 curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
   -H "accept: application/json" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+  -H "Authorization: $PULSAR_TOKEN"
 ----
 
 ==== Sample Config Data
@@ -53,8 +28,6 @@ include::example$connectors/sources/{connectorType}/sample-data.adoc[]
 === Health
 
 ==== {pulsar-short} Admin CLI
-
-include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 [source,shell]
 ----
@@ -68,40 +41,17 @@ include::partial$connectors/sources/pulsar-admin-tab-prereq.adoc[]
 
 ==== {pulsar-short} Admin API
 
-You need a {pulsar-short} token for REST API authentication.
-This is different from your {astra-db} application tokens.
-
-. In the {astra-ui-link} header, click icon:grip[name="Applications"], and then select *Streaming*.
-
-. Click your tenant's name, and then click the *Settings* tab.
-
-. Click *Create Token*.
-
-. Copy the token, store it securely, and then click *Close*.
-
-. Click the *Connect* tab, and then copy the *Web Service URL*.
-
-. Create environment variables for your tenant's token and web service URL:
-+
-[source,shell,subs="attributes+"]
-----
-export WEB_SERVICE_URL=<replace-me>
-export ASTRA_STREAMING_TOKEN=<replace-me>
-----
-
-. Use these values to form curl commands to the REST API, for example:
-+
 [source,shell,subs="attributes+"]
 ----
 # Get the status of all connector instances
 curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
   -H "accept: application/json" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+  -H "Authorization: $PULSAR_TOKEN"
 
 # Get the status of an individual connector instance
 curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCEID/status" \
   -H "accept: application/json" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN"
+  -H "Authorization: $PULSAR_TOKEN"
 ----
 
 Status response for all connector instances:

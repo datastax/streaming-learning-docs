@@ -6,7 +6,7 @@ CREATE TABLE ks1.table1 (name text, PRIMARY KEY (name));
 # create topic pulsar-topic-ks1-table1
 
 curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME?opt=poweruser" \
-  -H "Authorization: $ASTRA_STREAMING_TOKEN" \
+  -H "Authorization: $PULSAR_TOKEN" \
   -F 'sinkConfig="{
     \"archive\":\"builtin:\/\/cassandra-enhanced\",
     \"tenant\":\"'$TENANT'\",
