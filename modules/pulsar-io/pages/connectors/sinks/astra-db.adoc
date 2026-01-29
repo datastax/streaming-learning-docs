@@ -15,17 +15,11 @@ A {pulsar-short} token is required for all configuration methods.
 
 This reference assumes you are connecting to a {cass-short} table using the {pulsar-short} Admin API or CLI.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

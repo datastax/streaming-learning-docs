@@ -1,125 +1,36 @@
-=== Start
+== Start or stop the connector
 
-==== {pulsar-short} Admin CLI
+See the following:
 
-[source,shell,subs="attributes+"]
-----
-# Start all instances of a connector
-./bin/pulsar-admin sinks start \
-  --namespace "$NAMESPACE" \
-  --name "$SINK_NAME" \
-  --tenant "$TENANT"
+* xref:pulsar-io:connectors/index.adoc#start-a-sink-connector[Start a sink connector]
+* xref:pulsar-io:connectors/index.adoc#stop-a-sink-connector[Stop a sink connector]
+* xref:pulsar-io:connectors/index.adoc#restart-a-sink-connector[Restart a sink connector]
 
-# optionally add --instance-id to only start an individual instance
-----
+== Check connector status
 
-==== {pulsar-short} Admin API
+See xref:pulsar-io:connectors/index.adoc#get-sink-connector-status[Get sink connector status].
 
-[source,shell,subs="attributes+"]
-----
-# Start all instances of a connector
-curl -sS --fail --location --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/start' \
-  --header "Authorization: Bearer $PULSAR_TOKEN"
+== Edit the connector
 
-# Start an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/start" \
--H "Authorization: $PULSAR_TOKEN"
-----
+To update a connector, pass the new configuration definition to the connector.
+You can include the entire configuration or only the parameters that you want to change.
 
-=== Stop
+With the {pulsar-short} Admin CLI, you can use `sink-config`, or use specific command line arguments to modify individual configuration parameters.
 
-==== {pulsar-short} Admin CLI
+To get the current configuration, see xref:pulsar-io:connectors/index.adoc#get-sink-connector-configuration-data[Get sink connector configuration data].
 
-[source,shell,subs="attributes+"]
-----
-# Stop all instances of a connector
-./bin/pulsar-admin sinks stop \
-  --namespace "$NAMESPACE" \
-  --name "$SINK_NAME" \
-  --tenant "$TENANT"
-
-# optionally add --instance-id to only stop an individual instance
-----
-
-==== {pulsar-short} Admin API
-
-[source,shell,subs="attributes+"]
-----
-# Stop all instances of a connector
-curl -sS --fail --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/stop' \
-  --header "Authorization: Bearer $PULSAR_TOKEN"
-
-# Stop an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/stop" \
-  --H "Authorization: $PULSAR_TOKEN"
-----
-
-=== Restart
-
-==== {pulsar-short} Admin CLI
-
-[source,shell,subs="attributes+"]
-----
-# Restart all instances of a connector
-./bin/pulsar-admin sinks restart \
-  --namespace "$NAMESPACE" \
-  --name "$SINK_NAME" \
-  --tenant "$TENANT"
-
-# optionally add --instance-id to only restart an individual instance
-----
-
-==== {pulsar-short} Admin API
-
-[source,shell,subs="attributes+"]
-----
-# Restart all instances of a connector
-curl -sS --fail --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'/restart' \
-  --header "Authorization: Bearer $PULSAR_TOKEN"
-
-# Restart an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCEID/restart" \
--H "Authorization: $PULSAR_TOKEN"
-----
-
-=== Update
-
-==== {pulsar-short} Admin CLI
-
-[source,shell,subs="attributes+"]
+.{pulsar-short} Admin CLI
+[source,shell,subs="+attributes"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-update.sh[]
 ----
 
-==== {pulsar-short} Admin API
-
-[source,shell,subs="attributes+"]
+.{pulsar-short} Admin API
+[source,shell,subs="+attributes"]
 ----
 include::example$connectors/sinks/{connectorType}/curl-update.sh[]
 ----
 
-==== Sample Config Data
+== Delete the connector
 
-include::example$connectors/sinks/{connectorType}/sample-data.adoc[]
-
-=== Delete
-
-==== {pulsar-short} Admin CLI
-
-[source,shell]
-----
-# Delete all instances of a connector
-./bin/pulsar-admin sinks delete \
-  --namespace "$NAMESPACE" \
-  --name "$SINK_NAME" \
-  --tenant "$TENANT"
-----
-
-==== {pulsar-short} Admin API
-
-[source,shell,subs="attributes+"]
-----
-# Delete all instances of a connector
-curl -sS --fail --location --request DELETE ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'' \
-  --header "Authorization: Bearer $PULSAR_TOKEN"
-----
+See xref:pulsar-io:connectors/index.adoc#delete-a-sink-connector[Delete a sink connector].

@@ -10,17 +10,11 @@ BigQuery {pulsar-short} Sink is not integrated with BigQuery directly. It uses {
 
 You will notice references to Kafka throughout the configuration. *You don't need a running instance of Kafka to use this connector.* The Kafka references are used as "translation points" by this connector.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

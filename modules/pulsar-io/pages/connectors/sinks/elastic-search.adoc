@@ -14,17 +14,11 @@ To understand compatibility between OpenSearch and Elasticsearch, see https://op
 
 For information about the OSS {pulsar} Elasticsearch sink connector, see the https://pulsar.apache.org/docs/io-elasticsearch-sink/[{pulsar-short} documentation].
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Astra Streaming parameters for the Elasticsearch sink
 

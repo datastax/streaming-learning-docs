@@ -10,17 +10,11 @@ Read more about {pulsar-reg}'s JDBC sink connector https://pulsar.apache.org/doc
 
 {product} currently supports {pulsar} {pulsar-version}, which uses the https://mariadb.com/kb/en/about-mariadb-connector-j/[MariaDB Connector/J 2.7.5 library] to interact with MariaDB.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

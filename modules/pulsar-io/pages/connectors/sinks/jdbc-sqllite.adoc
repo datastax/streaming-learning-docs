@@ -14,17 +14,11 @@ SQLite JDBC is a library for accessing and creating SQLite database files in Jav
 
 {product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

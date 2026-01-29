@@ -136,13 +136,11 @@ To get access to experimental connectors, contact {support-url}[{company} Suppor
 
 You can use the {astra-ui}, the `xref:developing:produce-consume-pulsar-client.adoc[pulsar-admin]` CLI, or the xref:apis:api-operations.adoc[{pulsar-short} Admin API] to create, monitor, and manage sink and source connectors.
 
-For configuration details, see the documentation for your preferred <<sink-connectors,sink connectors>> and <<source-connectors,source connectors>>.
-
 //Combine below sections w/ "use the Pulsar CLI" page (separate pulsar-client and pulsar-admin) and Admin API ref pages; then replace below w/ links to specific sections
 
-=== Get sink connectors
+=== Get available sink connectors
 
-To list available sink connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
+Get a list of sink connectors that are available in your {product} {pulsar-short} tenant:
 
 .{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
@@ -156,9 +154,9 @@ To list available sink connectors in your {product} {pulsar-short} tenant, you c
 curl "$WEB_SERVICE_URL/admin/v3/sinks/builtinsinks" -H "Authorization: $PULSAR_TOKEN"
 ----
 
-=== Get source connectors
+=== Get available source connectors
 
-To list available source connectors in your {product} {pulsar-short} tenant, you can use the {pulsar-short} Admin CLI or API.
+Get a list of source connectors that are available in your {product} {pulsar-short} tenant:
 
 .{pulsar-short} Admin CLI
 [source,shell,subs="attributes+"]
@@ -172,12 +170,456 @@ To list available source connectors in your {product} {pulsar-short} tenant, you
 curl "$WEB_SERVICE_URL/admin/v3/sources/builtinsources" -H "Authorization: $PULSAR_TOKEN"
 ----
 
-=== Manage sink connectors
+=== Create or update a connector
 
-=== Manage source connectors
+Although you use the same base commands to create and update all {product} {pulsar-short} connectors, each connector has different configuration options.
+For example commands and configuration details, see the documentation for your preferred <<sink-connectors,sink connectors>> and <<source-connectors,source connectors>>.
 
-=== Monitor sink connectors
+[#get-sink-connector-configuration-data]
+=== Get sink connector configuration data
 
-=== Monitor source connectors
+Get the configuration for an existing sink connector:
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Get information about a connector
+./bin/pulsar-admin sinks get \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Get information about a connector
+curl -sS --fail --location "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+----
+
+[#get-source-connector-configuration-data]
+=== Get source connector configuration data
+
+Get the configuration for an existing source connector:
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Get information about connector
+./bin/pulsar-admin sources get \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Get a connector's information
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  -H "accept: application/json" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+[#start-a-sink-connector]
+=== Start a sink connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Start all instances of a connector
+./bin/pulsar-admin sinks start \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only start an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell,subs="attributes+"]
+----
+# Start all instances of a connector
+curl -sS --fail --location --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/start" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+
+# Start an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/start" \
+-H "Authorization: $PULSAR_TOKEN"
+----
+
+[#start-a-source-connector]
+=== Start a source connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Start all instances of a connector
+./bin/pulsar-admin sources start \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only start an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Start all instances of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/start" \
+  -H "Authorization: $PULSAR_TOKEN"
+
+# Start an individual instance of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/start" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+[#stop-a-sink-connector]
+=== Stop a sink connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Stop all instances of a connector
+./bin/pulsar-admin sinks stop \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only stop an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Stop all instances of a connector
+curl -sS --fail --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/stop" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+
+# Stop an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/stop" \
+  --H "Authorization: $PULSAR_TOKEN"
+----
+
+[#stop-a-source-connector]
+=== Stop a source connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Stop all instances of a connector
+./bin/pulsar-admin sources stop \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only stop an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Stop all instances of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/stop" \
+  -H "Authorization: $PULSAR_TOKEN"
+
+# Stop an individual instance of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/stop" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+[#restart-a-sink-connector]
+=== Restart a sink connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Restart all instances of a connector
+./bin/pulsar-admin sinks restart \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only restart an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Restart all instances of a connector
+curl -sS --fail --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/restart" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+
+# Restart an individual instance of a connector
+curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/restart" \
+-H "Authorization: $PULSAR_TOKEN"
+----
+
+[#restart-a-source-connector]
+=== Restart a source connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Restart all instances of a connector
+./bin/pulsar-admin sources restart \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+
+# optionally add --instance-id to only restart an individual instance
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Restart all instances of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/restart" \
+  -H "Authorization: $PULSAR_TOKEN"
+
+# Restart an individual instance of a connector
+curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/restart" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+[#get-sink-connector-status]
+=== Get sink connector status
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Check connector status
+./bin/pulsar-admin sinks status \
+  --instance-id "$SINK_INSTANCE_ID" \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Get the status of all connector instances
+curl -sS --fail --location "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/status" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+
+# Get the status of an individual connector instance
+curl "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+Status response for all connector instances:
+
+.Result
+[source,json]
+----
+{
+ "numInstances": 0,
+ "numRunning": 0,
+ "instances": [
+   {
+     "instanceId": 0,
+     "status": {
+       "running": true,
+       "error": "string",
+       "numRestarts": 0,
+       "numReadFromPulsar": 0,
+       "numSystemExceptions": 0,
+       "latestSystemExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numSinkExceptions": 0,
+       "latestSinkExceptions": [
+         {
+           "exceptionString": "string",
+           "timestampMs": 0
+         }
+       ],
+       "numWrittenToSink": 0,
+       "lastReceivedTime": 0,
+       "workerId": "string"
+     }
+   }
+ ]
+}
+----
+
+Status response for individual connector instance:
+
+.Result
+[source,json]
+----
+{
+ "running": true,
+ "error": "string",
+ "numRestarts": 0,
+ "numReadFromPulsar": 0,
+ "numSystemExceptions": 0,
+ "latestSystemExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numSinkExceptions": 0,
+ "latestSinkExceptions": [
+   {
+     "exceptionString": "string",
+     "timestampMs": 0
+   }
+ ],
+ "numWrittenToSink": 0,
+ "lastReceivedTime": 0,
+ "workerId": "string"
+}
+----
+
+[#get-source-connector-status]
+=== Get source connector status
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Check connector status
+./bin/pulsar-admin sources status \
+  --instance-id "$SOURCE_INSTANCE_ID" \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Get the status of all connector instances
+curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $PULSAR_TOKEN"
+
+# Get the status of an individual connector instance
+curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/status" \
+  -H "accept: application/json" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
+
+Status response for all connector instances:
+
+.Result
+[source,json]
+----
+{
+  "numInstances": 0,
+  "numRunning": 0,
+  "instances": [
+    {
+      "instanceId": 0,
+      "status": {
+        "running": true,
+        "error": "string",
+        "numRestarts": 0,
+        "numReceivedFromSource": 0,
+        "numSystemExceptions": 0,
+        "latestSystemExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numSourceExceptions": 0,
+        "latestSourceExceptions": [
+          {
+            "exceptionString": "string",
+            "timestampMs": 0
+          }
+        ],
+        "numWritten": 0,
+        "lastReceivedTime": 0,
+        "workerId": "string"
+      }
+    }
+  ]
+}
+----
+
+Status response for individual connector instance:
+
+.Result
+[source,json]
+----
+{
+  "running": true,
+  "error": "string",
+  "numRestarts": 0,
+  "numReceivedFromSource": 0,
+  "numSystemExceptions": 0,
+  "latestSystemExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numSourceExceptions": 0,
+  "latestSourceExceptions": [
+    {
+      "exceptionString": "string",
+      "timestampMs": 0
+    }
+  ],
+  "numWritten": 0,
+  "lastReceivedTime": 0,
+  "workerId": "string"
+}
+----
+
+[#delete-a-sink-connector]
+=== Delete a sink connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Delete all instances of a connector
+./bin/pulsar-admin sinks delete \
+  --namespace "$NAMESPACE" \
+  --name "$SINK_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Delete all instances of a connector
+curl -sS --fail --location --request DELETE "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
+----
+
+[#delete-a-source-connector]
+=== Delete a source connector
+
+.{pulsar-short} Admin CLI
+[source,shell]
+----
+# Delete all instances of a connector
+./bin/pulsar-admin sources delete \
+  --namespace "$NAMESPACE" \
+  --name "$SOURCE_NAME" \
+  --tenant "$TENANT"
+----
+
+.{pulsar-short} Admin API
+[source,shell]
+----
+# Delete all instances of a connector
+curl -sS --fail -X DELETE "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  -H "Authorization: $PULSAR_TOKEN"
+----
 
 == Connector metrics
+
+{product} exposes Prometheus-formatted metrics for every connector.
+For more information, see xref:operations:astream-scrape-metrics.adoc[].

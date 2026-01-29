@@ -14,17 +14,11 @@ The connector will produce data indefinitely while it is running.
 
 For a reference of the full "Person" class, https://github.com/apache/pulsar/blob/branch-{pulsar-version}/pulsar-io/data-generator/src/main/java/org/apache/pulsar/io/datagenerator/Person.java[view the source].
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 

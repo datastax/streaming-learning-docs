@@ -9,17 +9,11 @@ The connector can be configured to emit change events for specific subsets of sc
 
 {product} currently supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 

@@ -9,17 +9,11 @@ The PostgreSQL connector produces a change event for every row-level insert, upd
 {product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries. For a list of supported PostgreSQL versions, please refer to the
 https://debezium.io/releases/{debezium-version}/[Debezium documentation].
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 

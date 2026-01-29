@@ -1,4 +1,4 @@
-curl -sS --fail --request POST ''$WEB_SERVICE_URL'/admin/v3/sinks/'$TENANT'/'$NAMESPACE'/'$SINK_NAME'?opt=poweruser' \
+curl -sS --fail --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME?opt=poweruser" \
   --header "Authorization: Bearer $PULSAR_TOKEN" \
   --form 'sinkConfig="{
     \"archive\":\"builtin:\/\/bigquery\",

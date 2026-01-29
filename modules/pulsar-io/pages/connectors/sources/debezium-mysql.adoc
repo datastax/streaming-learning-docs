@@ -8,17 +8,11 @@ The Debezium MySQL connector reads the binlog, produces change events for row-le
 
 {product} currently supports {pulsar} {pulsar-version}, which uses Debezium {debezium-version} libraries.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 

@@ -11,17 +11,11 @@ The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (T
 
 {product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

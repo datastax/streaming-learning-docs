@@ -12,9 +12,11 @@ The cloud storage system supported are:
 * https://azure.microsoft.com/en-us/products/storage/blobs[Azure Blob Store (Azure)]
 * https://aws.amazon.com/s3/[Amazon Web Services S3 (AWS)]
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
+
+include::partial$connectors/sinks/manage.adoc[]
 
 == Data format types
 
@@ -132,14 +134,6 @@ If a message fails to send to a Cloud Storage sink, the connector can send the m
 
 To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config.
 Then, using either `pulsar-admin` or curl, set `--max-redeliver-count` and `--dead-letter-topic`.
-
-== Managing the Connector
-
-include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Astra Streaming parameters for the Cloud Storage sink
 

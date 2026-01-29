@@ -8,17 +8,11 @@ The Kinesis source connector pulls data from Amazon Kinesis and persists data in
 
 For more, see https://pulsar.apache.org/docs/io-kinesis-source[{pulsar}'s Kinesis source documentation].
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 

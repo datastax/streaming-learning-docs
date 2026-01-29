@@ -8,17 +8,11 @@ A Snowflake database is where an organization's uploaded structured and semi-str
 
 Snowflake automatically manages all parts of the data storage process, including organization, structure, metadata, file size, compression, and statistics.
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sinks/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sinks/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sinks/monitoring.adoc[]
 
 == Connector Reference
 

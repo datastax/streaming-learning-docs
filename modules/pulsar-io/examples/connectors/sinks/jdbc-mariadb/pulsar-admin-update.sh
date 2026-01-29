@@ -4,4 +4,4 @@
   --inputs "persistent://$TENANT/$NAMESPACE/$INPUT_TOPIC" \
   --tenant "$TENANT" \
   --parallelism 2 \
-  --sink-config ''
+  --sink-config ""

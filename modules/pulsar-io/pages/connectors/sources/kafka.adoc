@@ -8,17 +8,11 @@ The Kafka source connector pulls data from a Kafka topic and persists the data i
 
 For more, see https://pulsar.apache.org/docs/io-kafka-source[{pulsar}'s Kafka source documentation].
 
-== Get Started
+== Create the connector
 
 include::partial$connectors/sources/get-started.adoc[]
 
-== Managing the Connector
-
 include::partial$connectors/sources/manage.adoc[]
-
-== Monitoring the Connector
-
-include::partial$connectors/sources/monitoring.adoc[]
 
 == Connector Reference
 
