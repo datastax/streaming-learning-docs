@@ -1,5 +1,3 @@
-# NOTE: This is not a working example.
-
 ./bin/pulsar-admin sinks update \
   --sink-type cassandra-enhanced \
   --name "$SINK_NAME" \

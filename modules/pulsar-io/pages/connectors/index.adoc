@@ -194,7 +194,7 @@ Get the configuration for an existing sink connector:
 [source,shell]
 ----
 # Get information about a connector
-curl -sS --fail --location "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
@@ -217,9 +217,8 @@ Get the configuration for an existing source connector:
 [source,shell]
 ----
 # Get a connector's information
-curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
-  -H "accept: application/json" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#start-a-sink-connector]
@@ -241,12 +240,12 @@ curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NA
 [source,shell,subs="attributes+"]
 ----
 # Start all instances of a connector
-curl -sS --fail --location --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/start" \
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/start" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Start an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/start" \
--H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/start" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#start-a-source-connector]
@@ -268,12 +267,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
 [source,shell]
 ----
 # Start all instances of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/start" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/start" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Start an individual instance of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/start" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/start" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#stop-a-sink-connector]
@@ -295,12 +294,12 @@ curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$S
 [source,shell]
 ----
 # Stop all instances of a connector
-curl -sS --fail --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/stop" \
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/stop" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Stop an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/stop" \
-  --H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/stop" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#stop-a-source-connector]
@@ -322,12 +321,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
 [source,shell]
 ----
 # Stop all instances of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/stop" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/stop" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Stop an individual instance of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/stop" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/stop" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#restart-a-sink-connector]
@@ -349,12 +348,12 @@ curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$S
 [source,shell]
 ----
 # Restart all instances of a connector
-curl -sS --fail --request POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/restart" \
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/restart" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Restart an individual instance of a connector
-curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/restart" \
--H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/restart" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#restart-a-source-connector]
@@ -376,12 +375,12 @@ curl -X POST "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SIN
 [source,shell]
 ----
 # Restart all instances of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/restart" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/restart" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Restart an individual instance of a connector
-curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/restart" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/restart" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 [#get-sink-connector-status]
@@ -402,13 +401,12 @@ curl -sS --fail -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$S
 [source,shell]
 ----
 # Get the status of all connector instances
-curl -sS --fail --location "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/status" \
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/status" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Get the status of an individual connector instance
-curl "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/status" \
-  -H "accept: application/json" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME/$SINK_INSTANCE_ID/status" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 Status response for all connector instances:
@@ -498,14 +496,12 @@ Status response for individual connector instance:
 [source,shell]
 ----
 # Get the status of all connector instances
-curl -sS --fail "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
-  -H "accept: application/json" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/status" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 
 # Get the status of an individual connector instance
-curl "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/status" \
-  -H "accept: application/json" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X GET "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME/$SOURCE_INSTANCE_ID/status" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 Status response for all connector instances:
@@ -594,7 +590,7 @@ Status response for individual connector instance:
 [source,shell]
 ----
 # Delete all instances of a connector
-curl -sS --fail --location --request DELETE "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
+curl -sS --fail -L -X DELETE "$WEB_SERVICE_URL/admin/v3/sinks/$TENANT/$NAMESPACE/$SINK_NAME" \
   --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
@@ -615,8 +611,8 @@ curl -sS --fail --location --request DELETE "$WEB_SERVICE_URL/admin/v3/sinks/$TE
 [source,shell]
 ----
 # Delete all instances of a connector
-curl -sS --fail -X DELETE "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
-  -H "Authorization: $PULSAR_TOKEN"
+curl -sS --fail -L -X DELETE "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE/$SOURCE_NAME" \
+  --header "Authorization: Bearer $PULSAR_TOKEN"
 ----
 
 == Connector metrics

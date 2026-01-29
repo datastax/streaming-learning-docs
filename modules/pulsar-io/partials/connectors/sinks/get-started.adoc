@@ -17,15 +17,15 @@ For example: `{connectorType}-sink-prod-us-east-1`.
 . Create the connector:
 +
 .{pulsar-short} Admin CLI
-[source,shell,subs="attributes+"]
+[source,shell,subs="+attributes"]
 ----
 include::example$connectors/sinks/{connectorType}/pulsar-admin-create.sh[]
 ----
 +
 .{pulsar-short} Admin API
-[source,shell,subs="attributes+"]
+[source,shell,subs="+attributes"]
 ----
-include::example$connectors/sinks/{connectorType}/curl-create.sh[]
+include::partial$connectors/sinks/curl-create.sh[]
 ----
 
 === Example configuration data structure
