@@ -1,9 +1,7 @@
 = Debezium MySQL
 :connectorType: debezium-mysql
 
-The Debezium MySQL source connector reads data from Debezium MySQL systems and produces data to {pulsar-short} topics.
-
-The Debezium MySQL connector reads the binlog, produces change events for row-level INSERT, UPDATE, and DELETE operations, and emits these change events as messages in an {pulsar-reg} topic.
+The Debezium MySQL source connector reads the `binlog` from MySQL database servers, produces change events for row-level `INSERT`, `UPDATE`, and `DELETE` operations, and then sends change event messages to {pulsar-short} topics.
 
 [#compatibility]
 == Compatibility
@@ -33,13 +31,6 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Debezium MySQL source connector parameters (`configs`)
 
-These parameters are set in the `configs` section of the connector configuration.
+Set these parameters in the `configs` section of the connector configuration.
 
-The {product} MySQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html#mysql-connector-properties[Debezium MySQL connector properties] for a complete list.
-
-== What's next?
-
-For a detailed explanation of Debezium's MySQL connector, see the https://debezium.io/documentation/reference/{debezium-version}/connectors/mysql.html[Debezium documentation].
-
-For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-mysql[{pulsar} MySQL documentation].
-
+Supported parameters include all properties provided in the https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-connector-properties[Debezium connector for MySQL] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector] with the exception of properties that aren't available in the  <<compatibility,supported Debezium and {pulsar-short} libraries>>.

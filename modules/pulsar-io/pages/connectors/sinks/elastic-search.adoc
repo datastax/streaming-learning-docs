@@ -38,4 +38,4 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 The {product} Elasticsearch sink connector supports all https://pulsar.apache.org/docs/io-elasticsearch-sink/#property[Elasticsearch sink connector properties] provided in the OSS {pulsar} Elasticsearch sink connector.
 
-Set these properties in the `configs` section of the connector configuration.
+Set these parameters in the `configs` section of the connector configuration.

@@ -34,7 +34,7 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 [#configs]
 === JDBC PostgreSQL sink connector parameters (`configs`)
 
-These parameters are set in the `configs` section of the connector configuration.
+Set these parameters in the `configs` section of the connector configuration.
 
 The {product} JDBC PostgreSQL sink connector supports all configuration properties provided by {pulsar-short}. Refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
 properties] for a complete list.

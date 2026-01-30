@@ -30,7 +30,7 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Kafka source connector parameters (`configs`)
 
-These values are provided in the `configs` area:
+Set these parameters in the `configs` section of the connector configuration.
 
 [cols="1,1,1,1,3",options=header]
 |===

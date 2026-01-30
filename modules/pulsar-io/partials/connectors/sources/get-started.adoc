@@ -35,6 +35,6 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE
   --header "Authorization: Bearer $PULSAR_TOKEN" \
   --form "sourceConfig=@mynetty-source-config.json;type=application/json"
 ----
-
++
 .Example configuration data structure
 include::example$connectors/sources/{connectorType}/sample-data.adoc[]

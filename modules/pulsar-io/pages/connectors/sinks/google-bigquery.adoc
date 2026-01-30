@@ -109,7 +109,7 @@ Any other value causes an error.
 [#kafkaConnectorConfigProperties]
 === Google BigQuery Configuration (`kafkaConnectorConfigProperties`)
 
-These values are provided in the `kafkaConnectorConfigProperties` area.
+Set these parameters in the `kafkaConnectorConfigProperties` section of the connector configuration.
 
 For the source code for these configurations, see `https://github.com/confluentinc/kafka-connect-bigquery/blob/master/kcbq-connector/src/main/java/com/wepay/kafka/connect/bigquery/config/BigQuerySinkConfig.java[BigQuerySinkConfig.java]`.
 

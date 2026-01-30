@@ -45,7 +45,7 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 [#configs]
 === {company} {pulsar} sink connector parameters (`configs`)
 
-These parameters are set in the `configs` section.
+Set these parameters in the `configs` section of the connector configuration.
 
 The relevant and required parameters depend on whether you are connecting to {astra-db} or a self-managed {cass-short} cluster, as well as the cluster configuration.
 

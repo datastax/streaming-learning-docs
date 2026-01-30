@@ -1,9 +1,7 @@
 = Debezium PostgreSQL
 :connectorType: debezium-postgres
 
-The Debezium PostgreSQL source connector reads data from Debezium PostgreSQL systems and produces data to {pulsar-short} topics.
-
-The PostgreSQL connector produces a change event for every row-level insert, update, and delete operation that it captures, and sends change event records for each table in a separate {pulsar-reg} topic.
+The Debezium PostgreSQL source connector produces a change event for every row-level `INSERT`, `UPDATE`, and `DELETE` operation that it captures, and then it sends change event records for each table to separate {pulsar-short} topics.
 
 [#compatibility]
 == Compatibility
@@ -33,12 +31,6 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 [#configs]
 === Debezium PostgreSQL source connector parameters (`configs`)
 
-These parameters are set in the `configs` section of the connector configuration.
+Set these parameters in the `configs` section of the connector configuration.
 
-The {product} PostgreSQL source connector supports all configuration properties provided in Debezium's connector. Please refer to https://debezium.io/documentation/reference/{debezium-version}/connectors/postgresql.html#postgresql-connector-properties[Debezium PostgreSQL connector properties] for a complete list.
-
-== What's next?
-
-For more on Debezium's PostgreSQL connector, see the https://debezium.io/documentation/reference/{debezium-version}/connectors/postgresql.html[Debezium documentation].
-
-For more examples, see the https://pulsar.apache.org/docs/io-debezium-source/#example-of-postgresql[{pulsar} PostgreSQL documentation].
+Supported parameters include all properties provided in the https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-connector-properties[Debezium connector for PostgreSQL] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector] with the exception of properties that aren't available in the <<compatibility,supported Debezium and {pulsar-short} libraries>>.

@@ -32,7 +32,7 @@ include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 [#configs]
 === JDBC Clickhouse sink connector parameters (`configs`)
 
-These parameters are set in the `configs` section of the connector configuration.
+Set these parameters in the `configs` section of the connector configuration.
 
 The {product} JDBC Clickhouse sink connector supports all configuration properties provided by {pulsar}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
 properties]
