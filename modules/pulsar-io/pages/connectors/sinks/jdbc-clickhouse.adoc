@@ -7,7 +7,7 @@ The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and write
 ClickHouse is an open-source column-oriented database management system for online analytical processing that allows users to generate analytical reports using SQL queries in
 real-time.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[Clickhouse 0.3.2 library] to interact with Clickhouse.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[Clickhouse 0.3.2 library] to interact with Clickhouse.
 
 == Create the connector
 

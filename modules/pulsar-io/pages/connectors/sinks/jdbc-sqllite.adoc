@@ -11,7 +11,7 @@ SQLite is a C-language library that implements a small, fast, self-contained, hi
 
 SQLite JDBC is a library for accessing and creating SQLite database files in Java.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
 
 == Create the connector
 

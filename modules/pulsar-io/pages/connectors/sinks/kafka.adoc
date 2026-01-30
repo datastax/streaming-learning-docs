@@ -5,7 +5,7 @@ The Kafka sink connector reads messages from {pulsar} topics and writes them to 
 
 Apache Kafka(R) is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/apache/kafka/tree/2.7[Kafka 2.7.2 library] to interact with
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/apache/kafka/tree/2.7[Kafka 2.7.2 library] to interact with
 Kafka.
 
 == Create the connector

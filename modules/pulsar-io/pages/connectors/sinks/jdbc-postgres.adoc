@@ -9,7 +9,7 @@ It has earned a strong reputation for reliability, feature robustness, and perfo
 
 The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol. This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
 
 == Create the connector
 

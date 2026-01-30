@@ -1,11 +1,7 @@
 = Kafka
 :connectorType: kafka
 
-The Kafka source connector reads data from Kafka systems and produces data to {pulsar-short} topics.
-
-The Kafka source connector pulls data from a Kafka topic and persists the data into an {pulsar-reg} topic.
-
-For more, see https://pulsar.apache.org/docs/io-kafka-source[{pulsar}'s Kafka source documentation].
+The Kafka source connector pulls data from Kafka topics and persists it to {pulsar-short} topics.
 
 == Create the connector
 
@@ -32,32 +28,5 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 Set these parameters in the `configs` section of the connector configuration.
 
-[cols="1,1,1,1,3",options=header]
-|===
-|*Name* 
-|*Type*
-|*Required*
-|*Default*
-|*Description* 
-
-|  `bootstrapServers` |String| true | " " (empty string) | A comma-separated list of host and port pairs for establishing the initial connection to the Kafka cluster. 
-| `groupId` |String| true | " " (empty string) | A unique string that identifies the group of consumer processes to which this consumer belongs. 
-| `fetchMinBytes` | long|false | 1 | The minimum byte expected for each fetch response. 
-| `autoCommitEnabled` | boolean |false | true | If set to true, the consumer's offset is periodically committed in the background. +
-This committed offset is used when the process fails as the position from which a new consumer begins. 
-| `autoCommitIntervalMs` | long|false | 5000 | The frequency in milliseconds that the consumer offsets are auto-committed to Kafka if `autoCommitEnabled` is set to true. 
-| `heartbeatIntervalMs` | long| false | 3000 | The interval between heartbeats to the consumer when using Kafka's group management facilities. +
-**Note: `heartbeatIntervalMs` must be smaller than `sessionTimeoutMs`**.
-| `sessionTimeoutMs` | long|false | 30000 | The timeout used to detect consumer failures when using Kafka's group management facility. 
-| `topic` | String|true | " " (empty string)| The Kafka topic that sends messages to {pulsar-short}. 
-|  `consumerConfigProperties` | Map| false | " " (empty string) | The consumer configuration properties to be passed to consumers. +
-**Note: other properties specified in the connector configuration file take precedence over this configuration**. 
-| `keyDeserializationClass` | String|false | org.apache.kafka.common.serialization.StringDeserializer | The deserializer class for Kafka consumers to deserialize keys. +
-The deserializer is set by a specific implementation of https://github.com/apache/pulsar/blob/master/pulsar-io/kafka/src/main/java/org/apache/pulsar/io/kafka/KafkaAbstractSource.java[`KafkaAbstractSource`].
-| `valueDeserializationClass` | String|false | org.apache.kafka.common.serialization.ByteArrayDeserializer | The deserializer class for Kafka consumers to deserialize values.
-| `autoOffsetReset` | String | false | earliest | The default offset reset policy. 
-
-|===
-
-The {product} Kafka source connector supports all configuration properties provided by {pulsar}.
-For a complete list, see the https://pulsar.apache.org/docs/io-kafka-source#property[Kafka source connector properties].
+Generally, all properties provided in the https://pulsar.apache.org/docs/io-kafka-source[OSS {pulsar} Kafka source connector] are supported.
+Exceptions include parameters that aren't relevant to {product}, and parameters that aren't present in {pulsar} {pulsar-version}.

@@ -9,7 +9,7 @@ Amazon Kinesis cost-effectively processes streaming data at any scale, and offer
 
 The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers to easily consume and process data from Amazon Kinesis.
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
 
 == Create the connector
 

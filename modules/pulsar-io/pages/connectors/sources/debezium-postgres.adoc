@@ -33,4 +33,5 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 Set these parameters in the `configs` section of the connector configuration.
 
-Supported parameters include all properties provided in the https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-connector-properties[Debezium connector for PostgreSQL] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector] with the exception of properties that aren't available in the <<compatibility,supported Debezium and {pulsar-short} libraries>>.
+Generally, all properties provided in the https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-connector-properties[Debezium connector for PostgreSQL] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector] are supported.
+Exceptions include parameters that aren't relevant to {product}, and parameters that are only present in <<compatibility,incompatible versions>>.

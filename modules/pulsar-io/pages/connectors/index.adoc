@@ -16,7 +16,7 @@
 [#sink-connectors]
 == Sink connectors
 
-Sink connectors export messages from {pulsar-short} topics to external systems.
+Sink connectors export messages from {pulsar-short} topics to external services.
 
 Supported sink connectors::
 The following sink connectors are included in {product}:
@@ -77,14 +77,14 @@ To get access to experimental connectors, contact {support-url}[{company} Suppor
 [#source-connectors]
 == Source connectors
 
-Source connectors ingest messages from external systems into {pulsar-short} topics.
+Source connectors ingest messages from external services into {pulsar-short} topics.
 
 Supported source connectors::
 The following source connectors are included in {product}:
 +
 * xref:connectors/sources/kafka.adoc[Apache Kafka source]
 * xref:connectors/sources/kinesis.adoc[AWS Kinesis source]
-* xref:connectors/sources/data-generator.adoc[Data generator source]
+* xref:connectors/sources/data-generator.adoc[Data Generator source]
 * xref:connectors/sources/debezium-mongodb.adoc[Debezium MongoDB source]
 * xref:connectors/sources/debezium-mysql.adoc[Debezium MySQL source]
 * xref:connectors/sources/debezium-oracle.adoc[Debezium Oracle source]

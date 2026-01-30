@@ -7,7 +7,7 @@ MariaDB is the open source relational database loved by developers all over the 
 
 Read more about {pulsar-reg}'s JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
 
-{product} currently supports {pulsar} {pulsar-version}, which uses the https://mariadb.com/kb/en/about-mariadb-connector-j/[MariaDB Connector/J 2.7.5 library] to interact with MariaDB.
+{product} supports {pulsar} {pulsar-version}, which uses the https://mariadb.com/kb/en/about-mariadb-connector-j/[MariaDB Connector/J 2.7.5 library] to interact with MariaDB.
 
 == Create the connector
 

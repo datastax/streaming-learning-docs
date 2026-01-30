@@ -6,7 +6,7 @@ You can use Elasticsearch to store, search, and manage data for logs, metrics, s
 
 The Elasticsearch sink connector reads messages from {pulsar} topics and writes them to https://www.elastic.co/elasticsearch/[Elasticsearch].
 
-{product} currently supports {pulsar-reg} {pulsar-version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library] to interact with
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library] to interact with
 Elasticsearch.
 
 To understand compatibility between OpenSearch and Elasticsearch, see https://opensearch.org/faq/#q1.8[question 1.8 in the OpenSearch FAQ].
