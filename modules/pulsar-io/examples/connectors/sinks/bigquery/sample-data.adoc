@@ -16,7 +16,7 @@
       "keySource": "JSON",
       "queueSize": "-1",
       "sanitizeTopics": false,
-      "topics": "bq-test01",
+      "topics": "${TOPIC}",
       "keyfile": {
         "type": "service_account",
         "project_id": "XXXXXX",
@@ -32,9 +32,9 @@
     },
     "kafkaConnectorSinkClass": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
     "lingerTimeMs": "1000",
-    "offsetStorageTopic": "bq-sink-offsets01",
+    "offsetStorageTopic": "${TOPIC}-offsets",
     "sanitizeTopicName": true,
-    "topic": "bq-test01"
+    "topic": "${TOPIC}"
   },
   "customRuntimeOptions": "internal_data",
   "deadLetterTopic": null,

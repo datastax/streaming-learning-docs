@@ -55,7 +55,7 @@
   "deadLetterTopic": "string",
   "configs": {
     "bootstrapServers": "localhost:6667",
-    "topic": "test",
+    "topic": "${KAFKA_DESTINATION_TOPIC}",
     "acks": "1",
     "batchSize": "16384",
     "maxRequestSize": "1048576",
@@ -64,7 +64,7 @@
       "security.protocol": "SASL_SSL",
       "sasl.mechanism": "PLAIN",
       "sasl.kerberos.service.name": "kafka",
-      "sasl.username": "cccccc",
+      "sasl.username": "kafkauser",
       "sasl.password": "${PASSWORD}",
       "acks": "all"
     }

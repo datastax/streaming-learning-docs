@@ -74,7 +74,7 @@ Only use this property for {astra-db} connections.
 For self-managed clusters, use `ssl`.
 
 |`compression`
-|yes
+|Yes
 |`None`
 |The compression algorithm to use.
 

@@ -54,13 +54,13 @@
   "maxMessageRetries": 0,
   "deadLetterTopic": "string",
   "configs": {
-    "topic": "snowflake-demo",
-    "offsetStorageTopic": "snowflake-sink-offsets-demo",
+    "topic": "${TOPIC}",
+    "offsetStorageTopic": "${TOPIC}-offsets-demo",
     "batchSize": 100,
     "lingerTimeMs": 600000,
     "kafkaConnectorConfigProperties":{
       "name": "snowflakedemo",
-      "topics": "snowflake-demo",
+      "topics": "${TOPIC}",
       "buffer.count.records": 100,
       "buffer.flush.time": 600,
       "buffer.size.bytes": 102400,

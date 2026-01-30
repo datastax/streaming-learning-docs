@@ -1,13 +1,21 @@
 = Google BigQuery
 :connectorType: bigquery
 
-The Google BigQuery sink connector reads messages from {pulsar-short} topics and writes them to BigQuery systems.
+The {pulsar-short} BigQuery sink connector reads messages from {pulsar-short} topics and writes them to https://cloud.google.com/bigquery[Google BigQuery].
 
-https://cloud.google.com/bigquery[Google BigQuery] is a fully managed enterprise data warehouse that helps you manage and analyze your data with built-in features like machine learning, geospatial analysis, and business intelligence. BigQuery's serverless architecture lets you use SQL queries to answer your organization's biggest questions with zero infrastructure management. BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
+This connector doesn't integrate directly with BigQuery.
+Instead, it uses the https://pulsar.apache.org/docs/adaptors-kafka/[{pulsar} Kafka Connect adaptor] to transform {pulsar-short} message data into a Kafka-compatible format, and then it uses the https://docs.confluent.io/kafka-connectors/bigquery/current/kafka_connect_bigquery_config.html[Kafka Connect BigQuery Sink] for the BigQuery integration.
 
-BigQuery {pulsar-short} Sink is not integrated with BigQuery directly. It uses {pulsar-short}'s built-in https://pulsar.apache.org/docs/adaptors-kafka/[Kafka Connect adapter] library to transform message data into a Kafka compatible format. Then the https://docs.confluent.io/kafka-connectors/bigquery/current/kafka_connect_bigquery_config.html[Kafka Connect BigQuery Sink] is used as the actual BigQuery integration. The adaptor provides a flexible and extensible framework for data transformation and processing. It supports various data formats, including JSON, Avro, and Protobuf, and enables users to apply transformations on the data as it is being streamed from {pulsar-short}.
+The adaptor provides a flexible and extensible framework for data transformation and processing, including support for common data formats and in-transit data transformations.
 
-You will notice references to Kafka throughout the configuration. *You don't need a running instance of Kafka to use this connector.* The Kafka references are used as "translation points" by this connector.
+[TIP]
+====
+This connector _doesn't_ require a Kafka instance.
+
+Although the connector uses Kafka-related libraries, it operates entirely within {pulsar-short}.
+
+Classes, properties, and configuration options that reference Kafka are translation points that map {pulsar-short} concepts to Kafka concepts in the connector.
+====
 
 == Create the connector
 
@@ -30,113 +38,146 @@ include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 include::pulsar-io:partial$connectors/sinks/pulsar-config-params.adoc[]
 
 [#configs]
-=== Kafka Connect Adapter properties (`configs`)
+=== Kafka Connect adaptor properties (`configs`)
 
-The properties in the `configs` section define how data is streamed from {pulsar-short} to BigQuery.
+The properties in the `configs` section define how data is streamed from {pulsar-short} to BigQuery using the Kafka Connect adaptor.
 
-For source code for these configuration, see `https://github.com/apache/pulsar/blob/master/pulsar-io/kafka-connect-adaptor/src/main/java/org/apache/pulsar/io/kafka/connect/PulsarKafkaConnectSinkConfig.java[PulsarKafkaConnectSinkConfig.java]`.
+For more information, see `https://github.com/apache/pulsar/blob/master/pulsar-io/kafka-connect-adaptor/src/main/java/org/apache/pulsar/io/kafka/connect/PulsarKafkaConnectSinkConfig.java[PulsarKafkaConnectSinkConfig.java]`.
 
-[%header,cols="1,1,1,4"]
+[cols=4]
 |===
-| Name | Required | Default | Description
+|Name |Required |Default |Description
 
-| kafkaConnectorSinkClass
-| yes
-|
-a| A Kafka-connector sink class to use. Unless you've developed your own, use the value `com.wepay.kafka.connect.bigquery.BigQuerySinkConnector`.
+|`kafkaConnectorSinkClass`
+|Yes
+|`""`
+|The Kafka connector sink class to use.
+For {product}, use `com.wepay.kafka.connect.bigquery.BigQuerySinkConnector` unless you have your own custom class.
 
-| offsetStorageTopic
-| yes
-|
-| Pulsar topic to store offsets at. This is an additional topic to your topic with the actual data going to BigQuery.
+|`offsetStorageTopic`
+|Yes
+|`""`
+|The {pulsar-short} topic where you want to store https://pulsar.apache.org/docs/4.1.x/tutorials-topic/[message offsets (UUIDs)].
+This is an additional topic that helps track the connector's progress as messages are written to BigQuery.
 
-| sanitizeTopicName
-| yes
-|
-a| Some connectors cannot handle Pulsar topic names like `persistent://a/b/topic`, and they won't sanitize the topic name themselves.
-If enabled, all non alpha-digital characters in topic name are replaced with underscores.
-In some cases this may result in topic name collisions (`topic_a` and `topic.a` both resolve to `topic_a`).
+|`sanitizeTopicName`
+|Yes
+|`false`
+a|Whether to replace unprocessable characters in topic names with underscores.
+For example, a {pulsar-short} topic named `persistent://a/b/topic` becomes `+persistent___a_b_topic+` when this property is `true`.
 
-This value _must_ be `true`.
-Any other value causes an error.
+[IMPORTANT]
+====
+For BigQuery, you _must_ set `sanitizeTopicName` to `true` to prevent errors from invalid characters in topic names.
+BigQuery table names can include only letters, numbers, and underscores, and the Kafka Connect BigQuery Sink doesn't sanitize topic names before creating BigQuery tables.
 
-| batchSize
-| no
-| 16384
-| Size of messages in bytes the sink will attempt to batch messages together before flush.
+Be aware that this can cause naming collisions if two topics resolve to the same sanitized name.
+For example, `topic_a` and `topic.a` are both sanitized as `topic_a`.
+====
 
-| collapsePartitionedTopics
-| no
-| false
-| Supply Kafka record with topic name without -partition- suffix for partitioned topics.
+|`batchSize`
+|No
+|`16384`
+|The maximum size, in bytes, of messages that the sink attempts to batch before flush.
 
-| kafkaConnectorConfigProperties
-| no
-| `{}`
-| A key/value map of config properties to pass to the Kafka connector. See <<kafkaConnectorConfigProperties>>.
+|`collapsePartitionedTopics`
+|No
+|`false`
+a|Whether to omit the `-partition-` suffix from the names of partitioned topics.
+This determines how many BigQuery tables are created from partitioned topics:
 
-| lingerTimeMs
-| no
-| 2147483647L
-| Time interval in milliseconds the sink will attempt to batch messages together before flush.
+* **`true`**: Collapse partitioned topics by removing the `-partition-` suffix from topic names.
+All partitions of a partitioned topic are written to the same BigQuery table.
+* **`false` (default)**: Maintain partitions by preserving the `-partition-` suffix when creating BigQuery tables from topic names.
+Each partition of a partitioned topic is written to its own BigQuery table.
 
-| maxBatchBitsForOffset
-| no
-| 12
-| Number of bits (0 to 20) to use for index of message in the batch for translation into an offset. 0 to disable this behavior (Messages from the same batch will have the same offset which can affect some connectors.)
+|`kafkaConnectorConfigProperties`
+|No
+|`{}` (empty map)
+|A key-value map of <<kafkaConnectorConfigProperties,Kafka Connect BigQuery Sink properties>>.
 
-| topic
-| yes
-|
-| The Kafka topic name that is passed to the Kafka sink.
+|`lingerTimeMs`
+|No
+|`2147483647L`
+|The duration, in milliseconds, that the sink attempts to batch messages before flush.
 
-| unwrapKeyValueIfAvailable
-| no
-| true
-| In case of Record<KeyValue<>> data use key from KeyValue<> instead of one from Record.
+|`maxBatchBitsForOffset`
+|No
+|`12`
+|Number of bits to use for the index of messages in a batch, which is translated into offsets (UUIDs).
+Must be an integer between `0` and `20`.
 
-| useIndexAsOffset
-| no
-| true
-| Allows use of message index instead of message sequenceId as offset, if available. Requires AppendIndexMetadataInterceptor and exposingBrokerEntryMetadataToClientEnabled=true on brokers.
+If `0`, the behavior is disabled, and all messages in a batch have the same offset.
 
-| useOptionalPrimitives
-| no
-| false
-| Pulsar schema does not contain information whether the Schema is optional, Kafka's does. This provides a way to force all primitive schemas to be optional for Kafka.
+|`topic`
+|Yes
+|`""`
+|The name of the {pulsar-short} topic that you want the sink to read from.
+Only provide the topic name, not the whole address.
+
+|`unwrapKeyValueIfAvailable`
+|No
+|`true`
+a|Whether to unwrap `KeyValue<>` data if the message `value` is of type `Record<KeyValue<>>`:
+
+* **`true` (default)**: For `Record<KeyValue<>>` data, extract `KeyValue<>` from the `Record` when writing to BigQuery.
+* **`false`**: For `Record<KeyValue<>>` data, use the `Record` key (the entire `KeyValue<>` object) for writing to BigQuery.
+
+|`useIndexAsOffset`
+|No
+|`true`
+a|Whether to use the message index as the offset, instead of the message `sequenceId`:
+
+* **`true` (default)**: Use the message index as the offset, if an index is available.
+Otherwise, use the message `sequenceId`.
+* **`false`**: Use the message `sequenceId` as the offset.
+
+Requires `AppendIndexMetadataInterceptor` and `exposingBrokerEntryMetadataToClientEnabled=true` on https://pulsar.apache.org/docs/next/developing-binary-protocol/#broker-entry-metadata[brokers].
+
+|`useOptionalPrimitives`
+|No
+|`false`
+|{pulsar-short} schemas don't contain information about optional schemas, but Kafka schemas can include this information.
+Set this property to `true` to force all primitive schemas to be optional when converting the {pulsar-short} schema to a Kafka schema.
 |===
 
 [#kafkaConnectorConfigProperties]
-=== Google BigQuery Configuration (`kafkaConnectorConfigProperties`)
+=== Kafka Connect BigQuery Sink properties (`kafkaConnectorConfigProperties`)
 
-Set these properties in the `kafkaConnectorConfigProperties` section of the connector configuration.
+`kafkaConnectorConfigProperties` is a subproperty of `configs` that contains a map of configuration properties for the Kafka Connect BigQuery Sink.
 
-For the source code for these configurations, see `https://github.com/confluentinc/kafka-connect-bigquery/blob/master/kcbq-connector/src/main/java/com/wepay/kafka/connect/bigquery/config/BigQuerySinkConfig.java[BigQuerySinkConfig.java]`.
+After the Kafka Connect adaptor transforms the {pulsar-short} data into a Kafka-compatible format, the Kafka Connect BigQuery Sink writes the data to BigQuery according to the properties in `kafkaConnectorConfigProperties`.
 
-[%header,cols="1,1,1,4"]
+Some of the Kafka Connect BigQuery Sink properties are the same as the Kafka Connect adaptor properties.
+In some cases, the duplicate properties require matching values.
+In other cases, you can use duplicate properties to perform additional data transformation or schema modification before writing to BigQuery.
+
+For more information, see `https://github.com/confluentinc/kafka-connect-bigquery/blob/master/kcbq-connector/src/main/java/com/wepay/kafka/connect/bigquery/config/BigQuerySinkConfig.java[BigQuerySinkConfig.java]`.
+
+[cols=4]
 |===
-| Name | Required | Default | Description
+|Name |Required |Default |Description
 
-| allBQFieldsNullable
-| no
-| false
-| If true, no fields in any produced BigQuery schemas are `REQUIRED`.
+|allBQFieldsNullable
+|No
+|`false`
+|If true, no fields in any produced BigQuery schemas are `REQUIRED`.
 All non-nullable Avro fields are translated as `NULLABLE` (or `REPEATED`, if arrays).
 
-| allowBigQueryRequiredFieldRelaxation
-| no
-| false
-| If true, fields in BigQuery Schema can be changed from `REQUIRED` to `NULLABLE`.
+|allowBigQueryRequiredFieldRelaxation
+|No
+|`false`
+|If true, fields in BigQuery Schema can be changed from `REQUIRED` to `NULLABLE`.
 
-| allowNewBigQueryFields
-| no
-| false
-| If true, new fields can be added to BigQuery tables during subsequent schema updates.
+|allowNewBigQueryFields
+|No
+|`false`
+|If true, new fields can be added to BigQuery tables during subsequent schema updates.
 
-| allowSchemaUnionization
-| no
-| false
-a| If true, the existing table schema (if one is present) is unionized with new record schemas during schema updates.
+|allowSchemaUnionization
+|No
+|`false`
+a|If true, the existing table schema (if one is present) is unionized with new record schemas during schema updates.
 
 If false, the record of the last schema in a batch is used for any necessary table creation and schema update attempts.
 
@@ -156,181 +197,181 @@ This presents two issues:
 * Since BigQuery doesn't allow columns to be dropped from tables, they add unnecessary noise to the schema.
 * Since BigQuery doesn't allow column types to be modified, they can break downstream pipelines where well-behaved records have schemas whose field names overlap with the accidentally-added columns in the table, but the types don't match.
 
-| autoCreateBucket
-| no
-| true
-| Whether to automatically create the given bucket if it does not exist.
+|autoCreateBucket
+|No
+|`true`
+|Whether to automatically create the given bucket if it does not exist.
 
-| autoCreateTables
-| no
-| false
-| Automatically create BigQuery tables if they don't already exist
+|autoCreateTables
+|No
+|`false`
+|Automatically create BigQuery tables if they don't already exist
 
-| avroDataCacheSize
-| no
-| 100
-| The size of the cache to use when converting schemas from Avro to Kafka Connect.
+|avroDataCacheSize
+|No
+|100
+|The size of the cache to use when converting schemas from Avro to Kafka Connect.
 
-| batchLoadIntervalSec
-| no
-| 120
-| The interval, in seconds, in which to attempt to run GCS to BigQuery load jobs. Only relevant if `enableBatchLoad` is configured.
+|batchLoadIntervalSec
+|No
+|120
+|The interval, in seconds, in which to attempt to run GCS to BigQuery load jobs. Only relevant if `enableBatchLoad` is configured.
 
-| bigQueryMessageTimePartitioning
-| no
-| false
-| Whether or not to use the message time when inserting records. Default uses the connector processing time.
+|bigQueryMessageTimePartitioning
+|No
+|`false`
+|Whether or not to use the message time when inserting records. Default uses the connector processing time.
 
-| bigQueryPartitionDecorator
-| no
-| true
-| Whether or not to append partition decorator to BigQuery table name when inserting records. Default is true. Setting this to true appends partition decorator to table name (e.g. table$yyyyMMdd depending on the configuration set for bigQueryPartitionDecorator). Setting this to false bypasses the logic to append the partition decorator and uses raw table name for inserts.
+|bigQueryPartitionDecorator
+|No
+|`true`
+|Whether or not to append partition decorator to BigQuery table name when inserting records. Default is true. Setting this to true appends partition decorator to table name (e.g. table$yyyyMMdd depending on the configuration set for bigQueryPartitionDecorator). Setting this to false bypasses the logic to append the partition decorator and uses raw table name for inserts.
 
-| bigQueryRetry
-| no
-| 0
-| The number of retry attempts made for a BigQuery request that fails with a backend error or a quota exceeded error.
+|bigQueryRetry
+|No
+|0
+|The number of retry attempts made for a BigQuery request that fails with a backend error or a quota exceeded error.
 
-| bigQueryRetryWait
-| no
-| 1000
-| The minimum amount of time, in milliseconds, to wait between retry attempts for a BigQuery backend or quota exceeded error.
+|bigQueryRetryWait
+|No
+|1000
+|The minimum amount of time, in milliseconds, to wait between retry attempts for a BigQuery backend or quota exceeded error.
 
-| clusteringPartitionFieldNames
-| no
+|clusteringPartitionFieldNames
+|No
 |
-| Comma-separated list of fields where data is clustered in BigQuery.
+|Comma-separated list of fields where data is clustered in BigQuery.
 
-| convertDoubleSpecialValues
-| no
-| false
-| Designates whether +Infinity is converted to Double.MAX_VALUE and whether -Infinity and NaN are converted to Double.MIN_VALUE to ensure successful delivery to BigQuery.
+|convertDoubleSpecialValues
+|No
+|`false`
+|Designates whether +Infinity is converted to Double.MAX_VALUE and whether -Infinity and NaN are converted to Double.MIN_VALUE to ensure successful delivery to BigQuery.
 
-| defaultDataset
-| yes
+|defaultDataset
+|Yes
 |
-| The default dataset to be used
+|The default dataset to be used
 
-| deleteEnabled
-| no
-| false
-| Enable delete functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. A delete will be performed when a record with a null value (that is–a tombstone record) is read. This feature will not work with SMTs that change the name of the topic.
+|deleteEnabled
+|No
+|`false`
+|Enable delete functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. A delete will be performed when a record with a null value (that is–a tombstone record) is read. This feature will not work with SMTs that change the name of the topic.
 
-| enableBatchLoad
-| no
-| empty
-| Beta Feature. Use with caution. The sublist of topics to be batch loaded through GCS.
+|enableBatchLoad
+|No
+|empty
+|Beta Feature. Use with caution. The sublist of topics to be batch loaded through GCS.
 
-| gcsBucketName
-| no
-| empty
-| The name of the bucket where Google Cloud Storage (GCS) blobs are located. These blobs are used to batch-load to BigQuery. This is applicable only if `enableBatchLoad` is configured.
+|gcsBucketName
+|No
+|empty
+|The name of the bucket where Google Cloud Storage (GCS) blobs are located. These blobs are used to batch-load to BigQuery. This is applicable only if `enableBatchLoad` is configured.
 
-| includeKafkaData
-| no
-| false
-| Whether to include an extra block containing the Kafka source topic, offset, and partition information in the resulting BigQuery rows.
+|includeKafkaData
+|No
+|`false`
+|Whether to include an extra block containing the Kafka source topic, offset, and partition information in the resulting BigQuery rows.
 
-| intermediateTableSuffix
-| no
-| `.tmp`
-| A suffix that will be appended to the names of destination tables to create the names for the corresponding intermediate tables. Multiple intermediate tables may be created for a single destination table, but their names will always start with the name of the destination table, followed by this suffix, and possibly followed by an additional suffix.
+|intermediateTableSuffix
+|No
+|`.tmp`
+|A suffix that will be appended to the names of destination tables to create the names for the corresponding intermediate tables. Multiple intermediate tables may be created for a single destination table, but their names will always start with the name of the destination table, followed by this suffix, and possibly followed by an additional suffix.
 
-| kafkaDataFieldName
-| no
+|kafkaDataFieldName
+|No
 |
-| The Kafka data field name. The default value is null, which means the Kafka Data field will not be included.
+|The Kafka data field name. The default value is null, which means the Kafka Data field will not be included.
 
-| kafkaKeyFieldName
-| no
+|kafkaKeyFieldName
+|No
 |
-| The Kafka key field name. The default value is null, which means the Kafka Key field will not be included.
+|The Kafka key field name. The default value is null, which means the Kafka Key field will not be included.
 
-| keyfile
-| yes
+|keyfile
+|Yes
 |
-a| Can be either a string representation of the Google credentials file or the path to the Google credentials file itself.
+|Can be either a string representation of the Google credentials file or the path to the Google credentials file itself.
 
 When configuring this connector in the {astra-ui}, the string representation must be used.
 With the `pulsar-admin` CLI or {pulsar-short} Admin API, you can use either the representation or a file.
 
-| keySource
-| yes
-| `FILE`
-a| Determines whether the keyfile configuration is the path to the credentials JSON file or to the JSON itself. Available values are `FILE` and `JSON`.
+|keySource
+|Yes
+|`FILE`
+|Determines whether the keyfile configuration is the path to the credentials JSON file or to the JSON itself. Available values are `FILE` and `JSON`.
 
 When configuring this connector in the {astra-ui}, JSON is the only option.
 With the `pulsar-admin` CLI or {pulsar-short} Admin API, you can use either the representation or a file.
 
-| name
-| yes
+|name
+|Yes
 |
-| The name of the connector. Use the same value as Pulsar sink name.
+|The name of the connector. Use the same value as {pulsar-short} sink name.
 
-| mergeIntervalMs
-| no
-| `60_000L`
-| How often (in milliseconds) to perform a merge flush, if upsert/delete is enabled. Can be set to -1 to disable periodic flushing.
+|mergeIntervalMs
+|No
+|`60_000L`
+|How often (in milliseconds) to perform a merge flush, if upsert/delete is enabled. Can be set to -1 to disable periodic flushing.
 
-| mergeRecordsThreshold
-| no
-| `-1`
-| How many records to write to an intermediate table before performing a merge flush, if upsert/delete is enabled. If set to `-1`, then record count-based flushing is disabled.
+|mergeRecordsThreshold
+|No
+|`-1`
+|How many records to write to an intermediate table before performing a merge flush, if upsert/delete is enabled. If set to `-1`, then record count-based flushing is disabled.
 
-| project
-| yes
+|project
+|Yes
 |
-| The BigQuery project to write to
+|The BigQuery project to write to
 
-| queueSize
-| no
-| `-1`
-| The maximum size (or `-1` for no maximum size) of the worker queue for BigQuery write requests before all topics are paused. This is a soft limit; the size of the queue can go over this before topics are paused. All topics resume once a flush is triggered or the size of the queue drops under half of the maximum size.
+|queueSize
+|No
+|`-1`
+|The maximum size (or `-1` for no maximum size) of the worker queue for BigQuery write requests before all topics are paused. This is a soft limit; the size of the queue can go over this before topics are paused. All topics resume once a flush is triggered or the size of the queue drops under half of the maximum size.
 
-| sanitizeTopics
-| yes
-| false
-a| Designates whether to automatically sanitize topic names before using them as table names. If not enabled, topic names are used as table names.
+|sanitizeTopics
+|Yes
+|`false`
+|Designates whether to automatically sanitize topic names before using them as table names. If not enabled, topic names are used as table names.
 
 The only accepted value is `false`. Providing any other value will result in an error.
 
-| schemaRetriever
-| no
-| `com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever`
-| A class that can be used for automatically creating tables and/or updating schemas.
+|schemaRetriever
+|No
+|`com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever`
+|A class that can be used for automatically creating tables and/or updating schemas.
 
-| threadPoolSize
-| no
-| 10
-| The size of the BigQuery write thread pool. This establishes the maximum number of concurrent writes to BigQuery.
+|threadPoolSize
+|No
+|10
+|The size of the BigQuery write thread pool. This establishes the maximum number of concurrent writes to BigQuery.
 
-| timePartitioningType
-| no
-| `DAY`
-| The time partitioning type to use when creating tables. Existing tables will not be altered to use this partitioning type. Valid Values: (case insensitive) [MONTH, YEAR, HOUR, DAY]
+|timePartitioningType
+|No
+|`DAY`
+|The time partitioning type to use when creating tables. Existing tables will not be altered to use this partitioning type. Valid Values: (case insensitive) [MONTH, YEAR, HOUR, DAY]
 
-| timestampPartitionFieldName
-| no
+|timestampPartitionFieldName
+|No
 |
-| The name of the field in the value that contains the timestamp to partition by in BigQuery and enable timestamp partitioning for each table. Leave this configuration blank, to enable ingestion time partitioning for each table.
+|The name of the field in the value that contains the timestamp to partition by in BigQuery and enable timestamp partitioning for each table. Leave this configuration blank, to enable ingestion time partitioning for each table.
 
-| topic2TableMap
-| no
+|topic2TableMap
+|No
 |
-a| Optional map of topics to tables in the format of comma-separated tuples, such as `<topic-1>:<table-1>,<topic-2>:<table-2>,...`
+|Optional map of topics to tables in the format of comma-separated tuples, such as `<topic-1>:<table-1>,<topic-2>:<table-2>,...`
 
 Because `sanitizeTopicName` must be `true`, any alphanumeric character in topic names are replaced with underscores.
 Keep this in mind when creating the mapping to avoid overlapping names.
-For example, if the topic name is provided as `persistent://a/b/c-d`, then the mapping topic name would be `persistent___a_b_c_d`.
+For example, if the topic name is provided as `persistent://a/b/c-d`, then the mapping topic name would be `+persistent___a_b_c_d+`.
 
-| topics
-| yes
+|topics
+|Yes
 |
-| A list of Kafka topics to read from. Use the same name as the Pulsar topic.
+|A list of Kafka topics to read from. Use the same name as the {pulsar-short} topic.
 Only provide the topic name, not the whole address.
 
-| upsertEnabled
-| no
-| false
-| Enable upsert functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. Row-matching will be performed based on the contents of record keys. This feature won't work with SMTs that change the name of the topic.
+|upsertEnabled
+|No
+|`false`
+|Enable upsert functionality on the connector through the use of record keys, intermediate tables, and periodic merge flushes. Row-matching will be performed based on the contents of record keys. This feature won't work with SMTs that change the name of the topic.
 |===
