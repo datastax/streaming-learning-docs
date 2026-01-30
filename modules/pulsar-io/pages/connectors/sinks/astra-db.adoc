@@ -40,7 +40,7 @@ include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
 === {pulsar-short} sink connector properties
 
-include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
+include::pulsar-io:partial$connectors/sinks/pulsar-config-params.adoc[]
 
 [#configs]
 === {company} {pulsar} sink connector properties (`configs`)
@@ -142,46 +142,44 @@ For each topic in `topics`, there must be a corresponding entry in the `topic` s
 [#topic]
 === Topic-to-table mapping properties (`topic`)
 
-The `topic` section of the `<<configs,configs>>` contains xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[topic-to-table mapping properties].
+`topic` is a subproperty of `<<configs,configs>>` that contains xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[topic-to-table mapping properties].
 
-The mapping determines which table receives messages from a {pulsar-short} topic, and how the message `value` fields are written to the table columns.
+This mapping determines which table receives messages from a {pulsar-short} topic, and how the message `value` fields are written to the table columns.
 
-There are many mapping properties and values to support different write options, value translations, and data formats.
+There are many subproperties and values available in `topic` to support different write options, value translations, and data formats.
 
-The following example shows a simplified `configs` object that maps one topic to a table in an {astra-db} database:
+The following example shows a truncated `configs` section that maps one topic to a table in an {astra-db} database:
 
 [source,json]
 ----
-"configs": {
-  "auth": {
-    "username": "token",
-    "password": "${ASTRA_APPLICATION_TOKEN}"
-  },
-  "cloud.secureConnectBundle": "path/to/scb.zip",
-  "topics": "${TOPIC}",
-  // ...
-  // Other configs properties
-  // ...
-  "topic": {
-   "${TOPIC}": {
-      "${KEYSPACE_NAME}": {
-        "${TABLE_NAME}": {
-          "mapping": "column1=value.fieldA,column2=value.fieldC,column3=value.fieldG,column8=value.fieldW"
-          // ...
-          // Other topic properties, such as codec and nullToUnset
-          // ...
+  "configs": {
+    "auth": {
+      "username": "token",
+      "password": "${ASTRA_APPLICATION_TOKEN}"
+    },
+    "cloud.secureConnectBundle": "path/to/scb.zip",
+    "topics": "${TOPIC}",
+    // ...
+    // Other configs subproperties
+    // ...
+    "topic": {
+    "${TOPIC}": {
+        "${KEYSPACE_NAME}": {
+          "${TABLE_NAME}": {
+            "mapping": "column1=value.fieldA,column2=value.fieldC,column3=value.fieldG,column8=value.fieldW"
+            // ...
+            // Other topic subproperties
+            // ...
+          }
         }
       }
     }
   }
-}
 ----
 
 The `mapping` string is a comma-separated list of table column names and message `value` fields.
-
-If your connector subscribes to multiple topics, create an entry for each topic in the `topic` section.
-
-For a more information and examples, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
+You can use other subproperties for other write options and mapping configuration, such as `codec` and `nullToUnset`.
+For a more information, subproperties, and examples, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
 
 == See also
 

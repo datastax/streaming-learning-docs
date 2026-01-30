@@ -1,0 +1,4 @@
+|`runtimeFlags`
+|No
+|A string that encodes flags to pass to the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
+Only applicable to process and Kubernetes runtimes.

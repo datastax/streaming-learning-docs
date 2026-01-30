@@ -1,0 +1,6 @@
+|`configs`
+|Yes
+|A JSON-formatted key-value map containing configuration properties specific to the connector type, including provider-specific authentication and integration settings.
+For available subproperties, see <<configs>>.
+
+Default: `{}` (Empty map, uses defaults if they exist, fails otherwise)

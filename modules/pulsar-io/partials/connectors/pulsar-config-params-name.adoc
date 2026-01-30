@@ -1,0 +1,6 @@
+|`name`
+|Yes
+|The name for the connector.
+It must start with a lowercase letter, and contain only numbers, hyphens (`-`), and lowercase letters.
+{company} recommends a memorable, human-readable name that summarizes the connector's purpose.
+For example: `{connectorType}-prod-us-east-1`.

@@ -26,7 +26,7 @@ include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
 === {pulsar-short} sink connector properties
 
-include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
+include::pulsar-io:partial$connectors/sinks/pulsar-config-params.adoc[]
 
 [#configs]
 === JDBC MariaDB sink connector properties (`configs`)

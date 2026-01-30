@@ -73,7 +73,7 @@ include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 The `name` property must match the connector name you used in the topic names as explained in <<create-the-connector>>.
 ====
 
-include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
+include::pulsar-io:partial$connectors/sources/pulsar-config-params.adoc[]
 
 [#configs]
 === Debezium SQL Server source connector properties (`configs`)

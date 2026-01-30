@@ -34,7 +34,7 @@ include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
 === {pulsar-short} source connector properties
 
-include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
+include::pulsar-io:partial$connectors/sources/pulsar-config-params.adoc[]
 
 [#configs]
 === Debezium MongoDB source connector properties (`configs`)

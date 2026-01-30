@@ -1,19 +1,17 @@
 include::pulsar-io:partial$connectors/function-params-tip.adoc[]
 
-The following table lists the {product} {pulsar-short} sink connector configuration properties by JSON field name.
+The following table lists {product} {pulsar-short} sink connector configuration properties by JSON field name.
 For the equivalent command line arguments and more information about these properties, see the following:
 
 * https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference]
 * https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sinks[`pulsar-admin sinks` specification]
 
+.{pulsar-short} configuration properties for sink connectors
 [cols=3]
 |===
 |Field name |Required |Description
 
-|`archive`
-|Yes
-|The built-in {product} {pulsar-short} connector type.
-Formatted as `builtin://**CONNECTOR**`, such as `builtin://elastic_search`.
+include::pulsar-io:partial$connectors/pulsar-config-params-archive.adoc[]
 
 |`autoAck`
 |Yes
@@ -32,16 +30,9 @@ Default: `false` (automatic acknowledgment disabled)
 
 Default: `false`
 
-|`configs`
-|No
-|A JSON-formatted key-value map containing configuration properties specific to the connector type, such as provider-specific authentication and integration settings.
-For available options, see <<configs>>.
+include::pulsar-io:partial$connectors/pulsar-config-params-configs.adoc[]
 
-Default: `{}` (Empty map, uses defaults)
-
-|`customRuntimeOptions`
-|No
-|A string that encodes options to configure the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
+include::pulsar-io:partial$connectors/pulsar-config-params-customruntimeoptions.adoc[]
 
 |`deadLetterTopic`
 |No
@@ -88,16 +79,9 @@ Default: `[]`
 
 See also `negativeAckRedeliveryDelayMs` and `deadLetterTopic`.
 
-|`name`
-|Yes
-|The name for the connector.
-It must start with a lowercase letter, and contain only numbers, hyphens (`-`), and lowercase letters.
-{company} recommends a memorable, human-readable name that summarizes the connector's purpose.
-For example: `{connectorType}-sink-prod-us-east-1`.
+include::pulsar-io:partial$connectors/pulsar-config-params-name.adoc[]
 
-|`namespace`
-|Yes
-|The namespace in your {pulsar-short} tenant where you want to create the connector.
+include::pulsar-io:partial$connectors/pulsar-config-params-namespace.adoc[]
 
 |`negativeAckRedeliveryDelayMs`
 |No
@@ -105,26 +89,11 @@ For example: `{connectorType}-sink-prod-us-east-1`.
 
 See also `maxMessageRetries` and `deadLetterTopic`.
 
-|`parallelism`
-|Yes
-|The number of https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instances] to run.
+include::pulsar-io:partial$connectors/pulsar-config-params-parallelism.adoc[]
 
-Default: `1`
+include::pulsar-io:partial$connectors/pulsar-config-params-processingguarantees.adoc[]
 
-|`processingGuarantees`
-|Yes
-|The messaging delivery semantic to use when writing to topics: `ATLEAST_ONCE`, `ATMOST_ONCE`, or `EFFECTIVELY_ONCE`.
-
-Respect for the processing guarantee depends on the connector implementation.
-
-For more information, see the {pulsar-short} documentation on https://pulsar.apache.org/docs/3.1.x/functions-concepts/#processing-guarantees-and-subscription-types[Function processing guarantees] and https://pulsar.apache.org/docs/3.1.x/io-overview/#processing-guarantee[Processing guarantees in I/O connectors].
-
-Default: `ATLEAST_ONCE`
-
-|`resources`
-|No
-|A JSON string describing the compute resources to allocate to each https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-instance[{pulsar-short} function instance].
-For example: `{"cpu":0.25,"disk":1000000000,"ram":500000000}`.
+include::pulsar-io:partial$connectors/pulsar-config-params-resources.adoc[]
 
 |`retainKeyOrdering`
 |No
@@ -138,20 +107,9 @@ Default: `true`
 
 Default: `false`
 
-|`runtimeFlags`
-|No
-|A string that encodes flags to pass to the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].
-Only applicable to process and Kubernetes runtimes.
+include::pulsar-io:partial$connectors/pulsar-config-params-runtimeflags.adoc[]
 
-|`secrets`
-|No
-|If security is enabled on your https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-worker[function workers], you can provide a map of secret names (`secretName`) to secrets provider configuration objects.
-The `secretName` is used by the connector to reference the secret.
-The mapped object contains the required properties to fetch the secret from the secrets provider.
-
-To get the types for the values in this mapping, use the `https://pulsar.apache.org/docs/3.1.x/functions-develop-security/[SecretProviderConfigurator.getSecretObjectType()]` method.
-
-This is separate from the {pulsar-short} authentication token and security settings passed elsewhere in the connector configuration.
+include::pulsar-io:partial$connectors/pulsar-config-params-secrets.adoc[]
 
 |`sourceSubscriptionName`
 |No
@@ -163,15 +121,20 @@ This is separate from the {pulsar-short} authentication token and security setti
 
 Default: `Latest`
 
-|`tenant`
-|Yes
-|The {pulsar-short} tenant where you want to create the connector.
+include::pulsar-io:partial$connectors/pulsar-config-params-tenant.adoc[]
 
 |`timeoutMs`
 |No
 |The message timeout in milliseconds
 
 Default: `5000`
+
+|`topicsPattern`
+|No
+|A topic naming pattern to select topics to consume from all topics in a namespace.
+
+To consume an exact list of topics, use `inputs` instead.
+`inputs` and `topicsPattern` are mutually exclusive.
 
 |`topicToSchemaProperties`
 |No
@@ -184,11 +147,4 @@ Default: `5000`
 |`topicToSerdeClassName`
 |No
 |A map of input topics to SerDe class names specified as a JSON object.
-
-|`topicsPattern`
-|No
-|A topic naming pattern to select topics to consume from all topics in a namespace.
-
-To consume an exact list of topics, use `inputs` instead.
-`inputs` and `topicsPattern` are mutually exclusive.
 |===

@@ -1,0 +1,81 @@
+include::pulsar-io:partial$connectors/function-params-tip.adoc[]
+
+The following table lists {product} {pulsar-short} source connector configuration properties by JSON field name.
+For the equivalent command line arguments and more information about these properties, see the following:
+
+* https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference]
+* https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sources[`pulsar-admin sources` specification]
+
+.{pulsar-short} configuration properties for source connectors
+[cols=3]
+|===
+|Field name |Required |Description
+
+include::pulsar-io:partial$connectors/pulsar-config-params-archive.adoc[]
+
+|`batchBuilder`
+|No
+|The batch construction method: `DEFAULT` or `KEY_BASED`.
+
+Default: `DEFAULT`
+
+|`batchSourceConfig`
+|No
+|The batch source configuration key-value as a JSON string.
+
+include::pulsar-io:partial$connectors/pulsar-config-params-configs.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-customruntimeoptions.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-name.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-namespace.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-parallelism.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-processingguarantees.adoc[]
+
+|`producerConfig`
+|No
+a|A JSON string containing a https://pulsar.apache.org/docs/3.1.x/functions-cli/#producerconfig[custom producer configuration].
+By default, most values are `null` or empty.
+For example:
+
+[source,json]
+----
+  "producerConfig": {
+    "maxPendingMessages": null,
+    "maxPendingMessagesAcrossPartitions": null,
+    "useThreadLocalProducers": false,
+    "cryptoConfig": null,
+    "batchBuilder": ""
+  },
+----
+
+include::pulsar-io:partial$connectors/pulsar-config-params-resources.adoc[]
+
+include::pulsar-io:partial$connectors/pulsar-config-params-runtimeflags.adoc[]
+
+|`schemaType`
+|No
+|The schema type used to encode messages emitted from a {pulsar-short} source.
+Accepts either a built-in schema like `avro` or `json`, or a custom `Schema` class name.
+
+include::pulsar-io:partial$connectors/pulsar-config-params-secrets.adoc[]
+
+|`serdeClassName`
+|No
+|The SerDe classname for the source.
+
+include::pulsar-io:partial$connectors/pulsar-config-params-tenant.adoc[]
+
+|`topicName`
+|Yes
+|An existing topic in your {product} tenant where messages are published.
+Must be formatted as a full persistent or non-persistent topic name, such as `persistent://$TENANT/$NAMESPACE/$TOPIC`.
+
+|`typeClassName`
+|Yes
+|The class reference for the connector type.
+Begins with `org.apache.pulsar`, such as `org.apache.pulsar.common.schema.KeyValue` or `org.apache.pulsar.io.debezium.mysql.DebeziumMysqlSource`.
+|===

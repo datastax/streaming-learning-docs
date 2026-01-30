@@ -1,0 +1,4 @@
+|`archive`
+|Yes
+|The type of built-in {product} {pulsar-short} connector that you want to deploy.
+Formatted as `builtin://**CONNECTOR**`, such as `builtin://kafka`.
