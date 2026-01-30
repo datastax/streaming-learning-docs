@@ -1,15 +1,13 @@
 = Cloud Storage
 :connectorType: cloud-storage
 
-The Cloud Storage sink connector reads messages from {pulsar-short} topics and writes them to Cloud Storage systems.
+The Cloud Storage sink connector reads messages from {pulsar-short} topics and writes them to cloud storage using specified format, such as Avro or Parquet.
 
-Each public cloud has different ways of persisting data to their storage systems. Each cloud has their own way of formatting and storing the bytes. The Cloud Storage sink connector is a general interface to a chosen cloud storage, that exports data from a {pulsar-short} topic to the given system following a desired format.
+The following cloud storage providers are supported:
 
-The cloud storage system supported are:
-
-* https://cloud.google.com/storage[Google's Cloud Storage (GCP)]
-* https://azure.microsoft.com/en-us/products/storage/blobs[Azure Blob Store (Azure)]
-* https://aws.amazon.com/s3/[Amazon Web Services S3 (AWS)]
+* https://aws.amazon.com/s3/[AWS S3]
+* https://cloud.google.com/storage[Google's Cloud Storage]
+* https://azure.microsoft.com/en-us/products/storage/blobs[Microsoft Azure Blob Storage]
 
 == Create the connector
 
@@ -23,127 +21,11 @@ include::pulsar-io:partial$connectors/sinks/edit.adoc[]
 
 include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
-== Data format types
-//Not sure where to put
-The Cloud Storage sink connector provides multiple output format options, including JSON (default), Avro, Bytes, or Parquet.
-There are some limitations for certain formats, as explained in the following sections.
-
-=== {pulsar-short} Schema types supported by the writers
-
-[cols=5]
-|===
-|Pulsar Schema |Writer: Avro |Writer: JSON |Writer: Parquet |Writer: Bytes
-
-|Primitive
-a|❌
-a|✅
-
-The JSON writer will try to convert data with a String or Bytes schema to JSON-format data if convertible.
-
-a|❌
-a|✅
-
-|Avro
-a|✅
-a|✅
-a|✅
-a|✅
-
-|Json
-a|✅
-a|✅
-a|✅
-a|✅
-
-|Protobuf
-
-The Protobuf schema is based on the Avro schema.
-It uses Avro as an intermediate format, so it may not provide the best effort conversion.
-
-a|✅
-a|✅
-a|✅
-a|✅
-
-|ProtobufNative
-a|✅
-
-The ProtobufNative record holds the Protobuf descriptor and the message.
-When writing to Avro format, the connector uses `avro-protobuf` to do the conversion.
-
-a|❌
-a|✅
-a|✅
-|===
-
-=== Supported withMetadata configurations for writer formats
-
-[cols=2]
-|===
-|Writer Format |withMetadata
-
-|Avro
-a|✅
-
-|JSON
-a|✅
-
-|Parquet
-a|✅
-
-|Bytes
-a|❌
-|===
-
-==== Parquet with PROTOBUF_NATIVE format
-
-When using Parquet with `PROTOBUF_NATIVE` format, the connector writes the messages with the `DynamicMessage` format.
-When `withMetadata` is true, the connector adds __message_metadata__ to the messages with `PulsarIOCSCProtobufMessageMetadata` format.
-
-For example, if a message `User` has the following schema:
-
-[source,protobuf]
-----
-syntax = "proto3";
-message User {
- string name = 1;
- int32 age = 2;
-}
-----
-
-When `withMetadata` is set to true, the connector writes the message `DynamicMessage` with the following schema:
-
-[source,protobuf]
-----
-syntax = "proto3";
-message PulsarIOCSCProtobufMessageMetadata {
- map<string, string> properties = 1;
- string schema_version = 2;
- string message_id = 3;
-}
-message User {
- string name = 1;
- int32 age = 2;
- PulsarIOCSCProtobufMessageMetadata __message_metadata__ = 3;
-}
-----
-
-==== Skip unsupported messages
-
-By default, when the connector receives a message with a non-supported schema type, the connector will fail the message.
-If you want to skip the non-supported messages, you can set `skipFailedMessages` to true.
-
-== Dead-letter topics
-
-If a message fails to send to a Cloud Storage sink, the connector can send the message to a https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[dead-letter topic] instead, if a dead-letter topic is assigned.
-
-To use a dead-letter topic, set `skipFailedMessages` to `false` in the cloud provider config.
-Then, using either `pulsar-admin` or curl, set `--max-redeliver-count` and `--dead-letter-topic`.
-
 == Connector configuration reference
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
+[#pulsar-sink-connector-properties]
 === {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
@@ -193,7 +75,9 @@ For other providers, see <<configs-aws>> and <<configs-azure>>.
 |formatType
 |no
 |json
-|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+|The <<data-format-types,data format type>>: `JSON`, `Avro`, `Bytes`, or `Parquet`.
+
+Default: `JSON`
 
 |gcsServiceAccountKeyFileContent
 |no
@@ -245,6 +129,12 @@ For other providers, see <<configs-aws>> and <<configs-azure>>.
 |false
 |Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
 
+By default, when the connector receives a message with a non-supported schema type, the connector will fail the message.
+If you want to skip the non-supported messages, you can set `skipFailedMessages` to true.
+
+Alternatively, if a message fails to send to a Cloud Storage sink, the connector can send the message to a dead-letter topic instead, if a dead-letter topic is assigned.
+To use a dead-letter topic, set `skipFailedMessages` to `false` in `configs`, and then set `maxMessageRetries` and `deadLetterTopic` in the <<pulsar-sink-connector-properties>>.
+
 |sliceTopicPartitionPath
 |no
 |false
@@ -274,6 +164,8 @@ For other providers, see <<configs-aws>> and <<configs-azure>>.
 |no
 |false
 |Save message attributes to metadata.
+
+Not supported for formatType=Bytes.
 
 |withTopicPartitionNumber
 |no
@@ -347,7 +239,9 @@ If your connector configuration doesn't specify a region, then you must also ena
 |formatType
 |no
 |json
-|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+|The <<data-format-types,data format type>>: `JSON`, `Avro`, `Bytes`, or `Parquet`.
+
+Default: `JSON`
 
 |jsonAllowNaN
 |no
@@ -399,6 +293,12 @@ If your connector configuration doesn't specify a region, then you must also ena
 |false
 |Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
 
+By default, when the connector receives a message with a non-supported schema type, the connector will fail the message.
+If you want to skip the non-supported messages, you can set `skipFailedMessages` to true.
+
+Alternatively, if a message fails to send to a Cloud Storage sink, the connector can send the message to a dead-letter topic instead, if a dead-letter topic is assigned.
+To use a dead-letter topic, set `skipFailedMessages` to `false` in `configs`, and then set `maxMessageRetries` and `deadLetterTopic` in the <<pulsar-sink-connector-properties>>.
+
 |sliceTopicPartitionPath
 |no
 |false
@@ -428,6 +328,8 @@ If your connector configuration doesn't specify a region, then you must also ena
 |no
 |false
 |Save message attributes to metadata.
+
+Not supported for formatType=Bytes.
 
 |withTopicPartitionNumber
 |no
@@ -502,7 +404,9 @@ Set the following properties in the `configs` section if you are using Azure Blo
 |formatType
 |no
 |json
-|The data format type. Available options are JSON, Avro, Bytes, or Parquet. By default, it is set to JSON.
+|The <<data-format-types,data format type>>: `JSON`, `Avro`, `Bytes`, or `Parquet`.
+
+Default: `JSON`
 
 |jsonAllowNaN
 |no
@@ -544,6 +448,12 @@ Set the following properties in the `configs` section if you are using Azure Blo
 |false
 |Configure whether to skip a message which it fails to be processed. If it is set to true, the connector will skip the failed messages by ack it. Otherwise, the connector will fail the message.
 
+By default, when the connector receives a message with a non-supported schema type, the connector will fail the message.
+If you want to skip the non-supported messages, you can set `skipFailedMessages` to true.
+
+Alternatively, if a message fails to send to a Cloud Storage sink, the connector can send the message to a dead-letter topic instead, if a dead-letter topic is assigned.
+To use a dead-letter topic, set `skipFailedMessages` to `false` in `configs`, and then set `maxMessageRetries` and `deadLetterTopic` in the <<pulsar-sink-connector-properties>>.
+
 |sliceTopicPartitionPath
 |no
 |false
@@ -574,8 +484,95 @@ Set the following properties in the `configs` section if you are using Azure Blo
 |false
 |Save message attributes to metadata.
 
+Not supported for formatType=Bytes.
+
 |withTopicPartitionNumber
 |no
 |true
 |When it is set to true, include the topic partition number to the object path.
+|===
+
+[#data-format-types]
+== Data format types
+
+The `formatType` parameter supports JSON, Avro, Bytes, and Parquet formats.
+
+The following table lists the supported conversions from {pulsar-short} schema types to each writer format, as well as any limitations or additional notes.
+
+[cols=5]
+|===
+|Pulsar Schema |Writer: Avro |Writer: JSON |Writer: Parquet |Writer: Bytes
+
+|Primitive
+|Not supported
+|Supported
+
+The JSON writer will try to convert data with a String or Bytes schema to JSON-format data if convertible.
+
+|Not supported
+|Supported
+
+|Avro
+|Supported
+|Supported
+|Supported
+|Supported
+
+|JSON
+|Supported
+|Supported
+|Supported
+|Supported
+
+|Protobuf
+
+The Protobuf schema is based on the Avro schema.
+It uses Avro as an intermediate format, so it might not provide the best possible conversion.
+
+|Supported
+|Supported
+|Supported
+|Supported
+
+|ProtobufNative
+|Supported
+
+The ProtobufNative schema holds the Protobuf descriptor and the message.
+When writing to Avro format, the connector uses `avro-protobuf` to do the conversion.
+
+|Not supported
+a|Supported
+
+When writing to Parquet from the ProtobufNative schema, the connector writes the messages with the `DynamicMessage` format.
+If `withMetadata` is true, then the connector adds `+__message_metadata__+` to the messages with `PulsarIOCSCProtobufMessageMetadata` format.
+
+For example, if a message has the following schema:
+
+[source,protobuf]
+----
+syntax = "proto3";
+message User {
+ string name = 1;
+ int32 age = 2;
+}
+----
+
+If `withMetadata` is set to true, then the connector writes the message with the following schema:
+
+[source,parquet]
+----
+syntax = "proto3";
+message PulsarIOCSCProtobufMessageMetadata {
+ map<string, string> properties = 1;
+ string schema_version = 2;
+ string message_id = 3;
+}
+message User {
+ string name = 1;
+ int32 age = 2;
+ PulsarIOCSCProtobufMessageMetadata __message_metadata__ = 3;
+}
+----
+
+|Supported
 |===

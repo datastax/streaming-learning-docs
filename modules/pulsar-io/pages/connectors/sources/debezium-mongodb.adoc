@@ -41,39 +41,40 @@ include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 Set these properties in the `configs` section of the connector configuration.
 
-[cols=4]
+The following table lists some commonly used properties.
+For more information and additional properties, see the documentation for the https://debezium.io/documentation/reference/stable/connectors/mongodb.html[Debezium connector for MongoDB] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector].
+
+[cols=3]
 |===
-|Name |Required |Default |Description
+|Name |Required |Description
 
-|"database.whitelist","true","","A list of all databases hosted by this server which is monitored by the connector. This is optional, and there are other properties for listing databases and tables to include or exclude from monitoring."
-|
-|
-|
+|`database.whitelist`
+|No if alternative properties are used
+|A list of databases hosted by the server monitored by the connector.
 
-|"mongodb.hosts","true","","The comma-separated list of hostname and port pairs ('host' or 'host:port') of the MongoDB servers in the replica set. If mongodb.members.auto.discover is set to false, prefix with the replica set name (e.g., rs0/localhost:27017)."
-|
-|
-|
+There are multiple properties you can use to specify (inclusively or exclusively) the databases and tables to monitor.
 
-|"mongodb.name","true","","A unique name that identifies the connector and/or MongoDB replica set or shared cluster that this connector monitors. Each server should be monitored by at most one Debezium connector."
-|
-|
-|
+|`mongodb.hosts`
+|Yes
+|A comma-separated list of hosts (either as `host` or `host:port`) for the MongoDB servers in the replica set.
 
-|"mongodb.password","true","","Password to be used when connecting to MongoDB. This is required only when MongoDB is configured to use authentication."
-|
-|
-|
+If `mongodb.members.auto.discover` is `false`, then you must prefix hosts with the replica set name, such as `rs0/localhost:27017`.
 
-|"mongodb.task.id","true","","The taskId of the MongoDB connector that attempts to use a separate task for each replica set."
-|
-|
-|
+|`mongodb.name`
+|Yes
+|A unique name that identifies the connector, MongoDB replica set, or shared cluster that the source connector monitors.
 
-|"mongodb.user","true","","Name of the database user to be used when connecting to MongoDB. This is required only when MongoDB is configured to use authentication."
-|
-|
-|
+Use only one Debezium MongoDB source connector for each MongoDB server.
+
+|`mongodb.password`
+|Yes if authentication is enabled
+|The password to authenticate to the MongoDB server.
+
+|`mongodb.task.id`
+|Yes
+|The `taskId` of the MongoDB connector that attempts to use a separate task for each replica set.
+
+|`mongodb.user`
+|Yes if authentication is enabled
+|The name of the database user to authenticate to the MongoDB server.
 |===
-
-For more information, see the documentation for the https://debezium.io/documentation/reference/stable/connectors/mongodb.html[Debezium connector for MongoDB] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector].

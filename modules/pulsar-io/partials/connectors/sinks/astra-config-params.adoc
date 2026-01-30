@@ -45,7 +45,7 @@ Default: `{}` (Empty map, uses defaults)
 
 |`deadLetterTopic`
 |No
-|The name of the topic that receives unacknowledged messages, such as those that exceed the maximum number of retries or fail to be processed completely.
+|The name of the https://pulsar.apache.org/docs/en/concepts-messaging/#dead-letter-topic[topic that receives unacknowledged messages], such as those that exceed the maximum number of retries or fail to be processed completely.
 
 If `null` or not set, unacknowledged messages are discarded.
 
