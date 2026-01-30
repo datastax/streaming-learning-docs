@@ -1,15 +1,14 @@
 = Kinesis
 :connectorType: kinesis
 
-The Kinesis sink connector reads messages from {pulsar} topics and writes them to Kinesis systems.
+The Kinesis sink connector reads messages from {pulsar-short} topics and writes them to https://aws.amazon.com/kinesis/[Amazon Kinesis].
 
-Amazon Kinesis collects, processes, and analyzes real-time streaming data for timely insights and quick reactions to new information.
+[#compatibility]
+== Compatibility
 
-Amazon Kinesis cost-effectively processes streaming data at any scale, and offers the flexibility to choose the tools that best suit your application's requirements.
+The Amazon Kinesis Client Library for Java (Amazon KCL) is used to consume and process data from Amazon Kinesis in Java applications.
 
-The Amazon Kinesis Client Library for Java (Amazon KCL) enables Java developers to easily consume and process data from Amazon Kinesis.
-
-{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library] to interact with Kinesis.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/awslabs/amazon-kinesis-client[Amazon Kinesis Client 2.2.8 library] and the https://github.com/aws/aws-sdk-java[AWS Java SDK 0.14.0 library].
 
 == Create the connector
 
@@ -27,19 +26,14 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== Kinesis sink connector parameters (`configs`)
+=== Kinesis sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
+Set these properties in the `configs` section of the connector configuration.
 
-The {product} Kinesis sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-kinesis-sink#property[connector properties] for a complete list.
-
-== What's next?
-
-Learn more about Kinesis’s features and capabilities on https://aws.amazon.com/kinesis/[their site].
-
-Learn more about {pulsar-short}'s Kinesis sink connector https://pulsar.apache.org/docs/io-kinesis-sink[here].
+Generally, all properties provided in the https://pulsar.apache.org/docs/io-kinesis-sink[OSS {pulsar} Kinesis sink connector] are supported.
+Exceptions include properties that aren't relevant to {product} and properties that aren't present in {pulsar} {pulsar-version}.

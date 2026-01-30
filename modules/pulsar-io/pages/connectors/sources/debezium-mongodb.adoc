@@ -32,14 +32,14 @@ include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} source connector parameters
+=== {pulsar-short} source connector properties
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Debezium MongoDB source connector parameters (`configs`)
+=== Debezium MongoDB source connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
+Set these properties in the `configs` section of the connector configuration.
 
 [cols=4]
 |===

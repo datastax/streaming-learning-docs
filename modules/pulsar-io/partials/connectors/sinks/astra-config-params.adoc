@@ -1,7 +1,7 @@
 include::pulsar-io:partial$connectors/function-params-tip.adoc[]
 
-The following table lists the {product} {pulsar-short} sink connector configuration parameters by JSON field name.
-For the equivalent command line arguments and more information about these parameters, see the following:
+The following table lists the {product} {pulsar-short} sink connector configuration properties by JSON field name.
+For the equivalent command line arguments and more information about these properties, see the following:
 
 * https://pulsar.apache.org/docs/3.1.x/functions-cli/[{pulsar-short} Functions CLI and YAML configuration reference]
 * https://pulsar.apache.org/reference/#/{pulsar-version}.x/pulsar-admin/sinks[`pulsar-admin sinks` specification]
@@ -147,7 +147,7 @@ Only applicable to process and Kubernetes runtimes.
 |No
 |If security is enabled on your https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-worker[function workers], you can provide a map of secret names (`secretName`) to secrets provider configuration objects.
 The `secretName` is used by the connector to reference the secret.
-The mapped object contains the required parameters to fetch the secret from the secrets provider.
+The mapped object contains the required properties to fetch the secret from the secrets provider.
 
 To get the types for the values in this mapping, use the `https://pulsar.apache.org/docs/3.1.x/functions-develop-security/[SecretProviderConfigurator.getSecretObjectType()]` method.
 

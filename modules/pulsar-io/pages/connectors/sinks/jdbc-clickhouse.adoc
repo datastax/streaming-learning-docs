@@ -1,13 +1,12 @@
-= JDBC Clickhouse
+= JDBC ClickHouse
 :connectorType: jdbc-clickhouse
 
-//capitalization of Clickhouse?
-The JDBC-ClickHouse sink connector reads messages from {pulsar} topics and writes them to JDBC-ClickHouse systems.
+You can use the JDBC ClickHouse sink connector to stream data from {pulsar-short} topics into https://clickhouse.com/[ClickHouse] tables.
 
-ClickHouse is an open-source column-oriented database management system for online analytical processing that allows users to generate analytical reports using SQL queries in
-real-time.
+[#compatibility]
+== Compatibility
 
-{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[Clickhouse 0.3.2 library] to interact with Clickhouse.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/ClickHouse/clickhouse-jdbc[ClickHouse 0.3.2 library].
 
 == Create the connector
 
@@ -25,21 +24,11 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== JDBC Clickhouse sink connector parameters (`configs`)
+=== JDBC ClickHouse sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
-
-The {product} JDBC Clickhouse sink connector supports all configuration properties provided by {pulsar}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
-properties]
-for a complete list.
-
-== What's next?
-
-Learn more about Clickhouse's features and capabilities on https://clickhouse.com/[their site].
-
-Learn more about {pulsar-short}'s JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
+include::pulsar-io:partial$connectors/sinks/jdbc-config-params.adoc[]

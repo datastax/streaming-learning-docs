@@ -1,7 +1,7 @@
 = Google BigQuery
 :connectorType: bigquery
 
-The Google BigQuery sink connector reads messages from {pulsar} topics and writes them to BigQuery systems.
+The Google BigQuery sink connector reads messages from {pulsar-short} topics and writes them to BigQuery systems.
 
 https://cloud.google.com/bigquery[Google BigQuery] is a fully managed enterprise data warehouse that helps you manage and analyze your data with built-in features like machine learning, geospatial analysis, and business intelligence. BigQuery's serverless architecture lets you use SQL queries to answer your organization's biggest questions with zero infrastructure management. BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
 
@@ -25,14 +25,14 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== Kafka Connect Adapter parameters (`configs`)
+=== Kafka Connect Adapter properties (`configs`)
 
-The parameters in the `configs` section define how data is streamed from {pulsar-short} to BigQuery.
+The properties in the `configs` section define how data is streamed from {pulsar-short} to BigQuery.
 
 For source code for these configuration, see `https://github.com/apache/pulsar/blob/master/pulsar-io/kafka-connect-adaptor/src/main/java/org/apache/pulsar/io/kafka/connect/PulsarKafkaConnectSinkConfig.java[PulsarKafkaConnectSinkConfig.java]`.
 
@@ -109,7 +109,7 @@ Any other value causes an error.
 [#kafkaConnectorConfigProperties]
 === Google BigQuery Configuration (`kafkaConnectorConfigProperties`)
 
-Set these parameters in the `kafkaConnectorConfigProperties` section of the connector configuration.
+Set these properties in the `kafkaConnectorConfigProperties` section of the connector configuration.
 
 For the source code for these configurations, see `https://github.com/confluentinc/kafka-connect-bigquery/blob/master/kcbq-connector/src/main/java/com/wepay/kafka/connect/bigquery/config/BigQuerySinkConfig.java[BigQuerySinkConfig.java]`.
 

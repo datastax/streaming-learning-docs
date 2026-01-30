@@ -1,15 +1,15 @@
 = JDBC PostgreSQL
 :connectorType: jdbc-postgres
 
-The JDBC-PostgreSQL sink connector reads messages from {pulsar} topics and writes them to JDBC-PostgreSQL systems.
+You can use the JDBC PostgreSQL sink connector to stream data from {pulsar-short} topics into https://www.postgresql.org/[PostgreSQL] tables.
 
-PostgreSQL is a powerful, open source, object-relational database system with over 30 years of active development.
+[#compatibility]
+== Compatibility
 
-It has earned a strong reputation for reliability, feature robustness, and performance.
+The PostgreSQL JDBC driver is an open-source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol.
+This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.
 
-The PostgreSQL JDBC Driver is an open source JDBC driver written in Pure Java (Type 4) that communicates using the PostgreSQL native network protocol. This allows Java programs to connect to a PostgreSQL database using standard, database-independent Java code.
-
-{product} supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library] to interact with PostgreSQL.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://jdbc.postgresql.org/documentation/setup/[PostgreSQL JDBC 42.4.1 library].
 
 == Create the connector
 
@@ -27,20 +27,11 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== JDBC PostgreSQL sink connector parameters (`configs`)
+=== JDBC PostgreSQL sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
-
-The {product} JDBC PostgreSQL sink connector supports all configuration properties provided by {pulsar-short}. Refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
-properties] for a complete list.
-
-== What's next?
-
-Learn more about PostgreSQL on https://www.postgresql.org/[their site].
-
-Read more about {pulsar-short}'s PostgreSQL sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
+include::pulsar-io:partial$connectors/sinks/jdbc-config-params.adoc[]

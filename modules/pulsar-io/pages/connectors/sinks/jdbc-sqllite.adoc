@@ -1,17 +1,14 @@
 = JDBC SQLite
 :connectorType: jdbc-sqlite
 
-The JDBC-SQLite sink connector reads messages from {pulsar} topics and writes them to JDBC-SQLite systems.
+You can use the JDBC SQLite sink connector to stream data from {pulsar-short} topics into https://www.sqlite.org/index.html[SQLite] tables.
 
-SQLite is the most used database engine in the world.
-
-SQLite is built into all mobile phones, most computers, and comes bundled inside countless other everyday applications.
-
-SQLite is a C-language library that implements a small, fast, self-contained, highly-reliable, fully-featured, SQL database engine.
+[#compatibility]
+== Compatibility
 
 SQLite JDBC is a library for accessing and creating SQLite database files in Java.
 
-{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial 3.8.11.2 library] to interact with SQLite.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://github.com/xerial/sqlite-jdbc[Xerial SQLite JDBC 3.8.11.2 library].
 
 == Create the connector
 
@@ -29,21 +26,11 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== JDBC SQLite sink connector parameters (`configs`)
+=== JDBC SQLite sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
-
-The {product} JDBC MariaDB sink connector supports all configuration properties provided by {pulsar-short}. Please refer to the https://pulsar.apache.org/docs/io-jdbc-sink#property[connector
-properties]
-for a complete list.
-
-== What's next?
-
-Learn more about SQLite on https://www.sqlite.org/index.html[their site].
-
-Learn more about {pulsar-short}'s JDBC sink connector https://pulsar.apache.org/docs/io-jdbc-sink[here].
+include::pulsar-io:partial$connectors/sinks/jdbc-config-params.adoc[]

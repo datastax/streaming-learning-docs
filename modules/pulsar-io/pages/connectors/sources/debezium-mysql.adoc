@@ -24,14 +24,14 @@ include::pulsar-io:partial$connectors/sources/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} source connector parameters
+=== {pulsar-short} source connector properties
 
 include::pulsar-io:partial$connectors/sources/astra-config-params.adoc[]
 
 [#configs]
-=== Debezium MySQL source connector parameters (`configs`)
+=== Debezium MySQL source connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
+Set these properties in the `configs` section of the connector configuration.
 
 Generally, all properties provided in the https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-connector-properties[Debezium connector for MySQL] and the https://pulsar.apache.org/docs/io-debezium-source[OSS {pulsar} Debezium source connector] are supported.
-Exceptions include parameters that aren't relevant to {product}, and parameters that are only present in <<compatibility,incompatible versions>>.
+Exceptions include properties that aren't relevant to {product} and properties that are only present in <<compatibility,incompatible versions>>.

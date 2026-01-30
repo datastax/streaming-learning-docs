@@ -1,7 +1,7 @@
 = {astra-db} and {cass}
 :connectorType: cassandra-enhanced
 
-The open-source https://pulsar.apache.org/docs/3.1.x/io-cassandra-sink/[{pulsar-reg} {cass-short} sink connector] (`cassandra`) reads messages from {pulsar} topics and writes them to {cass} databases.
+The open-source https://pulsar.apache.org/docs/3.1.x/io-cassandra-sink/[{pulsar-reg} {cass-short} sink connector] (`cassandra`) reads messages from {pulsar-short} topics and writes them to {cass} databases.
 
 The xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector] (`{connectorType}`) extends the open-source connector by adding support for {company} product connections.
 This includes {astra-db} connections with a Secure Connect Bundle (SCB) and {astra} application token.
@@ -23,7 +23,7 @@ The preceding example connects to a self-managed {cass-short} cluster.
 
 For an {astra-db} example, see <<topic>>.
 
-For all connection parameters, see <<configs>>.
+For all connection properties, see <<configs>>.
 ====
 
 == Edit the connector
@@ -38,21 +38,21 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== {company} {pulsar} sink connector parameters (`configs`)
+=== {company} {pulsar} sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
+Set these properties in the `configs` section of the connector configuration.
 
-The relevant and required parameters depend on whether you are connecting to {astra-db} or a self-managed {cass-short} cluster, as well as the cluster configuration.
+The relevant and required properties depend on whether you are connecting to {astra-db} or a self-managed {cass-short} cluster, as well as the cluster configuration.
 
 [TIP]
 ====
-The following table includes commonly used parameters.
-For all parameters and more information, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
+The following table includes commonly used properties.
+For all properties and more information, see the xref:pulsar-connector:ROOT:index.adoc[{company} {pulsar} sink connector documentation].
 ====
 
 [cols=4]
@@ -69,7 +69,7 @@ For all parameters and more information, see the xref:pulsar-connector:ROOT:inde
 |`null`
 |The path to your {astra-db} database's SCB zip file, or a base64 encoding of the SCB zip file (`base64:**ENCODED_STRING**`).
 
-Only use this parameter for {astra-db} connections.
+Only use this property for {astra-db} connections.
 
 For self-managed clusters, use `ssl`.
 
@@ -129,7 +129,7 @@ If `cloud.secureConnectBundle` is set, then `ssl` is ignored.
 |`topic`
 |Yes
 |`{}`
-|Contains the <<topic,topic-to-table mapping parameters>>.
+|Contains the <<topic,topic-to-table mapping properties>>.
 
 |`topics`
 |Yes
@@ -140,13 +140,13 @@ For each topic in `topics`, there must be a corresponding entry in the `topic` s
 |===
 
 [#topic]
-=== Topic-to-table mapping parameters (`topic`)
+=== Topic-to-table mapping properties (`topic`)
 
-The `topic` section of the `<<configs,configs>>` contains xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[topic-to-table mapping parameters].
+The `topic` section of the `<<configs,configs>>` contains xref:pulsar-connector:ROOT:cfgRefPulsarDseTable.adoc[topic-to-table mapping properties].
 
 The mapping determines which table receives messages from a {pulsar-short} topic, and how the message `value` fields are written to the table columns.
 
-There are many mapping parameters and values to support different write options, value translations, and data formats.
+There are many mapping properties and values to support different write options, value translations, and data formats.
 
 The following example shows a simplified `configs` object that maps one topic to a table in an {astra-db} database:
 
@@ -160,7 +160,7 @@ The following example shows a simplified `configs` object that maps one topic to
   "cloud.secureConnectBundle": "path/to/scb.zip",
   "topics": "${TOPIC}",
   // ...
-  // Other configs parameters
+  // Other configs properties
   // ...
   "topic": {
    "${TOPIC}": {
@@ -168,7 +168,7 @@ The following example shows a simplified `configs` object that maps one topic to
         "${TABLE_NAME}": {
           "mapping": "column1=value.fieldA,column2=value.fieldC,column3=value.fieldG,column8=value.fieldW"
           // ...
-          // Other mapping parameters, such as codec and nullToUnset
+          // Other topic properties, such as codec and nullToUnset
           // ...
         }
       }

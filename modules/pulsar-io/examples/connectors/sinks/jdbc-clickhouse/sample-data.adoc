@@ -57,7 +57,8 @@
     "userName": "clickhouse",
     "password": "${PASSWORD}",
     "jdbcUrl": "jdbc:clickhouse://localhost:8123/pulsar_clickhouse_jdbc_sink",
-    "tableName": "pulsar_clickhouse_jdbc_sink"
+    "tableName": "pulsar_clickhouse_jdbc_sink",
+    "useTransactions": "false"
   },
   "secrets": {},
   "parallelism": 1,

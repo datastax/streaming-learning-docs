@@ -1,17 +1,14 @@
 = Elasticsearch
 :connectorType: elastic_search
 
-Elasticsearch is the distributed, RESTful search and analytics engine at the heart of the Elastic Stack.
-You can use Elasticsearch to store, search, and manage data for logs, metrics, search backend, application monitoring, and endpoint security.
+The Elasticsearch sink connector reads messages from {pulsar-short} topics and writes them to https://www.elastic.co/elasticsearch/[Elasticsearch].
 
-The Elasticsearch sink connector reads messages from {pulsar} topics and writes them to https://www.elastic.co/elasticsearch/[Elasticsearch].
+[#compatibility]
+== Compatibility
 
-{product} supports {pulsar-reg} {pulsar-version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library] to interact with
-Elasticsearch.
+{product} supports {pulsar-reg} {pulsar-version}, which uses the https://opensearch.org/docs/1.2/clients/java-rest-high-level/[OpenSearch 1.2.4 library].
 
-To understand compatibility between OpenSearch and Elasticsearch, see https://opensearch.org/faq/#q1.8[question 1.8 in the OpenSearch FAQ].
-
-For information about the OSS {pulsar} Elasticsearch sink connector, see the https://pulsar.apache.org/docs/io-elasticsearch-sink/[{pulsar-short} documentation].
+For information about compatibility between OpenSearch and Elasticsearch, see the https://opensearch.org/faq[OpenSearch FAQ].
 
 == Create the connector
 
@@ -29,13 +26,14 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== Elasticsearch sink connector parameters (`configs`)
+=== Elasticsearch sink connector properties (`configs`)
 
-The {product} Elasticsearch sink connector supports all https://pulsar.apache.org/docs/io-elasticsearch-sink/#property[Elasticsearch sink connector properties] provided in the OSS {pulsar} Elasticsearch sink connector.
+Set these properties in the `configs` section of the connector configuration.
 
-Set these parameters in the `configs` section of the connector configuration.
+Generally, all properties provided in the https://pulsar.apache.org/docs/io-elasticsearch-sink[OSS {pulsar} Elasticsearch sink connector] are supported.
+Exceptions include properties that aren't relevant to {product} and properties that are only present in <<compatibility,incompatible versions>>.

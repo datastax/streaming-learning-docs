@@ -4,7 +4,7 @@
 A https://www.snowflake.com/en/[Snowflake] database ingests structured and semi-structured datasets for processing and analysis.
 Snowflake automatically manages all parts of the data storage process, including organization, structure, metadata, file size, compression, and statistics.
 
-The Snowflake sink connector reads messages from {pulsar} topics and writes them to Snowflake databases.
+The Snowflake sink connector reads messages from {pulsar-short} topics and writes them to Snowflake databases.
 
 == Create the connector
 
@@ -22,13 +22,13 @@ include::pulsar-io:partial$connectors/sinks/manage.adoc[]
 
 include::pulsar-io:partial$connectors/connector-params-intro.adoc[]
 
-=== {pulsar-short} sink connector parameters
+=== {pulsar-short} sink connector properties
 
 include::pulsar-io:partial$connectors/sinks/astra-config-params.adoc[]
 
 [#configs]
-=== Snowflake sink connector parameters (`configs`)
+=== Snowflake sink connector properties (`configs`)
 
-Set these parameters in the `configs` section of the connector configuration.
+Set these properties in the `configs` section of the connector configuration.
 
-For all supported parameters, examples, and exceptions, see the https://github.com/datastax/snowflake-connector[{company} Snowflake connector GitHub repository].
+For all supported properties, examples, and exceptions, see the https://github.com/datastax/snowflake-connector[{company} Snowflake connector GitHub repository].
