@@ -84,7 +84,7 @@ For {product}, use `com.wepay.kafka.connect.bigquery.BigQuerySinkConnector` unle
 |`maxBatchBitsForOffset`
 |No
 |`12`
-|Number of bits to use for the index of messages in a batch, which is translated into offsets (UUIDs).
+|Number of bits to use for the index of messages in a batch, which are translated into offsets (UUIDs).
 Must be an integer between `0` and `20`.
 
 If `0`, the behavior is disabled, and all messages in a batch have the same offset.
