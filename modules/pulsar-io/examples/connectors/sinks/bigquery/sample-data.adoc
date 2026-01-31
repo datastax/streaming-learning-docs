@@ -8,7 +8,7 @@
   "configs": {
     "batchSize": "1000",
     "kafkaConnectorConfigProperties": {
-      "name": "bq-sink1",
+      "name": "${SINK_NAME}",
       "project": "my-bigquery-project",
       "defaultDataset": "BQ_CONNECTOR_TEST",
       "autoCreateBucket": true,
