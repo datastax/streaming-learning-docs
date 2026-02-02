@@ -37,4 +37,4 @@ curl -sS --fail -L -X POST "$WEB_SERVICE_URL/admin/v3/sources/$TENANT/$NAMESPACE
 ----
 +
 .Example configuration data structure
-include::example$connectors/sources/{connectorType}/sample-data.adoc[]
+include::pulsar-io:example$connectors/sources/{connectorType}/sample-data.adoc[]
