@@ -1,2 +1,0 @@
-In the `configs` section of the connector configuration, set the https://pulsar.apache.org/docs/io-jdbc-sink[{pulsar} JDBC sink connector properties].
-All JDBC sink connectors use the same set of configuration properties, but not all properties apply to all database providers or deployments.

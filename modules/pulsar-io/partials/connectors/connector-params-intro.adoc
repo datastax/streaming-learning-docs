@@ -1,3 +1,0 @@
-To configure {product} {pulsar-short} connectors, you use a combination of common {pulsar-short} properties and provider-specific properties.
-
-Because {product} and the {product} {pulsar-short} connectors are based on a specific version of the open-source {pulsar} project and connectors, some properties and values might be unsupported or ignored by {product}.

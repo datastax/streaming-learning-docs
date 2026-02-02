@@ -1,3 +1,0 @@
-|`tenant`
-|Yes
-|The {pulsar-short} tenant where you want to create the connector.

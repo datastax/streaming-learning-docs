@@ -1,3 +1,0 @@
-|`customRuntimeOptions`
-|No
-|A string that encodes options to configure the https://pulsar.apache.org/docs/3.1.x/functions-concepts/#function-runtime[{pulsar} function runtime].

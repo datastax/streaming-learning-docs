@@ -1,5 +1,0 @@
-* xref:pulsar-io:connectors/index.adoc#start-a-sink-connector[Start a sink connector]
-* xref:pulsar-io:connectors/index.adoc#stop-a-sink-connector[Stop a sink connector]
-* xref:pulsar-io:connectors/index.adoc#restart-a-sink-connector[Restart a sink connector]
-* xref:pulsar-io:connectors/index.adoc#get-sink-connector-status[Get sink connector status]
-* xref:pulsar-io:connectors/index.adoc#delete-a-sink-connector[Delete a sink connector]

@@ -1,3 +1,0 @@
-{product} supports {pulsar-reg} {pulsar-version}, which uses Debezium {debezium-version} libraries.
-
-For supported database versions, see https://debezium.io/releases/{debezium-version}/[Debezium {debezium-version} compatibility].

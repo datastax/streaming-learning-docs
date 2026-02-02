@@ -1,5 +1,0 @@
-* xref:pulsar-io:connectors/index.adoc#start-a-source-connector[Start a source connector]
-* xref:pulsar-io:connectors/index.adoc#stop-a-source-connector[Stop a source connector]
-* xref:pulsar-io:connectors/index.adoc#restart-a-source-connector[Restart a source connector]
-* xref:pulsar-io:connectors/index.adoc#get-source-connector-status[Get source connector status]
-* xref:pulsar-io:connectors/index.adoc#delete-a-source-connector[Delete a source connector]
