@@ -8,28 +8,5 @@
 * xref:starlight-for-jms:ROOT:index.adoc[Starlight for JMS]
 
 .APIs and References
-* Connectors
-** xref:pulsar-io:connectors/index.adoc[]
-** Sources
-*** xref:pulsar-io:connectors/sources/data-generator.adoc[]
-*** xref:pulsar-io:connectors/sources/debezium-mongodb.adoc[]
-*** xref:pulsar-io:connectors/sources/debezium-mysql.adoc[]
-*** xref:pulsar-io:connectors/sources/debezium-oracle.adoc[]
-*** xref:pulsar-io:connectors/sources/debezium-postgres.adoc[]
-*** xref:pulsar-io:connectors/sources/debezium-sqlserver.adoc[]
-*** xref:pulsar-io:connectors/sources/kafka.adoc[]
-*** xref:pulsar-io:connectors/sources/kinesis.adoc[]
-** Sinks
-*** xref:pulsar-io:connectors/sinks/astra-db.adoc[]
-*** xref:pulsar-io:connectors/sinks/cloud-storage.adoc[]
-*** xref:pulsar-io:connectors/sinks/elastic-search.adoc[]
-*** xref:pulsar-io:connectors/sinks/google-bigquery.adoc[]
-*** xref:pulsar-io:connectors/sinks/jdbc-postgres.adoc[]
-*** xref:pulsar-io:connectors/sinks/jdbc-mariadb.adoc[]
-*** xref:pulsar-io:connectors/sinks/jdbc-clickhouse.adoc[]
-*** xref:pulsar-io:connectors/sinks/jdbc-sqllite.adoc[]
-*** xref:pulsar-io:connectors/sinks/kafka.adoc[]
-*** xref:pulsar-io:connectors/sinks/kinesis.adoc[]
-*** xref:pulsar-io:connectors/sinks/snowflake.adoc[]
 * xref:astra-streaming:developing:astream-functions.adoc[{pulsar-short} functions]
 * xref:astra-streaming:ROOT:astream-subscriptions.adoc[Topic subscriptions]

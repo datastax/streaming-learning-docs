@@ -83,14 +83,7 @@
 
     <div><h3 class="discrete !text-h2 !m-0 [&>a]:text-white">Sink and source connectors</h3></div>
 
-    Pulsar supports many popular streaming connectors, including:
-
-    <ul class="!m-0 [&>li]:my-2">
-      <li>xref:streaming-learning:pulsar-io:connectors/sinks/elastic-search.adoc[]</li>
-      <li>xref:streaming-learning:pulsar-io:connectors/sinks/kafka.adoc[]</li>
-      <li>xref:streaming-learning:pulsar-io:connectors/sinks/snowflake.adoc[]</li>
-      <li>xref:streaming-learning:pulsar-io:connectors/index.adoc[And more]</li>
-    </ul>
+    Pulsar supports many popular streaming connectors.
 
   </div>
 
