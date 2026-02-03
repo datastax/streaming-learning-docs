@@ -20,6 +20,16 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
+[IMPORTANT]
+====
+🚨*This repository has been deprecated and archived*🚨
+
+The content in this repository has been migrated to the following repositories:
+
+* https://github.com/datastax/astra-streaming-docs[datastax/astra-streaming-docs]
+* https://github.com/datastax/pulsar-docs[datastax/pulsar-docs]
+====
+
 This repository contains the https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc] source files for the {company} {product} documentation.
 
 To learn how to update the documentation, see the https://datastax.jira.com/wiki/spaces/DOCS/overview[Docs team Confluence site].
